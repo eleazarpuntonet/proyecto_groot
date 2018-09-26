@@ -1,0 +1,909 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"route",
+				"Route"
+			],
+			[
+				"rou",
+				"Route"
+			],
+			[
+				"fun",
+				"fun\tfunction …"
+			],
+			[
+				"Requet",
+				"Requests"
+			],
+			[
+				"ro",
+				"Route"
+			],
+			[
+				"function",
+				"create_function"
+			],
+			[
+				"me",
+				"method\tAttr"
+			],
+			[
+				"td",
+				"td_end"
+			],
+			[
+				"boton",
+				"boton_i"
+			],
+			[
+				"bot",
+				"boton_td"
+			],
+			[
+				"sp",
+				"end_span"
+			],
+			[
+				"end",
+				"end_span"
+			],
+			[
+				"span",
+				"spanText"
+			],
+			[
+				"spa",
+				"spanText"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"query",
+				"query_text"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "web.php",
+			"settings":
+			{
+				"buffer_size": 1902,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers/ItWebServicesController.php",
+			"settings":
+			{
+				"buffer_size": 3270,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers/PagesController.php",
+			"settings":
+			{
+				"buffer_size": 1136,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Middleware/Xample.php",
+			"settings":
+			{
+				"buffer_size": 413,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresIndex.blade.php",
+			"settings":
+			{
+				"buffer_size": 1032,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresEdit.blade.php",
+			"settings":
+			{
+				"buffer_size": 1124,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresSingle.blade.php",
+			"settings":
+			{
+				"buffer_size": 200,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 353.0,
+		"last_filter": "align",
+		"selected_items":
+		[
+			[
+				"align",
+				"AlignTab: Live Preview Mode"
+			],
+			[
+				"pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"packe cpmtr",
+				"Package Control: Remove Repository"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"color",
+				"UI: Select Color Scheme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"ayu",
+				"ayu: Activate theme"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"mono",
+				"Monokai Pro: select theme"
+			],
+			[
+				"color sch",
+				"UI: Select Color Scheme"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"da",
+				"DA UI: Select Accent"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"\t",
+				"AlignTab: Live Preview Mode"
+			],
+			[
+				"ali",
+				"Preferences: AlignTab Context Menu"
+			],
+			[
+				"",
+				"AlignTab: Live Preview Mode"
+			]
+		],
+		"width": 434.0
+	},
+	"console":
+	{
+		"height": 195.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/database",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/database/migrations",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices"
+	],
+	"file_history":
+	[
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/public/js/main.js",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/config/database.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresEdit.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Providers/AppServiceProvider.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/.env",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/vistaProveedores.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/layout.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/proveedores.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers/PagesController.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/database/migrations/2018_09_17_162805_proveedores.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/database/migrations/2018_09_17_162245_proveedores.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Kernel.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/welcome.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Middleware/Xample.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Middleware/VerifyCsrfToken.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Requests/AddProveedor.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/public/js/jquery3.js",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/credenciales.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/sitios.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/home.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/facturacion.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/contactos.blade.php",
+		"/Users/ladmin/Library/Application Support/Sublime Text 3/Packages/User/Theme - Monokai Pro.sublime-settings",
+		"/Volumes/6AC56D9D-2549-4BC3-81A8-28541E3D29EE-14710-00005A863C464C1F/fontello-f30f8f36/font/fontello.svg",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/vendor/symfony/http-foundation/RedirectResponse.php",
+		"/Applications/MAMP/htdocs/kellyideas/wp-content/themes/modern-child/style.css",
+		"/Applications/MAMP/htdocs/kellyideas/wp-content/themes/modern-child/functions.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/app/Http/Requests/NewValidatingClass.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/contacto.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/app/Http/Middleware/VerifyCsrfToken.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/config/app.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/lang/es/validation.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/layout1.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/formularios.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/welcome.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/routes/web.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/webservices.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/home.blade.php",
+		"/Users/ladmin/Desktop/SpsApps/ITApp/resources/views/home.php",
+		"/Applications/MAMP/htdocs/webservices/js/main.js",
+		"/Applications/MAMP/htdocs/havan-chang/wp-config.php"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"comentarios",
+			"/",
+			"passwdDeProveedor",
+			"cuenta",
+			"dominio",
+			"home"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "web.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1902,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								976,
+								976
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"current_ext": ".php",
+								"current_syntax": "PHP/PHP",
+								"enabled": false,
+								"last_updated": 1536928975.91
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers/ItWebServicesController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3270,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "PHP/PHP",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Controllers/PagesController.php",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1136,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "PHP/PHP",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/app/Http/Middleware/Xample.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 413,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "PHP/PHP",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresIndex.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1032,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1032,
+								1032
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "Laravel Blade Highlighter/blade",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresEdit.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1124,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								298,
+								298
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "Laravel Blade Highlighter/blade",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "/Users/ladmin/Desktop/SpsApps/proyecto_groot/resources/views/ItWebservices/proveedoresSingle.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 200,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"color_helper.box_height": 15,
+							"color_helper.color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+							"color_helper.file_palette":
+							[
+							],
+							"color_helper.preview_meta":
+							{
+							},
+							"color_helper.scan":
+							{
+								"allowed_colors":
+								[
+									"rgba",
+									"hsl",
+									"rgb",
+									"hex_compressed",
+									"hex",
+									"webcolors",
+									"hsla"
+								],
+								"compress_hex_output": true,
+								"current_ext": ".php",
+								"current_syntax": "Laravel Blade Highlighter/blade",
+								"enabled": true,
+								"last_updated": 1536928975.91,
+								"scan_completion_scopes":
+								[
+								],
+								"scan_scopes":
+								[
+									"meta.declaration-list.css -support.type.property-name.css -comment -string",
+									"meta.property-value.css -comment -string",
+									"meta.value.css -comment -string",
+									"meta.tag.inline.any.html string.quoted -constant.character.entity.html",
+									"meta.tag.any.html meta.attribute-with-value.style.html"
+								],
+								"use_hex_argb": false
+							},
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Laravel Blade Highlighter/blade.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 55.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.426929180439,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ProyectoSampleLaravel.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"redir",
+				"vendor/symfony/http-foundation/RedirectResponse.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 256.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -1,0 +1,44 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+#editButtons{
+	display: flex;
+}
+.button-btn{
+	margin: auto;
+}
+#tableProv th,td{
+	text-align:center;
+}
+.mainTitle{
+	margin-top: 10vh;
+	margin-bottom: 3vh;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#registerFormBox{
+	width: 85vh;
+
+}
+h1 {
+	text-align: center;
+}
+.infoBox{
+	margin-top: 60px;
+}
+.formBox{
+	
+}
+.testingDiv{
+	text-align: center;
+}
+
+
+
