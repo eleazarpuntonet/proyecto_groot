@@ -103,8 +103,8 @@ class sitesController extends Controller
      */
     public function destroy($id)
     {
-        // Sites::findOrFail($id)->delete();
-        return "Destruye ".$id; 
-        // return redirect()->route('sites.index'); 
+        Sites::findOrFail($id)->delete();
+        // return "Destruye ".$id; 
+        return redirect()->route('sites.index'); 
     }
 }

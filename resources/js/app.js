@@ -77,9 +77,9 @@ window.Vue = require('vue')
  */
  import VueRouter  		from 'vue-router'
  import Vue        		from 'vue'
- import sitestable 		from './components/sites_list_table.vue'
- import editForm   		from './components/sites_single_edit.vue'
- import singleSiteShow 	from './components/site_single_show.vue'
+ import sitestable 		from './components/sites_comp/sites_list_table.vue'
+ import editForm   		from './components/sites_comp/sites_single_edit.vue'
+ import singleSiteShow 	from './components/sites_comp/site_single_show.vue'
  import rutas      		from './routes.js'
  import axios      		from 'axios'
  import VueAxios   		from 'vue-axios'
@@ -87,17 +87,15 @@ window.Vue = require('vue')
  Vue.use(VueAxios, axios)
  Vue.use(VueRouter)
  
- Vue.component('sites-table',       require('./components/sites_list_table.vue'));
- Vue.component('sites-edit-form',   require('./components/sites_single_edit.vue'));
- Vue.component('single-site-show',  require('./components/site_single_show.vue'));
- Vue.component('site-new-form',   	require('./components/site_new_form.vue'));
+ Vue.component('site-new-form',   	require('./components/sites_comp/site_new_form.vue'));
+ Vue.component('sites-table',       require('./components/sites_comp/sites_list_table.vue'));
+ Vue.component('sites-edit-form',   require('./components/sites_comp/sites_single_edit.vue'));
+ Vue.component('single-site-show',  require('./components/sites_comp/site_single_show.vue'));
 
- 
-
- const rout = new VueRouter({
-	routes : rutas,
-	mode   : 'history'
- })
+const rout = new VueRouter({
+routes : rutas,
+mode   : 'history'
+})
 
 
 const app = new Vue({

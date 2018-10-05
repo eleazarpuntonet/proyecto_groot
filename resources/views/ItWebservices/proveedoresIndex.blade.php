@@ -1,6 +1,8 @@
 @extends('layouts.mainLayout')
 @section('contenido')
 
+{{-- <fact-list datasend='{{ json_encode($proveedor)  }}'></fact-list> --}}
+
 <div class="container-fluid mainTitle">
 	<div class="row">
 		<div class="col"></div>

@@ -20,6 +20,7 @@
                 <div class="col"></div>
             </div>
         </div>
+        
         <div id="formBox" class="container">
                     <form :action="urlEdit" method="POST">
                         <input type="hidden" name="_token" :value="csrf">
@@ -78,17 +79,13 @@ export default {
                             // console.log(error)
                             // Error
                             if (error.response) {
-                                console.log('Error Response')
-                                console.log(error.response.data.message)
-                                alert('No autorizado')
-                                // The request was made and the server responded with a status code
-                                // that falls out of the range of 2xx
-                                // console.log(error.response.data);
-                                // console.log(error.response.status);
-                                // console.log(error.response.headers);
+                                // El request fue enviado pero el servidor
+                                //respondio con un codigo de error
+                                console.log(error.response.data);
+                                console.log(error.response.status);
+                                console.log(error.response.headers);
                             } else if (error.request) {
                                 console.log("The request was made but no response was received")
-                                // console.log(error.response)
                                 // The request was made but no response was received
                                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                                 // http.ClientRequest in node.js
