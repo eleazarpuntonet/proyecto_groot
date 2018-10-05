@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="author" content="">
 		<link rel="icon" href="../../../../favicon.ico">
 
@@ -12,6 +13,9 @@
 	</head>
 
 	<body>
+		@routes
+	<div id="app">
+		
 
 		@php
 			function activeMenu($url){
@@ -36,7 +40,10 @@
 							<div class="dropdown-menu" aria-labelledby="dropdProveedores">
 								<a class="dropdown-item" href="{{ route('proveedores.index') }}">Lista de 
 								proveedores</a>
-								<a class="dropdown-item" href="{{ route('proveedores.create') }}">Agregar Nuevo</a>
+								@if(auth()->check())
+									<a class="dropdown-item" href="{{ route('proveedores.create') }}">Agregar Nuevo</a>
+								@endif
+								
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -45,7 +52,9 @@
 							<div class="dropdown-menu" aria-labelledby="dropdSites">
 								<a class="dropdown-item" href="{{ route('sites.index') }}">Lista de 
 								Sitios</a>
-								<a class="dropdown-item" href="{{ route('sites.create') }}">Agregar Nuevo</a>
+								@if(auth()->check())
+									<a class="dropdown-item" href="{{ route('sites.create') }}">Agregar Nuevo</a>
+								@endif
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -54,7 +63,11 @@
 							<div class="dropdown-menu" aria-labelledby="dropdSites">
 								<a class="dropdown-item" href="{{ route('credenciales.index') }}">Lista de 
 								Credenciales</a>
-								<a class="dropdown-item" href="{{ route('credenciales.create') }}">Agregar Nuevo</a>
+								@if(auth()->check())
+									<a class="dropdown-item" href="{{ route('credenciales.create') }}">Agregar Nuevo</a>
+
+								@endif
+
 							</div>
 						</li>
 						<li class="nav-item dropdown">
@@ -63,10 +76,15 @@
 							<div class="dropdown-menu" aria-labelledby="dropdSites">
 								<a class="dropdown-item" href="{{ route('facturacion.index') }}">Lista de 
 								datos de Facturacion</a>
-								<a class="dropdown-item" href="{{ route('facturacion.create') }}">Agregar Nuevo</a>
+								@if(auth()->check())
+									<a class="dropdown-item" href="{{ route('facturacion.create') }}">Agregar Nuevo</a>
+
+								@endif
+								
 							</div>
 						</li>
         @guest
+							
 						<li class="nav-item">
 							<a class="nav-link" href="{{ route('login') }}">Login<span class="sr-only">(current)</span></a>
 						</li>
@@ -74,12 +92,14 @@
 							<a class="nav-link" href="{{ route('register') }}">Registrar<span class="sr-only">(current)</span></a>
 						</li>
         @else
-						<li class="nav-item dropdown">
-
-						</li>
+    				@if(auth()->user()->hasRoles(['admin','suscriptor']))
+    					<li class="nav-item">
+    						<a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
+    					</li>
+    				@endif
 					</ul>
 					<div class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
 						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							    @csrf
@@ -96,8 +116,8 @@
 			</div>
 		</nav>
 
-
 @yield('contenido')
+		</div>
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->

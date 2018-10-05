@@ -1,16 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
-use DB;
-use Carbon\Carbon;
-use App\Sites;
 
-class sitesController extends Controller
+class UsersController extends Controller
 {
     function __construct(){
         $this->middleware('auth',['except'=>['index','show']]);
+        $this->middleware('roles:admin,suscriptor');
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +17,9 @@ class sitesController extends Controller
      */
     public function index()
     {
-        $sites = Sites::all();
-        return view('sites.siteList',compact('sites'));
+        $users = User::all();
+
+        return view('usuarios',compact('users'));
     }
 
     /**
@@ -30,7 +29,7 @@ class sitesController extends Controller
      */
     public function create()
     {
-       return view('sites.newSiteForm');
+        //
     }
 
     /**
@@ -41,15 +40,7 @@ class sitesController extends Controller
      */
     public function store(Request $request)
     {
-        $sites          = new Sites;
-        $sites->dominio = $request->input('dominio');
-        $sites->hosting = $request->input('hosting');
-        $sites->ip_site = $request->input('ip_site');
-        $sites->status  = $request->input('status');
-        $sites->save();
-        return redirect()->route('sites.create')->with('info','Registro completado!');
-        // dd($request->request);
-        // return 'Recibiendo desde servidor';
+        //
     }
 
     /**
@@ -60,8 +51,7 @@ class sitesController extends Controller
      */
     public function show($id)
     {
-        $site = Sites::findOrFail($id);
-        return  view('sites.siteSingle',compact('site'));
+        //
     }
 
     /**
@@ -72,9 +62,7 @@ class sitesController extends Controller
      */
     public function edit($id)
     {
-        $site = Sites::findOrFail($id);
-        // return  "Textpo";
-        return  view('sites.siteEdit',compact('site'));
+        //
     }
 
     /**
@@ -86,13 +74,7 @@ class sitesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $sites          = Sites::findOrFail($id);
-        $sites->dominio = $request->input('dominio');
-        $sites->hosting = $request->input('hosting');
-        $sites->ip_site = $request->input('ip_site');
-        $sites->status  = $request->input('status');
-        $sites->save();
-        return redirect()->route('sites.index');
+        //
     }
 
     /**
@@ -103,8 +85,6 @@ class sitesController extends Controller
      */
     public function destroy($id)
     {
-        // Sites::findOrFail($id)->delete();
-        return "Destruye ".$id; 
-        // return redirect()->route('sites.index'); 
+        //
     }
 }

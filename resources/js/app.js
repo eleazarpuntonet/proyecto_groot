@@ -1,5 +1,10 @@
 $(document).ready(function() {
 	// $('#botonAjax').click(function(){
+		$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		});
 		var dataSend = {
 			'Nombre':'Eleazar',
 			'Nacionalidad0':'Venezolano',
@@ -21,8 +26,8 @@ $(document).ready(function() {
 				for(var i in data){
 					// console.log(data[i].id)
 					$('.hostingSelect').append($('<option>',{
-						'value':data[i].id,
-						'text':data[i].nombre
+						'value' : data[i].id,
+						'text'  : data[i].nombre
 					}))
 				}
 			}
@@ -57,18 +62,51 @@ $(document).ready(function() {
  */
 
 require('./bootstrap');
-
-window.Vue = require('vue');
+window.axios = require('axios')
+window.axios.defaults.headers.common = {
+    'X-Requested-With' : 'XMLHttpRequest',
+    'X-CSRF-TOKEN'     : document.querySelector('meta[name="csrf-token"]')
+    								.getAttribute('content'),
+}
+window.Vue = require('vue')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+ import VueRouter  		from 'vue-router'
+ import Vue        		from 'vue'
+ import sitestable 		from './components/sites_list_table.vue'
+ import editForm   		from './components/sites_single_edit.vue'
+ import singleSiteShow 	from './components/site_single_show.vue'
+ import rutas      		from './routes.js'
+ import axios      		from 'axios'
+ import VueAxios   		from 'vue-axios'
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+ Vue.use(VueAxios, axios)
+ Vue.use(VueRouter)
+ 
+ Vue.component('sites-table',       require('./components/sites_list_table.vue'));
+ Vue.component('sites-edit-form',   require('./components/sites_single_edit.vue'));
+ Vue.component('single-site-show',  require('./components/site_single_show.vue'));
+ Vue.component('site-new-form',   	require('./components/site_new_form.vue'));
 
-// const app = new Vue({
-//     el: '#app'
-// });
+ 
+
+ const rout = new VueRouter({
+	routes : rutas,
+	mode   : 'history'
+ })
+
+
+const app = new Vue({
+    el     : '#app',
+    router : rout,
+    components:{
+    	sitestable,
+    	editForm,
+    	singleSiteShow,
+    }
+})
 

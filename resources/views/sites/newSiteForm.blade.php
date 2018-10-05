@@ -1,7 +1,9 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+	<site-new-form info='{{session()->has('info')?'true':'false'}}'
+		></site-new-form>
 
-	<div class="container-fluid mainTitle">
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -54,7 +56,7 @@
 		  </div>
 		  <button type="submit" class="btn btn-primary">Enviar</button>
 		</form>
-	</div>
+	</div> 
+@endif--}}
 
-@endif
 @endsection

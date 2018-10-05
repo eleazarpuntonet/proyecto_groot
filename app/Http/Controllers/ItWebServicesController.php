@@ -12,7 +12,7 @@ class ItWebServicesController extends Controller
 {
 
     function __construct(){
-        $this->middleware('auth',['except'=>['index','create','show']]);
+        $this->middleware('auth',['except'=>['index','show']]);
     }
     /**
      * Display a listing of the resource.
