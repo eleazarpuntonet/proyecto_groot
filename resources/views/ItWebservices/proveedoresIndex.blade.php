@@ -1,9 +1,9 @@
 @extends('layouts.mainLayout')
 @section('contenido')
 
-{{-- <fact-list datasend='{{ json_encode($proveedor)  }}'></fact-list> --}}
+<prov-list datasend='{{ json_encode($proveedores)  }}'></prov-list>
 
-<div class="container-fluid mainTitle">
+{{-- <div class="container-fluid mainTitle">
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
@@ -56,6 +56,6 @@
 	  	@endforeach
 	  </tbody>
 	</table>
-</div>
+</div> --}}
 
 @stop

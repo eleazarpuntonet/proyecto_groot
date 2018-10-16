@@ -1,7 +1,8 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+<fact-new></fact-new>
 
-	<div class="container-fluid mainTitle">
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -63,5 +64,5 @@
 		</form>
 	</div>
 
-@endif
+@endif --}}
 @endsection

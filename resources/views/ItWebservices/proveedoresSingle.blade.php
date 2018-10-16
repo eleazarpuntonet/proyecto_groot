@@ -1,7 +1,8 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+	<prov-show perfil_show="{{ $proveedor }}"></prov-show>
 
-<div id="mainTitle" class="container-fluid">
+{{-- <div id="mainTitle" class="container-fluid">
 	<div class="row">
 		<div class="col"></div>
 		<div class="col">
@@ -39,6 +40,6 @@
 			{{ $proveedor->comentarios }}
 	  	</textarea>
 	  </div>
-</div>
+</div> --}}
 
 @stop

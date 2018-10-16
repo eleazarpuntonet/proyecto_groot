@@ -1,6 +1,10 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+<prov-edit 	perfil_edit='{{ ($proveedor)  }}' 
+					info='{{session()->has('info')?'true':'false'}}'>
+</prov-edit>
 
+{{-- 
 <div  class="mainTitle container-fluid">
 	<div class="row">
 		<div class="col"></div>
@@ -57,6 +61,6 @@
 	  <button type="submit" class="btn btn-primary">Enviar</button>
 	</form>
 </div>
-@endif
+@endif --}}
 
 @stop

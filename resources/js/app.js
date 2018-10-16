@@ -77,12 +77,24 @@ window.Vue = require('vue')
  */
  import VueRouter  		from 'vue-router'
  import Vue        		from 'vue'
+ import axios      		from 'axios'
+ import VueAxios   		from 'vue-axios'
+ import rutas      		from './routes.js'
  import sitestable 		from './components/sites_comp/sites_list_table.vue'
  import editForm   		from './components/sites_comp/sites_single_edit.vue'
  import singleSiteShow 	from './components/sites_comp/site_single_show.vue'
- import rutas      		from './routes.js'
- import axios      		from 'axios'
- import VueAxios   		from 'vue-axios'
+ import proveeList	 	from './components/prov_comp/prov_list.vue'
+ import proveeShow	 	from './components/prov_comp/prov_show.vue'
+ import proveeNew	 	from './components/prov_comp/prov_new.vue'
+ import proveeEdit	 	from './components/prov_comp/prov_edit.vue'
+ import credList	 	from './components/cred_comp/cred_list.vue'
+ import credEdit	 	from './components/cred_comp/cred_edit.vue'
+ import credNew	 		from './components/cred_comp/cred_new.vue'
+ import credShow 		from './components/cred_comp/cred_show.vue'
+ import factList 		from './components/fact_comp/fact_list.vue'
+ import factNew 		from './components/fact_comp/fact_new.vue'
+ import factEdit 		from './components/fact_comp/fact_edit.vue'
+ import factShow 		from './components/fact_comp/fact_show.vue'
 
  Vue.use(VueAxios, axios)
  Vue.use(VueRouter)
@@ -91,6 +103,18 @@ window.Vue = require('vue')
  Vue.component('sites-table',       require('./components/sites_comp/sites_list_table.vue'));
  Vue.component('sites-edit-form',   require('./components/sites_comp/sites_single_edit.vue'));
  Vue.component('single-site-show',  require('./components/sites_comp/site_single_show.vue'));
+ Vue.component('prov-list',  		require('./components/prov_comp/prov_list.vue'));
+ Vue.component('prov-show', 		require('./components/prov_comp/prov_show.vue'));
+ Vue.component('prov-new', 			require('./components/prov_comp/prov_new.vue'));
+ Vue.component('prov-edit',			require('./components/prov_comp/prov_edit.vue'));
+ Vue.component('cred-list', 		require('./components/cred_comp/cred_list.vue'));
+ Vue.component('cred-edit', 		require('./components/cred_comp/cred_edit.vue'));
+ Vue.component('cred-new', 			require('./components/cred_comp/cred_new.vue'));
+ Vue.component('cred-show', 		require('./components/cred_comp/cred_show.vue'));
+ Vue.component('fact-list', 		require('./components/fact_comp/fact_list.vue'));
+ Vue.component('fact-new', 			require('./components/fact_comp/fact_new.vue'));
+ Vue.component('fact-edit', 		require('./components/fact_comp/fact_edit.vue'));
+ Vue.component('fact-show', 		require('./components/fact_comp/fact_show.vue'));
 
 const rout = new VueRouter({
 routes : rutas,
@@ -105,6 +129,22 @@ const app = new Vue({
     	sitestable,
     	editForm,
     	singleSiteShow,
+    	proveeList,
+    	proveeShow,
+    	proveeNew,
+    	credEdit,
+    	credShow,
+    	proveeEdit,
+    	factList,
+    	factNew,
+    	factEdit,
+    	factShow,
+    },
+    mounted() { 
+            // axios.get('/tasks') 
+            //     .then(response => this.tasks = response.data) 
+            //     .catch(error => this.errors.push(error));
+            // alert('Hola!')
     }
 })
 

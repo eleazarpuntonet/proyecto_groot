@@ -107,8 +107,9 @@ class ItWebServicesController extends Controller
      */
     public function destroy($id)
     {
-        Proveedor::findOrFail($id)->delete();
-        return redirect()->route('proveedores.index'); 
+        // Proveedor::findOrFail($id)->delete();
+        // return redirect()->route('proveedores.index'); 
+        return "Sitio eliminado";
         //
     }
 }

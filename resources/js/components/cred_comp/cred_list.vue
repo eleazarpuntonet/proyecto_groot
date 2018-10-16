@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col"></div>
                 <div class="col">
-                    <h1>Datos de Facturacion</h1>
+                    <h1>Credenciales</h1>
                 </div>
                 <div class="col"></div>
             </div>
@@ -22,12 +22,12 @@
               <tbody>
                 <tr v-for="data in mutabledatasend">
                     <td scope="row">
-                        <a :href="showSite(data.id)">{{ data.id_proveedor }}</a>
+                        <a :href="showSite(data.id)">{{ data.id_site }}</a>
                     </td>
-                    <td>{{ data.servicio }}</td>
-                    <td>{{ data.ciclo_facturacion }}</td>
-                    <td>{{ data.fecha_corte }}</td>
-                    <td>{{ data.importe }}</td>
+                    <td>{{ data.descripcion }}</td>
+                    <td>{{ data.user }}</td>
+                    <td>{{ data.passw }}</td>
+                    <td>{{ data.comentarios }}</td>
                     <td>
                         <div class="container" id="editButtons">
                             <div class="button-btn">
@@ -55,7 +55,7 @@ export default {
     props: ['datasend'],
     data() {
         return  {
-            tableHeading : ['Proveedor','Servicio','Ciclo de Facturacion','Fecha de Corte','Importe','Editar'],
+            tableHeading : ['Site','Descripcion','Usuario','Password','Comentarios','Editar'],
             mutabledatasend : '',
         }
     },
@@ -64,10 +64,10 @@ export default {
     },
     methods:{
         editSite(id){
-            return route('facturacion.edit',id)
+            return route('credenciales.edit',id)
         },
         delSite(id){
-            return axios.post(route('facturacion.destroy',id),{ _method: 'delete'})
+            return axios.post(route('credenciales.destroy',id),{ _method: 'delete'})
                         .then((res)=>{
                             console.log(res);
                         })
@@ -94,7 +94,7 @@ export default {
                         });
         },
         showSite(id){
-            return route('facturacion.show',id)
+            return route('credenciales.show',id)
         }
     }
 }

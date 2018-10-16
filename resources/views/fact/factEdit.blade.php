@@ -1,7 +1,9 @@
 @extends('layouts.mainLayout')
 @section('contenido')
-
-	<div class="container-fluid mainTitle">
+<fact-edit 	perfil_edit='{{ ($facturacion)  }}' 
+			info='{{session()->has('info')?'true':'false'}}'></fact-edit>
+			
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -51,5 +53,5 @@
 		</form>
 	</div>
 
-@endif
+@endif --}}
 @endsection

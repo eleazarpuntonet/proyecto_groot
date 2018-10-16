@@ -1,7 +1,9 @@
 @extends('layouts.mainLayout')
 @section('contenido')
-
-	<div class="container-fluid mainTitle">
+<cred-edit 	perfil_edit='{{ ($credencial)  }}' 
+			info='{{session()->has('info')?'true':'false'}}'></cred-edit>
+			
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -55,5 +57,5 @@
 		</form>
 	</div>
 
-@endif
+@endif --}}
 @endsection

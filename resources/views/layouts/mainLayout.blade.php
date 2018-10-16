@@ -8,7 +8,7 @@
 		<meta name="author" content="">
 		<link rel="icon" href="../../../../favicon.ico">
 
-		<title>Navbar Template for Bootstrap</title>
+		<title>Proyecto Groot</title>
 		<link rel="stylesheet" href="/css/app.css">
 	</head>
 

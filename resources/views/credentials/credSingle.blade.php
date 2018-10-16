@@ -1,7 +1,8 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+<cred-show perfil_show="{{ $credencial }}"></cred-show>
 
-	<div class="container-fluid mainTitle">
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -37,6 +38,6 @@
 	    		<input readonly type="text" class="form-control" id="comentarios" placeholder="comentarios" name="comentarios" value="{{ $credencial->comentarios }}">
 	        </div>
 		  </div>
-	</div>
+	</div> --}}
 
 @endsection

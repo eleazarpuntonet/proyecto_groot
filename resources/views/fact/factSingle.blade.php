@@ -1,7 +1,8 @@
 @extends('layouts.mainLayout')
 @section('contenido')
+<fact-show perfil_show="{{ $facturacion }}"></fact-show>
 
-	<div class="container-fluid mainTitle">
+{{-- 	<div class="container-fluid mainTitle">
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
@@ -50,5 +51,5 @@
 		  </div>
 	</div>
 
-@endif
+@endif --}}
 @endsection
