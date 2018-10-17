@@ -25,15 +25,16 @@
         <form :action="urlStore" method="POST" @submit="onSubmit()">
             <input type="hidden" name="_token" :value="csrf">
           <div class="form-row">
-            <!-- {{ csrf_field() }} -->
             <div class="form-group col-md-6">
               <label for="dominio">Dominio</label>
               <input type="text" class="form-control" id="dominio" placeholder="Dominio" name="dominio" value="" v-model="dominio">
             </div>
             <div class="form-group col-md-6">
                 <label for="hosting">Hosting</label>
-                <select name="hosting" class="form-control hostingSelect" v-model="hosting">
-                  <option>Seleccione un Hosting</option>
+                <select name="hosting" class="form-control" v-model="hosting">
+                    <option v-for="item in this.$store.getters.showHost" :value="item.id">
+                    {{item.nombre}}
+                    </option>
                 </select>
                 
             </div>
@@ -68,26 +69,23 @@ export default {
             hosting : '',
             ip_site : '',
             status  : '',
-            // tableHeading : ['Dominio','Hosting','Ip Site','Status','Editar'],
             urlStore : route('sites.store'),
-            // id:0,
         }
     },
     mounted() {
-        // this.perfil = JSON.parse(this.perfil_show)
-        // console.log(this.perfil_show)
+        // console.log("Componente")
+        // console.log(this.$store.getters.showHost)
     },
     methods:{
         newSiteForm()
         {
-            console.log(route('sites.store'))
             return route('sites.store')
         },
         onSubmit(){
-            alert("Hola ")
             return axios.post(route('sites.store'))
         }
-    }
+    },
+
 }
 </script>
 

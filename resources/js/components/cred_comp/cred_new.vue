@@ -28,7 +28,9 @@
                         <div class="form-group col-md-6">
                           <label for="id_site">Site</label>
                           <select name="id_site" class="form-control sitesSelect" v-model="id_site">
-                            <option>Seleccione un Site</option>
+                            <option v-for="item in this.$store.getters.showSites" :value="item.id">
+                            {{item.dominio}}
+                            </option>
                           </select>
                         </div>
                         <div class="form-group col-md-6">

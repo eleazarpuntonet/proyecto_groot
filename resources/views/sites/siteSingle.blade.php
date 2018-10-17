@@ -2,5 +2,5 @@
 
 @extends('layouts.mainLayout')
 @section('contenido')
-	<single-site-show perfil_show="{{ $site }}"></single-site-show>
+	<single-site perfil_show="{{ $site }}"></single-site>
 @endsection

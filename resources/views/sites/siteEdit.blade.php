@@ -1,9 +1,9 @@
 @extends('layouts.mainLayout')
 @section('contenido')
 	
-	<sites-edit-form 	perfil_edit='{{ ($site)  }}' 
+	<sites-edit 	perfil_edit='{{ ($site)  }}' 
 						info='{{session()->has('info')?'true':'false'}}'>
-	</sites-edit-form>
+	</sites-edit>
 
 
 @endsection

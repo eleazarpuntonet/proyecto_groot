@@ -58,16 +58,13 @@ export default {
     data() {
         return  {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            // tableHeading : ['Dominio','Hosting','Ip Site','Status','Editar'],
             perfil : '',
-            // id:0,
             urlEdit: '',
         }
     },
     mounted() {
         this.perfil = JSON.parse(this.perfil_edit)
         this.urlEdit = route('sites.update',this.perfil.id)
-        // console.log(this.perfil.id)
     },
     methods:{
         updSite(id){
@@ -76,7 +73,7 @@ export default {
                             console.log(res);
                         })
                         .catch((error) => {
-                            // console.log(error)
+                            console.log(error)
                             // Error
                             if (error.response) {
                                 // El request fue enviado pero el servidor
@@ -94,7 +91,6 @@ export default {
                                 // Something happened in setting up the request that triggered an Error
                                 console.log('Something happened in setting up the request that triggered an Error', error.message);
                             }
-                            // console.log(error.config);
                         });
         },
     }
