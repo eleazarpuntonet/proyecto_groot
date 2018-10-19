@@ -88,6 +88,9 @@ Auth::routes();
 
 Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index']);
 
+Route::get('/', ['as'=>'home', 'uses'=>'HomeController@homeCore']);
+
+
 Route::resource('usuarios', 'UsersController');
 
 

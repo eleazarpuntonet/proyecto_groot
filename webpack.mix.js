@@ -12,8 +12,10 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+	.js('coreui-free-vue-admin-template/src/main.js', 'public/js')
 	.js('resources/js/bootstrap.js', 'public/js')
-   	.sass('resources/sass/app.scss', 'public/css');
+   	.sass('resources/sass/app.scss', 'public/css')
+   	.sass('coreui-free-vue-admin-template/src/assets/scss/style.scss', 'public/css');
 
 mix.browserSync({
    	    proxy: 'http://localhost:8000'

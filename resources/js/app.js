@@ -41,7 +41,7 @@ window.Vue = require('vue')
  import factShow 		from './components/fact_comp/fact_show.vue'
 
  Vue.use(VueAxios, axios)
- Vue.use(VueRouter)
+ // Vue.use(VueRouter)
  Vue.use(Vuex)
  Vue.component('site-new',   		require('./components/sites_comp/sites_new.vue'));
  Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
@@ -123,6 +123,9 @@ const app = new Vue({
     	factNew,
     	factEdit,
     	factShow,
+    },
+    mounted(){
+        console.log('Hola! desde el APP')
     },
     beforeCreate() { 
         axios.get('/ajaxHost') 
