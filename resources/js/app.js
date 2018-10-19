@@ -58,7 +58,19 @@ window.Vue = require('vue')
  Vue.component('fact-list', 		require('./components/fact_comp/fact_list.vue'));
  Vue.component('fact-new', 			require('./components/fact_comp/fact_new.vue'));
  Vue.component('fact-edit', 		require('./components/fact_comp/fact_edit.vue'));
- Vue.component('fact-show', 		require('./components/fact_comp/fact_show.vue'));
+ Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
+ Vue.component('main-app', 	    	require('./components/mainApp.vue'));
+
+
+
+ import 'core-js/es6/promise'
+ import 'core-js/es6/string'
+ import 'core-js/es7/array'
+ import cssVars         from 'css-vars-ponyfill'
+ import BootstrapVue from 'bootstrap-vue'
+ import Opp          from './App.vue'
+ import router       from '../../coreui-free-vue-admin-template/src/router'
+    Vue.use(BootstrapVue)
 
 // const rout = new VueRouter({
 // routes : rutas,
@@ -105,11 +117,14 @@ const store = new Vuex.Store({
 
 const app = new Vue({
     el         : '#app',
+    router,
     store,
     data 	   : {
 
     },
+    template: '<Opp/>',
     components : {
+        Opp,
     	sitestable,
     	editForm,
     	singleSiteShow,
