@@ -67,9 +67,8 @@ window.Vue = require('vue')
  import 'core-js/es7/array'
  import cssVars      from 'css-vars-ponyfill'
  import BootstrapVue from 'bootstrap-vue'
- import Opp          from './App.vue'
+ import App          from './App.vue'
  import router       from '../../CoreUi/src/router'
- // import router       from './components/routes.js'
 
 // const rout = new VueRouter({
 // routes : rutas,
@@ -121,9 +120,9 @@ const app = new Vue({
     data 	   : {
 
     },
-    template: '<Opp/>',
+    template: '<App/>',
     components : {
-        Opp,
+        App,
     	sitestable,
     	editForm,
     	singleSiteShow,
