@@ -23,5 +23,5 @@ export default {
   /* Import Bootstrap Vue Styles */
   @import '~bootstrap-vue/dist/bootstrap-vue.css';
   // Import Main styles for this application
-  @import '../../coreui-free-vue-admin-template/src/assets/scss/style.scss';
+  @import '../sass/CoreScss/style.scss';
 </style>

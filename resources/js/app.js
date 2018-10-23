@@ -69,7 +69,8 @@ window.Vue = require('vue')
  import cssVars         from 'css-vars-ponyfill'
  import BootstrapVue from 'bootstrap-vue'
  import Opp          from './App.vue'
- import router       from '../../coreui-free-vue-admin-template/src/router'
+ // import router       from './components/routes.js'
+ import router       from '../../CoreUi/src/router'
     Vue.use(BootstrapVue)
 
 // const rout = new VueRouter({
