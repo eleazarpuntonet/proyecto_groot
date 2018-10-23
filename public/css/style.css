@@ -249,8 +249,8 @@ table {
 }
 
 caption {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
   color: #73818f;
   text-align: left;
   caption-side: bottom;
@@ -1938,8 +1938,8 @@ pre code {
 
 .table th,
 .table td {
-  padding: 0.5rem;
-  vertical-align: center;
+  padding: 0.75rem;
+  vertical-align: top;
   border-top: 1px solid #c8ced3;
 }
 
@@ -1958,7 +1958,7 @@ pre code {
 
 .table-sm th,
 .table-sm td {
-  padding: 0.2rem;
+  padding: 0.3rem;
 }
 
 .table-bordered {
@@ -2268,11 +2268,6 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #73818f;
-  opacity: 1;
-}
-
-.form-control:-ms-input-placeholder {
   color: #73818f;
   opacity: 1;
 }
@@ -13287,10 +13282,6 @@ canvas {
 }
 
 .sidebar .sidebar-form .form-control::-webkit-input-placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.sidebar .sidebar-form .form-control:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
