@@ -47,7 +47,7 @@ export default {
   props: {
     caption: {
       type: String,
-      default: '<i class=fa fa-align-justify></i> Lista de Proveedores'
+      default: '<i class=fa fa-align-justify></i> Lista de Credenciales de Acceso'
     },
     hover: {
       type: Boolean,
@@ -82,10 +82,10 @@ export default {
       items: [],
       // items: [],
       fields: [
-        {key: 'cuenta'},
-        {key: 'nombre'},
-        {key: 'usuario'},
-        {key: 'password'},
+        {key: 'id_site'},
+        {key: 'descripcion'},
+        {key: 'user'},
+        {key: 'passw'},
         {key: 'comentarios'}
       ],
       currentPage: 1,
@@ -95,14 +95,11 @@ export default {
   },
   created() {
       // this.mutableData= JSON.parse(this.headers)
-      axios.get(route('proveedores.index')) 
+      axios.get(route('credenciales.index')) 
           .then(
             response => {
-              // console.log(response.data)
               this.items=response.data
               // store.dispatch('sendHost',response.data)
-              console.log('Table')
-              console.log(this.items)
             }
           ).catch(error => this.errors.push(error))
   },

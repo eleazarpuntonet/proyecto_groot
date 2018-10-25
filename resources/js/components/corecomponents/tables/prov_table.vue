@@ -63,7 +63,7 @@ export default {
     },
     small: {
       type: Boolean,
-      default: true
+      default: false
     },
     fixed: {
       type: Boolean,

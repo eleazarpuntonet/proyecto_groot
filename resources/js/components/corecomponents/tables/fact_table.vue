@@ -47,7 +47,7 @@ export default {
   props: {
     caption: {
       type: String,
-      default: '<i class=fa fa-align-justify></i> Lista de Proveedores'
+      default: '<i class=fa fa-align-justify></i> Datos de Facturacion'
     },
     hover: {
       type: Boolean,
@@ -82,11 +82,11 @@ export default {
       items: [],
       // items: [],
       fields: [
-        {key: 'cuenta'},
-        {key: 'nombre'},
-        {key: 'usuario'},
-        {key: 'password'},
-        {key: 'comentarios'}
+        {key: 'id_proveedor'},
+        {key: 'servicio'},
+        {key: 'ciclo_facturacion'},
+        {key: 'fecha_corte'},
+        {key: 'importe'}
       ],
       currentPage: 1,
       perPage: 5,
@@ -95,14 +95,11 @@ export default {
   },
   created() {
       // this.mutableData= JSON.parse(this.headers)
-      axios.get(route('proveedores.index')) 
+      axios.get(route('facturacion.index')) 
           .then(
             response => {
-              // console.log(response.data)
               this.items=response.data
               // store.dispatch('sendHost',response.data)
-              console.log('Table')
-              console.log(this.items)
             }
           ).catch(error => this.errors.push(error))
   },
