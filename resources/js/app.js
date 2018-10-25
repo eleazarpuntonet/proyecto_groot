@@ -57,9 +57,9 @@ window.Vue = require('vue')
  Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
  Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
  Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
-Vue.use(Vuetable);
+ Vue.use(Vuetable);
+ import Vuetable from 'vuetable-2/src/components/Vuetable'
 
-import Vuetable from 'vuetable-2/src/components/Vuetable'
  Vue.use(BootstrapVue)
  Vue.use(Vuetable)
  import 'core-js/es6/promise'
