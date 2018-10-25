@@ -114,7 +114,6 @@ const store = new Vuex.Store({
 })
 
 const app = new Vue({
-    name: 'MainApp',
     el         : '#app',
     router,
     store,
