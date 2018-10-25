@@ -41,7 +41,6 @@ window.Vue = require('vue')
  import factShow 		from './components/fact_comp/fact_show.vue'
  Vue.use(VueAxios, axios)
  Vue.use(Vuex)
- Vue.use(BootstrapVue)
  Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
  Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
  Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -58,10 +57,11 @@ window.Vue = require('vue')
  Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
  Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
  Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
- Vue.component('main-app',          require('./components/mainApp.vue'));
+Vue.use(Vuetable);
 
-
-
+import Vuetable from 'vuetable-2/src/components/Vuetable'
+ Vue.use(BootstrapVue)
+ Vue.use(Vuetable)
  import 'core-js/es6/promise'
  import 'core-js/es6/string'
  import 'core-js/es7/array'
@@ -74,6 +74,12 @@ window.Vue = require('vue')
 // routes : rutas,
 // mode   : 'history'
 // })
+function install(Vue){
+  Vue.component("vuetable", Vuetable);
+  Vue.component("vuetable-pagination", VueTablePaginationInfo);
+  Vue.component("vuetable-pagination-dropdown", VueTablePaginationDropDown);
+  Vue.component("vuetable-pagination-info", VueTablePaginationInfo);
+}
 
 const store = new Vuex.Store({
 	//State guarda las variables

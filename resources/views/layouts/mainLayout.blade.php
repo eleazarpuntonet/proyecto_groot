@@ -7,7 +7,6 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="author" content="">
 		<link rel="icon" href="../../../../favicon.ico">
-
 		<title>Proyecto Groot</title>
 		<link rel="stylesheet" href="/css/app.css">
 	</head>
