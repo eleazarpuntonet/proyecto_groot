@@ -99,7 +99,7 @@ Route::get('/ajaxHost',['uses'=>'ajaxController@hosts']);
 Route::get('/ajaxSites',['uses'=>'ajaxController@sites']);
 
 Route::get('/testhome', function(){
-	return view('test');
+	return "Recibiendo";
 });
 
 

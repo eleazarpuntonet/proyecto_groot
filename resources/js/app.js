@@ -68,7 +68,7 @@ window.Vue = require('vue')
  import cssVars      from 'css-vars-ponyfill'
  import BootstrapVue from 'bootstrap-vue'
  import App          from './App.vue'
- import router       from '../../CoreUi/src/router'
+ import router       from '../../CoreUi/src/router/index.js'
 
 // const rout = new VueRouter({
 // routes : rutas,
@@ -82,7 +82,7 @@ const store = new Vuex.Store({
 		sites: '',
 	},
 	//Mutations guarda los metodos para modificar los state
-	//de forma asincrona
+	//de forma SINCRONA
 	mutations: {
 		addHost(state,value){
 			state.host = value
@@ -92,7 +92,7 @@ const store = new Vuex.Store({
 		},
 	},
 	//Actions guarda los metodos para modificar los state
-	//de forma asincrona
+	//de forma ASINCRONA
 	actions: {
 		sendHost(state,value){
 			store.commit('addHost',value)
