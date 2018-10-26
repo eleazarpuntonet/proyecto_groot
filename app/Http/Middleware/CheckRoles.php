@@ -18,10 +18,9 @@ class CheckRoles
         $roles = func_get_args(); 
         $roles = array_slice($roles, 2);
 
-        if (auth()->user()->hasRoles($roles)) {
-             return $next($request);
-        }
-        // dd($data);
+            if (auth()->user()->hasRoles($roles)) {
+                 return $next($request);
+            }
 
         return redirect('/home');
     }

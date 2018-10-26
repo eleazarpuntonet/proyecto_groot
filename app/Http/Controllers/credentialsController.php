@@ -18,8 +18,8 @@ class credentialsController extends Controller
     public function index()
     {
         $credenciales = Credenciales::all();
-        // return view('credentials.credList',compact('credenciales'));
-        return $credenciales;
+        return view('credentials.credList',compact('credenciales'));
+        // return $credenciales;
     }
 
     /**

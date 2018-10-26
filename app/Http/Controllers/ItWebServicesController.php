@@ -22,8 +22,8 @@ class ItWebServicesController extends Controller
     public function index()
     {
         $proveedores = Proveedor::all();
-        // return view('ItWebservices.proveedoresIndex',compact('proveedores'));
-        return $proveedores;
+        return view('ItWebservices.proveedoresIndex',compact('proveedores'));
+        // return $proveedores;
     }
 
     /**

@@ -19,8 +19,8 @@ class factController extends Controller
     public function index()
     {
         $facturacion = Facturacion::all();
-        // return view('fact.fctList',compact('facturacion'));
-        return $facturacion;
+        return view('fact.fctList',compact('facturacion'));
+        // return $facturacion;
     }
 
     /**

@@ -120,13 +120,13 @@ const store = new Vuex.Store({
 })
 
 const app = new Vue({
-    el         : '#app',
+    el         : '#mainApp',
     router,
     store,
     data 	   : {
 
     },
-    template: '<App/>',
+    // template: '<App/>',
     components : {
         App,
     	sitestable,

@@ -8,7 +8,7 @@ class UsersController extends Controller
 {
     function __construct(){
         $this->middleware('auth',['except'=>['index','show']]);
-        $this->middleware('roles:admin,suscriptor');
+        $this->middleware('roles:admin,ger');
     }
     /**
      * Display a listing of the resource.
