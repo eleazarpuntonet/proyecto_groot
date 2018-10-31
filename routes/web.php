@@ -10,15 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('{any}',function(){
+	return view('apiHome');
+})->where('any','.*');
 
+// Route::resource('proveedores','ItWebServicesController');
 
-Route::resource('proveedores','ItWebServicesController');
+// Route::resource('sites','sitesController');
 
-Route::resource('sites','sitesController');
+// Route::resource('credenciales','credentialsController');
 
-Route::resource('credenciales','credentialsController');
-
-Route::resource('facturacion','factController');
+// Route::resource('facturacion','factController');
 
 // Route::get('user',function(){ 
 
@@ -107,21 +109,21 @@ Route::resource('facturacion','factController');
 // });
 
 
-Auth::routes();
+// Auth::routes();
 
-Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index']);
+// Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index']);
 
-Route::resource('usuarios', 'UsersController');
+// Route::resource('usuarios', 'UsersController');
 
 
-Route::get('/ajaxHost',['uses'=>'ajaxController@hosts']);
+// Route::get('/ajaxHost',['uses'=>'ajaxController@hosts']);
 
-Route::get('/ajaxSites',['uses'=>'ajaxController@sites']);
+// Route::get('/ajaxSites',['uses'=>'ajaxController@sites']);
 
-Route::get('/testhome', function(){
-	return "Recibiendo";
-});
+// Route::get('/testhome', function(){
+// 	return "Recibiendo";
+// });
 
-Route::get('/roles', function(){
-	return \App\Role::with('user')->get();
-});
+// Route::get('/roles', function(){
+// 	return \App\Role::with('user')->get();
+// });

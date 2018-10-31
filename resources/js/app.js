@@ -1,9 +1,3 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 window.axios = require('axios')
 window.axios.defaults.headers.common = {
@@ -12,68 +6,57 @@ window.axios.defaults.headers.common = {
     								.getAttribute('content'),
 }
 window.Vue = require('vue')
+import Vuex 			from 'vuex'
+import VueRouter  		from 'vue-router'
+import Vue        		from 'vue'
+import axios      		from 'axios'
+import VueAxios   		from 'vue-axios'
+import sitestable 		from './components/sites_comp/sites_list.vue'
+import editForm   		from './components/sites_comp/sites_edit.vue'
+import singleSiteShow 	from './components/sites_comp/sites_show.vue'
+import proveeList	 	from './components/prov_comp/prov_list.vue'
+import proveeShow	 	from './components/prov_comp/prov_show.vue'
+import proveeNew	 	from './components/prov_comp/prov_new.vue'
+import proveeEdit	 	from './components/prov_comp/prov_edit.vue'
+import credList	 	from './components/cred_comp/cred_list.vue'
+import credEdit	 	from './components/cred_comp/cred_edit.vue'
+import credNew	 		from './components/cred_comp/cred_new.vue'
+import credShow 		from './components/cred_comp/cred_show.vue'
+import factList 		from './components/fact_comp/fact_list.vue'
+import factNew 		from './components/fact_comp/fact_new.vue'
+import factEdit 		from './components/fact_comp/fact_edit.vue'
+import factShow 		from './components/fact_comp/fact_show.vue'
+import Vuetable from 'vuetable-2/src/components/Vuetable'
+import 'core-js/es6/promise'
+import 'core-js/es6/string'
+import 'core-js/es7/array'
+import cssVars      from 'css-vars-ponyfill'
+import BootstrapVue from 'bootstrap-vue'
+import App          from './App.vue'
+import router       from '../../CoreUi/src/router/index.js'
+import {getLocalUser} from './auth.js'
+Vue.use(VueAxios, axios)
+Vue.use(Vuex)
+Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
+Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
+Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
+Vue.component('single-site',       require('./components/sites_comp/sites_show.vue'));
+Vue.component('prov-list',         require('./components/prov_comp/prov_list.vue'));
+Vue.component('prov-show',         require('./components/prov_comp/prov_show.vue'));
+Vue.component('prov-new',          require('./components/prov_comp/prov_new.vue'));
+Vue.component('prov-edit',         require('./components/prov_comp/prov_edit.vue'));
+Vue.component('cred-list',         require('./components/cred_comp/cred_list.vue'));
+Vue.component('cred-edit',         require('./components/cred_comp/cred_edit.vue'));
+Vue.component('cred-new',          require('./components/cred_comp/cred_new.vue'));
+Vue.component('cred-show',         require('./components/cred_comp/cred_show.vue'));
+Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue'));
+Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
+Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
+Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
+Vue.use(Vuetable);
+Vue.use(BootstrapVue)
+Vue.use(Vuetable)
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
- // import rutas      		from './routes.js'
- import Vuex 			from 'vuex'
- import VueRouter  		from 'vue-router'
- import Vue        		from 'vue'
- import axios      		from 'axios'
- import VueAxios   		from 'vue-axios'
- import sitestable 		from './components/sites_comp/sites_list.vue'
- import editForm   		from './components/sites_comp/sites_edit.vue'
- import singleSiteShow 	from './components/sites_comp/sites_show.vue'
- import proveeList	 	from './components/prov_comp/prov_list.vue'
- import proveeShow	 	from './components/prov_comp/prov_show.vue'
- import proveeNew	 	from './components/prov_comp/prov_new.vue'
- import proveeEdit	 	from './components/prov_comp/prov_edit.vue'
- import credList	 	from './components/cred_comp/cred_list.vue'
- import credEdit	 	from './components/cred_comp/cred_edit.vue'
- import credNew	 		from './components/cred_comp/cred_new.vue'
- import credShow 		from './components/cred_comp/cred_show.vue'
- import factList 		from './components/fact_comp/fact_list.vue'
- import factNew 		from './components/fact_comp/fact_new.vue'
- import factEdit 		from './components/fact_comp/fact_edit.vue'
- import factShow 		from './components/fact_comp/fact_show.vue'
- Vue.use(VueAxios, axios)
- Vue.use(Vuex)
- Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
- Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
- Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
- Vue.component('single-site',       require('./components/sites_comp/sites_show.vue'));
- Vue.component('prov-list',         require('./components/prov_comp/prov_list.vue'));
- Vue.component('prov-show',         require('./components/prov_comp/prov_show.vue'));
- Vue.component('prov-new',          require('./components/prov_comp/prov_new.vue'));
- Vue.component('prov-edit',         require('./components/prov_comp/prov_edit.vue'));
- Vue.component('cred-list',         require('./components/cred_comp/cred_list.vue'));
- Vue.component('cred-edit',         require('./components/cred_comp/cred_edit.vue'));
- Vue.component('cred-new',          require('./components/cred_comp/cred_new.vue'));
- Vue.component('cred-show',         require('./components/cred_comp/cred_show.vue'));
- Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue'));
- Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
- Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
- Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
- Vue.use(Vuetable);
- import Vuetable from 'vuetable-2/src/components/Vuetable'
-
- Vue.use(BootstrapVue)
- Vue.use(Vuetable)
- import 'core-js/es6/promise'
- import 'core-js/es6/string'
- import 'core-js/es7/array'
- import cssVars      from 'css-vars-ponyfill'
- import BootstrapVue from 'bootstrap-vue'
- import App          from './App.vue'
- import router       from '../../CoreUi/src/router/index.js'
-
-// const rout = new VueRouter({
-// routes : rutas,
-// mode   : 'history'
-// })
 function install(Vue){
   Vue.component("vuetable", Vuetable);
   Vue.component("vuetable-pagination", VueTablePaginationInfo);
@@ -81,12 +64,49 @@ function install(Vue){
   Vue.component("vuetable-pagination-info", VueTablePaginationInfo);
 }
 
+const user = getLocalUser()
+/*
+*VuexStore contiene variables
+*que podran ser accesadas desde
+*cualquier componente en la aplicacion
+*/
 const store = new Vuex.Store({
 	//State guarda las variables
 	state: {
-		host : '',
-		sites: '',
+        host        : '',
+        sites       : '',
+        currentUser : user,
+        isLoggedIn  : !!user,
+        loading     : false,
+        auth_error  : null,
+        customers   : [],
+
 	},
+    //Getters guarda los metodos para obtener
+    //los datos de State
+    getters: {
+        showHost(state){
+            return state.host
+        },
+        showSites(state){
+            return state.sites
+        },
+        isLoggedIn(state){
+            return state.isLoggedIn
+        },
+        isLoading(state){
+            return state.loading
+        },
+        currentUser(state){
+            return state.currentUser
+        },
+        authError(state){
+            return state.auth_error
+        },
+        customers(state){
+            return state.customers
+        },
+    },    
 	//Mutations guarda los metodos para modificar los state
 	//de forma SINCRONA
 	mutations: {
@@ -96,6 +116,26 @@ const store = new Vuex.Store({
 		addSite(state,value){
 			state.sites = value
 		},
+        login(state){
+            state.loading    = true
+            state.auth_error = null
+        },
+        loginSuccess(state, payload){
+            state.isLoggedIn  = true
+            state.auth_error  = null
+            state.loading     = false
+            state.currentUser = Object.assign({}, payload.user, {token: payload.access_token})
+            localStorage.setItem("user", JSON.stringify(state.currentUser))
+        },
+        loginFailed(state, payload){
+            state.loading    = false
+            state.auth_error = payload.error
+        },
+        logout(state){
+            localStorage.removeItem("user")
+            state.loading     = false
+            state.currentUser = null
+        }
 	},
 	//Actions guarda los metodos para modificar los state
 	//de forma ASINCRONA
@@ -106,18 +146,40 @@ const store = new Vuex.Store({
 		sendSites(state,value){
 			store.commit('addSite',value)
 		},
+        login(context){
+            store.commit('login')
+        }
 	},
-	//Getters guarda los metodos para obtener
-	//los datos de State
-	getters: {
-		showHost(state){
-			return state.host
-		},
-		showSites(state){
-			return state.sites
-		},
-	}
 })
+
+/*
+*Filtra las rutas de acceso
+*para otorgar permisologia
+*en la navegacion de turas
+*/
+router.beforeEach((to,from, next)=>{
+        const reqAuth = to.matched.some(record=> record.meta.auth)
+        const currentUser = store.state.currentUser
+        if (reqAuth && !currentUser) {
+            next('/login')
+        } else if (to.path == '/login' && currentUser) {
+            next('/')
+        } else {
+            next()
+        }
+    })
+
+/*
+*Intercepta las respuesta de error 401
+*para enviar nuevamente al usuario
+*al sitio de login
+*/
+axios.interceptors.response.use(null, (error)=>{
+        if (error.response.status == 401) {
+            store.commit('logout')
+            router.push('/login')
+        }
+    })
 
 const app = new Vue({
     el         : '#mainApp',
@@ -126,7 +188,7 @@ const app = new Vue({
     data 	   : {
 
     },
-    // template: '<App/>',
+    template: '<App/>',
     components : {
         App,
     	sitestable,
