@@ -30,19 +30,18 @@ class User extends Authenticatable implements JWTSubject
 
     public function roles()
     {
-        // return $this->belongsTo(Role::class);
+        // return "Roles Muestras";
         return $this->belongsToMany(Role::class,'assigned_roles');
-        // return $this->belongsToMany('App\Role');
     }
 
     public function hasRoles(array $roles)
     {
+                dd($this->roles);
         foreach ($roles as $role) {
             foreach ($this->roles as $userRole) {
     
                 if ($userRole->name === $role) {
                     return true;
-                dd($this->roles);
                 }
 
             }

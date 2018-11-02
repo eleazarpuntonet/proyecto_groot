@@ -17,10 +17,7 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::group([
-    'prefix' => 'auth'
-
-], function ($router) {
+Route::group(['prefix' => 'auth'], function ($router) {
 
     Route::post('login',   'AuthController@login');
     Route::post('logout',  'AuthController@logout');
@@ -28,3 +25,7 @@ Route::group([
     Route::post('me',      'AuthController@me');
 
 });
+
+Route::resource('proveedores','ItWebServicesController');
+
+Route::resource('sites','sitesController');

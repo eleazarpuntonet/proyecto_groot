@@ -14,6 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        return route('login');
+        // return response()->json([
+        //     'error' => 'usuario no autenticado',
+        // ],401);
+        return route('/login');
     }
 }

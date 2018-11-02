@@ -10,7 +10,7 @@ use App\Sites;
 class sitesController extends Controller
 {
     function __construct(){
-        $this->middleware('auth',['except'=>['index','show']]);
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +19,7 @@ class sitesController extends Controller
      */
     public function index()
     {
-        $sites = Sites::all();
-        // return view('sites.siteList',compact('sites'));
+        $sites = Sites::with('hosting')->get();
         return $sites;
     }
 

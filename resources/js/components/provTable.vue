@@ -1,93 +1,128 @@
 <template>
-  <b-container fluid>
-    <!-- User Interface controls -->
-    <b-row>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Filter" class="mb-0">
-          <b-input-group>
-            <b-form-input v-model="filter" placeholder="Type to Search" />
-            <b-input-group-append>
-              <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Sort" class="mb-0">
-          <b-input-group>
-            <b-form-select v-model="sortBy" :options="sortOptions">
-              <option slot="first" :value="null">-- none --</option>
-            </b-form-select>
-            <b-form-select :disabled="!sortBy" v-model="sortDesc" slot="append">
-              <option :value="false">Asc</option>
-              <option :value="true">Desc</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Sort direction" class="mb-0">
-          <b-input-group>
-            <b-form-select v-model="sortDirection" slot="append">
-              <option value="asc">Asc</option>
-              <option value="desc">Desc</option>
-              <option value="last">Last</option>
-            </b-form-select>
-          </b-input-group>
-        </b-form-group>
-      </b-col>
-      <b-col md="6" class="my-1">
-        <b-form-group horizontal label="Per page" class="mb-0">
-          <b-form-select :options="pageOptions" v-model="perPage" />
-        </b-form-group>
-      </b-col>
-    </b-row>
+<div id="app">
+    <b-card no-body>
+      <b-card-header>
+        <strong>Tabla de proveedores de servicios web</strong>
+      </b-card-header>
+      <b-card-body>
+        <b-row>
 
-    <!-- Main table element -->
-    <b-table show-empty
-             stacked="md"
-             :items="items"
-             :fields="fields"
-             :current-page="currentPage"
-             :per-page="perPage"
-             :filter="filter"
-             :sort-by.sync="sortBy"
-             :sort-desc.sync="sortDesc"
-             :sort-direction="sortDirection"
-             @filtered="onFiltered"
-    >
-      <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
-      <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
-      <template slot="actions" slot-scope="row">
-        <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-        <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-          Info modal
-        </b-button>
-        <b-button size="sm" @click.stop="row.toggleDetails">
-          {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-        </b-button>
-      </template>
-      <template slot="row-details" slot-scope="row">
-        <b-card>
-          <ul>
-            <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
-          </ul>
-        </b-card>
-      </template>
-    </b-table>
+          <b-col md="6" class="my-1">
+            <b-form-group horizontal label="Filtrar" class="mb-0">
+              <b-input-group>
+                <b-form-input v-model="filter" placeholder="Buscar" />
+                <b-input-group-append>
+                  <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>
+                </b-input-group-append>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
 
-    <b-row>
-      <b-col md="6" class="my-1">
-        <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
-      </b-col>
-    </b-row>
+          <b-col md="6" class="my-1">
+            <b-form-group horizontal label="Ordenar" class="mb-0">
+              <b-input-group>
+                <b-form-select v-model="sortBy" :options="sortOptions">
+                  <option slot="first" :value="null">-- none --</option>
+                </b-form-select>
+                <b-form-select :disabled="!sortBy" v-model="sortDesc" slot="append">
+                  <option :value="false">Ascendente</option>
+                  <option :value="true">Descendente</option>
+                </b-form-select>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
 
-    <!-- Info modal -->
-    <b-modal id="modalInfo" @hide="resetModal" :title="modalInfo.title" ok-only>
-      <pre>{{ modalInfo.content }}</pre>
-    </b-modal>
+          <b-col md="6" class="my-1">
+            <b-form-group horizontal label="Orden" class="mb-0">
+              <b-input-group>
+                <b-form-select v-model="sortDirection" slot="append">
+                  <option value="asc">Ascendente</option>
+                  <option value="desc">Descendente</option>
+                  <option value="last">Ultimo</option>
+                </b-form-select>
+              </b-input-group>
+            </b-form-group>
+          </b-col>
 
-  </b-container>
+          <b-col md="6" class="my-1">
+            <b-form-group horizontal label="Resultados" class="mb-0">
+              <b-form-select :options="pageOptions" v-model="perPage" />
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+        <!-- Main table element -->
+        <b-table  
+                head-variant="dark"
+                hover
+                outlined
+                striped
+                responsive
+                show-empty
+                stacked="md"
+                :items="items"
+                :fields="fields"
+                :current-page="currentPage"
+                :per-page="perPage"
+                :filter="filter"
+                :sort-by.sync="sortBy"
+                :sort-desc.sync="sortDesc"
+                :sort-direction="sortDirection"
+                @filtered="onFiltered"
+        >
+          <template slot="name" slot-scope="row">{{row.value.first}} {{row.value.last}}</template>
+
+          <template slot="isActive" slot-scope="row">{{row.value?'Yes :)':'No :('}}</template>
+
+          <template slot="sites" slot-scope="row">
+            <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening 
+              *
+              * Estos son los botones que disparan el evento de mostrar
+              * modal o mostrar celda con info
+              *
+            -->
+            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
+              Info modal
+            </b-button>
+            <b-button size="sm" @click.stop="row.toggleDetails">
+              {{ row.detailsShowing ? 'Esconder' : 'Mostrar' }} Detalles
+            </b-button>
+          </template>
+            <!-- 
+            *
+            * Celda de detalles
+            *
+             -->
+          <template slot="row-details" slot-scope="row">
+            <b-card>
+              <ul>
+                <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value}}</li>
+              </ul>
+            </b-card>
+          </template>
+        </b-table>
+
+        <b-row>
+          <b-col md="6" class="my-1">
+            <b-pagination :total-rows="totalRows" :per-page="perPage" v-model="currentPage" class="my-0" />
+          </b-col>
+        </b-row>
+
+        <!-- 
+        *
+        * Modal detalles
+        *
+         -->
+        <b-modal bg-variant="light" class="text-center" id="modalInfo" @hide="resetModal" :title="modalInfo.content.nombre" ok-only>
+          <pre>
+            <b-list-group flush>
+                <b-list-group-item v-for="(value, key) in modalInfo.content" :key="key">{{ key }}: {{ value}}</b-list-group-item>
+            </b-list-group>
+          </pre>
+        </b-modal>
+      </b-card-body>
+    </b-card>
+</div>
 </template>
 
 <script>
@@ -117,14 +152,44 @@ const items = [
 ]
 
 export default {
+  /*
+  *
+  * Variables del componente
+  */
   data () {
     return {
       items: items,
-      fields: [
-        { key: 'name', label: 'Person Full name', sortable: true, sortDirection: 'desc' },
-        { key: 'age', label: 'Person age', sortable: true, 'class': 'text-center' },
-        { key: 'isActive', label: 'is Active' },
-        { key: 'actions', label: 'Actions' }
+      // fields: [
+      //   { 
+      //     key           : 'name',
+      //     label         : 'Person Full name',
+      //     sortable      : true,
+      //     sortDirection : 'desc' ,
+      //     'class'       : 'text-center'
+      //   },
+      //   { 
+      //     key           : 'age',
+      //     label         : 'Person age',
+      //     sortable      : true,
+      //     'class'       : 'text-center'
+      //    },
+      //   { 
+      //     key           : 'isActive',
+      //     label         : 'is Active' ,
+      //     'class'       : 'text-center'
+      //   },
+      //   { 
+      //     key     : 'actions',
+      //     label   : 'Actions' ,
+      //     'class' : 'text-center'
+      //  }
+      // ],
+      fields  : [
+      { key   : 'nombre', label      : 'Nombre', sortable     : true, sortDirection : 'desc','class'   : 'text-center' },
+      { key   : 'cuenta', label      : 'Nro Cuenta', sortable : true, 'class'       : 'text-center' },
+      { key   : 'usuario', label     : 'Usuario','class'      : 'text-center' },
+      { key   : 'comentarios', label : 'Comentarios','class'  : 'text-center' },
+      { key   : 'sites', label       : 'Comentarios','class'  : 'text-center' },
       ],
       currentPage: 1,
       perPage: 5,
@@ -137,6 +202,10 @@ export default {
       modalInfo: { title: '', content: '' }
     }
   },
+  /*
+  *
+  * Variables del computadas
+  */
   computed: {
     sortOptions () {
       // Create an options list from our fields
@@ -145,10 +214,15 @@ export default {
         .map(f => { return { text: f.label, value: f.key } })
     }
   },
+  /*
+  *
+  * Metodos y funciones
+  */
   methods: {
     info (item, index, button) {
       this.modalInfo.title = `Row index: ${index}`
-      this.modalInfo.content = JSON.stringify(item, null, 2)
+      // this.modalInfo.content = JSON.stringify(item, null, 2)
+      this.modalInfo.content = item
       this.$root.$emit('bv::show::modal', 'modalInfo', button)
     },
     resetModal () {
@@ -160,6 +234,21 @@ export default {
       this.totalRows = filteredItems.length
       this.currentPage = 1
     }
+  },
+  created(){
+    axios.get(route('proveedores.index')) 
+        .then(
+          response => {
+            this.items=response.data
+            console.log(this.items)
+            // store.dispatch('sendHost',response.data)
+          })
+        .catch(error => {
+          console.log(error)
+        })
   }
 }
 </script>
+<style>
+
+</style>

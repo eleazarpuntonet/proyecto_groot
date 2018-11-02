@@ -1,8 +1,5 @@
-
-
 <template>
   <div id="app">
-    <h1>Hola</h1>
     <img src="./assets/logo.png">
     <div class="ui container">
       <my-vuetable></my-vuetable>

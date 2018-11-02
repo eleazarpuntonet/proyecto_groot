@@ -33,7 +33,7 @@ class AuthController extends Controller
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(['error' => 'No autorizado'], 401);
     }
 
     /**
@@ -79,6 +79,7 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
+            'roles'=> $this->guard()->user()->roles,
             'user'=> $this->guard()->user(),
             'token_type' => 'bearer',
             'expires_in' => $this->guard()->factory()->getTTL() * 60
