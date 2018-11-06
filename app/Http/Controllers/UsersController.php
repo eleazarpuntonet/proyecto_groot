@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 class UsersController extends Controller
 {
     function __construct(){
-        $this->middleware('auth',['except'=>['index','show']]);
-        $this->middleware('roles:admin,ger');
+        // $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -17,9 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        return response()->json(User::all());
 
-        return view('usuarios',compact('users'));
     }
 
     /**
@@ -40,9 +38,21 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $path = $request->file('avatar')->store('avats');
+        dd($path);
+        return $request->file('avatar');
+        // return "Nada por aqui";
 
+        // $user           = new User;
+        // $user->user     = $request->input('user');
+        // $user->email    = $request->input('email');
+        // $user->password = $request->input('password');
+        // $user->save();
+
+        // return redirect()->route('sites.create')->with('info','Registro completado!');
+        // return response()->json(['stat' => 'Registro completado',
+        //                          'user'=> $user], 200);
+    }
     /**
      * Display the specified resource.
      *

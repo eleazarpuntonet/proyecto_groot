@@ -29,3 +29,5 @@ Route::group(['prefix' => 'auth'], function ($router) {
 Route::resource('proveedores','ItWebServicesController');
 
 Route::resource('sites','sitesController');
+
+Route::resource('usuarios', 'UsersController');

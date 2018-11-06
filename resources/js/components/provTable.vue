@@ -9,7 +9,7 @@
 
           <b-col md="6" class="my-1">
             <b-form-group horizontal label="Filtrar" class="mb-0">
-              <b-input-group>
+              <b-input-group >
                 <b-form-input v-model="filter" placeholder="Buscar" />
                 <b-input-group-append>
                   <b-btn :disabled="!filter" @click="filter = ''">Clear</b-btn>

@@ -15,6 +15,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
         'name', 'email', 'password','last_name','username'
     ];
@@ -30,7 +31,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function roles()
     {
-        // return "Roles Muestras";
         return $this->belongsToMany(Role::class,'assigned_roles');
     }
 
