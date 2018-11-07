@@ -38,9 +38,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->file('avatar')->store('avats');
-        dd($path);
-        return $request->file('avatar');
+        if ($request->file('avatar') == null) {
+            $file = "";
+            return response()->json('Nada por aqui');
+        }else{
+           $file = $request->file('avatar')->store('public/avats');  
+            // return response()->json($request->file('avatar'));
+            return response()->json('Exito');
+
+        }
+        // return "Nada retorna";
         // return "Nada por aqui";
 
         // $user           = new User;

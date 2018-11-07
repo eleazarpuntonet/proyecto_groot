@@ -81,7 +81,7 @@ const store = new Vuex.Store({
         loading     : false,
         auth_error  : null,
         customers   : [],
-        roles       : []
+        roles       : [],
 
 	},
     //Getters guarda los metodos para obtener
@@ -110,6 +110,9 @@ const store = new Vuex.Store({
         },
         roles(state){
             return state.roles
+        },
+        fullname(state){
+            return state.currentUser.name+' '+state.currentUser.last_name
         },
     },    
 	//Mutations guarda los metodos para modificar los state
@@ -165,50 +168,50 @@ const store = new Vuex.Store({
 *en la navegacion de turas
 */
 // console.log(JSON.parse(localStorage.getItem('user')))
-// router.beforeEach((to,from, next)=>{
-//         const rolesToPath = (to.meta.roles)?to.meta.roles:null
-//         const reqAuth     = to.matched.some(record=> record.meta.auth)
-//         const currentUser = store.state.currentUser
-//         /*
-//         * Valida si la proxima ruta
-//         * requiere autorizacion y si no hay
-//         * un usuario logueado se redirecciona
-//         * al dashboard
-//         */
+router.beforeEach((to,from, next)=>{
+        const rolesToPath = (to.meta.roles)?to.meta.roles:null
+        const reqAuth     = to.matched.some(record=> record.meta.auth)
+        const currentUser = store.state.currentUser
+        /*
+        * Valida si la proxima ruta
+        * requiere autorizacion y si no hay
+        * un usuario logueado se redirecciona
+        * al dashboard
+        */
 
-//         if (reqAuth && !currentUser) {
-//             next('/login')
-//         } 
-//         /*
-//         *Valida si la siguiente ruta es /login
-//         *y si hay un usuario logueado,
-//         *de ser TRUE se redirecciona al dashboard
-//         */
+        if (reqAuth && !currentUser) {
+            next('/login')
+        } 
+        /*
+        *Valida si la siguiente ruta es /login
+        *y si hay un usuario logueado,
+        *de ser TRUE se redirecciona al dashboard
+        */
 
-//         else if (to.path == '/login' && currentUser) {
-//             next('/')
-//         } 
-//         /*
-//         * Valida si existe un usuario logueado y
-//         * si la proxima ruta requiere de permisologias.
-//         * De ser TRUE, se valida que una de los roles del usuario
-//         * concuerde con uno de los roles de la ruta
-//         */
-//         else if (currentUser && rolesToPath) {
-//             currentUser.roles.forEach((rolUser)=>{
-//                 to.meta.roles.forEach((rolToPath)=>{
-//                     if (rolUser.name==rolToPath) {
-//                         next()
-//                     }
-//                 })
-//             })
-//             next('/')
-//         } 
-//         else {
-//             next()
-//         }
+        else if (to.path == '/login' && currentUser) {
+            next('/')
+        } 
+        /*
+        * Valida si existe un usuario logueado y
+        * si la proxima ruta requiere de permisologias.
+        * De ser TRUE, se valida que una de los roles del usuario
+        * concuerde con uno de los roles de la ruta
+        */
+        // else if (currentUser && rolesToPath) {
+        //     currentUser.roles.forEach((rolUser)=>{
+        //         to.meta.roles.forEach((rolToPath)=>{
+        //             if (rolUser.name==rolToPath) {
+        //                 next()
+        //             }
+        //         })
+        //     })
+        //     next('/')
+        // } 
+        else {
+            next()
+        }
 
-//     })
+    })
 
 /*
 *Intercepta las respuesta de error 401
@@ -220,10 +223,10 @@ axios.interceptors.response.use(null, (error)=>{
             store.commit('logout')
             router.push('/login')
         }
-        if (error.response.status == 500) {
-            store.commit('logout')
-            router.push('/login')
-        }
+        // if (error.response.status == 500) {
+        //     store.commit('logout')
+        //     router.push('/login')
+        // }
         return Promise.reject(error)
     })
 

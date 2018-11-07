@@ -20,13 +20,19 @@ export function getLocalUser(){
     return JSON.parse(userStr)                             
   }
 
-export function registerNewUser(credentials){
+export function registerNewUser(data){
     return new Promise((res,rej)=>{
-        axios.post('api/usuarios', credentials)
+      console.log(data)
+        axios.post('api/usuarios', data,{
+              headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+                })
                 .then((response)=>{
                     res(response.data)
                   })
                 .catch((error)=>{
+                  console.log(error)
                     rej('Error en registro')
                   })
       })
