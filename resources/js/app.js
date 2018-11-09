@@ -2,7 +2,7 @@ require('./bootstrap');
 window.axios = require('axios')
 window.axios.defaults.headers.common = {
     'X-Requested-With' : 'XMLHttpRequest',
-    'Authorization'    :'Bearer '+JSON.parse(localStorage.getItem('jwtToken')),
+    // 'Authorization'    :'Bearer '+JSON.parse(localStorage.getItem('jwtToken')),
     'X-CSRF-TOKEN'     : document.querySelector('meta[name="csrf-token"]')
     								.getAttribute('content'),
 }
@@ -59,12 +59,50 @@ Vue.use(Vuetable);
 Vue.use(BootstrapVue)
 Vue.use(Vuetable)
 
-function install(Vue){
-  Vue.component("vuetable", Vuetable);
-  Vue.component("vuetable-pagination", VueTablePaginationInfo);
-  Vue.component("vuetable-pagination-dropdown", VueTablePaginationDropDown);
-  Vue.component("vuetable-pagination-info", VueTablePaginationInfo);
-}
+import VueAuthenticate from 'vue-authenticate'
+
+Vue.use(VueAuthenticate, {
+  baseUrl: 'http://172.30.33.207:3000/',
+  tokenName: 'access_token',
+  storageType: 'localStorage',
+  tokenHeader: 'Authorization',
+  tokenType: 'Bearer',
+  storageNamespace: '',
+  loginUrl: '/api/auth/login',
+  registerUrl: '/api/auth/register',
+
+
+
+})
+
+axios.interceptors.request.use(null, (error)=>{
+    console.log('Interceptando ando')
+    console.log(store.getters.isAuthenticated())
+        if (store.getters.isAuthenticated()) {
+            alert('Autenticado')
+            axios.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem('jwtToken'))
+        } else {
+          store.commit('logout')
+          router.push('/login')
+          delete axios.defaults.headers.common['Authorization']
+        }
+    })
+
+
+axios.interceptors.response.use(null, (error)=>{
+        if (error.response.status == 401) {
+            store.commit('logout')
+            router.push('/login')
+            store.commit('loginFailed',{error: error.response.data.error}) 
+        }
+        // if (error.response.status == 500) {
+        //     store.commit('logout')
+        //     router.push('/login')
+        //     store.commit('loginFailed',{error: error.response.data.error}) 
+
+        // }
+        return Promise.reject(error)
+    })
 const user = getLocalUser()
 /*
 *VuexStore contiene variables
@@ -74,6 +112,7 @@ const user = getLocalUser()
 const store = new Vuex.Store({
 	//State guarda las variables
 	state: {
+        isAuthenticated: false,
         host        : '',
         sites       : '',
         currentUser : user,
@@ -87,6 +126,9 @@ const store = new Vuex.Store({
     //Getters guarda los metodos para obtener
     //los datos de State
     getters: {
+        isAuthenticated (state) {
+            return state.isAuthenticated
+        },
         showHost(state){
             return state.host
         },
@@ -111,30 +153,35 @@ const store = new Vuex.Store({
         roles(state){
             return state.roles
         },
-        fullname(state){
-            return state.currentUser.name+' '+state.currentUser.last_name
-        },
+        pathAuth(rolesToPath){
+            // console.log(this.state.currentUser.roles)
+            console.log(rolesToPath)
+            return
+        }
     },    
 	//Mutations guarda los metodos para modificar los state
 	//de forma SINCRONA
 	mutations: {
-		addHost(state,value){
-			state.host = value
-		},
-		addSite(state,value){
-			state.sites = value
-		},
-        login(state){
-            state.loading    = true
-            state.auth_error = null
-        },
-        loginSuccess(state, payload){
+        isAuthenticated (state, payload) {
+          state.isAuthenticated = payload.isAuthenticated
             state.isLoggedIn  = true
             state.auth_error  = null
             state.loading     = false
-            state.currentUser = Object.assign({}, payload.user, {token: payload.access_token})
+            state.currentUser = payload.user
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", JSON.stringify(state.currentUser.token))
+            // console.log(state.currentUser)
+
+        },
+        addHost(state,value){
+            state.host = value
+        },
+        addSite(state,value){
+            state.sites = value
+        },
+        login(state){
+            state.loading    = true
+            state.auth_error = null
         },
         loginFailed(state, payload){
             state.loading    = false
@@ -150,18 +197,27 @@ const store = new Vuex.Store({
 	//Actions guarda los metodos para modificar los state
 	//de forma ASINCRONA
 	actions: {
+        // Perform VueAuthenticate login using Vuex actions
+        login (context, payload) {
+            context.commit('isAuthenticated', {
+                user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),
+                // isAuthenticated: auth.isAuthenticated()
+                isAuthenticated: true
+            })
+            router.push({path:'/'})
+
+        },
 		sendHost(state,value){
 			store.commit('addHost',value)
 		},
 		sendSites(state,value){
 			store.commit('addSite',value)
 		},
-        login(context){
-            store.commit('login')
-        }
+        // login(context){
+        //     store.commit('login')
+        // }
 	},
 })
-
 /*
 *Filtra las rutas de acceso
 *para otorgar permisologia
@@ -179,56 +235,47 @@ router.beforeEach((to,from, next)=>{
         * al dashboard
         */
 
+
         if (reqAuth && !currentUser) {
             next('/login')
         } 
-        /*
-        *Valida si la siguiente ruta es /login
-        *y si hay un usuario logueado,
-        *de ser TRUE se redirecciona al dashboard
-        */
+        // /*
+        // *Valida si la siguiente ruta es /login
+        // *y si hay un usuario logueado,
+        // *de ser TRUE se redirecciona al dashboard
+        // */
 
         else if (to.path == '/login' && currentUser) {
             next('/')
         } 
-        /*
-        * Valida si existe un usuario logueado y
-        * si la proxima ruta requiere de permisologias.
-        * De ser TRUE, se valida que una de los roles del usuario
-        * concuerde con uno de los roles de la ruta
-        */
+        
+        // * Valida si existe un usuario logueado y
+        // * si la proxima ruta requiere de permisologias.
+        // * De ser TRUE, se valida que una de los roles del usuario
+        // * concuerde con uno de los roles de la ruta
+        
         // else if (currentUser && rolesToPath) {
         //     currentUser.roles.forEach((rolUser)=>{
         //         to.meta.roles.forEach((rolToPath)=>{
-        //             if (rolUser.name==rolToPath) {
-        //                 next()
-        //             }
+        //             console.log(rolUser)
+        //             console.log(rolToPath)
+        //             // if (rolUser.name==rolToPath) {
+        //             //     next()
+        //             // }
         //         })
         //     })
-        //     next('/')
+        //     next()
         // } 
         else {
             next()
         }
 
+
+
     })
 
-/*
-*Intercepta las respuesta de error 401
-*para enviar nuevamente al usuario
-*al sitio de login
-*/
-axios.interceptors.response.use(null, (error)=>{
-        if (error.response.status == 401) {
-            store.commit('logout')
-            router.push('/login')
-        }
-        // if (error.response.status == 500) {
-        //     store.commit('logout')
-        //     router.push('/login')
-        // }
-        return Promise.reject(error)
-    })
+
+
 
 const app = new Vue({
     el         : '#mainApp',
