@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Containers
-import DefaultContainer from '../containers/DefaultContainer'
+// import DefaultContainer from '../containers/DefaultContainer'
 
 
 // Views
