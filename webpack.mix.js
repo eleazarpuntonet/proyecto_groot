@@ -20,3 +20,4 @@ mix
 mix.browserSync({
    	    proxy: 'http://localhost:8000'
    	});
+

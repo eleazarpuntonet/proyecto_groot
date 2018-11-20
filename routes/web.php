@@ -113,6 +113,10 @@ Route::get('{any}',function(){
 
 // Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index']);
 
+// Route::get('/', function(){
+// 	return "Nada";
+// });
+
 // Route::resource('usuarios', 'UsersController');
 
 

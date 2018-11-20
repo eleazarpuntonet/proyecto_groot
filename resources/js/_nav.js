@@ -1,3 +1,6 @@
+
+
+
 export default {
   items: [
   {
@@ -9,6 +12,28 @@ export default {
       attributes: {}
     }
   },
+  {
+    name: 'Reservaciones',
+    class: 'nav-item nav-dropdown',
+    icon: 'icon-speedometer',
+    badge: {
+      variant: 'primary',
+      text: 'NEW'
+    },
+    children: [
+      {
+        name: 'Reservas',
+        url: '/reservas',
+        icon: 'icon-key'
+      },
+      {
+        name: 'Solicitud',
+        url: '/reservar',
+        icon: 'icon-key'
+      },
+    ]
+  }
+  ,
     {//Dashboard
       name: 'Servicios IT',//<-- Asi se modifica el titulo de una seccion de botones
       class: 'nav-item nav-dropdown',
@@ -62,3 +87,7 @@ export default {
     }
   ]
 }
+
+
+
+
