@@ -7,7 +7,7 @@ import 'core-js/es7/array'
 import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import App from './coreApp'
-import router from './router'
+// import router from './router'
 
 // todo
 // cssVars()
