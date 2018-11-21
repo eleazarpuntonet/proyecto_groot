@@ -36,7 +36,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function hasRoles(array $roles)
     {
-                dd($this->roles);
         foreach ($roles as $role) {
             foreach ($this->roles as $userRole) {
     

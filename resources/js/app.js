@@ -37,6 +37,8 @@ import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
 import router                from '../../CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
+import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
+import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css';
 Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
 Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
 Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -53,11 +55,16 @@ Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue
 Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
 Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
 Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
+Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(Vuetable);
 Vue.use(BootstrapVue)
 Vue.use(Vuetable)
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import locale from 'element-ui/lib/locale/lang/en'
+Vue.use(ElementUI,{ locale });
 
 import VueAuthenticate from 'vue-authenticate'
 
@@ -224,55 +231,7 @@ const store = new Vuex.Store({
 *en la navegacion de turas
 */
 // console.log(JSON.parse(localStorage.getItem('user')))
-router.beforeEach((to,from, next)=>{
-        const rolesToPath = (to.meta.roles)?to.meta.roles:null
-        const reqAuth     = to.matched.some(record=> record.meta.auth)
-        const currentUser = store.state.currentUser
-        /*
-        * Valida si la proxima ruta
-        * requiere autorizacion y si no hay
-        * un usuario logueado se redirecciona
-        * al dashboard
-        */
 
-
-        if (reqAuth && !currentUser) {
-            next('/login')
-        } 
-        // /*
-        // *Valida si la siguiente ruta es /login
-        // *y si hay un usuario logueado,
-        // *de ser TRUE se redirecciona al dashboard
-        // */
-
-        else if (to.path == '/login' && currentUser) {
-            next('/')
-        } 
-        
-        // * Valida si existe un usuario logueado y
-        // * si la proxima ruta requiere de permisologias.
-        // * De ser TRUE, se valida que una de los roles del usuario
-        // * concuerde con uno de los roles de la ruta
-        
-        // else if (currentUser && rolesToPath) {
-        //     currentUser.roles.forEach((rolUser)=>{
-        //         to.meta.roles.forEach((rolToPath)=>{
-        //             console.log(rolUser)
-        //             console.log(rolToPath)
-        //             // if (rolUser.name==rolToPath) {
-        //             //     next()
-        //             // }
-        //         })
-        //     })
-        //     next()
-        // } 
-        else {
-            next()
-        }
-
-
-
-    })
 
 
 
@@ -286,6 +245,7 @@ const app = new Vue({
     },
     template: '<App/>',
     components : {
+        VueCtkDateTimePicker,
         App,
     	sitestable,
     	editForm,
@@ -320,3 +280,82 @@ const app = new Vue({
     }
 })
 
+router.beforeEach((to,from, next)=>{
+        /*
+        *   -rolesToPath = contiene boolean si la proxima ruta
+        *       contiene metadata con el key "roles"
+        *   -reqAuth = boolean de la metadata de la proxima ruta
+        *   -currentUser = usuario actual
+        */
+        const rolesToPath = (to.meta.roles)?to.meta.roles:null
+        const reqAuth     = to.matched.some(record=> record.meta.auth)
+        const currentUser = store.state.currentUser
+        const homeRoute   = '/dashboard'
+        const loginRoute  = '/login'
+        console.log(from.path+' -> '+to.path)
+
+        /*
+        * Valida si la proxima ruta requiere autenticacion
+        * y hay un usuario autenticado
+        * para luego enviar los datos de la proxima ruta
+        * y los roles del usuario autenticado para determinar una accion
+        */
+        if (reqAuth && currentUser) {
+                let auth = matchRoles(rolesToPath,currentUser.roles)
+                if (auth) {
+                    console.log('Si pasa')
+                    next()
+                } else {
+                    console.log('No pasa')
+                    next(homeRoute)
+                }
+            }
+
+        /*
+        * mathRoles en una funcion que compara
+        * los roles de las rutas y del usuario
+        * para validar si el usuario cumple con
+        * los roles de la proxima ruta
+        */
+        function matchRoles(x,y){
+                let flag = false
+
+                x.forEach((x)=>{
+                    y.forEach((y)=>{
+                        if (x.userRol==y.name) {
+                            console.log(x.userRol)
+                            flag = true
+                        }
+                    })
+                })
+
+                if (flag) return true
+                return false
+
+            }
+        /*
+        * Valida si la proxima ruta
+        * requiere autorizacion y si no hay
+        * un usuario logueado se redirecciona
+        * al dashboard
+        */
+        // if (reqAuth && !currentUser) {
+        //     next(loginRoute)
+        // } 
+        // // /*
+        // // *Valida si la siguiente ruta es /login
+        // // *y si hay un usuario logueado,
+        // // *de ser TRUE se redirecciona al dashboard
+        // // */
+
+        // else if (to.path == '/login' && currentUser) {
+        //     next('/')
+        // } 
+        // else {
+        //     next()
+        // }
+
+        next()
+
+
+    })
