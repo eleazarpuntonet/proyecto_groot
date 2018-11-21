@@ -12,7 +12,8 @@ class ItWebServicesController extends Controller
 {
 
     function __construct(){
-        $this->middleware('auth',['except'=>['index','show']]);
+        // $this->middleware('auth:api', ['except'=>['index','show']]);
+        $this->middleware('auth:api');
     }
     /**
      * Display a listing of the resource.
@@ -21,8 +22,8 @@ class ItWebServicesController extends Controller
      */
     public function index()
     {
-        $proveedores = Proveedor::all();
-        return view('ItWebservices.proveedoresIndex',compact('proveedores'));
+        $proveedores = Proveedor::with('sites')->get();
+        return response()->json($proveedores, 200 );
     }
 
     /**
@@ -62,8 +63,8 @@ class ItWebServicesController extends Controller
     public function show($id)
     {
 
-        $proveedor = Proveedor::findOrFail($id);
-        return  view('ItWebservices.proveedoresSingle',compact('proveedor'));
+        $proveedor = Proveedor::findOrFail($id)->with('sites')->get();
+        return response()->json($proveedor, 200 );
     }
 
     /**
@@ -74,8 +75,9 @@ class ItWebServicesController extends Controller
      */
     public function edit($id)
     {
-        $proveedor = Proveedor::findOrFail($id);
-        return  view('ItWebservices.proveedoresEdit',compact('proveedor'));
+        $proveedor = Proveedor::findOrFail($id)->with('sites')->get();
+        // return  view('ItWebservices.proveedoresEdit',compact('proveedor'));
+        return response()->json($proveedor, 200 );
     }
 
     /**

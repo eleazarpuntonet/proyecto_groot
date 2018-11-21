@@ -15,7 +15,7 @@ class CrearTablaDeCredenciales extends Migration
     {
         Schema::create('credenciales', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_site')->foreign('id_site')->references('id')->on('proveedores');
+            $table->integer('id_site')->foreign('id_site')->references('id')->on('sitios');
             $table->string('descripcion')->nullable();
             $table->string('user');
             $table->string('passw');

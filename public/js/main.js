@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -127829,3 +127830,5 @@ if (false) {
 
 /***/ })
 /******/ ]);
+=======
+>>>>>>> origin/Laravel-Enso-Vue-Datatables

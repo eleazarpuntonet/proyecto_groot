@@ -4,7 +4,7 @@
 <div class="mainTitle">
 	<h1>Usuarios</h1>
 </div>
-
+{{-- {{ dd($users) }} --}}
 <div class="container" id="mainTableProveedores">
   <table id="tableProv" class="table">
     <thead class="thead-light">
@@ -29,7 +29,7 @@
           <td>{{ $user->email }}</td>
           <td>{{ $user->username }}</td>
           <td>{{ $user->password }}</td>
-          <td>{{ $user->role }}</td>
+          {{-- <td>{{ $user->role->name }}</td> --}}
           <td>
         <div class="container" id="editButtons">
           <div class="button-btn">

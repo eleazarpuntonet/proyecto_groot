@@ -1,3 +1,5 @@
+{{-- {{ dd( auth()->user()->roles() ) }} --}}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,14 +9,13 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="author" content="">
 		<link rel="icon" href="../../../../favicon.ico">
-
 		<title>Proyecto Groot</title>
 		<link rel="stylesheet" href="/css/app.css">
 	</head>
 
 	<body>
 		@routes
-	<div id="app">
+	<div id="mainApp">
 		
 
 		@php
@@ -92,7 +93,7 @@
 							<a class="nav-link" href="{{ route('register') }}">Registrar<span class="sr-only">(current)</span></a>
 						</li>
         @else
-    				@if(auth()->user()->hasRoles(['admin','suscriptor']))
+    				@if(auth()->user()->hasRoles(['admin','ger']))
     					<li class="nav-item">
     						<a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
     					</li>

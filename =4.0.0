@@ -1,0 +1,12 @@
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /Users/ladmin/Desktop/SpsApps/proyecto_groot/node_modules/laravel-mix/node_modules/webpack/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
++ babel-core@6.26.3
++ @babel/core@7.1.2
++ webpack@4.21.0
++ webpack@4.21.0
++ webpack@4.21.0
+added 37 packages from 46 contributors, removed 3 packages, updated 7 packages, moved 15 packages and audited 52487 packages in 26.229s
+found 6 vulnerabilities (1 low, 4 high, 1 critical)
+  run `npm audit fix` to fix them, or `npm audit` for details

@@ -1,12 +1,29 @@
 export default {
   items: [
+<<<<<<< HEAD
     {
       name: 'Dashboard',
       url: '/dashboard',
+=======
+  {
+    title: true,
+    name: 'Panel de Gestion',
+    class: '',
+    wrapper: {
+      element: '',
+      attributes: {}
+    }
+  },
+    {//Dashboard
+      name: 'Servicios IT',//<-- Asi se modifica el titulo de una seccion de botones
+      class: 'nav-item nav-dropdown',
+      url: '/',
+>>>>>>> origin/Laravel-Enso-Vue-Datatables
       icon: 'icon-speedometer',
       badge: {
         variant: 'primary',
         text: 'NEW'
+<<<<<<< HEAD
       }
     },
     {
@@ -255,6 +272,37 @@ export default {
           icon: 'icon-star'
         }
       ]
+=======
+      },
+      children:
+      [{
+        name: 'Credenciales',
+        url: '/credenciales',
+        icon: 'icon-key',
+        children: [
+          {
+            name: 'Proveedores',
+            url: '/credenciales/proveedores',
+            icon: 'icon-key'
+          },
+          {
+            name: 'Accesos',
+            url: '/credenciales/accesos',
+            icon: 'icon-key'
+          },
+          {
+            name: 'Facturacion',
+            url: '/credenciales/facturacion',
+            icon: 'icon-key'
+          },
+          {
+            name: 'Sitios',
+            url: '/credenciales/sitios',
+            icon: 'icon-key'
+          },
+        ]
+      }]
+>>>>>>> origin/Laravel-Enso-Vue-Datatables
     },
     {
       name: 'Download CoreUI',

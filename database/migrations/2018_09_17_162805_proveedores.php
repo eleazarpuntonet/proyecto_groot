@@ -16,10 +16,12 @@ class Proveedores extends Migration
         Schema::create('proveedores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre');
-            $table->string('cuenta')->nullable();
-            $table->string('usuario');
-            $table->string('password');
-            $table->string('comentarios');
+            $table->string('r_social')->nullable();
+            $table->string('rif')->nullable();
+            $table->string('t_contribuyente')->nullable();
+            $table->string('direccion')->nullable();
+            $table->integer('user_session');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

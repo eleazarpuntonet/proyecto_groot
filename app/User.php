@@ -1,12 +1,12 @@
 <?php
 
 namespace App;
-
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -15,6 +15,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
         'name', 'email', 'password','last_name','username'
     ];
@@ -28,13 +29,33 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class,'assigned_roles');
+    }
+
     public function hasRoles(array $roles)
     {
+                dd($this->roles);
         foreach ($roles as $role) {
-            if ($this->role === $role) {
-                return true;
+            foreach ($this->roles as $userRole) {
+    
+                if ($userRole->name === $role) {
+                    return true;
+                }
+
             }
         }
         return false;
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+    
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }

@@ -20,6 +20,7 @@ class factController extends Controller
     {
         $facturacion = Facturacion::all();
         return view('fact.fctList',compact('facturacion'));
+        // return $facturacion;
     }
 
     /**

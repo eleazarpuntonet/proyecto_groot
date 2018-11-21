@@ -19,6 +19,7 @@ class credentialsController extends Controller
     {
         $credenciales = Credenciales::all();
         return view('credentials.credList',compact('credenciales'));
+        // return $credenciales;
     }
 
     /**

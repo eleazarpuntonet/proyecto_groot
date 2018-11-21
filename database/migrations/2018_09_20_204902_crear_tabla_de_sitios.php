@@ -16,7 +16,7 @@ class CrearTablaDeSitios extends Migration
         Schema::create('sitios', function (Blueprint $table) {
             $table->increments('id');
             $table->string('dominio');
-            $table->string('hosting')->foreign('hosting')->references('id')->on('proveedores');
+            $table->integer('hosting')->foreign('hosting')->references('id')->on('proveedores');
             $table->string('ip_site')->nullable();
             $table->string('status');
             $table->rememberToken();
