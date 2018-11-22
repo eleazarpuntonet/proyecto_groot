@@ -31,11 +31,11 @@ import factList              from './components/fact_comp/fact_list.vue'
 import factNew               from './components/fact_comp/fact_new.vue'
 import factEdit              from './components/fact_comp/fact_edit.vue'
 import factShow              from './components/fact_comp/fact_show.vue'
-import Vuetable              from 'vuetable-2/src/components/Vuetable'
+// import Vuetable              from 'vuetable-2/src/components/Vuetable'
 import cssVars               from 'css-vars-ponyfill'
 import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
-import router                from './CoreUi/src/router/index.js'
+import router                from '../../CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css';
@@ -58,9 +58,9 @@ Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue
 Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
-Vue.use(Vuetable);
+// Vue.use(Vuetable);
 Vue.use(BootstrapVue)
-Vue.use(Vuetable)
+// Vue.use(Vuetable)
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
@@ -69,14 +69,14 @@ Vue.use(ElementUI,{ locale });
 import VueAuthenticate from 'vue-authenticate'
 
 Vue.use(VueAuthenticate, {
-  baseUrl: 'http://172.30.33.207:3000/',
-  tokenName: 'access_token',
-  storageType: 'localStorage',
-  tokenHeader: 'Authorization',
-  tokenType: 'Bearer',
-  storageNamespace: '',
-  loginUrl: '/api/auth/login',
-  registerUrl: '/api/auth/register',
+  baseUrl          : 'http://172.30.33.207:3000/',
+  tokenName        : 'access_token',
+  storageType      : 'localStorage',
+  tokenHeader      : 'Authorization',
+  tokenType        : 'Bearer',
+  storageNamespace : '',
+  loginUrl         : '/api/auth/login',
+  registerUrl      : '/api/auth/register',
 
 
 
@@ -177,7 +177,7 @@ const store = new Vuex.Store({
             state.currentUser = payload.user
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", JSON.stringify(state.currentUser.token))
-            // console.log(state.currentUser)
+            console.log(state.currentUser)
 
         },
         addHost(state,value){
@@ -196,9 +196,11 @@ const store = new Vuex.Store({
         },
         logout(state){
             localStorage.removeItem("user")
+            localStorage.removeItem("jwtToken")
             // localStorage.removeItem("jwtToken")
             state.loading     = false
             state.currentUser = null
+            router.push({path:'/login'})
         }
 	},
 	//Actions guarda los metodos para modificar los state
@@ -208,7 +210,6 @@ const store = new Vuex.Store({
         login (context, payload) {
             context.commit('isAuthenticated', {
                 user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),
-                // isAuthenticated: auth.isAuthenticated()
                 isAuthenticated: true
             })
             router.push({path:'/'})
@@ -288,11 +289,13 @@ router.beforeEach((to,from, next)=>{
         *   -currentUser = usuario actual
         */
         const rolesToPath = (to.meta.roles)?to.meta.roles:null
-        const reqAuth     = to.matched.some(record=> record.meta.auth)
+        const reqAuth     = to.matched.some(record=> record.meta.requiresAuth)
         const currentUser = store.state.currentUser
         const homeRoute   = '/dashboard'
         const loginRoute  = '/login'
         console.log(from.path+' -> '+to.path)
+        console.log(reqAuth)
+        console.log(currentUser)
 
         /*
         * Valida si la proxima ruta requiere autenticacion
@@ -300,16 +303,16 @@ router.beforeEach((to,from, next)=>{
         * para luego enviar los datos de la proxima ruta
         * y los roles del usuario autenticado para determinar una accion
         */
-        if (reqAuth && currentUser) {
-                let auth = matchRoles(rolesToPath,currentUser.roles)
-                if (auth) {
-                    console.log('Si pasa')
-                    next()
-                } else {
-                    console.log('No pasa')
-                    next(homeRoute)
-                }
-            }
+        // if (reqAuth && currentUser) {
+        //         let auth = matchRoles(rolesToPath,currentUser.roles)
+        //         if (auth) {
+        //             console.log('Si pasa')
+        //             next()
+        //         } else {
+        //             console.log('No pasa')
+        //             next(homeRoute)
+        //         }
+        //     }
 
         /*
         * mathRoles en una funcion que compara
@@ -339,21 +342,23 @@ router.beforeEach((to,from, next)=>{
         * un usuario logueado se redirecciona
         * al dashboard
         */
-        // if (reqAuth && !currentUser) {
-        //     next(loginRoute)
-        // } 
-        // // /*
-        // // *Valida si la siguiente ruta es /login
-        // // *y si hay un usuario logueado,
-        // // *de ser TRUE se redirecciona al dashboard
-        // // */
+        if (reqAuth && !currentUser) {
+            next(loginRoute)
+        } 
+        // /*
+        // *Valida si la siguiente ruta es /login
+        // *y si hay un usuario logueado,
+        // *de ser TRUE se redirecciona al dashboard
+        // */
 
-        // else if (to.path == '/login' && currentUser) {
-        //     next('/')
-        // } 
-        // else {
-        //     next()
-        // }
+        else if (to.path == '/login' && currentUser) {
+            console.log(currentUser)
+            console.log('Tengo user y voy al login')
+            next('/')
+        } 
+        else {
+            next()
+        }
 
         next()
 
