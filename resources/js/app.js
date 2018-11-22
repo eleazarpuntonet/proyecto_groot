@@ -278,8 +278,52 @@ const app = new Vue({
             		store.dispatch('sendSites',response.data)
             	}
             ).catch(error => this.errors.push(error))
+    },
+    beforeMount() {
+        var reqauth     = this.$router.history.current.meta.requiresAuth
+        var thisPath    = this.$router.history.current.path
+        var currentUser = store.state.currentUser
+        var roles       = this.$router.history.current.meta.roles
+
+        if (reqauth && !currentUser) {
+            this.$router.push('/login')
+            console.log('Disparo salida')
+        }
+
+        if (thisPath == '/login' && currentUser) {
+            this.$router.push('/')
+        } 
+
+        if (reqauth && currentUser) {
+            let auth = matchRoles(roles,currentUser.roles)
+            if (!auth) {
+                this.$router.push('/')
+            } 
+        }
     }
 })
+
+/*
+* matchRoles en una funcion que compara
+* los roles de las rutas y del usuario
+* para validar si el usuario cumple con
+* los roles de la proxima ruta
+*/
+function matchRoles(x,y){
+        let flag = false
+
+        x.forEach((x)=>{
+            y.forEach((y)=>{
+                if (x==y.name || x=='public') {
+                    flag = true
+                }
+            })
+        })
+
+        if (flag) return true
+        return false
+
+    }
 
 router.beforeEach((to,from, next)=>{
         /*
@@ -294,48 +338,11 @@ router.beforeEach((to,from, next)=>{
         const homeRoute   = '/dashboard'
         const loginRoute  = '/login'
         console.log(from.path+' -> '+to.path)
-        console.log(reqAuth)
-        console.log(currentUser)
 
-        /*
-        * Valida si la proxima ruta requiere autenticacion
-        * y hay un usuario autenticado
-        * para luego enviar los datos de la proxima ruta
-        * y los roles del usuario autenticado para determinar una accion
-        */
-        // if (reqAuth && currentUser) {
-        //         let auth = matchRoles(rolesToPath,currentUser.roles)
-        //         if (auth) {
-        //             console.log('Si pasa')
-        //             next()
-        //         } else {
-        //             console.log('No pasa')
-        //             next(homeRoute)
-        //         }
-        //     }
+        // console.log(rolesToPath)
+        // console.log(currentUser.roles)
 
-        /*
-        * mathRoles en una funcion que compara
-        * los roles de las rutas y del usuario
-        * para validar si el usuario cumple con
-        * los roles de la proxima ruta
-        */
-        function matchRoles(x,y){
-                let flag = false
 
-                x.forEach((x)=>{
-                    y.forEach((y)=>{
-                        if (x.userRol==y.name) {
-                            console.log(x.userRol)
-                            flag = true
-                        }
-                    })
-                })
-
-                if (flag) return true
-                return false
-
-            }
         /*
         * Valida si la proxima ruta
         * requiere autorizacion y si no hay
@@ -345,22 +352,36 @@ router.beforeEach((to,from, next)=>{
         if (reqAuth && !currentUser) {
             next(loginRoute)
         } 
-        // /*
-        // *Valida si la siguiente ruta es /login
-        // *y si hay un usuario logueado,
-        // *de ser TRUE se redirecciona al dashboard
-        // */
-
+        /*
+        * Valida si la proxima ruta requiere autenticacion
+        * y hay un usuario autenticado
+        * para luego enviar los datos de la proxima ruta
+        * y los roles del usuario autenticado para determinar una accion
+        */
+        else if (reqAuth && currentUser) {
+            let auth = matchRoles(rolesToPath,currentUser.roles)
+            if (auth) {
+                console.log('Si pasa')
+                next()
+            } else {
+                router.push(homeRoute)
+                console.log('No pasa')
+                console.log(auth)
+            }
+        }
+        /*
+        *Valida si la siguiente ruta es /login
+        *y si hay un usuario logueado,
+        *de ser TRUE se redirecciona al dashboard
+        */
         else if (to.path == '/login' && currentUser) {
-            console.log(currentUser)
-            console.log('Tengo user y voy al login')
             next('/')
         } 
         else {
             next()
         }
 
-        next()
+        // next()
 
 
     })
