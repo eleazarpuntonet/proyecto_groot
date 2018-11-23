@@ -12,9 +12,9 @@
 </head>
 <body>
 	@routes
-	<div id="mainApp">
+    <div id="mainApp">
 
-	</div>
+    </div>
     <script src="/js/jquery3.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/main.js"></script>

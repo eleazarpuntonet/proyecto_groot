@@ -31,14 +31,12 @@ import factList              from './components/fact_comp/fact_list.vue'
 import factNew               from './components/fact_comp/fact_new.vue'
 import factEdit              from './components/fact_comp/fact_edit.vue'
 import factShow              from './components/fact_comp/fact_show.vue'
-// import Vuetable              from 'vuetable-2/src/components/Vuetable'
 import cssVars               from 'css-vars-ponyfill'
 import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
 import router                from './CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
-import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css';
+
 Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
 Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
 Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -55,7 +53,6 @@ Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue
 Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
 Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
 Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
-Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 // Vue.use(Vuetable);
@@ -246,7 +243,6 @@ const app = new Vue({
     },
     template: '<App/>',
     components : {
-        VueCtkDateTimePicker,
         App,
     	sitestable,
     	editForm,
@@ -266,18 +262,7 @@ const app = new Vue({
         console.log('Hola! desde el APP')
     },
     beforeCreate() { 
-        axios.get('/ajaxHost') 
-            .then(
-            	response => {
-            		store.dispatch('sendHost',response.data)
-            	}
-            ).catch(error => this.errors.push(error))
-        axios.get('/ajaxSites') 
-            .then(
-            	response => {
-            		store.dispatch('sendSites',response.data)
-            	}
-            ).catch(error => this.errors.push(error))
+
     },
     beforeMount() {
         var reqauth     = this.$router.history.current.meta.requiresAuth

@@ -268,6 +268,15 @@
           </b-row>
         </template>
 
+        <template v-else>
+
+          <el-input 
+            @change="callSearch" 
+            placeholder="Direccion" 
+            v-model="selection"></el-input>
+
+
+        </template>
         <b-row>
           <b-col lg="6" md="6">
           </b-col>
@@ -297,6 +306,7 @@ export default {
   */
   data () {
     return {
+      access_t:'3GrbQyu3m3B4Qnas49WjvJxrjr9MquB161ibWVqgioxnhusJqL1AAy0Cuy8yekr8',
       selection : null,
       metalabels:{
         label_estado_partida: {
@@ -401,6 +411,9 @@ export default {
           .catch(error => {
             console.log(error)
           })
+    },
+    callSearch(){
+
     }
   },
   beforeMount(){
@@ -411,7 +424,10 @@ export default {
         .catch(error => {
           console.log(error)
         })
-  }
+  },
+  mounted() {
+
+    }
 }
 </script>
 <style>
