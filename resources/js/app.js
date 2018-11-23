@@ -35,7 +35,7 @@ import factShow              from './components/fact_comp/fact_show.vue'
 import cssVars               from 'css-vars-ponyfill'
 import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
-import router                from '../../CoreUi/src/router/index.js'
+import router                from './CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
 import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
 import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css';

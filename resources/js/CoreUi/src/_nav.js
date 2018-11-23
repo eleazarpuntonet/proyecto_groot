@@ -1,9 +1,22 @@
 class menuItem{
-  constructor(item){
-    this.name = item.name
-    this.url  = item.url
-    this.icon = item.icon
+  constructor(item,children){
+    switch(arguments.length){
+      case 1:
+        this.name = item.name
+        this.url  = item.url
+        this.icon = item.icon
+      break
+
+      case 2:
+        this.name = item.name
+        this.url  = item.url
+        this.icon = item.icon
+        this.children = children
+      break
+    }
   }
+
+
 }
 
 class menuBadge extends menuItem{
@@ -60,9 +73,15 @@ var typhography = new menuItem({
 
 var s_reserva = new menuItem({
       name: 'Solicitud de Reserva',
-      url: '/reservas/nueva_reserva',
+      url: '/reservas',
       icon: 'icon-pencil'
     })
+
+var items_Reservas = new menuItem({
+    name: 'Reservas',
+    url: '/reservas',
+    icon: 'icon-pencil'
+    },[s_reserva])
 
 export default {
   items: [
@@ -70,7 +89,7 @@ export default {
     themeTitle,
     colors,
     typhography,
-    s_reserva,
+    items_Reservas,
     {
       divider: true
     },

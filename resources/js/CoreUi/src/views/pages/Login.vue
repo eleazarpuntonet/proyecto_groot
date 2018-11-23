@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import {mLogin} from '../../../../resources/js/auth.js'
+import {mLogin} from '../../../../auth.js'
 
 export default {
   name: 'Login',

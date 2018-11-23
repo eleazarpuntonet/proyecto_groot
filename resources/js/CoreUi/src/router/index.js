@@ -57,68 +57,107 @@ import Register         from '../views/pages/Register'
 //    Users
 import Users            from '../views/users/Users'
 import User             from '../views/users/User'
+import nueva_reserva    from '../../../components/formularioDeReservas'
 
 Vue.use(Router)
 
-function componentRoute(path,name,component){
-  this.path      = path
-  this.name      = name
-  this.component = component
-  this.children  = []
-  this.redirect = ''
+class Route_item{
+  constructor(item,children){
 
-  this.meta      = {
-    requiresAuth: false,
-    roles: []
-  }
+    switch(arguments.length){
+      case 1:
+        this.path = item.path
+        this.name = item.name
+        this.component = item.comp
+      break
+      case 2:
+        this.path = item.path
+        this.name = item.name
+        this.component = item.comp
+        this.children = children
+        this.redirect = item.redir
+        this.component = {
+            render (c) { return c('router-view') }
+          }
+      break
+    }
 
-  this.addChildren = (children)=>{
-    this.children.push(children)
-  }
-
-  this.addRoles = (rol)=>{
-    this.meta.roles.push(rol)
-  }
-
-  this.changeAuth = (val,roles)=>{
-    this.meta.requiresAuth = val
-    if (Array.isArray(roles)) {
-      for (var i = roles.length - 1; i >= 0; i--) {
-        this.addRoles(roles[i])
-      }
+    this.meta = {
+      requiresAuth: false,
+      roles: []
     }
   }
 
-  this.redirectTo = (redirectTo)=>{
-    this.redirect = redirectTo
-    this.component = {
-            render (c) { return c('router-view') }
-          }
+  addRole(rol){
+    this.meta.roles.push(rol)
+  }
+
+  addRoles(roles){
+    if (Array.isArray(roles)) {
+      for (var i = roles.length - 1; i >= 0; i--) {
+        this.addRole(roles[i])
+      }
+    } else this.addRole(roles)
+  }
+
+  changeAuth(val,roles){
+    this.meta.requiresAuth = val
+    this.addRoles(roles)
   }
 }
 
 
 
+var register = new Route_item({
+    path:'/register',
+    name:'Register',
+    comp: Register,
+  })
 
+var login = new Route_item({
+    path:'/login',
+    name:'Login',
+    comp: Login,
+  })
 
-var login      = new componentRoute('/login','Login',Login)
-var register   = new componentRoute('/register','Register',Register)
-var dashboard  = new componentRoute('dashboard','Dashboard',Dashboard)
-dashboard.changeAuth(true,['public'])
+var panelHome = new Route_item({
+    path:'dashboard',
+    name:'Dashboard',
+    comp: Dashboard,
+  })
+panelHome.changeAuth(true,['public'])
 
-var colors     = new componentRoute('colors','Colors',Colors)
-colors.changeAuth(true,['admin','tester'])
+var Colors_route = new Route_item({
+    path:'colors',
+    name:'Colors',
+    comp: Colors,
+  })
 
-var typography = new componentRoute('typography','Typography',Typography)
-typography.changeAuth(true,['admin'])
+var Typography_route = new Route_item({
+    path:'typography',
+    name:'Typography',
+    comp: Typography,
+  })
+Typography_route.changeAuth(true,['admin'])
 
-var theme      = new componentRoute('theme','Theme')
-theme.children = [colors,typography]
-theme.changeAuth(true,['admin'])
-theme.redirectTo('/theme/colors')
+var Theme_route = new Route_item({
+    path:'theme',
+    name:'Theme',
+    redir: '/theme/colors'
+  },[Colors_route,Typography_route])
 
-var reservas = new componentRoute('reservas','Reservas')
-var s_reservas = new componentRoute('nueva_reserva','Nueva reserva',)
+var nuevaReserva = new Route_item({
+    path:'nueva_reserva',
+    name:'Nueva Reserva',
+    comp: nueva_reserva,
+  })
+
+var MENU_reservas = new Route_item({
+    path:'reservas',
+    name:'Reservas',
+    redir: '/reservas/nueva_reserva'
+  },[nuevaReserva])
+
 export default new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
@@ -132,8 +171,9 @@ export default new Router({
       name: 'Home',
       component: DefaultContainer,
       children: [
-        dashboard,
-        theme,
+        panelHome,
+        Theme_route,
+        MENU_reservas,
       ]
     },
   ]
