@@ -58,6 +58,7 @@ import Register         from '../views/pages/Register'
 import Users            from '../views/users/Users'
 import User             from '../views/users/User'
 import nueva_reserva    from '../../../components/formularioDeReservas'
+import perfilDeUsuario    from '../../../components/userProfile'
 
 Vue.use(Router)
 
@@ -106,7 +107,11 @@ class Route_item{
   }
 }
 
-
+var perfilUser = new Route_item({
+    path:'perfil_usuario',
+    name:'Usuario',
+    comp: perfilDeUsuario,
+  })
 
 var register = new Route_item({
     path:'/register',
@@ -171,6 +176,7 @@ export default new Router({
       name: 'Home',
       component: DefaultContainer,
       children: [
+        perfilUser,
         panelHome,
         Theme_route,
         MENU_reservas,

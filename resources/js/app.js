@@ -31,14 +31,11 @@ import factList              from './components/fact_comp/fact_list.vue'
 import factNew               from './components/fact_comp/fact_new.vue'
 import factEdit              from './components/fact_comp/fact_edit.vue'
 import factShow              from './components/fact_comp/fact_show.vue'
-// import Vuetable              from 'vuetable-2/src/components/Vuetable'
 import cssVars               from 'css-vars-ponyfill'
 import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
 import router                from './CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
-import VueCtkDateTimePicker from 'vue-ctk-date-time-picker';
-import 'vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.min.css';
 Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
 Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
 Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -55,12 +52,11 @@ Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue
 Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
 Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
 Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
-Vue.component('vue-ctk-date-time-picker', VueCtkDateTimePicker);
+Vue.component('mapbox', require('mapbox-gl-vue/src/components/Mapbox.vue'))
+import Mapbox from 'mapbox-gl-vue';
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
-// Vue.use(Vuetable);
 Vue.use(BootstrapVue)
-// Vue.use(Vuetable)
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
@@ -246,7 +242,6 @@ const app = new Vue({
     },
     template: '<App/>',
     components : {
-        VueCtkDateTimePicker,
         App,
     	sitestable,
     	editForm,
