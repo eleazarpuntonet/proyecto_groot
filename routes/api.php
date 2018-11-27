@@ -15,9 +15,6 @@ use App\Municipiosve;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::group(['prefix' => 'auth'], function ($router) {
 
@@ -34,13 +31,15 @@ Route::resource('sites','sitesController');
 
 Route::resource('usuarios', 'UsersController');
 
-Route::get('countrieslist','metacontroller@countrieslist')->name('metacontroller.countrieslist');
-
-Route::get('citieslist/{city}','metacontroller@citieslist')->name('metacontroller.citieslist');
+Route::resource('reservas', 'ReservasController');
 
 Route::get('estadoslist','metacontroller@ve_estados')->name('metacontroller.ve_estados');
 
 Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metacontroller.ve_ciudades');
+
+Route::get('authtesting',function(){
+	return 'Retorno aprobado';
+})->middleware('auth:api');
 
 // Route::get('citytesting',function(){
 

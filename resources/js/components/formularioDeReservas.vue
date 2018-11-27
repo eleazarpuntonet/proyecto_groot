@@ -6,6 +6,12 @@
       </b-card-header>
       <b-card-body>
         <b-row>
+          <b-col lg="12" md="12">
+            <template v-if="dataSend.t_reserva">
+              <h1 v-if="dataSend.t_reserva=='nac'">Reservas Nacionales</h1>
+              <h1 v-else>Reservas Internacionales</h1>
+            </template>
+          </b-col>
             <!-- 
             * Selection del tipo de reserva
              -->
@@ -18,8 +24,7 @@
             >
             <el-select
               style="width:100%" 
-              @change="reservaChange" 
-              v-model="tipo_reserva" 
+              v-model="dataSend.t_reserva" 
               clearable 
               id="tReserva" 
               placeholder="Select">
@@ -37,163 +42,163 @@
         <!-- 
         * Formulario para reservas NACIONALES E INTERNACIONALES
          -->
-        <template v-if="tipo_reserva">
-          <b-row >
-            <b-col lg="12" md="12">
-              <h1 v-if="tipo_reserva=='nac'">Reservas Nacionales</h1>
-              <h1 v-else>Reservas Internacionales</h1>
-            </b-col>
-                <!-- 
-                * Campo de Pais/Estado de partida
-                 -->
+        <template v-if="dataSend.t_reserva">
+          <el-form 
+            :model="dataSend" 
+            :rules="rules" 
+            >
+            <b-row >
+              <!-- 
+              * Campo de Pais/Estado de partida
+               -->
               <b-col lg="3" md="3">
-                <b-form-group
-                  id="countryOut" 
-                  :description=" tipo_reserva=='nac' ? nac_label.from_a.desc : int_label.from_a.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit"
-                  label-for="countryOut"
-                >
-                  <el-select
-                    @change="tipo_reserva=='nac' ? getCities(dataSend.from_a) : getCountriesA()"
-                    v-model="dataSend.from_a" 
-                    style="width:100%" 
-                    clearable 
-                    id="countryOut" 
-                    :placeholder=" tipo_reserva=='nac' ? nac_label.from_a.plac : int_label.from_a.plac"
-                    >
-                    <!-- 
-                    *Opciones desplegables de items NACIONALES
-                     -->
-                    <template v-if="tipo_reserva=='nac'">
-                      <el-option
-                        v-for="item in countryOptions"
-                        :key="item.id_estado"
-                        :label="item.estado"
-                        :value="item.id_estado">
-                      </el-option>
-                    </template>
-                    <!-- 
-                    *Opciones desplegables de items INTERNACIONALES
-                     -->
-                    <template v-else>
-                      <el-option
-                        v-for="item in countries"
-                        :key="item.countryName"
-                        :label="item.countryName"
-                        :value="item.countryName">
-                      </el-option>
-                    </template>
-                  </el-select>
-                </b-form-group>
-              </b-col>
-
-                <!-- 
-                * Campo de Ciudad/Localidad de partida
-                 -->
-              <b-col lg="3" md="3">
-                <b-form-group
-                  id="ciudadOut" 
-                  :description=" tipo_reserva=='nac' ? nac_label.from_b.desc : int_label.from_b.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.from_b.tit : int_label.from_b.tit"
-                  label-for="ciudadOut"
-                >
-                  <el-select
-                    :disabled="dataSend.from_a ? false : true"
-                    v-model="dataSend.from_b" 
-                    style="width:100%" 
-                    clearable 
-                    id="ciudadOut" 
-                    :placeholder=" tipo_reserva=='nac' ? nac_label.from_b.plac : int_label.from_b.plac"
-                    >
-                    <!-- 
-                    *Opciones desplegables de items NACIONALES
-                     -->
-                    <template v-if="tipo_reserva=='int'">
-                      <el-option
-                        v-for="item in temp_states"
-                        :key="item.name"
-                        :label="item.name"
-                        :value="item.name">
-                      </el-option>
-                    </template>
-                    <!-- 
-                    *Opciones desplegables de items INTERNACIONALES
-                     -->
-                    <template v-else>
-                      <el-option
-                        v-for="item in citiesOptions"
-                        :key="item.ciudad"
-                        :label="item.ciudad"
-                        :value="item.ciudad">
-                      </el-option>
-                    </template>
-                  </el-select>
-                </b-form-group>
-              </b-col>
-
-                <!-- 
-                * Campo de Fecha de partida
-                 -->
-              <b-col lg="6" md="6">
-                <b-form-group
-                  id="date2"
-                  :description=" tipo_reserva=='nac' ? nac_label.date_a.desc : int_label.date_a.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.date_a.tit : int_label.date_a.tit"
-                  label-for="fecha_arribo"
-                >
-                <el-date-picker
+              <b-form-group
+                id="countryOut" 
+                :description=" dataSend.t_reserva=='nac' ? nac_label.from_a.desc : int_label.from_a.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit"
+                label-for="countryOut"
+              >
+                <el-select
+                  @change="dataSend.t_reserva=='nac' ? getCities(dataSend.from_a) : getCountriesA()"
+                  v-model="dataSend.from_a" 
                   style="width:100%" 
-                  id="fecha_arribo"
-                  v-model="reservForm.date_salida"
-                  type="date"
-                  :placeholder=" tipo_reserva=='nac' ? nac_label.date_a.plac : int_label.date_a.plac">
-                </el-date-picker>
-                </b-form-group>
+                  clearable 
+                  id="countryOut" 
+                  :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_a.plac : int_label.from_a.plac"
+                  >
+                  <!-- 
+                  *Opciones desplegables de items NACIONALES
+                   -->
+                  <template v-if="dataSend.t_reserva=='nac'">
+                    <el-option
+                      v-for="item in countryOptions"
+                      :key="item.id_estado"
+                      :label="item.estado"
+                      :value="item.id_estado">
+                    </el-option>
+                  </template>
+                  <!-- 
+                  *Opciones desplegables de items INTERNACIONALES
+                   -->
+                  <template v-else>
+                    <el-option
+                      v-for="item in countries"
+                      :key="item.countryName"
+                      :label="item.countryName"
+                      :value="item.countryName">
+                    </el-option>
+                  </template>
+                </el-select>
+              </b-form-group>
               </b-col>
 
-                <!-- 
-                * Campo textarea de la direccion precisa de partida
-                 -->
+              <!-- 
+              * Campo de Ciudad/Localidad de partida
+               -->
+              <b-col lg="3" md="3">
+              <b-form-group
+                id="ciudadOut" 
+                :description=" dataSend.t_reserva=='nac' ? nac_label.from_b.desc : int_label.from_b.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.from_b.tit : int_label.from_b.tit"
+                label-for="ciudadOut"
+              >
+                <el-select
+                  :disabled="dataSend.from_a ? false : true"
+                  v-model="dataSend.from_b" 
+                  style="width:100%" 
+                  clearable 
+                  id="ciudadOut" 
+                  :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_b.plac : int_label.from_b.plac"
+                  >
+                  <!-- 
+                  *Opciones desplegables de items NACIONALES
+                   -->
+                  <template v-if="dataSend.t_reserva=='int'">
+                    <el-option
+                      v-for="item in temp_states"
+                      :key="item.name"
+                      :label="item.name"
+                      :value="item.name">
+                    </el-option>
+                  </template>
+                  <!-- 
+                  *Opciones desplegables de items INTERNACIONALES
+                   -->
+                  <template v-else>
+                    <el-option
+                      v-for="item in citiesOptions"
+                      :key="item.ciudad"
+                      :label="item.ciudad"
+                      :value="item.ciudad">
+                    </el-option>
+                  </template>
+                </el-select>
+              </b-form-group>
+              </b-col>
+
+              <!-- 
+              * Campo de Fecha de partida
+               -->
+              <b-col lg="6" md="6">
+              <b-form-group
+                id="date2"
+                :description=" dataSend.t_reserva=='nac' ? nac_label.date_a.desc : int_label.date_a.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.date_a.tit : int_label.date_a.tit"
+                label-for="fecha_arribo"
+              >
+              <el-date-picker
+                style="width:100%" 
+                id="fecha_arribo"
+                v-model="dataSend.date_a"
+                type="date"
+                :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_a.plac : int_label.date_a.plac">
+              </el-date-picker>
+              </b-form-group>
+              </b-col>
+
+              <!-- 
+              * Campo textarea de la direccion precisa de partida
+               -->
               <b-col lg="12" md="12">
-                <b-form-group
-                  id="direccionDetallada"
-                  :description=" tipo_reserva=='nac' ? nac_label.adress_a.desc : int_label.adress_a.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.adress_a.tit : int_label.adress_a.tit"
-                  label-for="detailAdress"
-                >
-                <el-input 
-                  type="textarea" 
-                  v-model="reservForm.direcc_salida"
-                  id="detailAdress"
-                ></el-input>
+              <b-form-group
+                id="direccionDetallada"
+                :description=" dataSend.t_reserva=='nac' ? nac_label.adress_a.desc : int_label.adress_a.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.adress_a.tit : int_label.adress_a.tit"
+                label-for="detailAdress"
+              >
+              <el-input 
+                type="textarea" 
+                v-model="dataSend.adress_a"
+                id="detailAdress"
+              ></el-input>
 
-                </b-form-group>
+              </b-form-group>
               </b-col>            
-          </b-row>
+            </b-row>
 
-          <b-row >
+            <b-row >
                 <!-- 
                 * Campo de Estado de LLEGADA
                  -->
-              <b-col lg="3" md="3">
+                <b-col lg="3" md="3">
                 <b-form-group
                   id="countryOut" 
-                  :description=" tipo_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit"
+                  :description=" dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc"
+                  :label=" dataSend.t_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit"
                   label-for="countryOut"
                 >
                   <el-select
-                    @change="tipo_reserva=='nac' ? getCities(dataSend.to_a) : getCountriesB()"
+                    @change="dataSend.t_reserva=='nac' ? getCities(dataSend.to_a) : getCountriesB()"
                     v-model="dataSend.to_a" 
                     style="width:100%" 
                     clearable 
                     id="countryOut" 
-                    :placeholder=" tipo_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
+                    :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
                     >
                     <!-- 
                     *Opciones desplegables de items NACIONALES
                      -->
-                    <template v-if="tipo_reserva=='nac'">
+                    <template v-if="dataSend.t_reserva=='nac'">
                       <el-option
                         v-for="item in countryOptions"
                         :key="item.id_estado"
@@ -214,16 +219,16 @@
                     </template>
                   </el-select>
                 </b-form-group>
-              </b-col>
+                </b-col>
 
                 <!-- 
                 * Campo de Ciudad de LLEGADA
                  -->
-              <b-col lg="3" md="3">
+                <b-col lg="3" md="3">
                 <b-form-group
                   id="ciudadOut" 
-                  :description=" tipo_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit"
+                  :description=" dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc"
+                  :label=" dataSend.t_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit"
                   label-for="ciudadOut"
                 >
                   <el-select
@@ -232,12 +237,12 @@
                     style="width:100%" 
                     clearable 
                     id="ciudadOut" 
-                    :placeholder=" tipo_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
+                    :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
                     >
                     <!-- 
                     *Opciones desplegables de items NACIONALES
                      -->
-                    <template v-if="tipo_reserva=='int'">
+                    <template v-if="dataSend.t_reserva=='int'">
                       <el-option
                         v-for="item in temp_states"
                         :key="item.name"
@@ -258,101 +263,103 @@
                     </template>
                   </el-select>
                 </b-form-group>
-              </b-col>
+                </b-col>
 
                 <!-- 
                 * Campo de Fecha de ARRIBO
                  -->
-              <b-col lg="6" md="6">
+                <b-col lg="6" md="6">
                 <b-form-group
                   id="date2"
-                  :description=" tipo_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
+                  :description=" dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
+                  :label=" dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
                   label-for="fecha_arribo"
                 >
                 <el-date-picker
                   style="width:100%" 
                   id="fecha_arribo"
-                  v-model="reservForm.date_dest"
+                  v-model="dataSend.date_b"
                   type="date"
-                  :placeholder=" tipo_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
+                  :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
                   >
                 </el-date-picker>
                 </b-form-group>
-              </b-col>
+                </b-col>
 
                 <!-- 
                 * Campo textarea de la direccion precisa de partida
                  -->
-              <b-col lg="12" md="12">
+                <b-col lg="12" md="12">
                 <b-form-group
                   id="direccionDetallada"
-                  :description=" tipo_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc"
-                  :label=" tipo_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc"
+                  :description=" dataSend.t_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc"
+                  :label=" dataSend.t_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc"
                   label-for="detailAdress"
                 >
                 <el-input 
                   type="textarea" 
-                  v-model="reservForm.direcc_dest"
+                  v-model="dataSend.adress_b"
                   id="detailAdress"
                 ></el-input>
 
                 </b-form-group>
-              </b-col>            
-          </b-row>
+                </b-col>            
+            </b-row>
 
-          <b-row>
+            <b-row>
               <!-- 
               * Campo textarea con el MOTIVO de la reserva
                -->
-            <b-col lg="6" md="6">
+              <b-col lg="6" md="6">
               <b-form-group
                 id="direccionDetallada"
-                :description=" tipo_reserva=='nac' ? nac_label.motivo.desc : int_label.motivo.desc"
-                :label=" tipo_reserva=='nac' ? nac_label.motivo.tit : int_label.motivo.tit"
+                :description=" dataSend.t_reserva=='nac' ? nac_label.motivo.desc : int_label.motivo.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.motivo.tit : int_label.motivo.tit"
                 label-for="detailAdress"
               >
               <el-input 
                 type="textarea" 
-                v-model="reservForm.motivo"
+                v-model="dataSend.motivo"
                 id="detailAdress"
               ></el-input>
 
               </b-form-group>
-            </b-col>
+              </b-col>
 
               <!-- 
               * Campo textarea con la AGENDA de la reserva
                -->
-            <b-col lg="6" md="6">
+              <b-col lg="6" md="6">
               <b-form-group
                 id="direccionDetallada"
-                :description=" tipo_reserva=='nac' ? nac_label.agenda.desc : int_label.agenda.desc"
-                :label=" tipo_reserva=='nac' ? nac_label.agenda.tit : int_label.agenda.tit"
+                :description=" dataSend.t_reserva=='nac' ? nac_label.agenda.desc : int_label.agenda.desc"
+                :label=" dataSend.t_reserva=='nac' ? nac_label.agenda.tit : int_label.agenda.tit"
                 label-for="detailAdress"
               >
               <el-input 
                 type="textarea" 
-                v-model="reservForm.agenda"
+                v-model="dataSend.agenda"
                 id="detailAdress"
               ></el-input>
 
               </b-form-group>
-            </b-col>  
-          </b-row>
+              </b-col>  
+            </b-row>
+
+            <el-row>
+              <el-button 
+                @click.prevent="submitForm()"
+                size="small" 
+                type="primary" 
+                round>Enviar</el-button>
+              <el-button 
+                type="warning" 
+                size="small" 
+                round>Cancelar</el-button>
+            </el-row>
+          </el-form>
         </template>
 
-        <el-row>
-          <el-button 
-            size="small" 
-            type="primary" 
-            round>Enviar</el-button>
-          <el-button 
-            type="warning" 
-            size="small" 
-            round>Cancelar</el-button>
-        </el-row>
-        
       </b-card-body>
     </b-card>
 </div>
@@ -368,13 +375,6 @@ export default {
   */
   data () {
     return {
-      mapoptions:{
-          container: 'map',
-          style: "https://tile.jawg.io/jawg-dark.json?access-token=z23dKDdUQrEIwymULmlX1BgEEmSzJWQBkMWBrgrhmkbPv9CAD0FWZ8jCOH16YMr3",
-          zoom: 2,
-          center: [2.3210938, 48.7965913]
-      },
-
       countryOptions    : [{ 
         value    : null, text: 'Seleccione un pais de origen' 
       }],
@@ -383,8 +383,6 @@ export default {
       }],
       countries:data_countries,
       temp_states: null,
-      tipo_reserva : null,
-
       int_label:{
         from_a   : {
               tit  : 'Pais origen',
@@ -433,7 +431,6 @@ export default {
               tit  : 'Agenda'
         },
       },
-
       nac_label:{
         from_a   : {
               tit  : 'Estado origen',
@@ -482,44 +479,63 @@ export default {
               tit  : 'Agenda'
         },
       },
-
+      // dataSend : {
+      //   t_reserva: null,
+      //   from_a   : null,
+      //   from_b   : null,
+      //   adress_a : null,
+      //   date_a   : null,
+      //   to_a     : null,
+      //   to_b     : null,
+      //   adress_b : null,
+      //   date_b   : null,
+      //   motivo   : null,
+      //   agenda   : null,
+      // },
       dataSend : {
-        from_a   : null,
-        from_b   : null,
-        adress_a : null,
-        date_a   : null,
-        to_a     : null,
-        to_b     : null,
-        adress_b : null,
-        date_b   : null,
-        motivo   : null,
-        agenda   : null,
+        t_reserva: 'nacional',
+        from_a   : 'Caracas',
+        from_b   : 'Catia',
+        adress_a : 'Catia nro 58 496',
+        date_a   : 'native Date Tue Nov 13 2018 00:00:00 GMT-0400 (Venezuela Time)',
+        to_a     : 'Paris',
+        to_b     : 'Francia',
+        adress_b : 'Bla bla bla',
+        date_b   : 'native Date Sun Nov 18 2018 00:00:00 GMT-0400 (Venezuela Time)',
+        motivo   : 'Viajes',
+        agenda   : 'Mucho alcohol',
       },
-
-
-      selection : null,
-
-
-
       t_reserva    : [
         {value : null, text: 'Seleccione un tipo de reserva'},
         {value : 'nac', text: 'Reserva Nacional'},
         {value : 'int', text: 'Reserva Internacional'},
       ],
-      reservForm : {
-        treserva      : null,
-        estado_salida : null,
-        ciudad_salida : null,
-        direcc_salida : null,
-        date_salida   : null,
-        estado_dest   : null,
-        ciudad_dest   : null,
-        direcc_dest   : null,
-        date_dest     : null,
-        motivo        : null,
-        agenda        : null,
-      },
-
+      rules: {
+        to_a: [
+          { required: true, message: 'Por favor seleccione una opcion', trigger: 'blur' },
+        ],
+        to_b: [
+          { required: true, message: 'Por favor seleccione una opcion', trigger: 'blur' },
+        ],
+        adress_a: [
+          {required: true, message: 'Ingrese una direccion de partida', trigger: 'change' }
+        ],
+        adress_b: [
+          {required: true, message: 'Ingrese una direccion de partida', trigger: 'change' }
+        ],
+        date_a: [
+          { type: 'date', required: true, message: 'Por favor seleccione una fecha estimada de partida', trigger: 'change' }
+        ],
+        date_b: [
+          { type: 'date', required: true, message: 'Por favor seleccione una fecha estimada de arribo', trigger: 'change' }
+        ],
+        agenda: [
+          {required: true, message: 'Por favor describa su agenda en el destino, esto nos ayudara a programar mejor su visita ', trigger: 'change' }
+        ],
+        motivo: [
+          {required: true, message: 'Por favor describa el motivo de su reserva', trigger: 'change' }
+        ],
+      } 
     }
   },
   computed: {
@@ -528,9 +544,6 @@ export default {
       }
   },
   methods: {
-    reservaChange(){
-      console.log('La selecciona de la reserva ha cambiado')
-    },
     getCities(selection){
       axios.get(route('metacontroller.ve_ciudades',selection)) 
           .then(response => {
@@ -539,7 +552,6 @@ export default {
           .catch(error => {
             console.log(error)
           })
-
     },
     getCountriesA(){
       this.countries.forEach((val)=>{
@@ -554,6 +566,28 @@ export default {
           this.temp_states=val.regions
         }
       })
+    },
+    addLabel(item,label){
+      if (dataSend.t_reserva=='nac') {
+        this.nac_label.forEach((val)=>{
+          console.log(val)
+        })
+      } else {
+        this.int_label.forEach((val)=>{
+          console.log(val)
+        })
+      }
+    },
+    submitForm(){
+      axios.post(route('reservas.store'),this.dataSend) 
+          .then(response => {
+              console.log(response)
+            })
+          .catch(error => {
+            console.log(error)
+          })
+      console.log(this.$store.getters.currentUser)
+      console.log(this.dataSend)
     }
   },
   beforeMount(){

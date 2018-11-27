@@ -73,9 +73,6 @@ Vue.use(VueAuthenticate, {
   storageNamespace : '',
   loginUrl         : '/api/auth/login',
   registerUrl      : '/api/auth/register',
-
-
-
 })
 
 axios.interceptors.request.use(null, (error)=>{
@@ -83,8 +80,10 @@ axios.interceptors.request.use(null, (error)=>{
     console.log(store.getters.isAuthenticated())
         if (store.getters.isAuthenticated()) {
             alert('Autenticado')
-            axios.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem('jwtToken'))
+            axios.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem('vueauth_access_token'))
         } else {
+            alert('No Autenticado')
+
           store.commit('logout')
           router.push('/login')
           delete axios.defaults.headers.common['Authorization']
@@ -98,12 +97,6 @@ axios.interceptors.response.use(null, (error)=>{
             router.push('/login')
             store.commit('loginFailed',{error: error.response.data.error}) 
         }
-        // if (error.response.status == 500) {
-        //     store.commit('logout')
-        //     router.push('/login')
-        //     store.commit('loginFailed',{error: error.response.data.error}) 
-
-        // }
         return Promise.reject(error)
     })
 const user = getLocalUser()
@@ -166,15 +159,16 @@ const store = new Vuex.Store({
 	//de forma SINCRONA
 	mutations: {
         isAuthenticated (state, payload) {
-          state.isAuthenticated = payload.isAuthenticated
+            console.log('Recibiendo en autenticated')
+            console.log(payload)
+            state.isAuthenticated = true
             state.isLoggedIn  = true
             state.auth_error  = null
             state.loading     = false
             state.currentUser = payload.user
+            state.currentUser.token = payload.access_token
             localStorage.setItem("user", JSON.stringify(state.currentUser))
-            localStorage.setItem("jwtToken", JSON.stringify(state.currentUser.token))
-            console.log(state.currentUser)
-
+            localStorage.setItem("jwtToken", state.currentUser.token)
         },
         addHost(state,value){
             state.host = value
@@ -197,6 +191,9 @@ const store = new Vuex.Store({
             state.loading     = false
             state.currentUser = null
             router.push({path:'/login'})
+        },
+        xample(state,algo){
+            console.log("llego al xample")
         }
 	},
 	//Actions guarda los metodos para modificar los state
@@ -209,7 +206,6 @@ const store = new Vuex.Store({
                 isAuthenticated: true
             })
             router.push({path:'/'})
-
         },
 		sendHost(state,value){
 			store.commit('addHost',value)
@@ -217,9 +213,6 @@ const store = new Vuex.Store({
 		sendSites(state,value){
 			store.commit('addSite',value)
 		},
-        // login(context){
-        //     store.commit('login')
-        // }
 	},
 })
 /*
@@ -261,18 +254,6 @@ const app = new Vue({
         console.log('Hola! desde el APP')
     },
     beforeCreate() { 
-        axios.get('/ajaxHost') 
-            .then(
-            	response => {
-            		store.dispatch('sendHost',response.data)
-            	}
-            ).catch(error => this.errors.push(error))
-        axios.get('/ajaxSites') 
-            .then(
-            	response => {
-            		store.dispatch('sendSites',response.data)
-            	}
-            ).catch(error => this.errors.push(error))
     },
     beforeMount() {
         var reqauth     = this.$router.history.current.meta.requiresAuth
@@ -377,6 +358,4 @@ router.beforeEach((to,from, next)=>{
         }
 
         // next()
-
-
     })

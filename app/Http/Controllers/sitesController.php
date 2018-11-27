@@ -30,7 +30,8 @@ class sitesController extends Controller
      */
     public function create()
     {
-       return view('sites.newSiteForm');
+       // return view('sites.newSiteForm');
+        return "Revisar ruta";
     }
 
     /**

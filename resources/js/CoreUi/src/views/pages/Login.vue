@@ -93,6 +93,7 @@ export default {
       mLogin(this.form)
       .then(res=>{
         this.$store.commit('isAuthenticated',res)
+        // this.$store.dispatch('login',res)
         this.$router.push({path:'/'})
       })
       .catch(error=>{
