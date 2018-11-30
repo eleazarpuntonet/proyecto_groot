@@ -1,0 +1,4002 @@
+[
+    {
+        "nombre": "CyberOptics Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Devcast",
+        "t_contribuyente": "euismod",
+        "dir": "391 Stoughton Drive",
+        "autor": 53
+    },
+    {
+        "nombre": "Broadwind Energy, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Photobug",
+        "t_contribuyente": "morbi",
+        "dir": "171 Fisk Court",
+        "autor": 89
+    },
+    {
+        "nombre": "HomeStreet, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Jaxspan",
+        "t_contribuyente": "libero",
+        "dir": "298 Cordelia Alley",
+        "autor": 98
+    },
+    {
+        "nombre": "Limoneira Co",
+        "r_social": "NASDAQ",
+        "rif": "Gigazoom",
+        "t_contribuyente": "dui",
+        "dir": "68 Lotheville Way",
+        "autor": 35
+    },
+    {
+        "nombre": "Drive Shack Inc.",
+        "r_social": "NYSE",
+        "rif": "Thoughtsphere",
+        "t_contribuyente": "sem",
+        "dir": "61140 Mockingbird Hill",
+        "autor": 30
+    },
+    {
+        "nombre": "Houghton Mifflin Harcourt Company",
+        "r_social": "NASDAQ",
+        "rif": "Blogspan",
+        "t_contribuyente": "vivamus",
+        "dir": "778 Twin Pines Alley",
+        "autor": 4
+    },
+    {
+        "nombre": "Customers Bancorp, Inc",
+        "r_social": "NYSE",
+        "rif": "Mybuzz",
+        "t_contribuyente": "dictumst",
+        "dir": "306 Northview Circle",
+        "autor": 50
+    },
+    {
+        "nombre": "Qorvo, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Rhynyx",
+        "t_contribuyente": "velit",
+        "dir": "28010 Coleman Alley",
+        "autor": 59
+    },
+    {
+        "nombre": "PolarityTE, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Midel",
+        "t_contribuyente": "cras",
+        "dir": "6 Hudson Plaza",
+        "autor": 30
+    },
+    {
+        "nombre": "Liberty Expedia Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Livetube",
+        "t_contribuyente": "nulla",
+        "dir": "4 Crownhardt Road",
+        "autor": 95
+    },
+    {
+        "nombre": "TCF Financial Corporation",
+        "r_social": "NYSE",
+        "rif": "Voonyx",
+        "t_contribuyente": "lectus",
+        "dir": "037 Alpine Crossing",
+        "autor": 91
+    },
+    {
+        "nombre": "Medigus Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Browsetype",
+        "t_contribuyente": "molestie",
+        "dir": "598 Tennessee Alley",
+        "autor": 87
+    },
+    {
+        "nombre": "AtriCure, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Aibox",
+        "t_contribuyente": "vel",
+        "dir": "75075 Caliangt Alley",
+        "autor": 15
+    },
+    {
+        "nombre": "FORM Holdings Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Topicblab",
+        "t_contribuyente": "enim",
+        "dir": "9009 Leroy Court",
+        "autor": 12
+    },
+    {
+        "nombre": "Genius Brands International, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dabvine",
+        "t_contribuyente": "tortor",
+        "dir": "4446 Grasskamp Junction",
+        "autor": 45
+    },
+    {
+        "nombre": "First Trust Dynamic Europe Equity Income Fund",
+        "r_social": "NYSE",
+        "rif": "Yodel",
+        "t_contribuyente": "quis",
+        "dir": "09498 Monterey Street",
+        "autor": 95
+    },
+    {
+        "nombre": "Total System Services, Inc.",
+        "r_social": "NYSE",
+        "rif": "Tagopia",
+        "t_contribuyente": "neque",
+        "dir": "501 Butternut Junction",
+        "autor": 4
+    },
+    {
+        "nombre": "ENGlobal Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Yotz",
+        "t_contribuyente": "felis",
+        "dir": "9 Spohn Plaza",
+        "autor": 47
+    },
+    {
+        "nombre": "Capital City Bank Group",
+        "r_social": "NASDAQ",
+        "rif": "Voonyx",
+        "t_contribuyente": "phasellus",
+        "dir": "5635 Truax Terrace",
+        "autor": 99
+    },
+    {
+        "nombre": "Lilis Energy, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Plambee",
+        "t_contribuyente": "dui",
+        "dir": "23 Laurel Plaza",
+        "autor": 40
+    },
+    {
+        "nombre": "Bright Scholar Education Holdings Limited",
+        "r_social": "NYSE",
+        "rif": "Npath",
+        "t_contribuyente": "nulla",
+        "dir": "7938 Caliangt Crossing",
+        "autor": 9
+    },
+    {
+        "nombre": "Rosehill Resources Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Mynte",
+        "t_contribuyente": "donec",
+        "dir": "15 Mayer Trail",
+        "autor": 52
+    },
+    {
+        "nombre": "Lindsay Corporation",
+        "r_social": "NYSE",
+        "rif": "Meedoo",
+        "t_contribuyente": "etiam",
+        "dir": "3 Kipling Point",
+        "autor": 76
+    },
+    {
+        "nombre": "Apollo Tactical Income Fund Inc.",
+        "r_social": "NYSE",
+        "rif": "Blogpad",
+        "t_contribuyente": "nec",
+        "dir": "9192 Goodland Way",
+        "autor": 46
+    },
+    {
+        "nombre": "KLX Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skyba",
+        "t_contribuyente": "mauris",
+        "dir": "40 Nobel Plaza",
+        "autor": 81
+    },
+    {
+        "nombre": "Zafgen, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Ntags",
+        "t_contribuyente": "at",
+        "dir": "24703 Randy Center",
+        "autor": 46
+    },
+    {
+        "nombre": "Israel Chemicals Shs",
+        "r_social": "NYSE",
+        "rif": "Kaymbo",
+        "t_contribuyente": "laoreet",
+        "dir": "1 Sachtjen Circle",
+        "autor": 79
+    },
+    {
+        "nombre": "OncoMed Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Realcube",
+        "t_contribuyente": "dictumst",
+        "dir": "3528 Burrows Hill",
+        "autor": 86
+    },
+    {
+        "nombre": "Danaher Corporation",
+        "r_social": "NYSE",
+        "rif": "Mycat",
+        "t_contribuyente": "viverra",
+        "dir": "631 Kingsford Lane",
+        "autor": 52
+    },
+    {
+        "nombre": "Pendrell Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Kamba",
+        "t_contribuyente": "amet",
+        "dir": "5 Utah Center",
+        "autor": 72
+    },
+    {
+        "nombre": "SG Blocks, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Zoomdog",
+        "t_contribuyente": "lectus",
+        "dir": "86 Menomonie Plaza",
+        "autor": 45
+    },
+    {
+        "nombre": "First Interstate BancSystem, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Twiyo",
+        "t_contribuyente": "libero",
+        "dir": "750 Ryan Circle",
+        "autor": 16
+    },
+    {
+        "nombre": "Capitol Federal Financial, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Devcast",
+        "t_contribuyente": "lectus",
+        "dir": "7505 Golden Leaf Circle",
+        "autor": 42
+    },
+    {
+        "nombre": "Curtiss-Wright Corporation",
+        "r_social": "NYSE",
+        "rif": "Digitube",
+        "t_contribuyente": "tempus",
+        "dir": "5 6th Lane",
+        "autor": 99
+    },
+    {
+        "nombre": "KKR & Co. L.P.",
+        "r_social": "NYSE",
+        "rif": "Avavee",
+        "t_contribuyente": "feugiat",
+        "dir": "11 5th Way",
+        "autor": 73
+    },
+    {
+        "nombre": "Garmin Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Avavee",
+        "t_contribuyente": "sit",
+        "dir": "603 Manley Court",
+        "autor": 96
+    },
+    {
+        "nombre": "National Western Life Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Youopia",
+        "t_contribuyente": "vestibulum",
+        "dir": "6040 Sommers Street",
+        "autor": 20
+    },
+    {
+        "nombre": "First Cash, Inc.",
+        "r_social": "NYSE",
+        "rif": "Digitube",
+        "t_contribuyente": "donec",
+        "dir": "4621 Transport Park",
+        "autor": 49
+    },
+    {
+        "nombre": "Coca Cola Femsa S.A.B. de C.V.",
+        "r_social": "NYSE",
+        "rif": "Bluezoom",
+        "t_contribuyente": "lacus",
+        "dir": "4 Evergreen Terrace",
+        "autor": 37
+    },
+    {
+        "nombre": "AAC Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Myworks",
+        "t_contribuyente": "molestie",
+        "dir": "3294 Blackbird Junction",
+        "autor": 2
+    },
+    {
+        "nombre": "Dillard&#39;s, Inc.",
+        "r_social": "NYSE",
+        "rif": "Zoonoodle",
+        "t_contribuyente": "turpis",
+        "dir": "200 Pearson Pass",
+        "autor": 43
+    },
+    {
+        "nombre": "Legg Mason US Diversified Core ETF",
+        "r_social": "NASDAQ",
+        "rif": "Roomm",
+        "t_contribuyente": "ipsum",
+        "dir": "062 Declaration Alley",
+        "autor": 58
+    },
+    {
+        "nombre": "Fortress Investment Group LLC",
+        "r_social": "NYSE",
+        "rif": "Buzzdog",
+        "t_contribuyente": "mi",
+        "dir": "1 Luster Park",
+        "autor": 35
+    },
+    {
+        "nombre": "ADMA Biologics Inc",
+        "r_social": "NASDAQ",
+        "rif": "Avaveo",
+        "t_contribuyente": "velit",
+        "dir": "07059 Esch Way",
+        "autor": 96
+    },
+    {
+        "nombre": "Veritone, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kaymbo",
+        "t_contribuyente": "molestie",
+        "dir": "76642 Glacier Hill Terrace",
+        "autor": 50
+    },
+    {
+        "nombre": "Nuveen AMT-Free Municipal Value Fund",
+        "r_social": "NYSE",
+        "rif": "Ainyx",
+        "t_contribuyente": "platea",
+        "dir": "778 Northview Terrace",
+        "autor": 96
+    },
+    {
+        "nombre": "Versum Materials, Inc.",
+        "r_social": "NYSE",
+        "rif": "Trudeo",
+        "t_contribuyente": "et",
+        "dir": "69014 Mallory Drive",
+        "autor": 73
+    },
+    {
+        "nombre": "Yatra Online, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Plajo",
+        "t_contribuyente": "eu",
+        "dir": "092 Northland Center",
+        "autor": 48
+    },
+    {
+        "nombre": "ClearBridge Energy MLP Total Return Fund Inc.",
+        "r_social": "NYSE",
+        "rif": "Edgepulse",
+        "t_contribuyente": "rhoncus",
+        "dir": "97 Holmberg Center",
+        "autor": 58
+    },
+    {
+        "nombre": "Portola Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dabvine",
+        "t_contribuyente": "fringilla",
+        "dir": "84 Sundown Alley",
+        "autor": 99
+    },
+    {
+        "nombre": "Star Gas Partners, L.P.",
+        "r_social": "NYSE",
+        "rif": "Browsetype",
+        "t_contribuyente": "sodales",
+        "dir": "1454 Transport Trail",
+        "autor": 79
+    },
+    {
+        "nombre": "Carnival Corporation",
+        "r_social": "NYSE",
+        "rif": "Tagchat",
+        "t_contribuyente": "sapien",
+        "dir": "205 4th Way",
+        "autor": 90
+    },
+    {
+        "nombre": "GNC Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Tambee",
+        "t_contribuyente": "semper",
+        "dir": "1752 Chinook Plaza",
+        "autor": 97
+    },
+    {
+        "nombre": "MSC Industrial Direct Company, Inc.",
+        "r_social": "NYSE",
+        "rif": "Digitube",
+        "t_contribuyente": "pretium",
+        "dir": "38 Service Pass",
+        "autor": 91
+    },
+    {
+        "nombre": "Intec Pharma Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Youfeed",
+        "t_contribuyente": "elementum",
+        "dir": "88 Nancy Avenue",
+        "autor": 82
+    },
+    {
+        "nombre": "Colony NorthStar, Inc.",
+        "r_social": "NYSE",
+        "rif": "DabZ",
+        "t_contribuyente": "magna",
+        "dir": "7 Lillian Hill",
+        "autor": 77
+    },
+    {
+        "nombre": "Omega Protein Corporation",
+        "r_social": "NYSE",
+        "rif": "Edgeblab",
+        "t_contribuyente": "nec",
+        "dir": "19962 Clemons Road",
+        "autor": 30
+    },
+    {
+        "nombre": "Monster Beverage Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Reallinks",
+        "t_contribuyente": "eget",
+        "dir": "2259 Maple Point",
+        "autor": 50
+    },
+    {
+        "nombre": "My Size, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabtune",
+        "t_contribuyente": "rhoncus",
+        "dir": "3361 Autumn Leaf Center",
+        "autor": 71
+    },
+    {
+        "nombre": "Albany Molecular Research, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabtype",
+        "t_contribuyente": "duis",
+        "dir": "882 Harper Place",
+        "autor": 15
+    },
+    {
+        "nombre": "Grupo Aeroportuario del Centro Norte S.A.B. de C.V.",
+        "r_social": "NASDAQ",
+        "rif": "Rooxo",
+        "t_contribuyente": "felis",
+        "dir": "75297 Welch Pass",
+        "autor": 91
+    },
+    {
+        "nombre": "Motorcar Parts of America, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Jabbercube",
+        "t_contribuyente": "ultricies",
+        "dir": "012 Pearson Trail",
+        "autor": 52
+    },
+    {
+        "nombre": "LMI Aerospace, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Quimba",
+        "t_contribuyente": "vulputate",
+        "dir": "206 Portage Hill",
+        "autor": 21
+    },
+    {
+        "nombre": "Capstone Turbine Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Fivespan",
+        "t_contribuyente": "velit",
+        "dir": "963 Sullivan Hill",
+        "autor": 81
+    },
+    {
+        "nombre": "Female Health Company (The)",
+        "r_social": "NASDAQ",
+        "rif": "Blogtags",
+        "t_contribuyente": "augue",
+        "dir": "2794 Ridge Oak Avenue",
+        "autor": 39
+    },
+    {
+        "nombre": "AAR Corp.",
+        "r_social": "NYSE",
+        "rif": "Voonyx",
+        "t_contribuyente": "in",
+        "dir": "9 Rowland Junction",
+        "autor": 17
+    },
+    {
+        "nombre": "Extra Space Storage Inc",
+        "r_social": "NYSE",
+        "rif": "Wordify",
+        "t_contribuyente": "nunc",
+        "dir": "54 Shelley Way",
+        "autor": 78
+    },
+    {
+        "nombre": "Atlassian Corporation Plc",
+        "r_social": "NASDAQ",
+        "rif": "Mudo",
+        "t_contribuyente": "nisl",
+        "dir": "45730 Shoshone Parkway",
+        "autor": 53
+    },
+    {
+        "nombre": "National Holdings Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Thoughtworks",
+        "t_contribuyente": "sed",
+        "dir": "896 Fairview Parkway",
+        "autor": 82
+    },
+    {
+        "nombre": "Taubman Centers, Inc.",
+        "r_social": "NYSE",
+        "rif": "Oozz",
+        "t_contribuyente": "ridiculus",
+        "dir": "22 Orin Point",
+        "autor": 8
+    },
+    {
+        "nombre": "Digital Realty Trust, Inc.",
+        "r_social": "NYSE",
+        "rif": "Wordify",
+        "t_contribuyente": "porttitor",
+        "dir": "01320 Lakewood Gardens Drive",
+        "autor": 68
+    },
+    {
+        "nombre": "Penn National Gaming, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skyvu",
+        "t_contribuyente": "sagittis",
+        "dir": "5066 Maple Wood Pass",
+        "autor": 81
+    },
+    {
+        "nombre": "Liberty Broadband Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Zava",
+        "t_contribuyente": "odio",
+        "dir": "2090 Village Green Circle",
+        "autor": 79
+    },
+    {
+        "nombre": "Value Line, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Jabbertype",
+        "t_contribuyente": "rhoncus",
+        "dir": "67597 Bellgrove Alley",
+        "autor": 56
+    },
+    {
+        "nombre": "Voya Asia Pacific High Dividend Equity Income Fund",
+        "r_social": "NYSE",
+        "rif": "Trilia",
+        "t_contribuyente": "lorem",
+        "dir": "61089 Saint Paul Pass",
+        "autor": 97
+    },
+    {
+        "nombre": "Countrywide Financial Corporation",
+        "r_social": "NYSE",
+        "rif": "Trudeo",
+        "t_contribuyente": "eleifend",
+        "dir": "8252 Logan Drive",
+        "autor": 82
+    },
+    {
+        "nombre": "Strongbridge Biopharma plc",
+        "r_social": "NASDAQ",
+        "rif": "Plajo",
+        "t_contribuyente": "luctus",
+        "dir": "2 Graceland Terrace",
+        "autor": 85
+    },
+    {
+        "nombre": "Astec Industries, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Tagcat",
+        "t_contribuyente": "et",
+        "dir": "3 Donald Parkway",
+        "autor": 96
+    },
+    {
+        "nombre": "Huntington Bancshares Incorporated",
+        "r_social": "NASDAQ",
+        "rif": "Feedfire",
+        "t_contribuyente": "aliquam",
+        "dir": "4 Mesta Way",
+        "autor": 31
+    },
+    {
+        "nombre": "Celyad SA",
+        "r_social": "NASDAQ",
+        "rif": "Abata",
+        "t_contribuyente": "dapibus",
+        "dir": "2351 1st Road",
+        "autor": 17
+    },
+    {
+        "nombre": "KB Home",
+        "r_social": "NYSE",
+        "rif": "Yotz",
+        "t_contribuyente": "malesuada",
+        "dir": "4 Birchwood Trail",
+        "autor": 48
+    },
+    {
+        "nombre": "ANI Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Babbleblab",
+        "t_contribuyente": "vel",
+        "dir": "25 Nelson Parkway",
+        "autor": 65
+    },
+    {
+        "nombre": "PowerShares DWA Consumer Staples Momentum Portfolio",
+        "r_social": "NASDAQ",
+        "rif": "Tazzy",
+        "t_contribuyente": "dui",
+        "dir": "03394 Sommers Crossing",
+        "autor": 19
+    },
+    {
+        "nombre": "Materion Corporation",
+        "r_social": "NYSE",
+        "rif": "Agivu",
+        "t_contribuyente": "at",
+        "dir": "102 Mariners Cove Lane",
+        "autor": 98
+    },
+    {
+        "nombre": "Barrick Gold Corporation",
+        "r_social": "NYSE",
+        "rif": "Jamia",
+        "t_contribuyente": "pede",
+        "dir": "76 Crescent Oaks Trail",
+        "autor": 14
+    },
+    {
+        "nombre": "Zions Bancorporation",
+        "r_social": "NYSE",
+        "rif": "Reallinks",
+        "t_contribuyente": "diam",
+        "dir": "91 Little Fleur Court",
+        "autor": 70
+    },
+    {
+        "nombre": "Willamette Valley Vineyards, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Twiyo",
+        "t_contribuyente": "dui",
+        "dir": "7 Park Meadow Pass",
+        "autor": 72
+    },
+    {
+        "nombre": "Aegon NV",
+        "r_social": "NYSE",
+        "rif": "Twimbo",
+        "t_contribuyente": "augue",
+        "dir": "9 Burning Wood Terrace",
+        "autor": 21
+    },
+    {
+        "nombre": "Navios Maritime Holdings Inc.",
+        "r_social": "NYSE",
+        "rif": "Meevee",
+        "t_contribuyente": "in",
+        "dir": "79 Ludington Street",
+        "autor": 48
+    },
+    {
+        "nombre": "PAVmed Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Omba",
+        "t_contribuyente": "sit",
+        "dir": "9556 Sunbrook Pass",
+        "autor": 37
+    },
+    {
+        "nombre": "Community Bank System, Inc.",
+        "r_social": "NYSE",
+        "rif": "Meemm",
+        "t_contribuyente": "iaculis",
+        "dir": "799 Havey Way",
+        "autor": 41
+    },
+    {
+        "nombre": "Isramco, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kayveo",
+        "t_contribuyente": "quisque",
+        "dir": "87 American Ash Hill",
+        "autor": 12
+    },
+    {
+        "nombre": "Ringcentral, Inc.",
+        "r_social": "NYSE",
+        "rif": "Kaymbo",
+        "t_contribuyente": "purus",
+        "dir": "333 Arrowood Alley",
+        "autor": 92
+    },
+    {
+        "nombre": "FBL Financial Group, Inc.",
+        "r_social": "NYSE",
+        "rif": "Yodo",
+        "t_contribuyente": "elementum",
+        "dir": "7 Lukken Point",
+        "autor": 81
+    },
+    {
+        "nombre": "Frequency Electronics, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Plajo",
+        "t_contribuyente": "nulla",
+        "dir": "640 Algoma Terrace",
+        "autor": 11
+    },
+    {
+        "nombre": "Black Knight Financial Services, Inc.",
+        "r_social": "NYSE",
+        "rif": "Dabvine",
+        "t_contribuyente": "venenatis",
+        "dir": "554 Pond Pass",
+        "autor": 7
+    },
+    {
+        "nombre": "Silver Run Acquisition Corporation II",
+        "r_social": "NASDAQ",
+        "rif": "Devpoint",
+        "t_contribuyente": "cubilia",
+        "dir": "63 Prairie Rose Alley",
+        "autor": 75
+    },
+    {
+        "nombre": "MDC Partners Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Lajo",
+        "t_contribuyente": "ipsum",
+        "dir": "9439 Carpenter Terrace",
+        "autor": 91
+    },
+    {
+        "nombre": "Synovus Financial Corp.",
+        "r_social": "NYSE",
+        "rif": "Quamba",
+        "t_contribuyente": "quis",
+        "dir": "57161 Summerview Junction",
+        "autor": 77
+    },
+    {
+        "nombre": "MFA Financial, Inc.",
+        "r_social": "NYSE",
+        "rif": "Einti",
+        "t_contribuyente": "odio",
+        "dir": "930 Shasta Lane",
+        "autor": 42
+    },
+    {
+        "nombre": "Endocyte, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Oyondu",
+        "t_contribuyente": "ut",
+        "dir": "1241 Fallview Avenue",
+        "autor": 24
+    },
+    {
+        "nombre": "Vantage Energy Acquisition Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Zoonder",
+        "t_contribuyente": "arcu",
+        "dir": "219 Basil Center",
+        "autor": 94
+    },
+    {
+        "nombre": "MINDBODY, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yata",
+        "t_contribuyente": "potenti",
+        "dir": "3 Dahle Way",
+        "autor": 85
+    },
+    {
+        "nombre": "Sohu.com Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Meejo",
+        "t_contribuyente": "ipsum",
+        "dir": "71755 Walton Point",
+        "autor": 97
+    },
+    {
+        "nombre": "Live Ventures Incorporated",
+        "r_social": "NASDAQ",
+        "rif": "Leenti",
+        "t_contribuyente": "potenti",
+        "dir": "16015 Corry Trail",
+        "autor": 47
+    },
+    {
+        "nombre": "Cathay General Bancorp",
+        "r_social": "NASDAQ",
+        "rif": "Voonte",
+        "t_contribuyente": "cum",
+        "dir": "38429 Veith Pass",
+        "autor": 45
+    },
+    {
+        "nombre": "The ONE Group Hospitality, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Thoughtstorm",
+        "t_contribuyente": "in",
+        "dir": "35 Superior Place",
+        "autor": 96
+    },
+    {
+        "nombre": "Voya Natural Resources Equity Income Fund",
+        "r_social": "NYSE",
+        "rif": "Brainsphere",
+        "t_contribuyente": "nulla",
+        "dir": "53467 Brickson Park Parkway",
+        "autor": 27
+    },
+    {
+        "nombre": "Access National Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Edgepulse",
+        "t_contribuyente": "pellentesque",
+        "dir": "761 Westport Avenue",
+        "autor": 25
+    },
+    {
+        "nombre": "Dupont Fabros Technology, Inc.",
+        "r_social": "NYSE",
+        "rif": "Aivee",
+        "t_contribuyente": "suscipit",
+        "dir": "014 Main Alley",
+        "autor": 99
+    },
+    {
+        "nombre": "bluebird bio, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabtype",
+        "t_contribuyente": "odio",
+        "dir": "8774 Anthes Center",
+        "autor": 83
+    },
+    {
+        "nombre": "ICU Medical, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Fivespan",
+        "t_contribuyente": "viverra",
+        "dir": "89860 Garrison Parkway",
+        "autor": 30
+    },
+    {
+        "nombre": "Haynes International, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Thoughtblab",
+        "t_contribuyente": "nisl",
+        "dir": "25 Bowman Crossing",
+        "autor": 15
+    },
+    {
+        "nombre": "VelocityShares 3x Inverse Silver ETN",
+        "r_social": "NASDAQ",
+        "rif": "Camimbo",
+        "t_contribuyente": "aliquam",
+        "dir": "580 Mallory Court",
+        "autor": 67
+    },
+    {
+        "nombre": "Oritani Financial Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Npath",
+        "t_contribuyente": "quam",
+        "dir": "12 3rd Crossing",
+        "autor": 61
+    },
+    {
+        "nombre": "German American Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yata",
+        "t_contribuyente": "nisi",
+        "dir": "3667 Forest Run Trail",
+        "autor": 79
+    },
+    {
+        "nombre": "Southwest Gas Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Tazzy",
+        "t_contribuyente": "diam",
+        "dir": "26 Orin Street",
+        "autor": 79
+    },
+    {
+        "nombre": "Arbutus Biopharma Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Gigaclub",
+        "t_contribuyente": "praesent",
+        "dir": "393 Alpine Plaza",
+        "autor": 55
+    },
+    {
+        "nombre": "Nuveen High Income November 2021 Target Term Fund",
+        "r_social": "NYSE",
+        "rif": "Roombo",
+        "t_contribuyente": "non",
+        "dir": "4798 Cody Road",
+        "autor": 24
+    },
+    {
+        "nombre": "Signature Bank",
+        "r_social": "NASDAQ",
+        "rif": "Voonte",
+        "t_contribuyente": "non",
+        "dir": "7426 Stephen Point",
+        "autor": 76
+    },
+    {
+        "nombre": "Kennedy-Wilson Holdings Inc.",
+        "r_social": "NYSE",
+        "rif": "Eadel",
+        "t_contribuyente": "viverra",
+        "dir": "97470 Mccormick Place",
+        "autor": 33
+    },
+    {
+        "nombre": "Fifth Third Bancorp",
+        "r_social": "NASDAQ",
+        "rif": "Devify",
+        "t_contribuyente": "molestie",
+        "dir": "563 Miller Plaza",
+        "autor": 61
+    },
+    {
+        "nombre": "FARO Technologies, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Voolith",
+        "t_contribuyente": "vivamus",
+        "dir": "2703 Logan Street",
+        "autor": 32
+    },
+    {
+        "nombre": "First Trust South Korea AlphaDEX Fund",
+        "r_social": "NASDAQ",
+        "rif": "Gabcube",
+        "t_contribuyente": "in",
+        "dir": "19808 Moulton Circle",
+        "autor": 11
+    },
+    {
+        "nombre": "Zymeworks Inc.",
+        "r_social": "NYSE",
+        "rif": "Edgeify",
+        "t_contribuyente": "sed",
+        "dir": "6553 Reinke Street",
+        "autor": 84
+    },
+    {
+        "nombre": "Aurinia Pharmaceuticals Inc",
+        "r_social": "NASDAQ",
+        "rif": "Yodo",
+        "t_contribuyente": "suspendisse",
+        "dir": "516 Fairfield Crossing",
+        "autor": 85
+    },
+    {
+        "nombre": "Ambev S.A.",
+        "r_social": "NYSE",
+        "rif": "Fatz",
+        "t_contribuyente": "augue",
+        "dir": "34694 Browning Park",
+        "autor": 41
+    },
+    {
+        "nombre": "Goldman Sachs Group, Inc. (The)",
+        "r_social": "NYSE",
+        "rif": "Quinu",
+        "t_contribuyente": "id",
+        "dir": "3955 Melrose Hill",
+        "autor": 17
+    },
+    {
+        "nombre": "Global Water Resources, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skimia",
+        "t_contribuyente": "posuere",
+        "dir": "2668 Lillian Pass",
+        "autor": 83
+    },
+    {
+        "nombre": "U.S. Bancorp",
+        "r_social": "NYSE",
+        "rif": "Kaymbo",
+        "t_contribuyente": "sem",
+        "dir": "3 Summer Ridge Plaza",
+        "autor": 37
+    },
+    {
+        "nombre": "Wayside Technology Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Centidel",
+        "t_contribuyente": "ultrices",
+        "dir": "23 Browning Place",
+        "autor": 51
+    },
+    {
+        "nombre": "Anthem, Inc.",
+        "r_social": "NYSE",
+        "rif": "Yotz",
+        "t_contribuyente": "posuere",
+        "dir": "041 Corry Road",
+        "autor": 72
+    },
+    {
+        "nombre": "Texas Instruments Incorporated",
+        "r_social": "NASDAQ",
+        "rif": "Divape",
+        "t_contribuyente": "sed",
+        "dir": "03 Banding Junction",
+        "autor": 27
+    },
+    {
+        "nombre": "CHS Inc",
+        "r_social": "NASDAQ",
+        "rif": "Rhybox",
+        "t_contribuyente": "congue",
+        "dir": "5085 Stang Avenue",
+        "autor": 69
+    },
+    {
+        "nombre": "BlueLinx Holdings Inc.",
+        "r_social": "NYSE",
+        "rif": "Tambee",
+        "t_contribuyente": "ac",
+        "dir": "742 Hoard Junction",
+        "autor": 76
+    },
+    {
+        "nombre": "Elbit Systems Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Flashpoint",
+        "t_contribuyente": "potenti",
+        "dir": "03 Gateway Point",
+        "autor": 22
+    },
+    {
+        "nombre": "Morgan Stanley",
+        "r_social": "NYSE",
+        "rif": "Kwideo",
+        "t_contribuyente": "duis",
+        "dir": "50873 Grim Point",
+        "autor": 96
+    },
+    {
+        "nombre": "Interactive Brokers Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Einti",
+        "t_contribuyente": "cubilia",
+        "dir": "70 Logan Point",
+        "autor": 26
+    },
+    {
+        "nombre": "Quaker Chemical Corporation",
+        "r_social": "NYSE",
+        "rif": "Feednation",
+        "t_contribuyente": "montes",
+        "dir": "45610 Cody Drive",
+        "autor": 54
+    },
+    {
+        "nombre": "P & F Industries, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Eabox",
+        "t_contribuyente": "vulputate",
+        "dir": "56961 Elka Point",
+        "autor": 70
+    },
+    {
+        "nombre": "Barrett Business Services, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Realblab",
+        "t_contribuyente": "turpis",
+        "dir": "285 Warrior Court",
+        "autor": 40
+    },
+    {
+        "nombre": "Dominion Energy, Inc.",
+        "r_social": "NYSE",
+        "rif": "Cogibox",
+        "t_contribuyente": "eleifend",
+        "dir": "152 6th Trail",
+        "autor": 97
+    },
+    {
+        "nombre": "Bankwell Financial Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Zoombeat",
+        "t_contribuyente": "in",
+        "dir": "2226 Sauthoff Road",
+        "autor": 28
+    },
+    {
+        "nombre": "Teekay Corporation",
+        "r_social": "NYSE",
+        "rif": "Edgewire",
+        "t_contribuyente": "fringilla",
+        "dir": "16 Vera Junction",
+        "autor": 59
+    },
+    {
+        "nombre": "EchoStar Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Yabox",
+        "t_contribuyente": "vestibulum",
+        "dir": "84 Clove Junction",
+        "autor": 40
+    },
+    {
+        "nombre": "Synovus Financial Corp.",
+        "r_social": "NYSE",
+        "rif": "Teklist",
+        "t_contribuyente": "vulputate",
+        "dir": "3 Little Fleur Hill",
+        "autor": 62
+    },
+    {
+        "nombre": "The Travelers Companies, Inc.",
+        "r_social": "NYSE",
+        "rif": "Yotz",
+        "t_contribuyente": "phasellus",
+        "dir": "07017 Oriole Way",
+        "autor": 54
+    },
+    {
+        "nombre": "Genco Shipping & Trading Limited Warrants Expiring 12/31/2021 ",
+        "r_social": "NYSE",
+        "rif": "Tazz",
+        "t_contribuyente": "ac",
+        "dir": "672 New Castle Trail",
+        "autor": 29
+    },
+    {
+        "nombre": "Bank of America Corporation",
+        "r_social": "NYSE",
+        "rif": "Skaboo",
+        "t_contribuyente": "fringilla",
+        "dir": "9079 Barnett Pass",
+        "autor": 60
+    },
+    {
+        "nombre": "Quanex Building Products Corporation",
+        "r_social": "NYSE",
+        "rif": "Rhynoodle",
+        "t_contribuyente": "convallis",
+        "dir": "22 Del Sol Circle",
+        "autor": 82
+    },
+    {
+        "nombre": "Madison Strategic Sector Premium Fund",
+        "r_social": "NYSE",
+        "rif": "Photojam",
+        "t_contribuyente": "varius",
+        "dir": "029 Mcguire Place",
+        "autor": 27
+    },
+    {
+        "nombre": "Brasilagro Cia Brasileira De Propriedades Agricolas",
+        "r_social": "NYSE",
+        "rif": "Thoughtsphere",
+        "t_contribuyente": "nibh",
+        "dir": "920 Hauk Hill",
+        "autor": 49
+    },
+    {
+        "nombre": "Unilever PLC",
+        "r_social": "NYSE",
+        "rif": "Thoughtsphere",
+        "t_contribuyente": "nulla",
+        "dir": "20619 Garrison Circle",
+        "autor": 63
+    },
+    {
+        "nombre": "Tesoro Corporation",
+        "r_social": "NYSE",
+        "rif": "Kamba",
+        "t_contribuyente": "sollicitudin",
+        "dir": "4089 Northview Alley",
+        "autor": 95
+    },
+    {
+        "nombre": "Blackrock Health Sciences Trust",
+        "r_social": "NYSE",
+        "rif": "Devbug",
+        "t_contribuyente": "amet",
+        "dir": "44 Bonner Center",
+        "autor": 16
+    },
+    {
+        "nombre": "The Ultimate Software Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Centidel",
+        "t_contribuyente": "et",
+        "dir": "35 Jenna Lane",
+        "autor": 3
+    },
+    {
+        "nombre": "Yum! Brands, Inc.",
+        "r_social": "NYSE",
+        "rif": "Zoonoodle",
+        "t_contribuyente": "nullam",
+        "dir": "5 Mallard Crossing",
+        "autor": 52
+    },
+    {
+        "nombre": "Intevac, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Fatz",
+        "t_contribuyente": "vestibulum",
+        "dir": "85043 Schmedeman Place",
+        "autor": 83
+    },
+    {
+        "nombre": "Ralph Lauren Corporation",
+        "r_social": "NYSE",
+        "rif": "Jabberbean",
+        "t_contribuyente": "vel",
+        "dir": "744 Rutledge Street",
+        "autor": 28
+    },
+    {
+        "nombre": "M&T Bank Corporation",
+        "r_social": "NYSE",
+        "rif": "Skiptube",
+        "t_contribuyente": "tincidunt",
+        "dir": "16289 Sommers Alley",
+        "autor": 24
+    },
+    {
+        "nombre": "Titan Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Brainsphere",
+        "t_contribuyente": "vestibulum",
+        "dir": "10939 Sunfield Court",
+        "autor": 20
+    },
+    {
+        "nombre": "Capital One Financial Corporation",
+        "r_social": "NYSE",
+        "rif": "Zoomzone",
+        "t_contribuyente": "nisl",
+        "dir": "8697 Red Cloud Way",
+        "autor": 88
+    },
+    {
+        "nombre": "DXC Technology Company",
+        "r_social": "NYSE",
+        "rif": "Meedoo",
+        "t_contribuyente": "faucibus",
+        "dir": "70 Di Loreto Point",
+        "autor": 73
+    },
+    {
+        "nombre": "Kopin Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Minyx",
+        "t_contribuyente": "aliquet",
+        "dir": "0203 Di Loreto Road",
+        "autor": 84
+    },
+    {
+        "nombre": "China Distance Education Holdings Limited",
+        "r_social": "NYSE",
+        "rif": "Mydeo",
+        "t_contribuyente": "erat",
+        "dir": "95 Logan Point",
+        "autor": 87
+    },
+    {
+        "nombre": "Colonial Investment Grade Municipal Trust",
+        "r_social": "NYSE",
+        "rif": "Divanoodle",
+        "t_contribuyente": "interdum",
+        "dir": "67 Oxford Place",
+        "autor": 77
+    },
+    {
+        "nombre": "CorEnergy Infrastructure Trust, Inc.",
+        "r_social": "NYSE",
+        "rif": "Yodel",
+        "t_contribuyente": "quam",
+        "dir": "87 Kenwood Park",
+        "autor": 59
+    },
+    {
+        "nombre": "FLIR Systems, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Thoughtstorm",
+        "t_contribuyente": "sapien",
+        "dir": "5162 Novick Pass",
+        "autor": 36
+    },
+    {
+        "nombre": "Koninklijke Philips N.V.",
+        "r_social": "NYSE",
+        "rif": "Yakidoo",
+        "t_contribuyente": "sem",
+        "dir": "34053 Mayfield Place",
+        "autor": 29
+    },
+    {
+        "nombre": "Delcath Systems, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yacero",
+        "t_contribuyente": "maecenas",
+        "dir": "5 Menomonie Way",
+        "autor": 7
+    },
+    {
+        "nombre": "Ambac Financial Group, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Wordware",
+        "t_contribuyente": "justo",
+        "dir": "54717 Coleman Road",
+        "autor": 75
+    },
+    {
+        "nombre": "Gerdau S.A.",
+        "r_social": "NYSE",
+        "rif": "Jamia",
+        "t_contribuyente": "lobortis",
+        "dir": "6367 Mayfield Circle",
+        "autor": 92
+    },
+    {
+        "nombre": "Strongbridge Biopharma plc",
+        "r_social": "NASDAQ",
+        "rif": "Skaboo",
+        "t_contribuyente": "lorem",
+        "dir": "45511 Manufacturers Drive",
+        "autor": 92
+    },
+    {
+        "nombre": "Lydall, Inc.",
+        "r_social": "NYSE",
+        "rif": "Jaxworks",
+        "t_contribuyente": "leo",
+        "dir": "98943 Mitchell Road",
+        "autor": 51
+    },
+    {
+        "nombre": "First Trust Germany AlphaDEX Fund",
+        "r_social": "NASDAQ",
+        "rif": "Topicshots",
+        "t_contribuyente": "enim",
+        "dir": "276 Talisman Place",
+        "autor": 46
+    },
+    {
+        "nombre": "California Water  Service Group Holding",
+        "r_social": "NYSE",
+        "rif": "Meejo",
+        "t_contribuyente": "faucibus",
+        "dir": "71475 Russell Hill",
+        "autor": 26
+    },
+    {
+        "nombre": "Wynn Resorts, Limited",
+        "r_social": "NASDAQ",
+        "rif": "Twimm",
+        "t_contribuyente": "purus",
+        "dir": "3379 School Road",
+        "autor": 11
+    },
+    {
+        "nombre": "Sonic Foundry, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Browsedrive",
+        "t_contribuyente": "leo",
+        "dir": "7215 Granby Hill",
+        "autor": 93
+    },
+    {
+        "nombre": "LGI Homes, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Muxo",
+        "t_contribuyente": "luctus",
+        "dir": "8799 Buell Junction",
+        "autor": 20
+    },
+    {
+        "nombre": "ReWalk Robotics Ltd",
+        "r_social": "NASDAQ",
+        "rif": "Mycat",
+        "t_contribuyente": "nisl",
+        "dir": "637 Monterey Road",
+        "autor": 7
+    },
+    {
+        "nombre": "Gramercy Property Trust Inc.",
+        "r_social": "NYSE",
+        "rif": "Demivee",
+        "t_contribuyente": "nisi",
+        "dir": "968 4th Terrace",
+        "autor": 45
+    },
+    {
+        "nombre": "ING Group, N.V.",
+        "r_social": "NYSE",
+        "rif": "Roomm",
+        "t_contribuyente": "libero",
+        "dir": "815 Fieldstone Plaza",
+        "autor": 31
+    },
+    {
+        "nombre": "Arrowhead Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Buzzbean",
+        "t_contribuyente": "sed",
+        "dir": "914 Roxbury Lane",
+        "autor": 73
+    },
+    {
+        "nombre": "IBERIABANK Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Skyndu",
+        "t_contribuyente": "curabitur",
+        "dir": "7350 Troy Crossing",
+        "autor": 96
+    },
+    {
+        "nombre": "Lydall, Inc.",
+        "r_social": "NYSE",
+        "rif": "Rhynoodle",
+        "t_contribuyente": "at",
+        "dir": "514 Steensland Point",
+        "autor": 24
+    },
+    {
+        "nombre": "Zions Bancorporation",
+        "r_social": "NYSE",
+        "rif": "Skiba",
+        "t_contribuyente": "luctus",
+        "dir": "9724 Green Center",
+        "autor": 17
+    },
+    {
+        "nombre": "Apartment Investment and Management Company",
+        "r_social": "NYSE",
+        "rif": "Twinder",
+        "t_contribuyente": "sit",
+        "dir": "0107 Morning Crossing",
+        "autor": 80
+    },
+    {
+        "nombre": "Hess Midstream Partners LP",
+        "r_social": "NYSE",
+        "rif": "Miboo",
+        "t_contribuyente": "nulla",
+        "dir": "5987 Schmedeman Center",
+        "autor": 92
+    },
+    {
+        "nombre": "Entergy Arkansas, Inc.",
+        "r_social": "NYSE",
+        "rif": "Reallinks",
+        "t_contribuyente": "aliquam",
+        "dir": "99 Jay Road",
+        "autor": 76
+    },
+    {
+        "nombre": "OFG Bancorp",
+        "r_social": "NYSE",
+        "rif": "Kare",
+        "t_contribuyente": "ipsum",
+        "dir": "30302 Montana Drive",
+        "autor": 53
+    },
+    {
+        "nombre": "First American Corporation (The)",
+        "r_social": "NYSE",
+        "rif": "Roodel",
+        "t_contribuyente": "lacinia",
+        "dir": "5558 Daystar Road",
+        "autor": 61
+    },
+    {
+        "nombre": "Keryx Biopharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dabjam",
+        "t_contribuyente": "mauris",
+        "dir": "3785 Forest Dale Road",
+        "autor": 3
+    },
+    {
+        "nombre": "Alphatec Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Eayo",
+        "t_contribuyente": "scelerisque",
+        "dir": "13021 Arizona Road",
+        "autor": 14
+    },
+    {
+        "nombre": "Technical Communications Corporation",
+        "r_social": "NASDAQ",
+        "rif": "InnoZ",
+        "t_contribuyente": "nulla",
+        "dir": "138 Nova Alley",
+        "autor": 99
+    },
+    {
+        "nombre": "Cesca Therapeutics Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kazu",
+        "t_contribuyente": "quis",
+        "dir": "248 Montana Center",
+        "autor": 70
+    },
+    {
+        "nombre": "Legacy Reserves LP",
+        "r_social": "NASDAQ",
+        "rif": "JumpXS",
+        "t_contribuyente": "nisl",
+        "dir": "8792 Mesta Trail",
+        "autor": 82
+    },
+    {
+        "nombre": "RTI Surgical, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skynoodle",
+        "t_contribuyente": "posuere",
+        "dir": "57793 Tony Street",
+        "autor": 81
+    },
+    {
+        "nombre": "Atmos Energy Corporation",
+        "r_social": "NYSE",
+        "rif": "Centidel",
+        "t_contribuyente": "primis",
+        "dir": "297 Jenna Plaza",
+        "autor": 48
+    },
+    {
+        "nombre": "Citigroup Inc.",
+        "r_social": "NYSE",
+        "rif": "Jatri",
+        "t_contribuyente": "duis",
+        "dir": "265 Fremont Parkway",
+        "autor": 100
+    },
+    {
+        "nombre": "Eastman Kodak Company",
+        "r_social": "NYSE",
+        "rif": "Feedmix",
+        "t_contribuyente": "erat",
+        "dir": "939 Daystar Center",
+        "autor": 1
+    },
+    {
+        "nombre": "First Internet Bancorp",
+        "r_social": "NASDAQ",
+        "rif": "Trilia",
+        "t_contribuyente": "condimentum",
+        "dir": "566 Maple Wood Plaza",
+        "autor": 33
+    },
+    {
+        "nombre": "Domtar Corporation",
+        "r_social": "NYSE",
+        "rif": "Youbridge",
+        "t_contribuyente": "sem",
+        "dir": "26 Lighthouse Bay Junction",
+        "autor": 25
+    },
+    {
+        "nombre": "Dimension Therapeutics, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dynava",
+        "t_contribuyente": "donec",
+        "dir": "2113 Oak Valley Way",
+        "autor": 22
+    },
+    {
+        "nombre": "Employers Holdings Inc",
+        "r_social": "NYSE",
+        "rif": "Jabbersphere",
+        "t_contribuyente": "diam",
+        "dir": "6161 Starling Lane",
+        "autor": 42
+    },
+    {
+        "nombre": "General Motors Company",
+        "r_social": "NYSE",
+        "rif": "Jetwire",
+        "t_contribuyente": "ultrices",
+        "dir": "58477 Paget Lane",
+        "autor": 35
+    },
+    {
+        "nombre": "Wynn Resorts, Limited",
+        "r_social": "NASDAQ",
+        "rif": "Livetube",
+        "t_contribuyente": "aenean",
+        "dir": "8 Prentice Center",
+        "autor": 37
+    },
+    {
+        "nombre": "Juniper Networks, Inc.",
+        "r_social": "NYSE",
+        "rif": "Mydeo",
+        "t_contribuyente": "leo",
+        "dir": "7867 Dixon Terrace",
+        "autor": 37
+    },
+    {
+        "nombre": "Geo Group Inc (The)",
+        "r_social": "NYSE",
+        "rif": "Oyoyo",
+        "t_contribuyente": "dignissim",
+        "dir": "73467 Raven Terrace",
+        "autor": 62
+    },
+    {
+        "nombre": "FlexShares Credit-Scored US Long Corporate Bond Index Fund",
+        "r_social": "NASDAQ",
+        "rif": "Trunyx",
+        "t_contribuyente": "potenti",
+        "dir": "71840 Hudson Terrace",
+        "autor": 37
+    },
+    {
+        "nombre": "Legg Mason, Inc.",
+        "r_social": "NYSE",
+        "rif": "Quimm",
+        "t_contribuyente": "fusce",
+        "dir": "1 Gateway Street",
+        "autor": 53
+    },
+    {
+        "nombre": "Universal Health Services, Inc.",
+        "r_social": "NYSE",
+        "rif": "Browsezoom",
+        "t_contribuyente": "potenti",
+        "dir": "9258 Raven Point",
+        "autor": 40
+    },
+    {
+        "nombre": "Briggs & Stratton Corporation",
+        "r_social": "NYSE",
+        "rif": "Oyoba",
+        "t_contribuyente": "luctus",
+        "dir": "2 Stoughton Pass",
+        "autor": 80
+    },
+    {
+        "nombre": "Heartland Financial USA, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kaymbo",
+        "t_contribuyente": "gravida",
+        "dir": "64 Morningstar Drive",
+        "autor": 65
+    },
+    {
+        "nombre": "Engility Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Skimia",
+        "t_contribuyente": "in",
+        "dir": "332 Randy Drive",
+        "autor": 61
+    },
+    {
+        "nombre": "B&G Foods, Inc.",
+        "r_social": "NYSE",
+        "rif": "Oodoo",
+        "t_contribuyente": "quam",
+        "dir": "2 Michigan Alley",
+        "autor": 32
+    },
+    {
+        "nombre": "Oxford Lane Capital Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Oyope",
+        "t_contribuyente": "sit",
+        "dir": "867 Declaration Point",
+        "autor": 22
+    },
+    {
+        "nombre": "Franklin Universal Trust",
+        "r_social": "NYSE",
+        "rif": "Jaxworks",
+        "t_contribuyente": "libero",
+        "dir": "46 Memorial Parkway",
+        "autor": 10
+    },
+    {
+        "nombre": "Colony NorthStar, Inc.",
+        "r_social": "NYSE",
+        "rif": "Gabspot",
+        "t_contribuyente": "dictumst",
+        "dir": "6 Sunbrook Hill",
+        "autor": 72
+    },
+    {
+        "nombre": "United Community Banks, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Brightdog",
+        "t_contribuyente": "in",
+        "dir": "026 Spaight Plaza",
+        "autor": 5
+    },
+    {
+        "nombre": "Wendy&#39;s Company (The)",
+        "r_social": "NASDAQ",
+        "rif": "Demimbu",
+        "t_contribuyente": "cubilia",
+        "dir": "9 Cherokee Lane",
+        "autor": 13
+    },
+    {
+        "nombre": "PerkinElmer, Inc.",
+        "r_social": "NYSE",
+        "rif": "Tekfly",
+        "t_contribuyente": "arcu",
+        "dir": "1 Texas Terrace",
+        "autor": 85
+    },
+    {
+        "nombre": "Nexvet Biopharma plc",
+        "r_social": "NASDAQ",
+        "rif": "Skilith",
+        "t_contribuyente": "potenti",
+        "dir": "28 Hallows Point",
+        "autor": 21
+    },
+    {
+        "nombre": "Cardtronics plc",
+        "r_social": "NASDAQ",
+        "rif": "Livefish",
+        "t_contribuyente": "nunc",
+        "dir": "74758 Esker Drive",
+        "autor": 75
+    },
+    {
+        "nombre": "Delta Natural Gas Company, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Realbuzz",
+        "t_contribuyente": "consequat",
+        "dir": "1 Sundown Terrace",
+        "autor": 48
+    },
+    {
+        "nombre": "Full House Resorts, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Riffwire",
+        "t_contribuyente": "in",
+        "dir": "392 Jay Street",
+        "autor": 9
+    },
+    {
+        "nombre": "Yelp Inc.",
+        "r_social": "NYSE",
+        "rif": "Twitternation",
+        "t_contribuyente": "justo",
+        "dir": "81 Fremont Junction",
+        "autor": 45
+    },
+    {
+        "nombre": "First Trust Nasdaq Pharmaceuticals ETF",
+        "r_social": "NASDAQ",
+        "rif": "Jabberstorm",
+        "t_contribuyente": "aliquet",
+        "dir": "0 Porter Junction",
+        "autor": 94
+    },
+    {
+        "nombre": "QAD Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabcube",
+        "t_contribuyente": "nisi",
+        "dir": "1719 Summit Hill",
+        "autor": 15
+    },
+    {
+        "nombre": "American Midstream Partners, LP",
+        "r_social": "NYSE",
+        "rif": "Oyondu",
+        "t_contribuyente": "in",
+        "dir": "943 Granby Park",
+        "autor": 50
+    },
+    {
+        "nombre": "Kinross Gold Corporation",
+        "r_social": "NYSE",
+        "rif": "Linkbridge",
+        "t_contribuyente": "ultrices",
+        "dir": "3 Portage Crossing",
+        "autor": 85
+    },
+    {
+        "nombre": "Herbalife LTD.",
+        "r_social": "NYSE",
+        "rif": "Dabjam",
+        "t_contribuyente": "ut",
+        "dir": "13 Lighthouse Bay Street",
+        "autor": 60
+    },
+    {
+        "nombre": "Liberty Media Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Brainlounge",
+        "t_contribuyente": "sed",
+        "dir": "4822 Waubesa Crossing",
+        "autor": 35
+    },
+    {
+        "nombre": "Equitable Financial Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Skynoodle",
+        "t_contribuyente": "posuere",
+        "dir": "4 Bunting Road",
+        "autor": 56
+    },
+    {
+        "nombre": "Crown Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Roombo",
+        "t_contribuyente": "rhoncus",
+        "dir": "0466 Dahle Junction",
+        "autor": 87
+    },
+    {
+        "nombre": "Drive Shack Inc.",
+        "r_social": "NYSE",
+        "rif": "Topicware",
+        "t_contribuyente": "ipsum",
+        "dir": "29325 Manitowish Junction",
+        "autor": 76
+    },
+    {
+        "nombre": "Acxiom Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Photojam",
+        "t_contribuyente": "orci",
+        "dir": "6626 Bayside Place",
+        "autor": 3
+    },
+    {
+        "nombre": "Kayne Anderson Midstream Energy Fund, Inc",
+        "r_social": "NYSE",
+        "rif": "Flipopia",
+        "t_contribuyente": "luctus",
+        "dir": "657 Warrior Drive",
+        "autor": 2
+    },
+    {
+        "nombre": "Nathan&#39;s Famous, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Mynte",
+        "t_contribuyente": "nunc",
+        "dir": "83 Derek Trail",
+        "autor": 24
+    },
+    {
+        "nombre": "VanEck Vectors Generic Drugs ETF",
+        "r_social": "NASDAQ",
+        "rif": "Realcube",
+        "t_contribuyente": "libero",
+        "dir": "7 Eastlawn Pass",
+        "autor": 5
+    },
+    {
+        "nombre": "Gridsum Holding Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Photobean",
+        "t_contribuyente": "nisl",
+        "dir": "57343 Red Cloud Park",
+        "autor": 75
+    },
+    {
+        "nombre": "Ctrip.com International, Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Photospace",
+        "t_contribuyente": "etiam",
+        "dir": "941 Oriole Center",
+        "autor": 11
+    },
+    {
+        "nombre": "Vector Group Ltd.",
+        "r_social": "NYSE",
+        "rif": "Zooveo",
+        "t_contribuyente": "eget",
+        "dir": "75355 Havey Alley",
+        "autor": 81
+    },
+    {
+        "nombre": "TerraForm Power, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yodoo",
+        "t_contribuyente": "metus",
+        "dir": "41045 Becker Terrace",
+        "autor": 72
+    },
+    {
+        "nombre": "San Juan Basin Royalty Trust",
+        "r_social": "NYSE",
+        "rif": "Tanoodle",
+        "t_contribuyente": "sit",
+        "dir": "38035 Dawn Terrace",
+        "autor": 6
+    },
+    {
+        "nombre": "Guidewire Software, Inc.",
+        "r_social": "NYSE",
+        "rif": "Youspan",
+        "t_contribuyente": "id",
+        "dir": "94 Sachtjen Hill",
+        "autor": 50
+    },
+    {
+        "nombre": "Tucows Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Rhynoodle",
+        "t_contribuyente": "vel",
+        "dir": "2 Sheridan Place",
+        "autor": 87
+    },
+    {
+        "nombre": "Perma-Pipe International Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Ntags",
+        "t_contribuyente": "posuere",
+        "dir": "0 Dryden Parkway",
+        "autor": 29
+    },
+    {
+        "nombre": "Caleres, Inc.",
+        "r_social": "NYSE",
+        "rif": "Vipe",
+        "t_contribuyente": "nibh",
+        "dir": "399 Dawn Drive",
+        "autor": 6
+    },
+    {
+        "nombre": "iShares MSCI All Country Asia ex Japan Index Fund",
+        "r_social": "NASDAQ",
+        "rif": "Oba",
+        "t_contribuyente": "orci",
+        "dir": "4166 Summit Pass",
+        "autor": 12
+    },
+    {
+        "nombre": "Entergy Louisiana, Inc.",
+        "r_social": "NYSE",
+        "rif": "Brainverse",
+        "t_contribuyente": "rhoncus",
+        "dir": "5205 Pierstorff Hill",
+        "autor": 77
+    },
+    {
+        "nombre": "Nuveen Diversified Dividend and Income Fund",
+        "r_social": "NYSE",
+        "rif": "Feedmix",
+        "t_contribuyente": "turpis",
+        "dir": "5816 Golf Hill",
+        "autor": 60
+    },
+    {
+        "nombre": "CSI Compressco LP",
+        "r_social": "NASDAQ",
+        "rif": "Npath",
+        "t_contribuyente": "justo",
+        "dir": "174 Springs Place",
+        "autor": 29
+    },
+    {
+        "nombre": "Lion Biotechnologies, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Tagcat",
+        "t_contribuyente": "tortor",
+        "dir": "24 Harbort Plaza",
+        "autor": 40
+    },
+    {
+        "nombre": "Gabelli Global Small and Mid Cap Value Trust (The)",
+        "r_social": "NYSE",
+        "rif": "Oyondu",
+        "t_contribuyente": "dapibus",
+        "dir": "50 Di Loreto Terrace",
+        "autor": 63
+    },
+    {
+        "nombre": "Newtek Business Services Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Thoughtstorm",
+        "t_contribuyente": "orci",
+        "dir": "1 Messerschmidt Trail",
+        "autor": 47
+    },
+    {
+        "nombre": "Goldman Sachs Group, Inc. (The)",
+        "r_social": "NYSE",
+        "rif": "Skinte",
+        "t_contribuyente": "penatibus",
+        "dir": "16824 Prentice Alley",
+        "autor": 47
+    },
+    {
+        "nombre": "ClearBridge Large Cap Growth ESG ETF",
+        "r_social": "NASDAQ",
+        "rif": "Tagcat",
+        "t_contribuyente": "nulla",
+        "dir": "54566 Holmberg Circle",
+        "autor": 47
+    },
+    {
+        "nombre": "Simpson Manufacturing Company, Inc.",
+        "r_social": "NYSE",
+        "rif": "Divavu",
+        "t_contribuyente": "lobortis",
+        "dir": "898 Sutteridge Junction",
+        "autor": 57
+    },
+    {
+        "nombre": "Compania Cervecerias Unidas, S.A.",
+        "r_social": "NYSE",
+        "rif": "Twitterbeat",
+        "t_contribuyente": "sed",
+        "dir": "21 Pine View Point",
+        "autor": 31
+    },
+    {
+        "nombre": "The AES Corporation",
+        "r_social": "NYSE",
+        "rif": "Vipe",
+        "t_contribuyente": "ipsum",
+        "dir": "63 Harper Trail",
+        "autor": 36
+    },
+    {
+        "nombre": "Advent/Claymore Enhanced Growth & Income Fund",
+        "r_social": "NYSE",
+        "rif": "Skaboo",
+        "t_contribuyente": "posuere",
+        "dir": "3 Coolidge Street",
+        "autor": 90
+    },
+    {
+        "nombre": "Southern Company (The)",
+        "r_social": "NYSE",
+        "rif": "Skimia",
+        "t_contribuyente": "curabitur",
+        "dir": "840 Randy Pass",
+        "autor": 4
+    },
+    {
+        "nombre": "LTC Properties, Inc.",
+        "r_social": "NYSE",
+        "rif": "Linklinks",
+        "t_contribuyente": "pharetra",
+        "dir": "45 Maryland Avenue",
+        "autor": 71
+    },
+    {
+        "nombre": "RLJ Entertainment, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Blogpad",
+        "t_contribuyente": "pede",
+        "dir": "4 West Parkway",
+        "autor": 11
+    },
+    {
+        "nombre": "Tsakos Energy Navigation Ltd",
+        "r_social": "NYSE",
+        "rif": "Browsedrive",
+        "t_contribuyente": "interdum",
+        "dir": "68756 Vera Center",
+        "autor": 25
+    },
+    {
+        "nombre": "Principal Financial Group Inc",
+        "r_social": "NYSE",
+        "rif": "Photobug",
+        "t_contribuyente": "et",
+        "dir": "90 Bashford Avenue",
+        "autor": 66
+    },
+    {
+        "nombre": "Attunity Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Innojam",
+        "t_contribuyente": "ut",
+        "dir": "8272 Sunfield Trail",
+        "autor": 58
+    },
+    {
+        "nombre": "Varian Medical Systems, Inc.",
+        "r_social": "NYSE",
+        "rif": "Flashdog",
+        "t_contribuyente": "auctor",
+        "dir": "78 Caliangt Hill",
+        "autor": 91
+    },
+    {
+        "nombre": "Chuy&#39;s Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Bubblebox",
+        "t_contribuyente": "lectus",
+        "dir": "58948 Bonner Terrace",
+        "autor": 38
+    },
+    {
+        "nombre": "Microchip Technology Incorporated",
+        "r_social": "NASDAQ",
+        "rif": "Rhybox",
+        "t_contribuyente": "velit",
+        "dir": "9 Dorton Alley",
+        "autor": 90
+    },
+    {
+        "nombre": "Citrix Systems, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Realblab",
+        "t_contribuyente": "nulla",
+        "dir": "85 Bayside Plaza",
+        "autor": 5
+    },
+    {
+        "nombre": "Ball Corporation",
+        "r_social": "NYSE",
+        "rif": "Shufflester",
+        "t_contribuyente": "natoque",
+        "dir": "4059 Dixon Center",
+        "autor": 67
+    },
+    {
+        "nombre": "Aflac Incorporated",
+        "r_social": "NYSE",
+        "rif": "Devify",
+        "t_contribuyente": "sed",
+        "dir": "74133 Center Alley",
+        "autor": 93
+    },
+    {
+        "nombre": "QuickLogic Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Fatz",
+        "t_contribuyente": "lorem",
+        "dir": "6 Huxley Crossing",
+        "autor": 76
+    },
+    {
+        "nombre": "PennyMac Financial Services, Inc.",
+        "r_social": "NYSE",
+        "rif": "Izio",
+        "t_contribuyente": "vestibulum",
+        "dir": "3 Moland Center",
+        "autor": 85
+    },
+    {
+        "nombre": "Flexion Therapeutics, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Avaveo",
+        "t_contribuyente": "et",
+        "dir": "41 Sunnyside Road",
+        "autor": 97
+    },
+    {
+        "nombre": "MFA Financial, Inc.",
+        "r_social": "NYSE",
+        "rif": "Twitterbeat",
+        "t_contribuyente": "nulla",
+        "dir": "46273 Cardinal Drive",
+        "autor": 13
+    },
+    {
+        "nombre": "Blue Bird Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Babbleopia",
+        "t_contribuyente": "sapien",
+        "dir": "350 Katie Lane",
+        "autor": 13
+    },
+    {
+        "nombre": "Anworth Mortgage Asset  Corporation",
+        "r_social": "NYSE",
+        "rif": "Flashspan",
+        "t_contribuyente": "et",
+        "dir": "8867 Golf View Circle",
+        "autor": 84
+    },
+    {
+        "nombre": "WisdomTree Barclays Negative Duration U.S. Aggregate Bond Fund",
+        "r_social": "NASDAQ",
+        "rif": "Skaboo",
+        "t_contribuyente": "leo",
+        "dir": "20 Ryan Terrace",
+        "autor": 11
+    },
+    {
+        "nombre": "Viacom Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Roodel",
+        "t_contribuyente": "odio",
+        "dir": "18892 John Wall Drive",
+        "autor": 72
+    },
+    {
+        "nombre": "First Trust Eurozone AlphaDEX ETF",
+        "r_social": "NASDAQ",
+        "rif": "Browsebug",
+        "t_contribuyente": "tristique",
+        "dir": "4194 Northland Circle",
+        "autor": 74
+    },
+    {
+        "nombre": "Caesars Entertainment Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Blogtag",
+        "t_contribuyente": "tincidunt",
+        "dir": "7 Summerview Pass",
+        "autor": 29
+    },
+    {
+        "nombre": "Tallgrass Energy GP, LP",
+        "r_social": "NYSE",
+        "rif": "Oyoloo",
+        "t_contribuyente": "penatibus",
+        "dir": "4 Prairie Rose Junction",
+        "autor": 72
+    },
+    {
+        "nombre": "South Jersey Industries, Inc.",
+        "r_social": "NYSE",
+        "rif": "Skinder",
+        "t_contribuyente": "augue",
+        "dir": "662 Morning Hill",
+        "autor": 28
+    },
+    {
+        "nombre": "MER Telemanagement Solutions Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Kamba",
+        "t_contribuyente": "auctor",
+        "dir": "2495 Crescent Oaks Pass",
+        "autor": 100
+    },
+    {
+        "nombre": "Tortoise Energy Infrastructure Corporation",
+        "r_social": "NYSE",
+        "rif": "Camimbo",
+        "t_contribuyente": "posuere",
+        "dir": "8 Mandrake Pass",
+        "autor": 99
+    },
+    {
+        "nombre": "Fulton Financial Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Janyx",
+        "t_contribuyente": "eleifend",
+        "dir": "76 Butterfield Park",
+        "autor": 69
+    },
+    {
+        "nombre": "John Hancock Preferred Income Fund III",
+        "r_social": "NYSE",
+        "rif": "Meedoo",
+        "t_contribuyente": "pellentesque",
+        "dir": "70869 Beilfuss Terrace",
+        "autor": 5
+    },
+    {
+        "nombre": "BCB Bancorp, Inc. (NJ)",
+        "r_social": "NASDAQ",
+        "rif": "Wordpedia",
+        "t_contribuyente": "nunc",
+        "dir": "156 Prentice Trail",
+        "autor": 27
+    },
+    {
+        "nombre": "Cleantech Solutions International, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabtype",
+        "t_contribuyente": "tempor",
+        "dir": "24 Reindahl Junction",
+        "autor": 36
+    },
+    {
+        "nombre": "UGI Corporation",
+        "r_social": "NYSE",
+        "rif": "Skinder",
+        "t_contribuyente": "purus",
+        "dir": "02183 Fremont Center",
+        "autor": 2
+    },
+    {
+        "nombre": "Novelion Therapeutics Inc. ",
+        "r_social": "NASDAQ",
+        "rif": "Voomm",
+        "t_contribuyente": "odio",
+        "dir": "5758 Charing Cross Street",
+        "autor": 19
+    },
+    {
+        "nombre": "EastGroup Properties, Inc.",
+        "r_social": "NYSE",
+        "rif": "Podcat",
+        "t_contribuyente": "magna",
+        "dir": "25 Dahle Alley",
+        "autor": 47
+    },
+    {
+        "nombre": "Blackrock New York Municipal 2018 Term Trust",
+        "r_social": "NYSE",
+        "rif": "Tagpad",
+        "t_contribuyente": "ullamcorper",
+        "dir": "03 Granby Pass",
+        "autor": 80
+    },
+    {
+        "nombre": "NetEase, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dynazzy",
+        "t_contribuyente": "sollicitudin",
+        "dir": "75 Claremont Point",
+        "autor": 18
+    },
+    {
+        "nombre": "Euronet Worldwide, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Trunyx",
+        "t_contribuyente": "curae",
+        "dir": "91 Elka Street",
+        "autor": 5
+    },
+    {
+        "nombre": "Yext, Inc.",
+        "r_social": "NYSE",
+        "rif": "Mydeo",
+        "t_contribuyente": "dui",
+        "dir": "8 Esch Junction",
+        "autor": 13
+    },
+    {
+        "nombre": "Bank of South Carolina Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Quatz",
+        "t_contribuyente": "ullamcorper",
+        "dir": "411 Old Gate Drive",
+        "autor": 37
+    },
+    {
+        "nombre": "Uranium Resources, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yozio",
+        "t_contribuyente": "cursus",
+        "dir": "119 Loeprich Street",
+        "autor": 76
+    },
+    {
+        "nombre": "Infinity Property and Casualty Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Yadel",
+        "t_contribuyente": "aliquam",
+        "dir": "339 Pennsylvania Terrace",
+        "autor": 62
+    },
+    {
+        "nombre": "Mercantile Bank Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Roomm",
+        "t_contribuyente": "morbi",
+        "dir": "8 Lillian Lane",
+        "autor": 36
+    },
+    {
+        "nombre": "Kroger Company (The)",
+        "r_social": "NYSE",
+        "rif": "Zava",
+        "t_contribuyente": "mauris",
+        "dir": "7580 Gerald Crossing",
+        "autor": 9
+    },
+    {
+        "nombre": "CBS Corporation",
+        "r_social": "NYSE",
+        "rif": "Ozu",
+        "t_contribuyente": "duis",
+        "dir": "42 Sachtjen Street",
+        "autor": 16
+    },
+    {
+        "nombre": "M&T Bank Corporation",
+        "r_social": "NYSE",
+        "rif": "Devify",
+        "t_contribuyente": "at",
+        "dir": "062 Eliot Way",
+        "autor": 7
+    },
+    {
+        "nombre": "German American Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Avaveo",
+        "t_contribuyente": "metus",
+        "dir": "066 Granby Terrace",
+        "autor": 10
+    },
+    {
+        "nombre": "Watsco, Inc.",
+        "r_social": "NYSE",
+        "rif": "Oyoyo",
+        "t_contribuyente": "posuere",
+        "dir": "7450 Talmadge Place",
+        "autor": 65
+    },
+    {
+        "nombre": "Seaspan Corporation",
+        "r_social": "NYSE",
+        "rif": "Jetwire",
+        "t_contribuyente": "ultrices",
+        "dir": "41 Judy Street",
+        "autor": 52
+    },
+    {
+        "nombre": "Speedway Motorsports, Inc.",
+        "r_social": "NYSE",
+        "rif": "Twiyo",
+        "t_contribuyente": "dictumst",
+        "dir": "68 Melody Alley",
+        "autor": 7
+    },
+    {
+        "nombre": "Mechel PAO",
+        "r_social": "NYSE",
+        "rif": "Dynava",
+        "t_contribuyente": "velit",
+        "dir": "28541 Buell Road",
+        "autor": 78
+    },
+    {
+        "nombre": "Belden Inc",
+        "r_social": "NYSE",
+        "rif": "Riffpedia",
+        "t_contribuyente": "orci",
+        "dir": "3 Killdeer Crossing",
+        "autor": 77
+    },
+    {
+        "nombre": "Goldman Sachs Group, Inc. (The)",
+        "r_social": "NYSE",
+        "rif": "Roombo",
+        "t_contribuyente": "at",
+        "dir": "30147 Riverside Hill",
+        "autor": 85
+    },
+    {
+        "nombre": "EnLink Midstream Partners, LP",
+        "r_social": "NYSE",
+        "rif": "Fanoodle",
+        "t_contribuyente": "donec",
+        "dir": "515 Ruskin Center",
+        "autor": 65
+    },
+    {
+        "nombre": "Stein Mart, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Divavu",
+        "t_contribuyente": "sapien",
+        "dir": "5 Aberg Alley",
+        "autor": 62
+    },
+    {
+        "nombre": "Tortoise MLP Fund, Inc.",
+        "r_social": "NYSE",
+        "rif": "Eidel",
+        "t_contribuyente": "malesuada",
+        "dir": "34 Toban Lane",
+        "autor": 93
+    },
+    {
+        "nombre": "Minerals Technologies Inc.",
+        "r_social": "NYSE",
+        "rif": "Quaxo",
+        "t_contribuyente": "turpis",
+        "dir": "43 Huxley Drive",
+        "autor": 72
+    },
+    {
+        "nombre": "Alphabet Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yoveo",
+        "t_contribuyente": "metus",
+        "dir": "44060 Sheridan Point",
+        "autor": 70
+    },
+    {
+        "nombre": "J P Morgan Chase & Co",
+        "r_social": "NYSE",
+        "rif": "Ntag",
+        "t_contribuyente": "elementum",
+        "dir": "3851 Sage Pass",
+        "autor": 5
+    },
+    {
+        "nombre": "American Railcar Industries, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Einti",
+        "t_contribuyente": "accumsan",
+        "dir": "0048 Corben Center",
+        "autor": 97
+    },
+    {
+        "nombre": "CUI Global, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Tazz",
+        "t_contribuyente": "blandit",
+        "dir": "9948 Pawling Crossing",
+        "autor": 63
+    },
+    {
+        "nombre": "Ventas Realty, Limited Partnership // Ventas Capital Corporati",
+        "r_social": "NYSE",
+        "rif": "Gigaclub",
+        "t_contribuyente": "morbi",
+        "dir": "9 Buhler Crossing",
+        "autor": 76
+    },
+    {
+        "nombre": "UNIVERSAL INSURANCE HOLDINGS INC",
+        "r_social": "NYSE",
+        "rif": "Topicshots",
+        "t_contribuyente": "lorem",
+        "dir": "349 South Terrace",
+        "autor": 27
+    },
+    {
+        "nombre": "Community Bank System, Inc.",
+        "r_social": "NYSE",
+        "rif": "Edgeblab",
+        "t_contribuyente": "mauris",
+        "dir": "86913 Brentwood Hill",
+        "autor": 24
+    },
+    {
+        "nombre": "Avinger, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gevee",
+        "t_contribuyente": "nisl",
+        "dir": "99948 Schlimgen Hill",
+        "autor": 49
+    },
+    {
+        "nombre": "One Liberty Properties, Inc.",
+        "r_social": "NYSE",
+        "rif": "Latz",
+        "t_contribuyente": "volutpat",
+        "dir": "084 Bellgrove Avenue",
+        "autor": 80
+    },
+    {
+        "nombre": "Celgene Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Dabvine",
+        "t_contribuyente": "nunc",
+        "dir": "9 Armistice Drive",
+        "autor": 47
+    },
+    {
+        "nombre": "TripAdvisor, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Browseblab",
+        "t_contribuyente": "nullam",
+        "dir": "1497 Lakeland Plaza",
+        "autor": 56
+    },
+    {
+        "nombre": "Madison Covered Call & Equity Strategy Fund",
+        "r_social": "NYSE",
+        "rif": "Roombo",
+        "t_contribuyente": "amet",
+        "dir": "89851 Columbus Park",
+        "autor": 83
+    },
+    {
+        "nombre": "Arotech Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Photospace",
+        "t_contribuyente": "vehicula",
+        "dir": "48 Little Fleur Way",
+        "autor": 73
+    },
+    {
+        "nombre": "Eiger BioPharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Meevee",
+        "t_contribuyente": "hac",
+        "dir": "01 Melvin Drive",
+        "autor": 13
+    },
+    {
+        "nombre": "Horizons DAX Germany ETF",
+        "r_social": "NASDAQ",
+        "rif": "Gabcube",
+        "t_contribuyente": "fermentum",
+        "dir": "31 Monica Pass",
+        "autor": 20
+    },
+    {
+        "nombre": "icad inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skinte",
+        "t_contribuyente": "nulla",
+        "dir": "0 Sheridan Way",
+        "autor": 57
+    },
+    {
+        "nombre": "Double Eagle Acquisition Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Kazio",
+        "t_contribuyente": "elementum",
+        "dir": "6410 Gina Circle",
+        "autor": 24
+    },
+    {
+        "nombre": "Marathon Petroleum Corporation",
+        "r_social": "NYSE",
+        "rif": "Trilith",
+        "t_contribuyente": "at",
+        "dir": "52 Gerald Pass",
+        "autor": 98
+    },
+    {
+        "nombre": "Adient plc",
+        "r_social": "NYSE",
+        "rif": "Twitterbeat",
+        "t_contribuyente": "dolor",
+        "dir": "665 Rieder Crossing",
+        "autor": 3
+    },
+    {
+        "nombre": "Baytex Energy Corp",
+        "r_social": "NYSE",
+        "rif": "Voonyx",
+        "t_contribuyente": "cum",
+        "dir": "2259 Jay Terrace",
+        "autor": 98
+    },
+    {
+        "nombre": "Delaware Investments Dividend & Income Fund, Inc.",
+        "r_social": "NYSE",
+        "rif": "Meezzy",
+        "t_contribuyente": "quis",
+        "dir": "92867 Nova Park",
+        "autor": 81
+    },
+    {
+        "nombre": "Apollo Investment Corporation",
+        "r_social": "NYSE",
+        "rif": "Brainlounge",
+        "t_contribuyente": "duis",
+        "dir": "32602 Sachs Trail",
+        "autor": 17
+    },
+    {
+        "nombre": "Parke Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Voomm",
+        "t_contribuyente": "volutpat",
+        "dir": "8260 Village Green Lane",
+        "autor": 100
+    },
+    {
+        "nombre": "BGC Partners, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Ooba",
+        "t_contribuyente": "orci",
+        "dir": "4 Graedel Junction",
+        "autor": 40
+    },
+    {
+        "nombre": "iShares 20+ Year Treasury Bond ETF",
+        "r_social": "NASDAQ",
+        "rif": "Yambee",
+        "t_contribuyente": "amet",
+        "dir": "0614 Bluestem Drive",
+        "autor": 36
+    },
+    {
+        "nombre": "Liberty Media Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Katz",
+        "t_contribuyente": "aliquam",
+        "dir": "880 Sycamore Alley",
+        "autor": 30
+    },
+    {
+        "nombre": "Euroseas Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Kimia",
+        "t_contribuyente": "pretium",
+        "dir": "3621 Fair Oaks Junction",
+        "autor": 58
+    },
+    {
+        "nombre": "Immunomedics, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Realcube",
+        "t_contribuyente": "odio",
+        "dir": "623 Eagle Crest Street",
+        "autor": 30
+    },
+    {
+        "nombre": "Ameren Corporation",
+        "r_social": "NYSE",
+        "rif": "Flipbug",
+        "t_contribuyente": "suspendisse",
+        "dir": "4 Acker Center",
+        "autor": 68
+    },
+    {
+        "nombre": "Liberty Global plc",
+        "r_social": "NASDAQ",
+        "rif": "BlogXS",
+        "t_contribuyente": "duis",
+        "dir": "84 Springview Park",
+        "autor": 99
+    },
+    {
+        "nombre": "Chuy&#39;s Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Wordify",
+        "t_contribuyente": "odio",
+        "dir": "66005 Heath Road",
+        "autor": 84
+    },
+    {
+        "nombre": "Diversicare Healthcare Services Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Twitternation",
+        "t_contribuyente": "in",
+        "dir": "87609 Chive Terrace",
+        "autor": 95
+    },
+    {
+        "nombre": "Sigma Labs, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Jetwire",
+        "t_contribuyente": "sem",
+        "dir": "16297 Kipling Road",
+        "autor": 84
+    },
+    {
+        "nombre": "HollyFrontier Corporation",
+        "r_social": "NYSE",
+        "rif": "Skinder",
+        "t_contribuyente": "ac",
+        "dir": "35 West Place",
+        "autor": 35
+    },
+    {
+        "nombre": "Barclays Inverse US Treasury Composite ETN",
+        "r_social": "NASDAQ",
+        "rif": "Fatz",
+        "t_contribuyente": "posuere",
+        "dir": "26 Packers Court",
+        "autor": 10
+    },
+    {
+        "nombre": "CommerceHub, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Muxo",
+        "t_contribuyente": "et",
+        "dir": "8 David Center",
+        "autor": 26
+    },
+    {
+        "nombre": "Kelly Services, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Quinu",
+        "t_contribuyente": "aliquet",
+        "dir": "6 Clove Way",
+        "autor": 87
+    },
+    {
+        "nombre": "NeuroMetrix, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Zoovu",
+        "t_contribuyente": "id",
+        "dir": "3 West Alley",
+        "autor": 25
+    },
+    {
+        "nombre": "Coca Cola Femsa S.A.B. de C.V.",
+        "r_social": "NYSE",
+        "rif": "Voolith",
+        "t_contribuyente": "erat",
+        "dir": "9 Meadow Vale Crossing",
+        "autor": 9
+    },
+    {
+        "nombre": "Hortonworks, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Vimbo",
+        "t_contribuyente": "augue",
+        "dir": "86 Loftsgordon Place",
+        "autor": 41
+    },
+    {
+        "nombre": "Quanex Building Products Corporation",
+        "r_social": "NYSE",
+        "rif": "Voolith",
+        "t_contribuyente": "pellentesque",
+        "dir": "1528 Elgar Hill",
+        "autor": 29
+    },
+    {
+        "nombre": "PayPal Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yakijo",
+        "t_contribuyente": "vulputate",
+        "dir": "8 Doe Crossing Way",
+        "autor": 98
+    },
+    {
+        "nombre": "Goldman Sachs BDC, Inc.",
+        "r_social": "NYSE",
+        "rif": "Oloo",
+        "t_contribuyente": "curae",
+        "dir": "9 Merrick Pass",
+        "autor": 19
+    },
+    {
+        "nombre": "GCP Applied Technologies Inc.",
+        "r_social": "NYSE",
+        "rif": "Meezzy",
+        "t_contribuyente": "consequat",
+        "dir": "2581 Magdeline Junction",
+        "autor": 87
+    },
+    {
+        "nombre": "U.S. Global Investors, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skalith",
+        "t_contribuyente": "sem",
+        "dir": "743 Manufacturers Pass",
+        "autor": 7
+    },
+    {
+        "nombre": "Conyers Park Acquisition Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Wikizz",
+        "t_contribuyente": "purus",
+        "dir": "0025 Brown Junction",
+        "autor": 25
+    },
+    {
+        "nombre": "Pointer Telocation Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Feedspan",
+        "t_contribuyente": "eros",
+        "dir": "58778 Hoffman Alley",
+        "autor": 63
+    },
+    {
+        "nombre": "Cotiviti Holdings, Inc.",
+        "r_social": "NYSE",
+        "rif": "Thoughtsphere",
+        "t_contribuyente": "varius",
+        "dir": "58 Sycamore Crossing",
+        "autor": 63
+    },
+    {
+        "nombre": "CTI BioPharma Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Zoomzone",
+        "t_contribuyente": "tristique",
+        "dir": "34 Crescent Oaks Point",
+        "autor": 14
+    },
+    {
+        "nombre": "Bank of America Corporation",
+        "r_social": "NYSE",
+        "rif": "DabZ",
+        "t_contribuyente": "ac",
+        "dir": "9 Cottonwood Park",
+        "autor": 20
+    },
+    {
+        "nombre": "Real Goods Solar, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Quinu",
+        "t_contribuyente": "at",
+        "dir": "65 Nova Drive",
+        "autor": 68
+    },
+    {
+        "nombre": "Champions Oncology, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Wikizz",
+        "t_contribuyente": "sapien",
+        "dir": "720 Fordem Pass",
+        "autor": 47
+    },
+    {
+        "nombre": "Legg Mason, Inc.",
+        "r_social": "NYSE",
+        "rif": "Youspan",
+        "t_contribuyente": "interdum",
+        "dir": "02712 Troy Circle",
+        "autor": 26
+    },
+    {
+        "nombre": "First Trust Strategic High Income Fund II",
+        "r_social": "NYSE",
+        "rif": "Blogpad",
+        "t_contribuyente": "elementum",
+        "dir": "111 Fordem Lane",
+        "autor": 74
+    },
+    {
+        "nombre": "Allied Motion Technologies, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Eamia",
+        "t_contribuyente": "nunc",
+        "dir": "85428 Clarendon Alley",
+        "autor": 30
+    },
+    {
+        "nombre": "PPG Industries, Inc.",
+        "r_social": "NYSE",
+        "rif": "Midel",
+        "t_contribuyente": "vivamus",
+        "dir": "00988 Sutteridge Way",
+        "autor": 75
+    },
+    {
+        "nombre": "U.S. Bancorp",
+        "r_social": "NYSE",
+        "rif": "Eamia",
+        "t_contribuyente": "vivamus",
+        "dir": "30316 Northwestern Junction",
+        "autor": 36
+    },
+    {
+        "nombre": "Idera Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kwimbee",
+        "t_contribuyente": "tincidunt",
+        "dir": "456 Graceland Circle",
+        "autor": 42
+    },
+    {
+        "nombre": "Perceptron, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Eire",
+        "t_contribuyente": "vel",
+        "dir": "977 Browning Lane",
+        "autor": 48
+    },
+    {
+        "nombre": "EnLink Midstream, LLC",
+        "r_social": "NYSE",
+        "rif": "Podcat",
+        "t_contribuyente": "nisl",
+        "dir": "01 David Road",
+        "autor": 87
+    },
+    {
+        "nombre": "Danaos Corporation",
+        "r_social": "NYSE",
+        "rif": "Kaymbo",
+        "t_contribuyente": "pede",
+        "dir": "445 Utah Hill",
+        "autor": 12
+    },
+    {
+        "nombre": "Zynerba Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Quamba",
+        "t_contribuyente": "ac",
+        "dir": "6 Westridge Road",
+        "autor": 59
+    },
+    {
+        "nombre": "VictoryShares US 500 Enhanced Volatility Wtd ETF",
+        "r_social": "NASDAQ",
+        "rif": "Twitternation",
+        "t_contribuyente": "morbi",
+        "dir": "0473 Buell Hill",
+        "autor": 74
+    },
+    {
+        "nombre": "Neustar, Inc.",
+        "r_social": "NYSE",
+        "rif": "Feedspan",
+        "t_contribuyente": "aenean",
+        "dir": "99769 Elka Parkway",
+        "autor": 5
+    },
+    {
+        "nombre": "Vonage Holdings Corp.",
+        "r_social": "NYSE",
+        "rif": "Shufflebeat",
+        "t_contribuyente": "tempor",
+        "dir": "08 Prairie Rose Park",
+        "autor": 17
+    },
+    {
+        "nombre": "Tenet Healthcare Corporation",
+        "r_social": "NYSE",
+        "rif": "Fivebridge",
+        "t_contribuyente": "justo",
+        "dir": "6164 Meadow Valley Pass",
+        "autor": 1
+    },
+    {
+        "nombre": "StoneMor Partners L.P.",
+        "r_social": "NYSE",
+        "rif": "Quire",
+        "t_contribuyente": "aliquet",
+        "dir": "5512 Warbler Trail",
+        "autor": 14
+    },
+    {
+        "nombre": "Invesco Quality Municipal Income Trust",
+        "r_social": "NYSE",
+        "rif": "Voolia",
+        "t_contribuyente": "ligula",
+        "dir": "4 Basil Avenue",
+        "autor": 20
+    },
+    {
+        "nombre": "XG Technology, Inc",
+        "r_social": "NASDAQ",
+        "rif": "Kamba",
+        "t_contribuyente": "a",
+        "dir": "51730 Dixon Hill",
+        "autor": 14
+    },
+    {
+        "nombre": "Kansas City Southern",
+        "r_social": "NYSE",
+        "rif": "Edgeblab",
+        "t_contribuyente": "aenean",
+        "dir": "5 Harbort Circle",
+        "autor": 96
+    },
+    {
+        "nombre": "MiX Telematics Limited",
+        "r_social": "NYSE",
+        "rif": "Wordware",
+        "t_contribuyente": "velit",
+        "dir": "5 Shasta Crossing",
+        "autor": 21
+    },
+    {
+        "nombre": "Edge Therapeutics, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skimia",
+        "t_contribuyente": "vestibulum",
+        "dir": "200 Westport Hill",
+        "autor": 35
+    },
+    {
+        "nombre": "Pulse Biosciences, Inc",
+        "r_social": "NASDAQ",
+        "rif": "Wordware",
+        "t_contribuyente": "erat",
+        "dir": "50596 Waubesa Circle",
+        "autor": 61
+    },
+    {
+        "nombre": "Soligenix, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Kwideo",
+        "t_contribuyente": "felis",
+        "dir": "093 Heath Junction",
+        "autor": 10
+    },
+    {
+        "nombre": "Differential Brands Group Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yacero",
+        "t_contribuyente": "pede",
+        "dir": "23 Forest Crossing",
+        "autor": 97
+    },
+    {
+        "nombre": "White Mountains Insurance Group, Ltd.",
+        "r_social": "NYSE",
+        "rif": "Yamia",
+        "t_contribuyente": "sit",
+        "dir": "2497 Kensington Lane",
+        "autor": 40
+    },
+    {
+        "nombre": "Pzena Investment Management Inc",
+        "r_social": "NYSE",
+        "rif": "Brainsphere",
+        "t_contribuyente": "mauris",
+        "dir": "78339 Drewry Plaza",
+        "autor": 27
+    },
+    {
+        "nombre": "The First Bancshares, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Leexo",
+        "t_contribuyente": "eros",
+        "dir": "50 Garrison Hill",
+        "autor": 74
+    },
+    {
+        "nombre": "Home Depot, Inc. (The)",
+        "r_social": "NYSE",
+        "rif": "Centizu",
+        "t_contribuyente": "pretium",
+        "dir": "749 Tennessee Plaza",
+        "autor": 57
+    },
+    {
+        "nombre": "Cempra, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Fivespan",
+        "t_contribuyente": "vitae",
+        "dir": "09375 South Hill",
+        "autor": 17
+    },
+    {
+        "nombre": "Copart, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Devshare",
+        "t_contribuyente": "fusce",
+        "dir": "2923 Grayhawk Circle",
+        "autor": 82
+    },
+    {
+        "nombre": "Nutraceutical International Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Browsecat",
+        "t_contribuyente": "curabitur",
+        "dir": "84862 Norway Maple Parkway",
+        "autor": 45
+    },
+    {
+        "nombre": "Eaton Vance Tax-Advantaged Bond",
+        "r_social": "NYSE",
+        "rif": "Chatterbridge",
+        "t_contribuyente": "at",
+        "dir": "9328 Almo Place",
+        "autor": 32
+    },
+    {
+        "nombre": "K2M Group Holdings, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yakitri",
+        "t_contribuyente": "odio",
+        "dir": "81 Tennessee Street",
+        "autor": 51
+    },
+    {
+        "nombre": "Arconic Inc.",
+        "r_social": "NYSE",
+        "rif": "Realpoint",
+        "t_contribuyente": "nisi",
+        "dir": "2 Mallory Lane",
+        "autor": 9
+    },
+    {
+        "nombre": "First Community Bancshares, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Browsebug",
+        "t_contribuyente": "non",
+        "dir": "2 Melvin Crossing",
+        "autor": 87
+    },
+    {
+        "nombre": "Archrock, Inc.",
+        "r_social": "NYSE",
+        "rif": "Jazzy",
+        "t_contribuyente": "volutpat",
+        "dir": "12 Rigney Point",
+        "autor": 61
+    },
+    {
+        "nombre": "Leju Holdings Limited",
+        "r_social": "NYSE",
+        "rif": "Lazzy",
+        "t_contribuyente": "vitae",
+        "dir": "1 Stang Alley",
+        "autor": 99
+    },
+    {
+        "nombre": "AAR Corp.",
+        "r_social": "NYSE",
+        "rif": "Izio",
+        "t_contribuyente": "quisque",
+        "dir": "620 North Plaza",
+        "autor": 14
+    },
+    {
+        "nombre": "Sundance Energy Australia Limited",
+        "r_social": "NASDAQ",
+        "rif": "Omba",
+        "t_contribuyente": "faucibus",
+        "dir": "0346 Corry Hill",
+        "autor": 30
+    },
+    {
+        "nombre": "Ellie Mae, Inc.",
+        "r_social": "NYSE",
+        "rif": "Zoomzone",
+        "t_contribuyente": "nulla",
+        "dir": "877 Thierer Road",
+        "autor": 18
+    },
+    {
+        "nombre": "Southwestern Energy Company",
+        "r_social": "NYSE",
+        "rif": "Aimbu",
+        "t_contribuyente": "non",
+        "dir": "5 Pearson Road",
+        "autor": 36
+    },
+    {
+        "nombre": "Conyers Park Acquisition Corp.",
+        "r_social": "NASDAQ",
+        "rif": "Photobug",
+        "t_contribuyente": "vitae",
+        "dir": "3 Forest Dale Court",
+        "autor": 30
+    },
+    {
+        "nombre": "Senior Housing Properties Trust",
+        "r_social": "NASDAQ",
+        "rif": "Quaxo",
+        "t_contribuyente": "consectetuer",
+        "dir": "83673 Eagle Crest Circle",
+        "autor": 51
+    },
+    {
+        "nombre": "Jones Lang LaSalle Incorporated",
+        "r_social": "NYSE",
+        "rif": "Layo",
+        "t_contribuyente": "justo",
+        "dir": "94 Menomonie Way",
+        "autor": 84
+    },
+    {
+        "nombre": "ShoreTel, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Buzzbean",
+        "t_contribuyente": "amet",
+        "dir": "663 Comanche Center",
+        "autor": 69
+    },
+    {
+        "nombre": "California First National Bancorp",
+        "r_social": "NASDAQ",
+        "rif": "Zoombeat",
+        "t_contribuyente": "blandit",
+        "dir": "62 Susan Court",
+        "autor": 31
+    },
+    {
+        "nombre": "AzurRx BioPharma, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Youtags",
+        "t_contribuyente": "auctor",
+        "dir": "59036 Main Avenue",
+        "autor": 78
+    },
+    {
+        "nombre": "Hecla Mining Company",
+        "r_social": "NYSE",
+        "rif": "Shuffledrive",
+        "t_contribuyente": "in",
+        "dir": "738 Prairie Rose Parkway",
+        "autor": 31
+    },
+    {
+        "nombre": "WisdomTree Emerging Markets Consumer Growth Fund",
+        "r_social": "NASDAQ",
+        "rif": "Tagfeed",
+        "t_contribuyente": "laoreet",
+        "dir": "03 Barnett Way",
+        "autor": 23
+    },
+    {
+        "nombre": "First Trust Developed Markets ex-US Small Cap AlphaDEX Fund",
+        "r_social": "NASDAQ",
+        "rif": "Edgeclub",
+        "t_contribuyente": "pellentesque",
+        "dir": "230 Hoepker Junction",
+        "autor": 95
+    },
+    {
+        "nombre": "Zions Bancorporation",
+        "r_social": "NYSE",
+        "rif": "Edgewire",
+        "t_contribuyente": "dui",
+        "dir": "7 Sunbrook Crossing",
+        "autor": 31
+    },
+    {
+        "nombre": "Peoples Financial Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Vitz",
+        "t_contribuyente": "in",
+        "dir": "54 Evergreen Trail",
+        "autor": 68
+    },
+    {
+        "nombre": "AMERISAFE, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Zoozzy",
+        "t_contribuyente": "eleifend",
+        "dir": "254 Crowley Point",
+        "autor": 9
+    },
+    {
+        "nombre": "Republic Services, Inc.",
+        "r_social": "NYSE",
+        "rif": "Yakijo",
+        "t_contribuyente": "nunc",
+        "dir": "3417 Upham Court",
+        "autor": 17
+    },
+    {
+        "nombre": "CASI Pharmaceuticals, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Fadeo",
+        "t_contribuyente": "tempus",
+        "dir": "75 Brown Way",
+        "autor": 85
+    },
+    {
+        "nombre": "Daily Journal Corp. (S.C.)",
+        "r_social": "NASDAQ",
+        "rif": "Omba",
+        "t_contribuyente": "eget",
+        "dir": "66 Mccormick Center",
+        "autor": 91
+    },
+    {
+        "nombre": "First Trust Cloud Computing ETF",
+        "r_social": "NASDAQ",
+        "rif": "Fliptune",
+        "t_contribuyente": "erat",
+        "dir": "7082 Northview Plaza",
+        "autor": 96
+    },
+    {
+        "nombre": "Blackrock MuniEnhanced Fund, Inc.",
+        "r_social": "NYSE",
+        "rif": "Twitterworks",
+        "t_contribuyente": "tortor",
+        "dir": "631 Jenna Avenue",
+        "autor": 71
+    },
+    {
+        "nombre": "First Potomac Realty Trust",
+        "r_social": "NYSE",
+        "rif": "Yakitri",
+        "t_contribuyente": "augue",
+        "dir": "1 Arizona Center",
+        "autor": 6
+    },
+    {
+        "nombre": "Alexander&#39;s, Inc.",
+        "r_social": "NYSE",
+        "rif": "Skiptube",
+        "t_contribuyente": "a",
+        "dir": "612 Sheridan Court",
+        "autor": 42
+    },
+    {
+        "nombre": "Armstrong Flooring, Inc.",
+        "r_social": "NYSE",
+        "rif": "Digitube",
+        "t_contribuyente": "nibh",
+        "dir": "1797 Goodland Point",
+        "autor": 19
+    },
+    {
+        "nombre": "Summit Midstream Partners, LP",
+        "r_social": "NYSE",
+        "rif": "Zoombeat",
+        "t_contribuyente": "duis",
+        "dir": "8 Morning Road",
+        "autor": 52
+    },
+    {
+        "nombre": "Cadiz, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Shufflester",
+        "t_contribuyente": "id",
+        "dir": "0462 Lighthouse Bay Circle",
+        "autor": 90
+    },
+    {
+        "nombre": "American Express Company",
+        "r_social": "NYSE",
+        "rif": "Gabvine",
+        "t_contribuyente": "vestibulum",
+        "dir": "6 Bonner Street",
+        "autor": 43
+    },
+    {
+        "nombre": "Nuveen Tax-Advantaged Dividend Growth Fund",
+        "r_social": "NYSE",
+        "rif": "Dabtype",
+        "t_contribuyente": "vitae",
+        "dir": "02791 Red Cloud Park",
+        "autor": 3
+    },
+    {
+        "nombre": "International Business Machines Corporation",
+        "r_social": "NYSE",
+        "rif": "Quaxo",
+        "t_contribuyente": "consequat",
+        "dir": "1316 Loftsgordon Circle",
+        "autor": 31
+    },
+    {
+        "nombre": "Investors Real Estate Trust",
+        "r_social": "NYSE",
+        "rif": "Yakijo",
+        "t_contribuyente": "augue",
+        "dir": "7328 Sutteridge Way",
+        "autor": 5
+    },
+    {
+        "nombre": "Hess Corporation",
+        "r_social": "NYSE",
+        "rif": "Trilith",
+        "t_contribuyente": "consequat",
+        "dir": "74 Lake View Hill",
+        "autor": 76
+    },
+    {
+        "nombre": "RLJ Entertainment, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Geba",
+        "t_contribuyente": "posuere",
+        "dir": "05 Fulton Alley",
+        "autor": 34
+    },
+    {
+        "nombre": "MSA Safety Incorporporated",
+        "r_social": "NYSE",
+        "rif": "Photojam",
+        "t_contribuyente": "eu",
+        "dir": "91773 Ilene Street",
+        "autor": 99
+    },
+    {
+        "nombre": "Citigroup Inc.",
+        "r_social": "NYSE",
+        "rif": "Eabox",
+        "t_contribuyente": "mauris",
+        "dir": "7928 Carpenter Parkway",
+        "autor": 95
+    },
+    {
+        "nombre": "CGG",
+        "r_social": "NYSE",
+        "rif": "Twitterworks",
+        "t_contribuyente": "nunc",
+        "dir": "9281 Grayhawk Hill",
+        "autor": 80
+    },
+    {
+        "nombre": "IDT Corporation",
+        "r_social": "NYSE",
+        "rif": "Edgewire",
+        "t_contribuyente": "vehicula",
+        "dir": "04241 Mosinee Park",
+        "autor": 14
+    },
+    {
+        "nombre": "A.H. Belo Corporation",
+        "r_social": "NYSE",
+        "rif": "Thoughtsphere",
+        "t_contribuyente": "integer",
+        "dir": "18 Magdeline Park",
+        "autor": 26
+    },
+    {
+        "nombre": "GATX Corporation",
+        "r_social": "NYSE",
+        "rif": "Gigashots",
+        "t_contribuyente": "odio",
+        "dir": "492 Corben Pass",
+        "autor": 61
+    },
+    {
+        "nombre": "Voya Financial, Inc.",
+        "r_social": "NYSE",
+        "rif": "Riffwire",
+        "t_contribuyente": "euismod",
+        "dir": "15609 Homewood Point",
+        "autor": 78
+    },
+    {
+        "nombre": "ONEOK, Inc.",
+        "r_social": "NYSE",
+        "rif": "Skyvu",
+        "t_contribuyente": "odio",
+        "dir": "1445 Del Mar Pass",
+        "autor": 13
+    },
+    {
+        "nombre": "Legg Mason, Inc.",
+        "r_social": "NYSE",
+        "rif": "Feedbug",
+        "t_contribuyente": "amet",
+        "dir": "56 Claremont Alley",
+        "autor": 80
+    },
+    {
+        "nombre": "Pioneer Natural Resources Company",
+        "r_social": "NYSE",
+        "rif": "Eazzy",
+        "t_contribuyente": "magna",
+        "dir": "69 Buell Center",
+        "autor": 18
+    },
+    {
+        "nombre": "Cedar Fair, L.P.",
+        "r_social": "NYSE",
+        "rif": "Thoughtbridge",
+        "t_contribuyente": "diam",
+        "dir": "72472 Bashford Circle",
+        "autor": 73
+    },
+    {
+        "nombre": "CBS Corporation",
+        "r_social": "NYSE",
+        "rif": "Jaxnation",
+        "t_contribuyente": "cubilia",
+        "dir": "47 Russell Terrace",
+        "autor": 66
+    },
+    {
+        "nombre": "Kellogg Company",
+        "r_social": "NYSE",
+        "rif": "Eare",
+        "t_contribuyente": "nisl",
+        "dir": "6270 Hallows Pass",
+        "autor": 3
+    },
+    {
+        "nombre": "Blackstone GSO Long Short Credit Income Fund",
+        "r_social": "NYSE",
+        "rif": "Tagcat",
+        "t_contribuyente": "quis",
+        "dir": "80917 Sommers Lane",
+        "autor": 89
+    },
+    {
+        "nombre": "Industrias Bachoco, S.A. de C.V.",
+        "r_social": "NYSE",
+        "rif": "Feednation",
+        "t_contribuyente": "platea",
+        "dir": "7179 Carey Circle",
+        "autor": 57
+    },
+    {
+        "nombre": "Public Service Enterprise Group Incorporated",
+        "r_social": "NYSE",
+        "rif": "Aimbo",
+        "t_contribuyente": "suspendisse",
+        "dir": "98 Pepper Wood Junction",
+        "autor": 4
+    },
+    {
+        "nombre": "Ophthotech Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Voomm",
+        "t_contribuyente": "enim",
+        "dir": "3 Charing Cross Place",
+        "autor": 77
+    },
+    {
+        "nombre": "Townsquare Media, Inc.",
+        "r_social": "NYSE",
+        "rif": "Ozu",
+        "t_contribuyente": "vulputate",
+        "dir": "396 Hoepker Hill",
+        "autor": 32
+    },
+    {
+        "nombre": "CYREN Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Rhynyx",
+        "t_contribuyente": "ut",
+        "dir": "54053 Grover Trail",
+        "autor": 81
+    },
+    {
+        "nombre": "Bank of N.T. Butterfield & Son Limited (The)",
+        "r_social": "NYSE",
+        "rif": "Kwideo",
+        "t_contribuyente": "nulla",
+        "dir": "42 Warrior Drive",
+        "autor": 52
+    },
+    {
+        "nombre": "Lianluo Smart Limited",
+        "r_social": "NASDAQ",
+        "rif": "Devshare",
+        "t_contribuyente": "nunc",
+        "dir": "2 Forest Run Place",
+        "autor": 58
+    },
+    {
+        "nombre": "Atomera Incorporated",
+        "r_social": "NASDAQ",
+        "rif": "Dablist",
+        "t_contribuyente": "leo",
+        "dir": "7513 Green Place",
+        "autor": 4
+    },
+    {
+        "nombre": "Halcon Resources Corporation",
+        "r_social": "NYSE",
+        "rif": "Flipopia",
+        "t_contribuyente": "nisl",
+        "dir": "07237 Badeau Way",
+        "autor": 96
+    },
+    {
+        "nombre": "Global X Yieldco Index ETF",
+        "r_social": "NASDAQ",
+        "rif": "Skiba",
+        "t_contribuyente": "sapien",
+        "dir": "81 Lukken Plaza",
+        "autor": 12
+    },
+    {
+        "nombre": "Gladstone Commercial Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Flashdog",
+        "t_contribuyente": "magna",
+        "dir": "06536 Maple Road",
+        "autor": 36
+    },
+    {
+        "nombre": "Nuveen Minnesota Quality Municipal Income Fund",
+        "r_social": "NYSE",
+        "rif": "Quinu",
+        "t_contribuyente": "vestibulum",
+        "dir": "2272 Tomscot Court",
+        "autor": 76
+    },
+    {
+        "nombre": "Zendesk, Inc.",
+        "r_social": "NYSE",
+        "rif": "Centimia",
+        "t_contribuyente": "semper",
+        "dir": "593 Moland Place",
+        "autor": 26
+    },
+    {
+        "nombre": "Western Asset Emerging Markets Debt Fund Inc",
+        "r_social": "NYSE",
+        "rif": "Divanoodle",
+        "t_contribuyente": "adipiscing",
+        "dir": "394 Commercial Court",
+        "autor": 37
+    },
+    {
+        "nombre": "IDT Corporation",
+        "r_social": "NYSE",
+        "rif": "Meeveo",
+        "t_contribuyente": "aenean",
+        "dir": "218 Shelley Hill",
+        "autor": 85
+    },
+    {
+        "nombre": "Tortoise Energy Infrastructure Corporation",
+        "r_social": "NYSE",
+        "rif": "Quatz",
+        "t_contribuyente": "at",
+        "dir": "58 Trailsway Park",
+        "autor": 13
+    },
+    {
+        "nombre": "Transportadora De Gas Sa Ord B",
+        "r_social": "NYSE",
+        "rif": "Wordify",
+        "t_contribuyente": "ullamcorper",
+        "dir": "1879 Fisk Junction",
+        "autor": 41
+    },
+    {
+        "nombre": "NeuroMetrix, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Mycat",
+        "t_contribuyente": "in",
+        "dir": "29 Moose Center",
+        "autor": 75
+    },
+    {
+        "nombre": "BB&T Corporation",
+        "r_social": "NYSE",
+        "rif": "Babbleblab",
+        "t_contribuyente": "in",
+        "dir": "92212 Kinsman Place",
+        "autor": 29
+    },
+    {
+        "nombre": "Seaspan Corporation",
+        "r_social": "NYSE",
+        "rif": "Centidel",
+        "t_contribuyente": "leo",
+        "dir": "62958 Granby Point",
+        "autor": 81
+    },
+    {
+        "nombre": "ASB Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Gabcube",
+        "t_contribuyente": "amet",
+        "dir": "3 Banding Street",
+        "autor": 53
+    },
+    {
+        "nombre": "Community First Bancshares, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Demimbu",
+        "t_contribuyente": "accumsan",
+        "dir": "4 East Center",
+        "autor": 29
+    },
+    {
+        "nombre": "FIRST REPUBLIC BANK",
+        "r_social": "NYSE",
+        "rif": "Wordware",
+        "t_contribuyente": "non",
+        "dir": "3439 Orin Pass",
+        "autor": 97
+    },
+    {
+        "nombre": "Laureate Education, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Meeveo",
+        "t_contribuyente": "sit",
+        "dir": "158 Kinsman Trail",
+        "autor": 11
+    },
+    {
+        "nombre": "Nuveen Massachusetts Municipal Income Fund",
+        "r_social": "NYSE",
+        "rif": "Kare",
+        "t_contribuyente": "convallis",
+        "dir": "16405 Browning Way",
+        "autor": 44
+    },
+    {
+        "nombre": "Global X Guru Activist ETF",
+        "r_social": "NASDAQ",
+        "rif": "Kazio",
+        "t_contribuyente": "malesuada",
+        "dir": "6498 Bashford Terrace",
+        "autor": 6
+    },
+    {
+        "nombre": "Stanley Furniture Company, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Dynabox",
+        "t_contribuyente": "rhoncus",
+        "dir": "809 Sycamore Junction",
+        "autor": 91
+    },
+    {
+        "nombre": "Universal Stainless & Alloy Products, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Yoveo",
+        "t_contribuyente": "morbi",
+        "dir": "7077 David Plaza",
+        "autor": 11
+    },
+    {
+        "nombre": "CSX Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Reallinks",
+        "t_contribuyente": "ac",
+        "dir": "66 Upham Avenue",
+        "autor": 27
+    },
+    {
+        "nombre": "Public Storage",
+        "r_social": "NYSE",
+        "rif": "Buzzbean",
+        "t_contribuyente": "volutpat",
+        "dir": "30 East Pass",
+        "autor": 91
+    },
+    {
+        "nombre": "Lehman ABS Corporation",
+        "r_social": "NYSE",
+        "rif": "Dabjam",
+        "t_contribuyente": "ligula",
+        "dir": "49 Jackson Avenue",
+        "autor": 19
+    },
+    {
+        "nombre": "TransUnion",
+        "r_social": "NYSE",
+        "rif": "Buzzbean",
+        "t_contribuyente": "suscipit",
+        "dir": "05 Loeprich Place",
+        "autor": 36
+    },
+    {
+        "nombre": "Glacier Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Babbleset",
+        "t_contribuyente": "pellentesque",
+        "dir": "4 Donald Alley",
+        "autor": 3
+    },
+    {
+        "nombre": "Wintrust Financial Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Zoovu",
+        "t_contribuyente": "felis",
+        "dir": "25 Hansons Plaza",
+        "autor": 70
+    },
+    {
+        "nombre": "Delta Technology Holdings Limited",
+        "r_social": "NASDAQ",
+        "rif": "Abatz",
+        "t_contribuyente": "quis",
+        "dir": "86 Rusk Way",
+        "autor": 94
+    },
+    {
+        "nombre": "Republic First Bancorp, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Brightbean",
+        "t_contribuyente": "amet",
+        "dir": "54 Hoepker Avenue",
+        "autor": 87
+    },
+    {
+        "nombre": "Herman Miller, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Feedspan",
+        "t_contribuyente": "sed",
+        "dir": "084 Muir Circle",
+        "autor": 2
+    },
+    {
+        "nombre": "Paramount Group, Inc.",
+        "r_social": "NYSE",
+        "rif": "Twitterworks",
+        "t_contribuyente": "integer",
+        "dir": "09252 Scoville Alley",
+        "autor": 41
+    },
+    {
+        "nombre": "Federated Premier Municipal Income Fund",
+        "r_social": "NYSE",
+        "rif": "Minyx",
+        "t_contribuyente": "nascetur",
+        "dir": "46 Ridge Oak Circle",
+        "autor": 37
+    },
+    {
+        "nombre": "Liberty Tax, Inc.",
+        "r_social": "NASDAQ",
+        "rif": "Skinder",
+        "t_contribuyente": "odio",
+        "dir": "7517 Mariners Cove Point",
+        "autor": 61
+    },
+    {
+        "nombre": "ClearBridge Energy MLP Opportunity Fund Inc.",
+        "r_social": "NYSE",
+        "rif": "Gigazoom",
+        "t_contribuyente": "tellus",
+        "dir": "6 Eggendart Parkway",
+        "autor": 61
+    },
+    {
+        "nombre": "ADMA Biologics Inc",
+        "r_social": "NASDAQ",
+        "rif": "Kwilith",
+        "t_contribuyente": "arcu",
+        "dir": "08 Manitowish Junction",
+        "autor": 45
+    },
+    {
+        "nombre": "Farmers Capital Bank Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Flipbug",
+        "t_contribuyente": "ut",
+        "dir": "67503 Farmco Pass",
+        "autor": 14
+    },
+    {
+        "nombre": "First Trust Japan AlphaDEX Fund",
+        "r_social": "NASDAQ",
+        "rif": "Voomm",
+        "t_contribuyente": "at",
+        "dir": "75009 Barnett Circle",
+        "autor": 90
+    },
+    {
+        "nombre": "Masimo Corporation",
+        "r_social": "NASDAQ",
+        "rif": "Podcat",
+        "t_contribuyente": "nullam",
+        "dir": "7879 Reindahl Park",
+        "autor": 44
+    },
+    {
+        "nombre": "UnitedHealth Group Incorporated",
+        "r_social": "NYSE",
+        "rif": "Oyoloo",
+        "t_contribuyente": "orci",
+        "dir": "49 Rigney Lane",
+        "autor": 15
+    },
+    {
+        "nombre": "Bruker Corporation",
+        "r_social": "NASDAQ",
+        "rif": "BlogXS",
+        "t_contribuyente": "semper",
+        "dir": "4 Hollow Ridge Way",
+        "autor": 15
+    },
+    {
+        "nombre": "PIMCO Municipal Income Fund",
+        "r_social": "NYSE",
+        "rif": "Abata",
+        "t_contribuyente": "tortor",
+        "dir": "83292 Sachs Street",
+        "autor": 2
+    },
+    {
+        "nombre": "Xcel Brands, Inc",
+        "r_social": "NASDAQ",
+        "rif": "Skimia",
+        "t_contribuyente": "iaculis",
+        "dir": "48139 Kings Court",
+        "autor": 40
+    },
+    {
+        "nombre": "CyberArk Software Ltd.",
+        "r_social": "NASDAQ",
+        "rif": "Flipopia",
+        "t_contribuyente": "sociis",
+        "dir": "52 Mifflin Parkway",
+        "autor": 69
+    }
+]
