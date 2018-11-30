@@ -73,7 +73,13 @@ var typhography = new menuItem({
 
 var s_reserva = new menuItem({
       name: 'Solicitud de Reserva',
-      url: '/reservas',
+      url: '/reservas/nueva_reserva',
+      icon: 'icon-pencil'
+    })
+
+var index_reservas = new menuItem({
+      name: 'Indice de Reservas',
+      url: '/reservas/listado_reservas',
       icon: 'icon-pencil'
     })
 
@@ -81,7 +87,7 @@ var items_Reservas = new menuItem({
     name: 'Reservas',
     url: '/reservas',
     icon: 'icon-pencil'
-    },[s_reserva])
+    },[s_reserva,index_reservas])
 
 export default {
   items: [

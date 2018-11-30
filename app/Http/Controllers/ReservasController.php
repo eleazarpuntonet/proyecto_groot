@@ -17,7 +17,10 @@ class ReservasController extends Controller
      */
     public function index()
     {
-
+        $reservas = Reservas::all();
+        return response()->json([
+            'reservas' => $reservas,
+        ]);
     }
 
     /**
@@ -51,7 +54,6 @@ class ReservasController extends Controller
         $reserva->motivo        = $request->input('motivo');
         $reserva->agenda        = $request->input('agenda');
         // $reserva->save();
-        // return redirect()->route('sites.create')->with('info','Registro completado!');
 
         return $request->input('t_reserva');
     }

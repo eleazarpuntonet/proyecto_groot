@@ -1,6 +1,6 @@
 <?php
 use App\User;
-use App\Roles;
+use App\Role;
 use App\AssignedTableRoles;
 use Illuminate\Database\Seeder;
 
@@ -13,9 +13,31 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        // User::truncate();
-        // Roles::truncate();
-        // DB::table('assigned_roles')->delete();
+        $users_json = File::get("database/dataseed/UserSeed.json");
+        $data = json_decode($users_json);
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        User::truncate();
+        Role::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // User::enableForeignKeyConstraints();
+
+        $rol_superadmin               = new App\Role;
+        $rol_superadmin->name         = 'superadmin';
+        $rol_superadmin->display_name = 'Super Administrador';
+        $rol_superadmin->description  = 'Administrador de codigo de sitio';
+        $rol_superadmin->save();
+
+        $rol_tester               = new App\Role;
+        $rol_tester->name         = 'tester';
+        $rol_tester->display_name = 'Administrador de Testeo';
+        $rol_tester->description  = 'Administrador de testing de sitio';
+        $rol_tester->save();
+
+        $rol_admin               = new App\Role;
+        $rol_admin->name         = 'admin';
+        $rol_admin->display_name = 'Administrador';
+        $rol_admin->description  = 'Administrador de sitio';
+        $rol_admin->save();
 
     	$user            = new App\User;
     	$user->name      = 'Eleazar';
@@ -27,14 +49,9 @@ class UsersTableSeeder extends Seeder
         $user->email     = 'eleazaro@spservicesltd.uk';
         $user->password  = bcrypt('123123');
         $user->save();
-
-        $rol               = new App\Role;
-        $rol->name         = 'superadmin';
-        $rol->display_name = 'Super Administrador';
-        $rol->description  = 'Administrador de codigo de sitio';
-        $rol->save();
-
-        $user->roles()->save($rol);
+        $user->roles()->save($rol_superadmin);
+        $user->roles()->save($rol_tester);
+        $user->roles()->save($rol_admin);
 
     	$user            = new App\User;
     	$user->name      = 'Luis';
@@ -46,14 +63,8 @@ class UsersTableSeeder extends Seeder
     	$user->email     = 'luisd@spservicesltd.uk';
     	$user->password  = bcrypt('123123');
     	$user->save();
-
-        $rol               = new App\Role;
-        $rol->name         = 'tester';
-        $rol->display_name = 'Administrador de Testeo';
-        $rol->description  = 'Administrador de testing de sitio';
-        $rol->save();
-
-        // $user->roles()->save($rol);
+        $user->roles()->save($rol_superadmin);
+        $user->roles()->save($rol_tester);
 
     	$user            = new App\User;
     	$user->name      = 'Yonny';
@@ -64,20 +75,23 @@ class UsersTableSeeder extends Seeder
     	$user->status    = 'Activo';
     	$user->email     = 'yonnyt@spservicesltd.uk';
     	$user->password  = bcrypt('123123');
+        $user->save();
+        $user->roles()->save($rol_superadmin);
+        $user->roles()->save($rol_tester);
 
-        // $user->roles()->save($rol);
-
-    	for ($i=0; $i <= 20 ; $i++) { 
-	    	$user            = new App\User;
-	    	$user->name      = 'User'.$i;
-	    	$user->last_name = 'Lastaname'.$i;
-	    	$user->cargo     = 'Analista';
-	    	$user->gerencia  = $i;
-	    	$user->sede      = 'Chuao';
-	    	$user->status    = 'Activo';
-	    	$user->email     = 'algo'.$i.'@spservicesltd.uk';
-	    	$user->password  = bcrypt('123123');
-	    	$user->save();
-    	}
+        foreach ($data as $dataUser) {
+            $user            = new App\User;
+            $user->name      = $dataUser->name;
+            $user->last_name = $dataUser->last_name;
+            $user->cargo     = $dataUser->cargo;
+            $user->gerencia  = $dataUser->gerencia;
+            $user->sede      = $dataUser->sede;
+            $user->email     = $dataUser->email;
+            $user->status    = $dataUser->status;
+            $user->password  = bcrypt($dataUser->password);
+            $user->save();
+            $user->roles()->save($rol_tester);
+        }
+        
     }
 }

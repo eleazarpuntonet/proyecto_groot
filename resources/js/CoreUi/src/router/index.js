@@ -58,6 +58,7 @@ import Register         from '../views/pages/Register'
 import Users            from '../views/users/Users'
 import User             from '../views/users/User'
 import nueva_reserva    from '../../../components/formularioDeReservas'
+import index_Reservas    from '../../../components/indexReservas'
 import perfilDeUsuario    from '../../../components/userProfile'
 
 Vue.use(Router)
@@ -151,17 +152,24 @@ var Theme_route = new Route_item({
     redir: '/theme/colors'
   },[Colors_route,Typography_route])
 
-var nuevaReserva = new Route_item({
-    path:'nueva_reserva',
-    name:'Nueva Reserva',
-    comp: nueva_reserva,
-  })
+
 
 var MENU_reservas = new Route_item({
     path:'reservas',
     name:'Reservas',
     redir: '/reservas/nueva_reserva'
-  },[nuevaReserva])
+  },[
+      new Route_item({
+          path:'nueva_reserva',
+          name:'Nueva Reserva',
+          comp: nueva_reserva,
+        }),
+      new Route_item({
+          path:'listado_reservas',
+          name:'Indice de Reservas',
+          comp: index_Reservas,
+        })
+      ])
 
 export default new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
@@ -180,6 +188,7 @@ export default new Router({
         panelHome,
         Theme_route,
         MENU_reservas,
+        
       ]
     },
   ]

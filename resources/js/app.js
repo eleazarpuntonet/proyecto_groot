@@ -1,13 +1,12 @@
 require('./bootstrap');
 window.axios = require('axios')
+window.Vue = require('vue')
 window.axios.defaults.headers.common = {
     'X-Requested-With' : 'XMLHttpRequest',
-    // 'Authorization'    :'Bearer '+JSON.parse(localStorage.getItem('jwtToken')),
     'X-CSRF-TOKEN'     : document.querySelector('meta[name="csrf-token"]')
-    								.getAttribute('content'),
+                    .getAttribute('content'),
 }
 
-window.Vue = require('vue')
 import 'core-js/es6/promise'
 import 'core-js/es6/string'
 import 'core-js/es7/array'
@@ -75,30 +74,6 @@ Vue.use(VueAuthenticate, {
   registerUrl      : '/api/auth/register',
 })
 
-axios.interceptors.request.use(null, (error)=>{
-    console.log('Interceptando ando')
-    console.log(store.getters.isAuthenticated())
-        if (store.getters.isAuthenticated()) {
-            alert('Autenticado')
-            axios.defaults.headers.common['Authorization'] = JSON.parse(localStorage.getItem('vueauth_access_token'))
-        } else {
-            alert('No Autenticado')
-
-          store.commit('logout')
-          router.push('/login')
-          delete axios.defaults.headers.common['Authorization']
-        }
-    })
-
-
-axios.interceptors.response.use(null, (error)=>{
-        if (error.response.status == 401) {
-            store.commit('logout')
-            router.push('/login')
-            store.commit('loginFailed',{error: error.response.data.error}) 
-        }
-        return Promise.reject(error)
-    })
 const user = getLocalUser()
 /*
 *VuexStore contiene variables
@@ -160,7 +135,6 @@ const store = new Vuex.Store({
 	mutations: {
         isAuthenticated (state, payload) {
             console.log('Recibiendo en autenticated')
-            console.log(payload)
             state.isAuthenticated = true
             state.isLoggedIn  = true
             state.auth_error  = null
@@ -169,6 +143,7 @@ const store = new Vuex.Store({
             state.currentUser.token = payload.access_token
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", state.currentUser.token)
+            console.log(JSON.parse(localStorage.getItem('user')))
         },
         addHost(state,value){
             state.host = value
@@ -187,7 +162,6 @@ const store = new Vuex.Store({
         logout(state){
             localStorage.removeItem("user")
             localStorage.removeItem("jwtToken")
-            // localStorage.removeItem("jwtToken")
             state.loading     = false
             state.currentUser = null
             router.push({path:'/login'})
@@ -215,14 +189,30 @@ const store = new Vuex.Store({
 		},
 	},
 })
-/*
-*Filtra las rutas de acceso
-*para otorgar permisologia
-*en la navegacion de turas
-*/
-// console.log(JSON.parse(localStorage.getItem('user')))
 
+axios.interceptors.request.use((config)=>{
+  let user = JSON.parse(localStorage.getItem('user'))
+  console.log('Interceptando ando')
+    if (store.getters.isAuthenticated) {
+      console.log('Autenticado')
+      axios.defaults.headers.common['Authorization'] = 'Bearer '+user.token
+    } else {
+      console.log('No Autenticado')
+      store.commit('logout')
+      router.push('/login')
+      delete axios.defaults.headers.common['Authorization']
+    }
+    return config
+  })
 
+axios.interceptors.response.use(null, (error)=>{
+    if (error.response.status == 401) {
+        store.commit('logout')
+        router.push('/login')
+        store.commit('loginFailed',{error: error.response.data.error}) 
+    }
+    return Promise.reject(error)
+  })
 
 
 

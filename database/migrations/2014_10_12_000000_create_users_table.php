@@ -23,10 +23,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('avatar')->default('avatars/default.gif');
+            $table->string('status');
             $table->rememberToken()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
-            $table->string('status');
         });
     }
 
