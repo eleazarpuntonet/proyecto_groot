@@ -17,7 +17,7 @@ class ReservasController extends Controller
      */
     public function index()
     {
-        $reservas = Reservas::all();
+        $reservas = Reservas::with('traslados')->with('autorizaciones')->paginate();
         return response()->json([
             'reservas' => $reservas,
         ]);
@@ -66,7 +66,10 @@ class ReservasController extends Controller
      */
     public function show($id)
     {
-        //
+        $reserva = Reservas::with('traslados')->with('autorizaciones')->findOrFail($id);
+        return response()->json([
+            'reserva' => $reserva,
+        ]);
     }
 
     /**

@@ -59,6 +59,7 @@ import Users            from '../views/users/Users'
 import User             from '../views/users/User'
 import nueva_reserva    from '../../../components/formularioDeReservas'
 import index_Reservas    from '../../../components/indexReservas'
+import detalle_Reserva    from '../../../components/detalleReservas'
 import perfilDeUsuario    from '../../../components/userProfile'
 
 Vue.use(Router)
@@ -154,7 +155,7 @@ var Theme_route = new Route_item({
 
 
 
-var MENU_reservas = new Route_item({
+var MenuReservas = new Route_item({
     path:'reservas',
     name:'Reservas',
     redir: '/reservas/nueva_reserva'
@@ -168,7 +169,12 @@ var MENU_reservas = new Route_item({
           path:'listado_reservas',
           name:'Indice de Reservas',
           comp: index_Reservas,
-        })
+        }),
+      new Route_item({
+          path:':id_reserva',
+          name:'detalleReservas',
+          comp: detalle_Reserva,
+        }),
       ])
 
 export default new Router({
@@ -187,7 +193,7 @@ export default new Router({
         perfilUser,
         panelHome,
         Theme_route,
-        MENU_reservas,
+        MenuReservas,
         
       ]
     },

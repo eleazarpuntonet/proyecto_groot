@@ -125,7 +125,6 @@ Route::get('testing',function(){
 		'Autorizacion' => $autorizacion,
 		'Traslados'    => $traslados,
 		'Proveedor'    => $proveedor_,
-
 	], 200);
 
 })->middleware('auth:api');

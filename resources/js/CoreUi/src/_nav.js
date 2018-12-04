@@ -8,6 +8,9 @@ class menuItem{
       break
 
       case 2:
+        if (item.class) {
+          this.class = item.class
+        }
         this.name = item.name
         this.url  = item.url
         this.icon = item.icon
@@ -74,19 +77,22 @@ var typhography = new menuItem({
 var s_reserva = new menuItem({
       name: 'Solicitud de Reserva',
       url: '/reservas/nueva_reserva',
-      icon: 'icon-pencil'
+      icon: 'icon-pencil',
+      class: 'nav-item',
     })
 
 var index_reservas = new menuItem({
       name: 'Indice de Reservas',
       url: '/reservas/listado_reservas',
-      icon: 'icon-pencil'
+      icon: 'icon-pencil',
+      class: 'nav-item',
     })
 
 var items_Reservas = new menuItem({
-    name: 'Reservas',
-    url: '/reservas',
-    icon: 'icon-pencil'
+      name: 'Reservas',
+      url: '/reservas',
+      icon: 'icon-pencil',
+      class: 'nav-item',
     },[s_reserva,index_reservas])
 
 export default {

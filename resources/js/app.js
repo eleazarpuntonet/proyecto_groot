@@ -3,6 +3,8 @@ window.axios = require('axios')
 window.Vue = require('vue')
 window.axios.defaults.headers.common = {
     'X-Requested-With' : 'XMLHttpRequest',
+    'Access-Control-Allow-Origin' : '*',
+    'Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE, OPTIONS',
     'X-CSRF-TOKEN'     : document.querySelector('meta[name="csrf-token"]')
                     .getAttribute('content'),
 }
@@ -56,6 +58,8 @@ import Mapbox from 'mapbox-gl-vue';
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
+import infiniteScroll from 'vue-infinite-scroll'
+Vue.use(infiniteScroll)
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
@@ -126,7 +130,6 @@ const store = new Vuex.Store({
         },
         pathAuth(rolesToPath){
             // console.log(this.state.currentUser.roles)
-            console.log(rolesToPath)
             return
         }
     },    
@@ -144,6 +147,7 @@ const store = new Vuex.Store({
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", state.currentUser.token)
             console.log(JSON.parse(localStorage.getItem('user')))
+            axios.defaults.headers.common['Authorization'] = 'Bearer '+state.currentUser.token
         },
         addHost(state,value){
             state.host = value
@@ -160,15 +164,14 @@ const store = new Vuex.Store({
             state.auth_error = payload.error
         },
         logout(state){
+            state.isAuthenticated = false
             localStorage.removeItem("user")
             localStorage.removeItem("jwtToken")
             state.loading     = false
             state.currentUser = null
+            delete axios.defaults.headers.common['Authorization']
             router.push({path:'/login'})
         },
-        xample(state,algo){
-            console.log("llego al xample")
-        }
 	},
 	//Actions guarda los metodos para modificar los state
 	//de forma ASINCRONA
@@ -190,30 +193,38 @@ const store = new Vuex.Store({
 	},
 })
 
+
 axios.interceptors.request.use((config)=>{
-  let user = JSON.parse(localStorage.getItem('user'))
-  console.log('Interceptando ando')
-    if (store.getters.isAuthenticated) {
-      console.log('Autenticado')
-      axios.defaults.headers.common['Authorization'] = 'Bearer '+user.token
-    } else {
-      console.log('No Autenticado')
-      store.commit('logout')
-      router.push('/login')
-      delete axios.defaults.headers.common['Authorization']
-    }
+
+      let user = JSON.parse(localStorage.getItem('user'))
+      console.log('Interceptando ando:'+!!JSON.parse(localStorage.getItem('user')))
+        if (!!JSON.parse(localStorage.getItem('user'))) {
+          console.log('Autenticado')
+          if (!axios.defaults.headers.common['Authorization']) {
+            // axios.defaults.headers.common['Authorization'] = 'Bearer '+user.token
+            config.headers.Authorization = 'Bearer '+user.token
+            console.log('La variable no existe, pero fue creada: '+axios.defaults.headers.common['Authorization'])
+          }
+        } else {
+          console.log('No Autenticado')
+          store.commit('logout')
+          router.push('/login')
+          delete axios.defaults.headers.common['Authorization']
+        }
+
     return config
   })
 
 axios.interceptors.response.use(null, (error)=>{
+    console.log(error)
     if (error.response.status == 401) {
         store.commit('logout')
-        router.push('/login')
         store.commit('loginFailed',{error: error.response.data.error}) 
+        router.push('/login')
+        console.log('Ejecuto salida')
     }
     return Promise.reject(error)
   })
-
 
 
 const app = new Vue({
@@ -330,9 +341,9 @@ router.beforeEach((to,from, next)=>{
                 console.log('Si pasa')
                 next()
             } else {
-                router.push(homeRoute)
                 console.log('No pasa')
                 console.log(auth)
+                router.push(homeRoute)
             }
         }
         /*
@@ -349,3 +360,4 @@ router.beforeEach((to,from, next)=>{
 
         // next()
     })
+

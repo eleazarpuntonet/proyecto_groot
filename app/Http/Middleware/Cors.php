@@ -6,6 +6,10 @@ use Closure;
 
 class Cors
 {
+    private static $allowedOriginsWhitelist = [
+          'http://localhost:8000',
+          'http://172.30.33.207:3000',
+        ];
     /**
      * Handle an incoming request.
      *
