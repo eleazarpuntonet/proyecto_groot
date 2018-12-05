@@ -579,7 +579,6 @@ export default {
     },
     submitForm(){
       var user = this.$store.getters.currentUser
-      console.log(user.token)
       axios.post(route('reservas.store'),this.dataSend) 
           .then(response => {
               console.log(response)

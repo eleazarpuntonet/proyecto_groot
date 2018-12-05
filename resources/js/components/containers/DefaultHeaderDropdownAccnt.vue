@@ -7,7 +7,7 @@
         alt="admin@bootstrapmaster.com" />
     </template>\
     <template slot="dropdown">
-      <b-dropdown-header tag="div" class="text-center"><strong>Account</strong></b-dropdown-header>
+      <b-dropdown-header tag="div" class="text-center"><strong>Cuenta</strong></b-dropdown-header>
       <b-dropdown-item><i class="fa fa-bell-o" /> Updates
         <b-badge variant="info">{{ itemsCount }}</b-badge>
       </b-dropdown-item>
@@ -49,6 +49,19 @@ export default {
   },
   data: () => {
     return { itemsCount: 42 }
+  },
+  methods:{
+    loadUser(){
+    }
+  },
+  beforeMount(){
+      console.log('Montado')
+  },
+  mounted(){
+      if (!!localStorage.getItem('user')) {
+        console.log("Tenemos usuario")
+      }
+
   }
 }
 </script>

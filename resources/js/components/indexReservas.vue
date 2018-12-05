@@ -77,18 +77,18 @@
 							      <el-button 
 							      	size="mini"
 							      	@click="handleShow(scope.$index, scope.row)"
-							      	icon="el-icon-search" 
+							      	icon="el-icon-view" 
 							      	circle
 							      	>
 							      </el-button>
-							      <el-button 
+<!-- 							      <el-button 
 							      	size="mini"
 							      	@click="handleEdit(scope.$index, scope.row)"
 							      	type="success" 
 							      	icon="el-icon-check" 
 							      	circle
 							      	>
-							      </el-button>
+							      </el-button> -->
 							      <el-button 
 							      	size="mini"
 							      	@click="handleDelete(scope.$index, scope.row)"
@@ -100,14 +100,6 @@
 
 						    </el-table-column>
 
-<!-- 						    <template slot="append">
-						      <div 
-						      	  v-infinite-scroll="onInfinite" 
-						          infinite-scroll 
-						          distance="5"  
-						          ref="tableReservas">
-						      </div>
-						    </template> -->
 					  </el-table>
 					</b-col>
 				</b-row>
@@ -156,20 +148,10 @@ export default {
   },
   methods: {
   	bottomVisible() {
-  	  // const scrollY = window.scrollY
-  	  // const visible = document.documentElement.clientHeight
-  	  // const pageHeight = document.documentElement.scrollHeight
-  	  // const bottomOfPage = visible + scrollY >= pageHeight
-  	  // return bottomOfPage || pageHeight < visible
-
   	  const tabla   = document.getElementsByClassName('el-table__body-wrapper')[0]
   	  var offset    = tabla.offsetHeight
   	  var scrolltop = tabla.scrollTop
   	  var scroll    = tabla.scrollHeight
-
-  	  console.log('offset'+offset)
-  	  console.log('scrolltop'+scrolltop)
-  	  console.log('scroll'+scroll)
 
   	  if (offset + scrolltop === scroll) {
   	  	return true

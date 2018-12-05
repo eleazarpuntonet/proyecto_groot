@@ -194,6 +194,7 @@ export default new Router({
         panelHome,
         Theme_route,
         MenuReservas,
+        perfilUser,
         
       ]
     },
