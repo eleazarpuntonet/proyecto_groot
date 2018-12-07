@@ -12,4 +12,9 @@ class Departamentos extends Model
     {
     	return $this->hasMany(Autorizaciones::class,'depto_id');
     }
+
+    public function coordinador()
+    {
+    	// return $this->hasMany(Autorizaciones::class,'depto_id');
+    }
 }

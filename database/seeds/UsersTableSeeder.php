@@ -19,7 +19,6 @@ class UsersTableSeeder extends Seeder
         User::truncate();
         Role::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        // User::enableForeignKeyConstraints();
 
         $rol_superadmin               = new App\Role;
         $rol_superadmin->name         = 'superadmin';
@@ -52,6 +51,34 @@ class UsersTableSeeder extends Seeder
         $user->roles()->save($rol_superadmin);
         $user->roles()->save($rol_tester);
         $user->roles()->save($rol_admin);
+
+            $user            = new App\User;
+            $user->name      = 'Carlos';
+            $user->last_name = 'Escobar';
+            $user->cargo     = 'Gerente';
+            $user->gerencia  = 10;
+            $user->sede      = 'Chuao';
+            $user->status    = 'Activo';
+            $user->email     = 'carlose@spservicesltd.uk';
+            $user->password  = bcrypt('123123');
+            $user->save();
+            $user->roles()->save($rol_superadmin);
+            $user->roles()->save($rol_tester);
+            $user->roles()->save($rol_admin);
+
+            $user            = new App\User;
+            $user->name      = 'Edgar';
+            $user->last_name = 'Saltron';
+            $user->cargo     = 'Coordinador';
+            $user->gerencia  = 12;
+            $user->sede      = 'Chuao';
+            $user->status    = 'Activo';
+            $user->email     = 'edgars@spservicesltd.uk';
+            $user->password  = bcrypt('123123');
+            $user->save();
+            $user->roles()->save($rol_superadmin);
+            $user->roles()->save($rol_tester);
+            $user->roles()->save($rol_admin);
 
     	$user            = new App\User;
     	$user->name      = 'Luis';

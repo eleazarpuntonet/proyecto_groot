@@ -201,9 +201,8 @@ axios.interceptors.request.use((config)=>{
         if (!!JSON.parse(localStorage.getItem('user'))) {
           console.log('Autenticado')
           if (!axios.defaults.headers.common['Authorization']) {
-            // axios.defaults.headers.common['Authorization'] = 'Bearer '+user.token
             config.headers.Authorization = 'Bearer '+user.token
-            console.log('La variable no existe, pero fue creada: '+axios.defaults.headers.common['Authorization'])
+            console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
           }
         } else {
           console.log('No Autenticado')

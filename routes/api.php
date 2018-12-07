@@ -59,13 +59,13 @@ Route::get('testing',function(){
 	$proveedor->autor           = 1;
 	$proveedor->save();
 
-	$contacto = Contactos::where('nombre', '=', 'Alguien contesta')->delete();
-	$contacto = new Contactos;
+	$contacto         = Contactos::where('nombre', '=', 'Alguien contesta')->delete();
+	$contacto         = new Contactos;
 	$contacto->nombre = 'Alguien contesta';
-	$contacto->medio = 'Email';
-	$contacto->value = 'Alguien@gmail.com';
+	$contacto->medio  = 'Email';
+	$contacto->value  = 'Alguien@gmail.com';
 	$contacto->save();
-	$proveedor_ = Proveedor::find($proveedor->id)->contacto()->save($contacto);
+	$proveedor_       = Proveedor::find($proveedor->id)->contacto()->save($contacto);
 	
 
 	$reserva                = Reservas::where('alcance', '=', 'Nacional')->delete();
@@ -113,18 +113,18 @@ Route::get('testing',function(){
 	$traslado->save();
 	$reserva_ 	  = Reservas::find($reserva->id)->traslados()->save($traslado);
 	
-	$reserva_     = Reservas::with('traslados')->with('autorizaciones')->find($reserva->id);
+	$reserva_     = Reservas::with(['traslados','autorizaciones.gerencia','autorizaciones.reservas','user','gerencia'])->find($reserva->id);
 	$departamento = Departamentos::with('autorizaciones')->find($depto->id);
-	$autorizacion = Autorizaciones::with('reservas')->with('gerencia')->find($auth->id);
-	$traslados    = Traslados::with('proveedor')->with('reservas')->find($traslado->id);
-	$proveedor_   = Proveedor::with('traslado')->with('contacto')->find($proveedor->id);
-
+	$autorizacion = Autorizaciones::with(['reservas', 'gerencia'])->find($auth->id);
+	$traslados    = Traslados::with(['proveedor','reservas'])->find($traslado->id);
+	$proveedor_   = Proveedor::with(['traslado','contacto'])->find($proveedor->id);
+	// dd($reserva_);
 	return response()->json([
 		'Reserva'      => $reserva_,
-		'Departamento' => $departamento,
-		'Autorizacion' => $autorizacion,
-		'Traslados'    => $traslados,
-		'Proveedor'    => $proveedor_,
+		// 'Departamento' => $departamento,
+		// 'Autorizacion' => $autorizacion,
+		// 'Traslados'    => $traslados,
+		// 'Proveedor'    => $proveedor_,
 	], 200);
 
 })->middleware('auth:api');

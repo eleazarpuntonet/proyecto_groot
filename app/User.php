@@ -58,4 +58,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function reservas()
+    {
+        return $this->hasMany( Reservas::class, 'id','id_user' );
+    }
 }

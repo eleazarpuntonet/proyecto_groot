@@ -15,12 +15,16 @@ class ReservasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page='')
     {
+
         $reservas = Reservas::with('traslados')->with('autorizaciones')->paginate();
         return response()->json([
             'reservas' => $reservas,
         ]);
+        // return response()->json([
+        //     'reservas' => $page,
+        // ]);
     }
 
     /**
@@ -66,7 +70,14 @@ class ReservasController extends Controller
      */
     public function show($id)
     {
-        $reserva = Reservas::with('traslados')->with('autorizaciones')->findOrFail($id);
+
+        $reserva = Reservas::with([
+            'traslados',
+            'autorizaciones.gerencia',
+            // 'autorizaciones.reservas',
+            'user',
+            'gerencia'])
+                        ->findOrFail($id);
         return response()->json([
             'reserva' => $reserva,
         ]);

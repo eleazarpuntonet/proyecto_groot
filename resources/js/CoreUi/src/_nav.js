@@ -88,12 +88,23 @@ var index_reservas = new menuItem({
       class: 'nav-item',
     })
 
+var addAutorizacion = new menuItem({
+      name: 'Autorizaciones',
+      url: '/reservas/autorizaciones',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+    })
+
 var items_Reservas = new menuItem({
       name: 'Reservas',
       url: '/reservas',
       icon: 'icon-pencil',
       class: 'nav-item',
-    },[s_reserva,index_reservas])
+    },[
+        s_reserva,
+        index_reservas,
+        addAutorizacion,
+      ])
 
 export default {
   items: [

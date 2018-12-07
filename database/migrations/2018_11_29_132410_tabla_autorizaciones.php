@@ -15,6 +15,9 @@ class TablaAutorizaciones extends Migration
     {
         Schema::create('autorizaciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('autorizable_id')->nullable();
+            $table->string('autorizable_type')->nullable();
+            $table->string('tipo');
             $table->string('date_auth');
             $table->string('depto_id');
             $table->string('reserva_id');
