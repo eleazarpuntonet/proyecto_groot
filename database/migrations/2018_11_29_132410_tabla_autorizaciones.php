@@ -17,7 +17,7 @@ class TablaAutorizaciones extends Migration
             $table->increments('id');
             $table->integer('autorizable_id')->nullable();
             $table->string('autorizable_type')->nullable();
-            $table->string('tipo');
+            $table->string('tipo')->nullable();
             $table->string('date_auth');
             $table->string('depto_id');
             $table->string('reserva_id');

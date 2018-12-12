@@ -67,6 +67,20 @@ class UsersTableSeeder extends Seeder
             $user->roles()->save($rol_admin);
 
             $user            = new App\User;
+            $user->name      = 'Ronald';
+            $user->last_name = 'F';
+            $user->cargo     = 'Diseñador';
+            $user->gerencia  = 10;
+            $user->sede      = 'Chuao';
+            $user->status    = 'Activo';
+            $user->email     = 'ronaldf@spservicesltd.uk';
+            $user->password  = bcrypt('123123');
+            $user->save();
+            // $user->roles()->save($rol_superadmin);
+            $user->roles()->save($rol_tester);
+            $user->roles()->save($rol_admin);
+
+            $user            = new App\User;
             $user->name      = 'Edgar';
             $user->last_name = 'Saltron';
             $user->cargo     = 'Coordinador';

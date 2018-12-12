@@ -1,7 +1,8 @@
 <template>
 	<div>
-		<el-card v-if="reserva" class="box-card">
 
+		<el-card v-if="reserva" class="box-card">
+ 				
 			  <div slot="header" class="clearfix">
 			    <strong>Reserva {{ reserva.id }}</strong>
 			    <el-dropdown style="float: right; padding: 3px 0">
@@ -18,174 +19,271 @@
 			    </el-dropdown>
 			  </div>
 
-			  <el-tabs tab-position="left" style="height: 100%;">
-
-			    <el-tab-pane label="Reserva">
-			    	<div class="mainReservas">
-
-			    		<div class="mainLine">
-			    				<div class="resValue"><strong>{{ reserva.user.name }} {{ reserva.user.last_name }}</strong></div>
-			    		</div>
-
-							<div class="mainLine">
-								<div class="itemReservas">
-									<div class="resValue contRight"><strong>{{ reserva.origen_a}}</strong></div>
-									<div class="resLabel contRight">Pais origen</div>
-								</div>
-								<div class="itemReservas">
-									<div class="resValue contLeft"><strong>{{ reserva.destino_a}}</strong></div>
-									<div class="resLabel contLeft">Pais destino</div>
-								</div>
-							</div>
-
-							<div class="mainLine">
-				    		<div class="itemReservas">
-				    			<div class=" resValue contRight"><strong>{{ reserva.origen_b}}</strong></div>
-				    			<div class=" resLabel contRight">Estado origen</div>
-				    		</div>
-				    		<div class="itemReservas">
-				    			<div class=" resValue contLeft"><strong>{{ reserva.destino_b}}</strong></div>
-				    			<div class=" resLabel contLeft">Estado destino</div>
-				    		</div>
-							</div>
-
-			    		<div class="mainLine">
-				    		<div class="itemReservas">
-				    			<div class=" resValue contRight"><strong>{{ reserva.origen_det}}</strong></div>
-				    			<div class=" resLabel contRight">Direccion origen</div>
-				    		</div>
-				    		<div class="itemReservas">
-				    			<div class=" resValue contLeft"><strong>{{ reserva.destino_det}}</strong></div>
-				    			<div class=" resLabel contLeft">Direccion destino</div>
-				    		</div>
-			    		</div>
-
-			    		<div class="mainLine">
-				    		<div class="itemReservas">
-				    			<div class=" resValue contRight"><strong>{{ reserva.fecha_partida}}</strong></div>
-				    			<div class=" resLabel contRight">Fecha de partida</div>
-				    		</div>
-				    		<div class="itemReservas">
-				    			<div class=" resValue contLeft"><strong>{{ reserva.fecha_retorno}}</strong></div>
-				    			<div class=" resLabel contLeft">Fecha de retorno</div>
-				    		</div>
-			    		</div>
-
-			    		<div class="mainLine">
-				    		<div class="itemSingle">
-				    			<div class=" resValue contLeft" style="font-size: 15px !important"><p>{{ reserva.motivo}}</p></div>
-				    			<div class=" resLabel contLeft" style="font-size: 15px !important">Motivo</div>
-				    		</div>
-			    		</div>
-
-			    		<div class="mainLine">
-				    		<div class="itemSingle">
-				    			<div class=" resValue contLeft" style="font-size: 15px !important"><p>{{ reserva.agenda}}</p></div>
-				    			<div class=" resLabel contLeft" style="font-size: 15px !important">Agenda</div>
-				    		</div>
-			    		</div>
-
-			    		<div lg="12" md="12">
-					  		<el-steps :active="2" align-center>
-									<el-step title="Autorizacion" description="Autorizado"></el-step>
-									<el-step title="Planificacion" description="Planificado"></el-step>
-									<el-step title="Ejecucion" description="Ejecutado"></el-step>
-									<el-step title="Seguimiento" description="En seguimiento"></el-step>
-					  		</el-steps>
-			    		</div>
-			    	</div>	
-			    </el-tab-pane>
-
-			    <el-tab-pane label="Traslados">
-						<b-row>
-							<!-- Seccion de detalle de TRASLADOS -->
-							<b-col class="" lg="12" md="12">
-								<el-collapse v-model="activeNames" @change="handleChange">
-									<ul>
-										<li v-for="traslado in reserva.traslados" style="list-style:none;">
-											<el-collapse-item :title="traslado.servicio" :name="traslado.id">
-												<b-row>
-													<b-col class="text-right trasItem trasItemRight" lg="6" md="6">
-														<h3>Origen</h3>
-													</b-col>
-													<b-col class="trasItem trasItemLeft" lg="6" md="6">
-														<h3>Destino</h3>
-													</b-col>
-
-													<b-col class="trasItem text-right trasItemRight" lg="6" md="6">
-														<span>{{traslado.origen}}</span>
-													</b-col>
-													<b-col class="trasItem trasItemLeft" lg="6" md="6">
-														<span>{{traslado.destino}}</span>
-													</b-col>
-
-													<b-col class="trasItem text-center" lg="12" md="12">
-														<p><strong>Servicio:</strong><span>{{traslado.servicio}}</span></p>
-													</b-col>
-
-													<b-col class="trasItem text-center" lg="12" md="12">
-														<p><strong>Proveedor:</strong><span>{{traslado.proveedor}}</span></p>
-													</b-col>
-
-													<b-col class="trasItem text-center" lg="12" md="12">
-														<p><strong>Tipo:</strong><span>{{traslado.tipo}}</span></p>
-													</b-col>
-												</b-row>
-											</el-collapse-item>
-										</li>
-									</ul>
-								</el-collapse>
-							</b-col>	
-						</b-row>
-			    </el-tab-pane>
-
-			    <el-tab-pane label="Autorizaciones">
-						<b-row>
-							<!-- Seccion de detalle de AUTORIZACIONES -->
-							<b-col class=" justify-content-center" lg="12" md="12">
-								<ul>
-								  <li v-for="autorizacion in reserva.autorizaciones" style="list-style:none;">
-										<div class="d-flex justify-content-center align-items-center flex-row authContainer">
-											<div class="p-4 authItem authavatar">
-												<img
-												  src="/img/avatars/1.jpg"
-												  class="img-avatar"
-												  alt="admin@bootstrapmaster.com" />
-											</div>
-											<div class="p-4 authItem">
-												<div class="valueCont">
-													<strong>{{autorizacion.gerencia.disp_name}}</strong>
-												</div>
-												<div class="labelCont">
-													<p>Gerencia</p>
-												</div>
-											</div>
-											<div class="p-4 authItem">
-												<div class="valueCont">
-													<strong>{{autorizacion.coordinador_id}}</strong>
-												</div>
-												<div class="labelCont">
-													<p>Autorizado</p>
-												</div>
-											</div>
-											<div class="p-4 authItem">
-												<div class="valueCont">
-													<p>
-														<strong>{{autorizacion.date_auth}}</strong>
-													</p>
-												</div>
-												<div class="labelCont">
-													<p>Fecha</p>
-												</div>
-											</div>
+			<b-row class="box_data_reserv">
+				<b-col class="box box_name" md="12" lg="12" xl="12">
+					<p style="margin-bottom: 0px;"><strong>Eleazar Arquia Ortega Villarroel</strong> <i>Information Technology</i></p>
+				</b-col>
+			</b-row>
+			  <b-row class="box_data_reserv">
+				<b-col md="8" lg="8" xl="8">
+					<b-row>
+						<b-col class="box box_h" md="12" lg="12" xl="12">
+							<b-row>
+								<b-col class="items_box" md="2" lg="2" xl="2">
+									<div class="icon_box main_icon">
+										<i class="fas fa-plane-departure"></i>
+									</div>
+									<div class="date_text">
+										10/12/2018
+									</div>
+									<div class="date_text">
+										10:00 Am
+									</div>
+								</b-col>
+								<b-col class="items_box" md="1" lg="1" xl="1" >
+									<div id="separador1" style="margin: auto;"></div>
+								</b-col>
+								<b-col md="9" lg="9" xl="9">
+									<div class="itemsh_box"> 
+										<div class="country">
+											<strong>Venezuela</strong>
 										</div>
-								  </li>
-								</ul>
-							</b-col>
-						</b-row>		
-			    </el-tab-pane>
+										<div class="state">
+											<p style="margin-bottom: 0px; margin-top: 12px;">Distrito Capital</p>
+										</div>
+									</div>
+									<div class="itemsh_box"> 
+										<div style="margin-right:4px;">
+											<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
+										</div>
+										<div class="item">
+											<p>Av. Ernesto Blohm con Av. La Estancia. Edif. Centro Banaven. Torre D. PH. Chuao, Estado Miranda. Código Postal 1061</p>
+										</div>
+									</div>
+								</b-col>
+								<b-col md="12" lg="12" xl="12">
+									<div id="separador2"></div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-plane"></i>
+										</div>
+										<div class="item">
+											<strong>Vuelo</strong>
+										</div>
+										<div class="item">
+											<p>4:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-car"></i>
+										</div>
+										<div class="item">
+											<strong>Taxi</strong>
+										</div>
+										<div class="item">
+											<p>7:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-car"></i>
+										</div>
+										<div class="item">
+											<strong>Taxi</strong>
+										</div>
+										<div class="item">
+											<p>7:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+								</b-col>
+							</b-row>
+						</b-col>
+						<b-col class="box box_h" md="12" lg="12" xl="12">
+							<b-row>
+								<b-col class="items_box" md="2" lg="2" xl="2">
+									<div class="icon_box main_icon">
+										<i class="fas fa-plane-arrival"></i>
+									</div>
+									<div class="date_text">
+										12/12/2018
+									</div>
+									<div class="date_text">
+										12:00 pm
+									</div>
+								</b-col>
+								<b-col class="items_box" md="1" lg="1" xl="1" >
+									<div id="separador1" style="margin: auto;"></div>
+								</b-col>
+								<b-col md="9" lg="9" xl="9">
+									<div class="itemsh_box"> 
+										<div class="country">
+											<strong>Colombia</strong>
+										</div>
+										<div class="state">
+											<p style="margin-bottom: 0px; margin-top: 12px;">Valle del Cauca</p>
+										</div>
+									</div>
+									<div class="itemsh_box"> 
+										<div style="margin-right:4px;">
+											<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
+										</div>
+										<div>
+											<p>Avenida 2A # 75H - 35 Cali, Colombia 760050</p>
+										</div>
+									</div>
+								</b-col>
+								<b-col md="12" lg="12" xl="12">
+									<div id="separador2"></div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-taxi"></i>
+										</div>
+										<div class="item">
+											<strong>Taxi</strong>
+										</div>
+										<div class="item">
+											<p>7:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-car"></i>
+										</div>
+										<div class="item">
+											<strong>Vehiculo de flota</strong>
+										</div>
+										<div class="item">
+											<p>7:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+									<div class="itemsh_box center itinerario"> 
+										<div class="icon_box item_icon">
+											<i class="fas fa-bus-alt"></i>
+										</div>
+										<div class="item">
+											<strong>Bus</strong>
+										</div>
+										<div class="item">
+											<p>7:00 am -</p>
+										</div>
+										<div class="item">
+											<p>Desplazamiento de la casa al aeropuerto</p>
+										</div>
+									</div>
+								</b-col>
+							</b-row>
+						</b-col>
+					</b-row>
+				</b-col>
+				<b-col class="box box_v" md="4" lg="4" xl="4">
+					<b-row>
+						<b-col md="12" lg="12" xl="12">
+							<div class="boxtitle">
+								<i class="fas fa-key"></i>
+								<strong>Aprobaciones:</strong>
+							</div>
+							<b-row class="autori">
+								<b-col class="img_ger" md="4" lg="4" xl="4">
+									<img
+									  src="/img/avatars/6.jpg"
+									  class="img-avatar"
+									  alt="admin@bootstrapmaster.com" />
+								</b-col>
+								<b-col class="text_aut" md="8" lg="8" xl="8">
+									<div class="title_ger">
+										<strong style="font-size=1em;">Edgar Saltron</strong>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">Gerente de Information Technology</p>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">17/09/1992</p>
+									</div>
+								</b-col>
+							</b-row>
+							<b-row class="autori">
+								<b-col class="img_ger" md="4" lg="4" xl="4">
+									<img
+									  src="/img/avatars/6.jpg"
+									  class="img-avatar"
+									  alt="admin@bootstrapmaster.com" />
+								</b-col>
+								<b-col class="text_aut" md="8" lg="8" xl="8">
+									<div class="title_ger">
+										<strong style="font-size=1em;">Jackelyne Farias</strong>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">Gerente de Talento Humano</p>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">17/09/1992</p>
+									</div>
+								</b-col>
+							</b-row>
+							<b-row class="autori">
+								<b-col class="img_ger" md="4" lg="4" xl="4">
+									<img
+									  src="/img/avatars/6.jpg"
+									  class="img-avatar"
+									  alt="admin@bootstrapmaster.com" />
+								</b-col>
+								<b-col class="text_aut" md="8" lg="8" xl="8">
+									<div class="title_ger">
+										<strong style="font-size=1em;">Esmeralda Da Silva</strong>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">Directora</p>
+									</div>
+									<div>
+										<p style="margin-bottom: 0px;">17/09/1992</p>
+									</div>
+								</b-col>
+							</b-row>
+						</b-col>
+						<b-col md="12" lg="12" xl="12">
+							<div id="separador2"></div>
+							<div class="boxtitle">
+								<i class="fas fa-comment"></i>
+								<strong>Motivo:</strong>
+							</div>
+							<div class="boxdesc">
+								<p>
+									Mucho texto
+								</p>
+							</div>
+						</b-col>
+						<b-col md="12" lg="12" xl="12">
+							<div id="separador2"></div>
+							<div class="boxtitle">
+								<i class="fas fa-comment"></i>
+								<strong>Agenda:</strong>
+							</div>
+							<div class="boxdesc">
+								<p>
+									Mucho texto
+								</p>
+							</div>
+						</b-col>
+					</b-row>
+				</b-col>	
+			  </b-row>
 
-			  </el-tabs>
 
 		</el-card>
 	</div>
@@ -228,96 +326,144 @@
 	  },
 	}
 </script>
-<style>
-.{
-}
-.itemRight{
-	text-align: right;
-}
-.itemLeft{
-	text-align: left;
-}
-.trasItemRight{
-
-}
-.trasItemLeft{
-
-}
-.authContainer{
-	margin: auto;
-	width: 80%;
-	/*border: 2px solid #409EFF;*/
-	box-shadow: 2px 2px 10px#6ac8ff;
-	margin-bottom: 10px;
-
-}
-.labelCont{
-	font-size: 12px;
-	padding-top: 8px;
-	line-height: 10px;
-	text-align: right;
-	font-style: italic;
-	color: grey;
-}
-.valueCont{
-	text-align: right;
-	font-style: bold;
-
-}
-.authItem{
-	margin: 3px;
-	padding: 3px !important;
-	margin-right: 20px;
-}
-.authavatar{
-}
-div p{
-	margin-bottom: auto;
-}
-.resLabel{
-	text-shadow: 1px 1px 2px rgba(64, 158, 255, 0.8);
-	font-size: 12px;
-	line-height: 10px;
-	text-align: right;
-	font-style: italic;
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
+.autori{
 	margin: 5px;
-	color: grey;
 }
-.resValue{
-	text-shadow: 1px 1px 2px rgba(128, 128, 128, 0.7);
-	font-family: 'Helvetica Neue';
-	font-style: bold;
-	line-height: 25px;
-	font-size: 20px;
+#separador2{
+	height:1px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-bottom:1px solid white;
 }
-.contLeft{
-	text-align: left;
-	padding-left: 10px;
+#separador1{
+	// border-left: 1px solid white; /* Border on the left */
+	width: 1px; /* Width instead of height */
+	height: 100px;
+	background-color: white;
 }
-.contRight{
-	padding-right: 10px;
-	text-align: right;
+.icon_box{
+	margin-top: 0px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
-.el-steps{
-	margin-top: 25px;
-}
-.mainReservas{
-	margin: 25px;
-	margin-top: 5px;
-	display: inline-block;
-}
-.itemReservas{
-	width: 50%;
-}
-.mainLine{
-	padding: 5px;
-	margin: 7px;
-	/*border: 2px solid rgba(64, 158, 255, 0.5);*/
-	box-shadow: 2px 2px 10px rgba(64, 158, 255, 0.5);
-	display: flex;
-}
-.itemSingle{
-	font-size: 15px;
-	width: 100%;
+.box_data_reserv{
+	font-size: 12px;
+	.main_icon{
+		font-size: 3em;
+	}
+	.items_box{
+		margin: auto;
+		text-align: center;
+		display: flex;
+		flex-flow: column nowrap;
+		div {
+			width: 100%;
+			margin: 3px;
+		}
+		.date_text{
+			font-size: 1em;
+			letter-spacing: 1px;
+		}
+	}
+	.itemsh_box{
+		margin: auto;
+		text-align: center;
+		display: flex;
+		flex-flow: row nowrap;
+		position: relative;
+		div{
+			height: 100%;
+		}
+		p{
+			text-align: left;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.country{
+			font-size: 2em;
+			line-height: 2em;
+			letter-spacing: 1px;
+		}
+		.state{
+			font-size: 1.3em;
+			line-height: 2em;	
+		}
+		.item{
+			margin: auto;
+			p{
+				margin: auto;
+				line-height: 1.5em;
+			}
+		}
+		.item_icon{
+			font-size: 1.5em;
+		}
+
+	}
+	.itinerario{
+		margin-bottom: 5px;
+	}
+	.center{
+		justify-content:center !important;
+		font-size: 1.2em;
+	}
+	.box{
+		background-color: rgba(235, 235, 235, 1);
+		border: 1px solid white;
+		font-family: 'Poppins', sans-serif;
+	}
+	.box_v{
+		width: 100%;
+	}
+	// .box_h{
+	// 	height: 100%;
+	// }
+	.box_name{
+		p{
+			font-family: 'Raleway', sans-serif;
+			font-size: 1.2em;
+		}
+		strong{
+			text-transform: uppercase;
+			font-size: 2.2em;
+			line-height:2.2em;
+		}
+	}
+	.box_dep{
+		font-style: italic;
+		font-size: 1.3em;
+		line-height:1.3em;
+		display: flex; 
+		// justify-content: center; 
+		align-items: center;
+	}
+	.img_ger{
+		margin: auto;
+		padding: 0;
+		text-align: center;
+		img{
+			width: 60%;
+		}
+	}
+	.text_aut{
+		display: flex; 
+		flex-direction: column;
+		font-size: 0.8em;
+		line-height:0.9em;
+		text-align: left;
+		padding: 3px;
+		div{
+			margin-top:3px;
+			margin-bottom: 3px;
+			p{
+				// margin-bottom: 0px !important;
+			}
+		}
+		.title_ger{
+			font-size: 1.5em;
+		}
+	}
 }
 </style>

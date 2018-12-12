@@ -31,17 +31,5 @@ class Reservas extends Model
     	return $this->belongsTo( User::class,'id_user' ,'id');
     }
 
-    public function gerencia()
-    {
-    	return $this->hasManyThrough( 
-									Departamentos::class, 
-									User::class,
-									'id', //Llave unica de la tabla intermedia (User.id)
-									'id', //Llave ajena entre tabla intermedia y tabla final (User.id->Departamentos)
-									'id_user', //Llave ajena de la tabla origen con tabla intermedia (Reservas.id_user->User)
-									'gerencia'//Llave ajena de la tabla intermedia con tabla final (User->Departamentos.gerencia)
-    								);
-    }
-
 
 }

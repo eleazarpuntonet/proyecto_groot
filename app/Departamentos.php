@@ -15,6 +15,11 @@ class Departamentos extends Model
 
     public function coordinador()
     {
-    	// return $this->hasMany(Autorizaciones::class,'depto_id');
+    	return $this->hasOne(User::class,'id','coordinador_id');
+    }
+
+    public function gerente()
+    {
+    	return $this->hasOne(User::class,'id','coordinador_id');
     }
 }

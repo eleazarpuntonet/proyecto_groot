@@ -216,12 +216,12 @@ axios.interceptors.request.use((config)=>{
 
 axios.interceptors.response.use(null, (error)=>{
     console.log(error)
-    if (error.response.status == 401) {
-        store.commit('logout')
-        store.commit('loginFailed',{error: error.response.data.error}) 
-        router.push('/login')
-        console.log('Ejecuto salida')
-    }
+    // if (error.response.status == 401) {
+    //     store.commit('logout')
+    //     store.commit('loginFailed',{error: error.response.data.error}) 
+    //     router.push('/login')
+    //     console.log('Ejecuto salida')
+    // }
     return Promise.reject(error)
   })
 

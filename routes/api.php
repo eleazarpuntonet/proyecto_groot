@@ -113,7 +113,12 @@ Route::get('testing',function(){
 	$traslado->save();
 	$reserva_ 	  = Reservas::find($reserva->id)->traslados()->save($traslado);
 	
-	$reserva_     = Reservas::with(['traslados','autorizaciones.gerencia','autorizaciones.reservas','user','gerencia'])->find($reserva->id);
+	$reserva_     = Reservas::with([
+		'traslados',
+		'autorizaciones.gerencia.coordinador',
+		'autorizaciones.gerencia.gerente',
+		'autorizaciones.reservas',
+		'user'])->find($reserva->id);
 	$departamento = Departamentos::with('autorizaciones')->find($depto->id);
 	$autorizacion = Autorizaciones::with(['reservas', 'gerencia'])->find($auth->id);
 	$traslados    = Traslados::with(['proveedor','reservas'])->find($traslado->id);

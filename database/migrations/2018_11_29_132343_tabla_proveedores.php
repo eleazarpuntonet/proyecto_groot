@@ -19,6 +19,7 @@ class TablaProveedores extends Migration
             $table->string('r_social');
             $table->string('rif')->nullable();
             $table->string('t_contribuyente')->nullable();//Taxi, bus, avion, automovil
+            $table->string('pais')->nullable();
             $table->dateTime('dir')->nullable();
             $table->dateTime('session');
             $table->string('autor')->nullable();

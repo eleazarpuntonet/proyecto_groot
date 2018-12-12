@@ -73,10 +73,10 @@ class ReservasController extends Controller
 
         $reserva = Reservas::with([
             'traslados',
-            'autorizaciones.gerencia',
-            // 'autorizaciones.reservas',
+            'autorizaciones.gerencia.coordinador',
+            'autorizaciones.gerencia.gerente',
             'user',
-            'gerencia'])
+            ])
                         ->findOrFail($id);
         return response()->json([
             'reserva' => $reserva,
