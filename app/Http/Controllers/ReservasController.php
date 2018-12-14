@@ -59,7 +59,7 @@ class ReservasController extends Controller
         $reserva->agenda        = $request->input('agenda');
         // $reserva->save();
 
-        return $request->input('t_reserva');
+        return $request->input('viaticos');
     }
 
     /**

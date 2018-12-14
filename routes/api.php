@@ -13,6 +13,7 @@ use App\Traslados;
 use App\Departamentos;
 use App\Proveedor;
 use App\Contactos;
+use App\Viaticos;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,28 @@ Route::get('testing',function(){
 	$depto->coordinador_id  = 2;
 	$depto->dependencia     = 'Caracas';
 	$depto->save();
+
+	$viatico                  = Viaticos::where('cantidad', '=', '6')->delete();
+	$viatico_             = new App\Viaticos;
+	$viatico_->id_reserva = $reserva->id;
+	$viatico_->rubro      = 'Desayuno';
+	$viatico_->cantidad   = '6';
+	$viatico_->val_unit   = '600';
+	$viatico_->save();
+
+	$viatico_             = new App\Viaticos;
+	$viatico_->id_reserva = $reserva->id;
+	$viatico_->rubro      = 'Almuerzo';
+	$viatico_->cantidad   = '6';
+	$viatico_->val_unit   = '800';
+	$viatico_->save();
+
+	$viatico_             = new App\Viaticos;
+	$viatico_->id_reserva = $reserva->id;
+	$viatico_->rubro      = 'Cena';
+	$viatico_->cantidad   = '6';
+	$viatico_->val_unit   = '1200';
+	$viatico_->save();
 	
 
 	$auth                   = Autorizaciones::where('depto_id', '=', $depto->id)->delete();
@@ -115,6 +138,7 @@ Route::get('testing',function(){
 	
 	$reserva_     = Reservas::with([
 		'traslados',
+		'viaticos',
 		'autorizaciones.gerencia.coordinador',
 		'autorizaciones.gerencia.gerente',
 		'autorizaciones.reservas',

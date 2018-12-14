@@ -31,5 +31,10 @@ class Reservas extends Model
     	return $this->belongsTo( User::class,'id_user' ,'id');
     }
 
+    public function viaticos()
+    {
+    	return $this->hasMany( Viaticos::class,'id_reserva' ,'id');
+    }
+
 
 }

@@ -335,83 +335,111 @@
               </b-col>  
             </b-row>
 
-            <b-row class="formsection">
-              <b-col class="box_dias" lg="1" md="1">
-                <span>Dias</span><br>
-                <strong>25</strong>
-              </b-col> 
-              <b-col lg="11" md="11">
-                <el-checkbox-group
-                  v-model="viaticos"
-                  @change="checkChanged">
-                  <el-checkbox-button v-for="item in rubros" :label="item.label" :key="item.label">{{item.label}}</el-checkbox-button>
-                </el-checkbox-group>
+            <b-row class="formsection" >
+              <b-col class="section_viat" lg="12" md="12" style="display: flex; flex-direction:row;">
+                <b-row style="width:100%;">
+                  <b-col v-if="switch_flag">
+                    <b-form-group
+                      description="Nombre del rubro"
+                      label="Nombre">
+                      <el-input 
+                        style="width:100%;"
+                        v-model="viatico_temp.rubro"
+                        size="small"
+                        type="text">                    
+                      </el-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col v-else>
+                    <b-form-group
+                      description="Seleccione viatico"
+                      label="Viatico">
+                      <el-select v-model="selection" clearable placeholder="Select" size="small" @change="itemChange" style="width:100%;">
+                        <el-option
+                          v-for="item in rubros"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item">
+                        </el-option>
+                      </el-select>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group
+                      description="Dias de consumo"
+                      label="Dias">
+                      <el-input-number 
+                        id="diasInput"
+                        style="width:100%;"
+                        size="small" 
+                        v-model="viatico_temp.dias" 
+                        :min="0" 
+                        :max="100">
+                      </el-input-number>
+                    </b-form-group>
+                  </b-col>
+                  <b-col>
+                    <b-form-group
+                      description="Monto por unidad"
+                      label="Monto">
+                      <el-input 
+                        style="width:100%;"
+                        v-model="viatico_temp.unit"
+                        size="small"
+                        type="text">                    
+                      </el-input>
+                    </b-form-group>
+                  </b-col>
+                  <b-col lg="1" md="1" style="display: flex; justify-content: center;">
+                    <el-button 
+                      @click="addViat"
+                      type="info" 
+                      icon="el-icon-plus" 
+                      size="mini" 
+                      circle 
+                      style="margin: auto;">
+                    </el-button>
+                  </b-col>
+                </b-row>
+
               </b-col>  
               <template v-if="this.dataSend.viaticos != 0">
-                <b-col lg="12" md="12">
+                <b-col class="section_viat" lg="12" md="12">
                     <el-table
+                    show-summary
+                    sum-text="Total viaticos"
                       :data="dataSend.viaticos"
                       style="width: 100%">
                       <el-table-column
+                      sortable
                         prop="rubro"
                         label="Rubro"
                         width="180">
                       </el-table-column>
                       <el-table-column
-                        prop="cant"
-                        label="Cantidad"
-                        width="180">
-                      </el-table-column>
-                      <el-table-column
-                        prop="dias"
-                        label="Dias">
-                      </el-table-column>
-                      <el-table-column
+                      sortable
                         prop="val_unit"
                         label="Valor/unidad">
                       </el-table-column>
                       <el-table-column
+                      sortable
                         prop="total"
                         label="Total">
                       </el-table-column>
+                      <el-table-column
+                        label="Acciones">
+                        <template slot-scope="scope">
+                          <el-button
+                            @click.native.prevent="deleteRow(scope.$index, dataSend.viaticos)"
+                            type="text"
+                            size="small">
+                            Eliminar
+                          </el-button>
+                        </template>
+                      </el-table-column>
                     </el-table>
                 </b-col>
-              </template>
-              <b-col lg="12" md="12">
-                <b-row>
-                  <b-col lg="3" md="3">
-                    <el-input
-                      placeholder="Desayuno"
-                      v-model="viatico_temp.rubro"
-                      :disabled="false">
-                    </el-input>
-                  </b-col>
-                  <b-col>
-                    <el-input
-                      placeholder="Cantidad"
-                      v-model="viatico_temp.cant"
-                      :disabled="false">
-                    </el-input>
-                  </b-col>
-                  <b-col>
-                    <el-input
-                      placeholder="Monto/unidad"
-                      v-model="viatico_temp.unit"
-                      :disabled="false">
-                    </el-input>
-                  </b-col>
-
-                  <b-col class="item_viat">
-                    <el-button 
-                      @click="addViatico"
-                      type="success" 
-                      icon="el-icon-check" 
-                      circle
-                      size="small" 
-                      style="margin:auto;"></el-button>
-                  </b-col>
-                </b-row>
-              </b-col>             
+              </template>            
             </b-row>
 
             <el-row class="formsection">
@@ -438,12 +466,12 @@ import data_countries from '../data_countries.json';
 class Viatico{
   constructor(data){
     this.rubro    = data.rubro
-    this.cant     = data.cant
     this.dias     = data.dias
     this.val_unit = data.unit
-    this.total    = this.cant * this.val_unit
+    this.total = this.dias * this.val_unit
   }
 }
+
 export default {
   /*
   *
@@ -451,6 +479,8 @@ export default {
   */
   data () {
     return {
+      switch_flag: false,
+      selection: null,
       reserva_switch : false,
       dias: 25,
       rubros: [
@@ -484,6 +514,10 @@ export default {
                 monto: 600,
                 label: 'Parking',
               },
+              {
+                value:'otros',
+                label: 'Otros',
+              },
       ],
       viatico_temp: {
         rubro: null,
@@ -492,15 +526,6 @@ export default {
         unit: null,
         total : this.cant,
       },
-      viat_label:{
-        dias        : 'Dias',
-        c_hospedaje : 'Hospedaje',
-        s_hospedaje : 'Sin hospedaje',
-        rubro       : 'Rubros',
-        rubros      : ['Desayuno','Almuerzo','Cena','Alojamiento','Gasolina','Parking','Otros'],
-        moneda      : 'Bs.S'
-      },
-      viaticos: [],
       countryOptions    : [{ 
         value    : null, text: 'Seleccione un pais de origen' 
       }],
@@ -674,52 +699,43 @@ export default {
       }
   },
   methods: {
+    deleteRow(index, rows) {
+      rows.splice(index, 1);
+    },
+    itemChange(item){
+      // console.log(item)
+      this.viatico_temp.rubro = item.value
+      if (item.value != 'otros') {
+        this.rubros.forEach((val,i)=>{
+          if (val.value == item.value) {
+            var a = moment(this.dataSend.date_a);
+            var b = moment(this.dataSend.date_b);
+            this.viatico_temp.unit = val.monto
+            this.viatico_temp.dias = b.diff(a, 'days')
+          }
+        })
+      }else{
+        this.switch_flag=true
+        this.viatico_temp.cant = null
+        this.viatico_temp.dias= null
+        this.viatico_temp.unit= null
+        this.viatico_temp.rubro= null
+      }
+    },
+    addViat(item){
+      this.switch_flag=false
+      this.dataSend.viaticos.push(new Viatico(this.viatico_temp))
+      this.viatico_temp.cant = null
+      this.viatico_temp.dias= null
+      this.viatico_temp.unit= null
+      this.viatico_temp.rubro= null
+    },
     switchChange(){
       if (this.reserva_switch == true) {
         this.dataSend.t_reserva = 'nac'
       } else {
         this.dataSend.t_reserva = 'int'
       }
-    },
-    addViatico(){
-      console.log('Agrego viatocop')
-      
-      console.log(this.dataSend.viaticos)
-      let fecha1 = moment(this.dataSend.date_a);
-      let fecha2 = moment(this.dataSend.date_b);
-      let dif = fecha2.diff(fecha1,'days')
-      this.viatico_temp.dias = dif
-      this.dataSend.viaticos.push(new Viatico(this.viatico_temp))
-      this.viatico_temp.rubro = null
-      this.viatico_temp.cant = null
-      this.viatico_temp.dias = null
-      this.viatico_temp.dias = null
-      this.viatico_temp.unit = null
-      this.viatico_temp.total = null
-    },
-    checkChanged(rubro){
-      // console.log(this.viaticos.length)
-      console.log(this.viaticos[this.viaticos.length-1])
-      this.rubros.forEach((val,i)=>{
-        if (this.viaticos[this.viaticos.length-1] == val.label) {
-          console.log(val)
-          let fecha1 = moment(this.dataSend.date_a);
-          let fecha2 = moment(this.dataSend.date_b);
-          let dif = fecha2.diff(fecha1,'days')
-          this.viatico_temp.rubro = this.viaticos[this.viaticos.length-1]
-          this.viatico_temp.cant = this.dias
-          this.viatico_temp.dias = dif
-          this.viatico_temp.unit = val.monto
-          this.dataSend.viaticos.push(new Viatico(this.viatico_temp))
-          console.log(this.dataSend.viaticos)
-
-          this.viatico_temp.rubro = null
-          this.viatico_temp.cant = null
-          this.viatico_temp.dias = null
-          this.viatico_temp.unit = null
-          this.viatico_temp.total = null
-        }
-      })
     },
     getCities(selection){
       axios.get(route('metacontroller.ve_ciudades',selection)) 
@@ -787,6 +803,17 @@ export default {
 }
 </script>
 <style lang="scss">
+.info{
+  margin: 10px;
+  border: 1px solid rgba(220, 223, 230, 1);
+  margin-top: 0px;
+  border-radius: 3px;
+  align-items: center;
+  padding: 5px;
+}
+.section_viat{
+  margin: 10px;
+}
 .item_viat{
   text-align: center;
 }
