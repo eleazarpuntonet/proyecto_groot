@@ -37,6 +37,7 @@ import BootstrapVue          from 'bootstrap-vue'
 import App                   from './App.vue'
 import router                from './CoreUi/src/router/index.js'
 import {getLocalUser}        from './auth.js'
+import { Notification } from 'element-ui';
 Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
 Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
 Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -215,13 +216,36 @@ axios.interceptors.request.use((config)=>{
   })
 
 axios.interceptors.response.use(null, (error)=>{
-    console.log(error)
-    // if (error.response.status == 401) {
-    //     store.commit('logout')
-    //     store.commit('loginFailed',{error: error.response.data.error}) 
-    //     router.push('/login')
-    //     console.log('Ejecuto salida')
-    // }
+    if (error.response) {
+        if (error.response.status == 401) {
+            Notification.error({
+              title: 'Error '+error.response.status,
+              message: 'No autenticado'
+            });
+            // store.commit('logout')
+            // store.commit('loginFailed',{error: error.response.data.error}) 
+            // router.push('/login')
+            console.log('Ejecuto salida')
+        }
+      // Request made and server responded
+      // console.log(error.response.data);
+      // console.log(error.response.status);
+      // console.log(error.response.headers);
+    } else if (error.request) {
+      // The request was made but no response was received
+      Notification.error({
+        title: 'Error '+error.request,
+        message: 'No se ha recibido respuesta'
+      });
+      // console.log(error.request);
+    } else { 
+        Notification.error({
+          title: 'Error '+error.message,
+          message: 'Ups, algo sucedio'
+        });
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
     return Promise.reject(error)
   })
 

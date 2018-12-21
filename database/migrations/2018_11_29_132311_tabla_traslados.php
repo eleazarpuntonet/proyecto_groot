@@ -16,6 +16,7 @@ class TablaTraslados extends Migration
         Schema::create('traslados', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('reservas_id');
+            $table->integer('localidad')->nullable();//Origen //Destino
             $table->string('tipo');//Terrestre,Aereo
             $table->string('origen');
             $table->string('destino');

@@ -95,6 +95,13 @@ var addAutorizacion = new menuItem({
       class: 'nav-item',
     })
 
+var trasladositem = new menuItem({
+      name: 'Traslados',
+      url: '/reservas/traslados',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+    })
+
 var items_Reservas = new menuItem({
       name: 'Reservas',
       url: '/reservas',
@@ -104,6 +111,7 @@ var items_Reservas = new menuItem({
         s_reserva,
         index_reservas,
         addAutorizacion,
+        trasladositem,
       ])
 
 export default {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reservas;
+use App\Viaticos;
 
 class ReservasController extends Controller
 {
@@ -18,7 +19,7 @@ class ReservasController extends Controller
     public function index($page='')
     {
 
-        $reservas = Reservas::with('traslados')->with('autorizaciones')->paginate();
+        $reservas = Reservas::with('traslados')->with(['autorizaciones','user.departamento','traslados'])->paginate();
         return response()->json([
             'reservas' => $reservas,
         ]);
@@ -46,7 +47,8 @@ class ReservasController extends Controller
     public function store(Request $request)
     {
         $reserva                = new Reservas;
-        $reserva->alcance       = $request->input('t_reserva');
+        $reserva->id_user       = $request->input('id_user');
+        $reserva->alcance       = $request->input('alcance');
         $reserva->origen_a      = $request->input('from_a');
         $reserva->origen_b      = $request->input('from_b');
         $reserva->origen_det    = $request->input('adress_a');
@@ -57,9 +59,19 @@ class ReservasController extends Controller
         $reserva->destino_det   = $request->input('adress_b');
         $reserva->motivo        = $request->input('motivo');
         $reserva->agenda        = $request->input('agenda');
-        // $reserva->save();
+        $reserva->save();
+        if (!empty($request->input('viaticos'))) {
 
-        return $request->input('viaticos');
+            foreach ($request->input('viaticos') as $x => $val) {
+                $viatico           = new Viaticos;
+                $viatico->rubro    = $val['rubro'];
+                $viatico->cantidad = $val['dias'];
+                $viatico->val_unit = $val['val_unit'];
+                Reservas::find($reserva->id)->viaticos()->save($viatico);
+
+            }
+        }
+        return Reservas::with('viaticos')->find($reserva->id);
     }
 
     /**
@@ -72,10 +84,11 @@ class ReservasController extends Controller
     {
 
         $reserva = Reservas::with([
+            'viaticos',
             'traslados',
             'autorizaciones.gerencia.coordinador',
             'autorizaciones.gerencia.gerente',
-            'user',
+            'user.departamento',
             ])
                         ->findOrFail($id);
         return response()->json([

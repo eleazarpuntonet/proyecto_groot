@@ -30,23 +30,28 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function reservas()
     {
-        return $this->belongsToMany(Role::class,'assigned_roles');
+        return $this->hasMany( Reservas::class, 'id','id_user' );
     }
 
-    public function hasRoles(array $roles)
+    public function departamento()
     {
-        foreach ($roles as $role) {
-            foreach ($this->roles as $userRole) {
-    
-                if ($userRole->name === $role) {
-                    return true;
-                }
+        return $this->hasOne(Departamentos::class,'id','gerencia');
+    }
 
-            }
-        }
-        return false;
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class,'assigned_roles','user_id','role_id');
+
+                // return $this->hasManyThrough( 
+                //                          Role::class, //tabla destino
+                //                          AssignedTableRoles::class,//tabla intermedia
+                //                          'user_id', //Llave que relaciona la TABLA INTERMEDIA -> TABLA ORIGEN (Autorizaciones)
+                //                          'id', //Llave que relaciona la TABLA DESTINO -> TABLA INTERMEDIA (Autorizaciones->Departamentos)
+                //                          'id', //Llave que relaciona la TABLA ORIGEN -> TABLA INTERMEDIA (Reservas->Autorizaciones)
+                //                          'role_id'//Llave que relaciona la TABLA INTERMEDIA -> TABLA DESTINO (Autorizaciones->Departamentos)
+                //                          );
     }
 
     public function getJWTIdentifier()
@@ -59,8 +64,5 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function reservas()
-    {
-        return $this->hasMany( Reservas::class, 'id','id_user' );
-    }
+
 }

@@ -50,106 +50,113 @@ Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metaco
 
 Route::get('testing',function(){
 
-	$proveedor                  = Proveedor::where('nombre', '=', 'GoDaddy')->delete();
-	$proveedor                  = new Proveedor;
-	$proveedor->nombre          = 'GoDaddy';
-	$proveedor->r_social        = 'godaddy.com';
-	$proveedor->rif             = 'J-1212121';
-	$proveedor->t_contribuyente = 'Normal';
-	$proveedor->dir             = 'Bla bla bla bla bla';
-	$proveedor->autor           = 1;
-	$proveedor->save();
+	// $proveedor                  = Proveedor::where('nombre', '=', 'GoDaddy')->delete();
+	// $proveedor                  = new Proveedor;
+	// $proveedor->nombre          = 'GoDaddy';
+	// $proveedor->r_social        = 'godaddy.com';
+	// $proveedor->rif             = 'J-1212121';
+	// $proveedor->t_contribuyente = 'Normal';
+	// $proveedor->dir             = 'Bla bla bla bla bla';
+	// $proveedor->autor           = 1;
+	// $proveedor->save();
 
-	$contacto         = Contactos::where('nombre', '=', 'Alguien contesta')->delete();
-	$contacto         = new Contactos;
-	$contacto->nombre = 'Alguien contesta';
-	$contacto->medio  = 'Email';
-	$contacto->value  = 'Alguien@gmail.com';
-	$contacto->save();
-	$proveedor_       = Proveedor::find($proveedor->id)->contacto()->save($contacto);
+	// $contacto         = Contactos::where('nombre', '=', 'Alguien contesta')->delete();
+	// $contacto         = new Contactos;
+	// $contacto->nombre = 'Alguien contesta';
+	// $contacto->medio  = 'Email';
+	// $contacto->value  = 'Alguien@gmail.com';
+	// $contacto->save();
+	// $proveedor_       = Proveedor::find($proveedor->id)->contacto()->save($contacto);
 	
 
-	$reserva                = Reservas::where('alcance', '=', 'Nacional')->delete();
-	$reserva                = new Reservas;
-	$reserva->id_user       = 1;
-	$reserva->alcance       = 'Nacional';
-	$reserva->origen_a      = 'Caracas';
-	$reserva->origen_b      = 'San Martin';
-	$reserva->origen_det    = 'Av San Martin';
-	$reserva->fecha_partida = '2018-08-30 00:28:08';
-	$reserva->fecha_retorno = '2018-09-17 21:03:31';
-	$reserva->destino_a     = 'Bolivar';
-	$reserva->destino_b     = 'Paraguana';
-	$reserva->destino_det   = '8 Becker Lane';
-	$reserva->motivo        = 'Rumba';
-	$reserva->agenda        = 'Rumbear mucho';
-	$reserva->save();
+	// // $reserva                = Reservas::where('alcance', '=', 'Nacional')->delete();
+	// $reserva                = new Reservas;
+	// $reserva->id_user       = 1;
+	// $reserva->alcance       = 'Nacional';
+	// $reserva->origen_a      = 'Caracas';
+	// $reserva->origen_b      = 'San Martin';
+	// $reserva->origen_det    = 'Av San Martin';
+	// $reserva->fecha_partida = '2018-08-30 00:28:08';
+	// $reserva->fecha_retorno = '2018-09-17 21:03:31';
+	// $reserva->destino_a     = 'Bolivar';
+	// $reserva->destino_b     = 'Paraguana';
+	// $reserva->destino_det   = '8 Becker Lane';
+	// $reserva->motivo        = 'Rumba';
+	// $reserva->agenda        = 'Rumbear mucho';
+	// $reserva->save();
 
-	$depto                  = Departamentos::where('ref', '=', 'IT')->delete();
-	$depto                  = new Departamentos;
-	$depto->disp_name       = 'Information Techology';
-	$depto->ref             = 'IT';
-	$depto->gerente_id      = 1;
-	$depto->coordinador_id  = 2;
-	$depto->dependencia     = 'Caracas';
-	$depto->save();
+	// $depto                  = Departamentos::where('ref', '=', 'IT')->delete();
+	// $depto                  = new Departamentos;
+	// $depto->disp_name       = 'Information Techology';
+	// $depto->ref             = 'IT';
+	// $depto->gerente_id      = 1;
+	// $depto->coordinador_id  = 2;
+	// $depto->dependencia     = 'Caracas';
+	// $depto->save();
 
-	$viatico                  = Viaticos::where('cantidad', '=', '6')->delete();
-	$viatico_             = new App\Viaticos;
-	$viatico_->id_reserva = $reserva->id;
-	$viatico_->rubro      = 'Desayuno';
-	$viatico_->cantidad   = '6';
-	$viatico_->val_unit   = '600';
-	$viatico_->save();
+	// $viatico                  = Viaticos::where('cantidad', '=', '6')->delete();
+	// $viatico_             = new App\Viaticos;
+	// $viatico_->id_reserva = $reserva->id;
+	// $viatico_->rubro      = 'Desayuno';
+	// $viatico_->cantidad   = '6';
+	// $viatico_->val_unit   = '600';
+	// $viatico_->save();
 
-	$viatico_             = new App\Viaticos;
-	$viatico_->id_reserva = $reserva->id;
-	$viatico_->rubro      = 'Almuerzo';
-	$viatico_->cantidad   = '6';
-	$viatico_->val_unit   = '800';
-	$viatico_->save();
+	// $viatico_             = new App\Viaticos;
+	// $viatico_->id_reserva = $reserva->id;
+	// $viatico_->rubro      = 'Almuerzo';
+	// $viatico_->cantidad   = '6';
+	// $viatico_->val_unit   = '800';
+	// $viatico_->save();
 
-	$viatico_             = new App\Viaticos;
-	$viatico_->id_reserva = $reserva->id;
-	$viatico_->rubro      = 'Cena';
-	$viatico_->cantidad   = '6';
-	$viatico_->val_unit   = '1200';
-	$viatico_->save();
+	// $viatico_             = new App\Viaticos;
+	// $viatico_->id_reserva = $reserva->id;
+	// $viatico_->rubro      = 'Cena';
+	// $viatico_->cantidad   = '6';
+	// $viatico_->val_unit   = '1200';
+	// $viatico_->save();
 	
 
-	$auth                   = Autorizaciones::where('depto_id', '=', $depto->id)->delete();
-	$auth                   = new Autorizaciones;
-	$auth->date_auth        = '2018-06-22 12:21:03';
-	$auth->depto_id         = $depto->id;
-	$auth->reserva_id       = $reserva->id;
-	$auth->save();
+	// // $auth                   = Autorizaciones::where('depto_id', '=', $depto->id)->delete();
+	// $auth                   = new Autorizaciones;
+	// $auth->date_auth        = '2018-06-22 12:21:03';
+	// $auth->depto_id         = $depto->id;
+	// $auth->tipo         	= 'aprobacion';
+	// $auth->depto_id         = $depto->id;
+	// $auth->reserva_id       = $reserva->id;
+	// // $auth->save();
+	// $auth 	  = Reservas::find($reserva->id)->autorizaciones()->save($auth);
 
-	$traslado = Traslados::where('tipo','=','terrestre')->delete();
-	$traslado              = new Traslados;
-	$traslado->reservas_id = $reserva->id;
-	$traslado->tipo        = 'Terrestre';
-	$traslado->origen      = 'Direccion 1';
-	$traslado->destino     = 'Direccion 2';
-	$traslado->servicio    = 'Taxi';
-	$traslado->proveedor   = $proveedor->id;
-	$traslado->session     = 1;
-	$traslado->save();
-	$reserva_ 	  = Reservas::find($reserva->id)->traslados()->save($traslado);
+	// $traslado = Traslados::where('tipo','=','terrestre')->delete();
+	// $traslado              = new Traslados;
+	// $traslado->reservas_id = $reserva->id;
+	// $traslado->tipo        = 'Terrestre';
+	// $traslado->origen      = 'Direccion 1';
+	// $traslado->destino     = 'Direccion 2';
+	// $traslado->servicio    = 'Taxi';
+	// $traslado->proveedor   = $proveedor->id;
+	// $traslado->session     = 1;
+	// $traslado->save();
+	// $reserva_ 	  = Reservas::find($reserva->id)->traslados()->save($traslado);
 	
-	$reserva_     = Reservas::with([
-		'traslados',
-		'viaticos',
-		'autorizaciones.gerencia.coordinador',
-		'autorizaciones.gerencia.gerente',
-		'autorizaciones.reservas',
-		'user'])->find($reserva->id);
-	$departamento = Departamentos::with('autorizaciones')->find($depto->id);
-	$autorizacion = Autorizaciones::with(['reservas', 'gerencia'])->find($auth->id);
-	$traslados    = Traslados::with(['proveedor','reservas'])->find($traslado->id);
-	$proveedor_   = Proveedor::with(['traslado','contacto'])->find($proveedor->id);
+	// $reserva_     = Reservas::with([
+	// 	// 'traslados',
+	// 	// 'viaticos',
+	// 	'autorizaciones',
+	// 	// 'autorizaciones.gerencia.coordinador',
+	// 	// 'autorizaciones.gerencia.gerente',
+	// 	'autorizaciones.autorizable',
+	// 	'user'])->find($reserva->id);
+	// $departamento = Departamentos::with('autorizaciones')->find($reserva);
+	// $autorizacion = Autorizaciones::with(['autorizable', 'gerencia'])->find($reserva->id);
+	// $traslados    = Traslados::with(['proveedor','reservas'])->find($traslado->id);
+	// $proveedor_   = Proveedor::with(['traslado','contacto'])->find($proveedor->id);
+
+	$usuario = User::with(['roles','gerencia'])->find(1);
 	// dd($reserva_);
 	return response()->json([
-		'Reserva'      => $reserva_,
+		// 'Reserva'      => $reserva_,
+		'Usuario'      => $usuario,
 		// 'Departamento' => $departamento,
 		// 'Autorizacion' => $autorizacion,
 		// 'Traslados'    => $traslados,

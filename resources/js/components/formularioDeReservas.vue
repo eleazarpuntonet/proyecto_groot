@@ -479,6 +479,7 @@ export default {
   */
   data () {
     return {
+      user: null,
       switch_flag: false,
       selection: null,
       reserva_switch : false,
@@ -632,6 +633,7 @@ export default {
       },
 
       // dataSend : {
+       //   alcance: null,
       //   t_reserva: null,
       //   from_a   : null,
       //   from_b   : null,
@@ -647,18 +649,20 @@ export default {
       // },
       
       dataSend : {
-        t_reserva: 'nacional',
-        from_a   : 'Caracas',
-        from_b   : 'Catia',
-        adress_a : 'Catia nro 58 496',
-        date_a   : '2017-11-14',
-        to_a     : 'Paris',
-        to_b     : 'Francia',
-        adress_b : 'Bla bla bla',
-        date_b   : '2017-11-20',
-        motivo   : 'Viajes',
-        agenda   : 'Mucho alcohol',
-        viaticos : [],
+        alcance   : null,
+        id_user   : this.$store.getters.currentUser.id,
+        t_reserva : null,
+        from_a    : 'Caracas',
+        from_b    : 'Catia',
+        adress_a  : 'Catia nro 58 496',
+        date_a    : '2017-11-14',
+        to_a      : 'Paris',
+        to_b      : 'Francia',
+        adress_b  : 'Bla bla bla',
+        date_b    : '2017-11-20',
+        motivo    : 'Viajes',
+        agenda    : 'Viajar',
+        viaticos  : [],
       },
       t_reserva    : [
         {value : null, text: 'Seleccione un tipo de reserva'},
@@ -732,10 +736,23 @@ export default {
     },
     switchChange(){
       if (this.reserva_switch == true) {
+        this.dataSend.alcance = 'nacional'
         this.dataSend.t_reserva = 'nac'
       } else {
         this.dataSend.t_reserva = 'int'
+        this.dataSend.alcance = 'internacional'
       }
+      this.dataSend.from_a    = null
+      this.dataSend.from_b    = null
+      this.dataSend.adress_a  = null
+      this.dataSend.date_a    = null
+      this.dataSend.to_a      = null
+      this.dataSend.to_b      = null
+      this.dataSend.adress_b  = null
+      this.dataSend.date_b    = null
+      this.dataSend.motivo    = null
+      this.dataSend.agenda    = null
+      this.dataSend.viaticos  = []
     },
     getCities(selection){
       axios.get(route('metacontroller.ve_ciudades',selection)) 
@@ -775,13 +792,18 @@ export default {
       var user = this.$store.getters.currentUser
       axios.post(route('reservas.store'),this.dataSend) 
           .then(response => {
-              console.log(response)
+              this.$notify({
+                title: response.status,
+                message: 'Registro creado!',
+                type: 'success'
+              });
             })
           .catch(error => {
-            console.log(error)
-
+            this.$notify.error({
+              title: 'Error '+error.response.status,
+              message: error.response.data.message
+            });
           })
-      // console.log(this.dataSend)
     }
   },
   beforeMount(){

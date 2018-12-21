@@ -10,6 +10,6 @@ class Role extends Model
 	
     public function user()
     {
-    	return $this->belongsToMany(User::class,'assigned_roles')->onDelete('cascade');
+    	return $this->belongsToMany(User::class,'assigned_roles');
     }
 }

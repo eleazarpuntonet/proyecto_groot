@@ -13,39 +13,8 @@
 					    :data="dataReservas"
 					    style="width: 100%">
 						    <el-table-column
-						    	fixed 
-						    	type="expand">
-						      <template slot-scope="props">
-						      	<el-card 
-						      		shadow="always"
-						      		class="box-card"
-						      		>
-						      	  <div slot="header" class="clearfix">
-						      	    <strong>Detalles de Reserva</strong>
-						      	    <el-button style="float: right; padding: 3px 0" type="text">Agregar detalles</el-button>
-						      	  </div>
-
-							        <p><strong>Origen:</strong> {{ props.row.origen_a }}, {{ props.row.origen_b }}</p>
-							        <p><strong>Dirección:</strong> {{ props.row.origen_det }}</p>
-							        <p><strong>Fecha de Partida:</strong> {{ props.row.fecha_partida }}</p>
-
-									<br>
-							        <p><strong>Destino:</strong> {{ props.row.destino_a }}, {{ props.row.destino_b }}</p>
-							        <p><strong>Dirección:</strong> {{ props.row.destino_det }}</p>
-							        <p><strong>Fecha de Retorno:</strong> {{ props.row.fecha_retorno }}</p>
-											
-									<br>
-									<p><strong>Agenda:</strong> {{ props.row.agenda }}</p>
-									<p><strong>Motivo:</strong> {{ props.row.motivo }}</p>
-
-									<br>
-									<el-steps :space="200" :active="1" finish-status="success">
-									  <el-step title="Reserva aprobada"></el-step>
-									  <el-step title="Planificando"></el-step>
-									  <el-step title="En ejecucion"></el-step>
-									</el-steps>
-						      	</el-card>
-						      </template>
+						      label="Nro reserva"
+						      prop="id">
 						    </el-table-column>
 						    <el-table-column
 						      label="Alcance"
@@ -60,12 +29,9 @@
 						      prop="destino_a">
 						    </el-table-column>
 						    <el-table-column
-						      label="Fecha de partida"
-						      prop="fecha_partida">
-						    </el-table-column>
-						    <el-table-column
-						      label="Fecha de retorno"
-						      prop="fecha_retorno">
+						    sortable
+						      label="Fecha de emision"
+						      prop="updated_at">
 						    </el-table-column>
 
 						    <el-table-column
@@ -184,6 +150,7 @@ export default {
       console.log(index, row);
     },
 	handleShow(index, row) {
+		index++
 		this.$router.push({ path: `/reservas/${index}` })
 	    console.log(index, row);
   	},
@@ -207,7 +174,10 @@ export default {
   	        console.log(response.data.reservas)
   	      })
   	    .catch(error => {
-  	      console.log(error)
+  	      // this.$notify.error({
+  	      //   title: 'Error '+error.response.status,
+  	      //   message: error.response.data.message
+  	      // });
   	    })
   }
 }

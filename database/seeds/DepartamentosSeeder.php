@@ -17,13 +17,10 @@ class DepartamentosSeeder extends Seeder
     	Departamentos::truncate();
 
         foreach ($departamentos as $department) {
-            $depto                 = new App\Departamentos;
-            $depto->disp_name      = $department->disp_name;
-            $depto->ref            = $department->ref;
-            $depto->gerente_id     = $department->gerente_id;
-            $depto->coordinador_id = $department->coordinador_id;
-            $depto->dependencia    = $department->dependencia;
-            $depto->save();
+            $departamentos                 = new App\Departamentos;
+            $departamentos->disp_name      = $department->disp_name;
+            $departamentos->ref            = $department->ref;
+            $departamentos->save();
         }
     }
 }

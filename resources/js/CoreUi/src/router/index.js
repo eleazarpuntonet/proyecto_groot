@@ -62,6 +62,7 @@ import index_Reservas    from '../../../components/indexReservas'
 import detalle_Reserva    from '../../../components/detalleReservas'
 import perfilDeUsuario    from '../../../components/userProfile'
 import autReservas    from '../../../components/autorizacionesForm'
+import traslados_reserva    from '../../../components/trasladosForm'
 
 Vue.use(Router)
 
@@ -161,6 +162,11 @@ var MenuReservas = new Route_item({
     name:'Reservas',
     redir: '/reservas/listado_reservas'
   },[
+    new Route_item({
+        path:'traslados',
+        name:'Traslados',
+        comp: traslados_reserva,
+      }),
       new Route_item({
           path:'autorizaciones',
           name:'Gestion de Autorizaciones',

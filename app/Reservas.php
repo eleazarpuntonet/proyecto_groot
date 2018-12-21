@@ -13,7 +13,7 @@ class Reservas extends Model
         return $this->hasMany( Traslados::class, 'reservas_id','id' );
     }
 
-    public function autorizaciones()
+    public function autorizaciones_old()
     {
         return $this->hasMany( Autorizaciones::class, 'reserva_id' );
     	// return $this->hasManyThrough( 
@@ -34,6 +34,11 @@ class Reservas extends Model
     public function viaticos()
     {
     	return $this->hasMany( Viaticos::class,'id_reserva' ,'id');
+    }
+
+    public function autorizaciones()
+    {
+        return $this->morphMany(Autorizaciones::class, 'autorizable');
     }
 
 
