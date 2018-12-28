@@ -60,6 +60,7 @@ class ReservasController extends Controller
         $reserva->motivo        = $request->input('motivo');
         $reserva->agenda        = $request->input('agenda');
         $reserva->save();
+        
         if (!empty($request->input('viaticos'))) {
 
             foreach ($request->input('viaticos') as $x => $val) {

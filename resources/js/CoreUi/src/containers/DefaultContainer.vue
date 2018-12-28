@@ -3,8 +3,9 @@
     <AppHeader fixed>
       <SidebarToggler class="d-lg-none" display="md" mobile />
       <b-link class="navbar-brand" to="#">
-        <img class="navbar-brand-full" src="/img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-        <img class="navbar-brand-minimized" src="/img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+        <img class="navbar-brand-full" src="/img/spsapplogo.png" width="75%" height="75%" alt="Logo SPS">
+        <!-- <img class="navbar-brand-full" src="/img/brand/spsapplogo.png" width="89" height="25" alt="CoreUI Logo"> -->
+        <img class="navbar-brand-minimized" src="/img/brand/spsapplogo.png" width="30" height="30" alt="CoreUI Logo">
       </b-link>
       <SidebarToggler class="d-md-down-none" display="lg" />
       <b-navbar-nav class="d-md-down-none">

@@ -42,6 +42,8 @@ Route::resource('sites','sitesController');
 
 Route::resource('usuarios', 'UsersController');
 
+Route::resource('traslados', 'TrasladosController');
+
 Route::resource('reservas', 'ReservasController');
 
 Route::get('estadoslist','metacontroller@ve_estados')->name('metacontroller.ve_estados');

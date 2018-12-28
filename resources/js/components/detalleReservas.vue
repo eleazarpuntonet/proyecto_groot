@@ -35,7 +35,7 @@
 				</b-col>
 				<b-col class="box_notif notif_section" md="12" lg="12" xl="12">
 					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;"><strong>Generar autorizacion de </strong><i>reserva</i></p>
+						<p style="margin-bottom: 0px; font-family: 'Eurostile LTS';"><strong>Generar autorizacion de </strong><i>reserva</i></p>
 					</div>
 					<div class="itemsh_box">
 						<el-button-group>
@@ -623,7 +623,7 @@ class Reserva{
 	}
 </script>
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 .autori{
 	margin: 5px;
 }

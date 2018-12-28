@@ -1,7 +1,102 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+$font_path: '../../public/fonts/spsfonts/';
 
+
+@font-face{
+  font-family       : 'Eurostile LTS Demi';
+  src               : url($font_path +'EurostileLTStd-Demi.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'Eurostile LTS DemiOblique';
+  src               : url($font_path +'EurostileLTStd-DemiOblique.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'Eurostile LTS Ex2';
+  src               : url($font_path +'EurostileLTStd-Ex2.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'Eurostile LTS Oblique';
+  src               : url($font_path +'EurostileLTStd-Oblique.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'Eurostile LTS';
+  src               : url($font_path +'EurostileLTStd.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'HelveticaNeue LTS';
+  src               : url($font_path +'HelveticaNeueLTStd-It.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'HelveticaNeue LTS Lt';
+  src               : url($font_path +'HelveticaNeueLTStd-Lt.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'HelveticaNeue Condensed';
+  src               : url($font_path +'HelveticaNeueLTStd-LtCn.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'HelveticaNeue Italic';
+  src               : url($font_path +'HelveticaNeueLTStd-LtCnO.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+
+@font-face{
+  font-family       : 'HelveticaNeue Bold';
+  src               : url($font_path +'HelveticaNeueLTStd-Hv.otf') format("opentype");
+  // font-style     : italic, oblique;
+  // font-weight    : 400;
+  // text-rendering : optimizeLegibility;
+}
+$helvetica: 'HelveticaNeue LTS Lt';
+$eurostyle: 'Eurostile LTS Demi';
+$fonttitlesize: 2em;
+$colorpantonered: #EF4034;
+$colorpantone254: #91268F;
+$colorpantone285: #007CC2;
+$colorpantone368: #7AC142;
+$colorpantone143: #FBAF3F;
+$colorpantoneproblack: #231F20;
+$colorpantonecoolgray: #BBBDC0;
+$colorpantonecoolgrayCool: #6D6E70;
+$pantonetext: #6D6E70;
+
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 // Variables
 @import 'variables';
 
@@ -39,6 +134,38 @@ h1 {
 .testingDiv{
 	text-align: center;
 }
+.l_titulo{
+	color: $colorpantoneproblack;
+	font-family: $eurostyle;
+    text-shadow: 1px 1px 4px rgba(109, 110, 112, 0.6);
+  &:hover {
+    text-shadow: 2px 2px 3px rgba(35,31,32, 0.8);
+  } 
+}
+.icon-title{
+	font-size: $fonttitlesize;
+}
+.titlebox{
+	display: flex;
+	flex-direction: row;
+	div{
+		margin: 2px;
+		text-align: left;
+	}
+}
+.main-text{
+  font-family: $helvetica;
+  color: $pantonetext;
+  &:hover {
+      color: $colorpantoneproblack;
+      text-shadow: 1px 1px 2px rgba(109, 110, 112, 0.4);
+  } 
+}
+.main-icon{
+  color: $pantonetext;
+}
+
+
 
 
 
