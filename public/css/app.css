@@ -10555,17 +10555,22 @@ h1 {
 }
 
 .l_titulo {
-  color: #231F20;
+  color: rgba(35, 31, 32, 0.6);
   font-family: "Eurostile LTS Demi";
   text-shadow: 1px 1px 4px rgba(109, 110, 112, 0.6);
 }
 
 .l_titulo:hover {
-  text-shadow: 2px 2px 3px rgba(35, 31, 32, 0.8);
+  color: #231F20;
+  text-shadow: 2px 2px 3px rgba(35, 31, 32, 0.6);
 }
 
 .icon-title {
   font-size: 2em;
+  padding: 0.3em;
+  border-radius: 50%;
+  background-color: black;
+  color: white;
 }
 
 .titlebox {
@@ -10595,5 +10600,75 @@ h1 {
 
 .main-icon {
   color: #6D6E70;
+}
+
+.breadcrumb {
+  margin-bottom: 0px !important;
+}
+
+.container-fluid {
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+}
+
+.row {
+  margin: 0px !important;
+}
+
+.el-form-item__content .label {
+  margin-bottom: -7px !important;
+  line-height: 1.8rem !important;
+  padding-left: 5px;
+}
+
+.el-form-item {
+  margin-bottom: 5px !important;
+}
+
+.el-form-item__error {
+  padding-top: 0px !important;
+}
+
+.l_label {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  color: #6d6e71;
+  font-family: 'Eurostile LTS';
+  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.9);
+}
+
+.l_label.labelm {
+  font-size: 0.85rem !important;
+  line-height: 0.85rem !important;
+}
+
+.l_label.labelm:hover {
+  font-size: 0.9rem !important;
+  line-height: 0.9rem !important;
+  font-weight: bold;
+  color: #241c14;
+}
+
+.l_label.labels {
+  font-size: 0.75rem !important;
+  line-height: 0.75rem !important;
+}
+
+.l_label.labels:hover {
+  font-size: 0.8rem !important;
+  line-height: 0.8rem !important;
+  font-weight: bold;
+  color: #241c14;
+}
+
+.boxshadow {
+  background-color: white;
+  margin: 3px;
+  border-radius: 5px;
+  padding: 5px;
+  -webkit-box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
+          box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
 }
 

@@ -95,3 +95,10 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .app{
+    background-image: url("/img/login_back.jpg");
+    background-repeat: no-repeat;
+    // background-position: right top;
+  }
+</style>

@@ -3862,6 +3862,30 @@
                     "Sucre (Catia)"
                 ]        
             }
-        ]
+        ],
+        "ciudades":[
+                    "23 de enero",
+                    "Altagracia",
+                    "Antímano",
+                    "Caricuao",
+                    "Catedral",
+                    "Coche",
+                    "El Junquito",
+                    "El Paraíso",
+                    "El Recreo",
+                    "El Valle",
+                    "Candelaria",
+                    "La Pastora",
+                    "La Vega",
+                    "Macarao",
+                    "San Agustín",
+                    "San Bernardino",
+                    "San José",
+                    "San Juan",
+                    "San Pedro",
+                    "Santa Rosalía",
+                    "Santa Teresa",
+                    "Sucre (Catia)"
+                ]
     }
 ]

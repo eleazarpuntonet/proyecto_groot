@@ -1,342 +1,258 @@
 <template>
-  <b-row class="mainWindow">
-    <b-col class="sideMenu" md="4" lg="4" xl="4">
-      <el-table
-      :highlight-current-row="true"
-        :show-header=false
-        :data="lista_resevas"
-        style="width: 100%"
-        @current-change="rowClick"
-        max-height="100%">
-        <el-table-column
-          fixed
-          prop="alcance"
-          width="100%">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="user.name"
-          width="100%">
-        </el-table-column>
-        <el-table-column
-          fixed
-          prop="destino_b"
-          width="100%">
-        </el-table-column>
-      </el-table>
-    </b-col>
-    <b-col md="8" lg="8" xl="8">
-      <b-row class="databox" v-if="res_select">
-        <b-col class="titlebox title" md="12" lg="12" xl="12">
-          <div>
-            <i class="icon-title fas fa-user"></i>
+  <div>
+    <b-row class="mainWindow">
+      <b-col class="sideMenu" md="4" lg="4" xl="4">
+        <el-table
+        :highlight-current-row="true"
+          :show-header=false
+          :data="lista_resevas"
+          style="width: 100%;box-shadow: 0px 2px 5px 3px rgba(136, 136, 136, 0.6);"
+          @current-change="rowClick"
+          max-height="100%">
+          <el-table-column
+            fixed
+            prop="alcance"
+            width="100%">
+          </el-table-column>
+          <el-table-column
+            fixed
+            prop="user.name"
+            width="100%">
+          </el-table-column>
+          <el-table-column
+            fixed
+            prop="destino_b"
+            width="100%">
+          </el-table-column>
+        </el-table>
+      </b-col>
+      <b-col md="8" lg="8" xl="8">
+        <b-row class="databox" v-if="res_select">
+          <div class="container_flexbox boxshadow rowflex">
+            <div class="colflex">
+              <div class="icon_container flexcenter">
+                <img
+                  src="/img/avatars/6.jpg"
+                  class="img-avatar"
+                  alt="admin@bootstrapmaster.com" />
+              </div>
+            </div>
+            <div class="colflex">
+              <div>
+                <h2 class="l_titulo" style="margin-bottom: -0.5rem;">{{ res_select.getFullname() }}</h2>
+              </div>
+              <div>
+                <p class="ptext main-text"></strong> {{ res_select.user_depto }}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h2 class="l_titulo">{{ res_select.getFullname() }}</h2>
-          </div>
-          <div>
-            <p class="ptext main-text"></strong> {{ res_select.user_depto }}</p>
-          </div>
-        </b-col>
-        <b-col class="databoxItem">
-          <div class="dItem">
-            <i class="fas main-icon fa-plane-departure"></i>
-            <p class="ptext main-text"><strong>{{ res_select.origen_a }} </strong>{{ res_select.origen_b }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-map-marker-alt"></i>
-            <p class="ptext main-text">{{ res_select.origen_det }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-calendar-alt"></i>
-            <p class="ptext main-text">{{ res_select.getDate('origen') }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-taxi"></i>
-            <p class="ptext main-text">Traslados</p>
-          </div>
-        </b-col>
 
-        <b-col class="databoxItem">
-          <div class="dItem">
-            <i class="fas main-icon fa-plane-arrival"></i>
-            <p class="ptext main-text"><strong>{{ res_select.destino_a }} </strong>{{ res_select.destino_b }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-map-marker-alt"></i>
-            <p class="ptext main-text">{{ res_select.destino_det }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-calendar-alt"></i>
-            <p class="ptext main-text">{{ res_select.getDate() }}</p>
-          </div>
-          <div class="dItem">
-            <i class="fas main-icon fa-taxi"></i>
-            <p class="ptext main-text">Traslados</p>
-          </div>
-        </b-col>
+          <div class="container_flexbox tableflex">
+            <div class="boxshadow databoxItem">
+              <div class="dItem">
+                <i class="fas main-icon fa-plane-departure"></i>
+                <p class="ptext main-text"><strong>{{ res_select.origen_a }} </strong>{{ res_select.origen_b }}</p>
+              </div>
+              <div class="dItem">
+                <i class="fas main-icon fa-map-marker-alt"></i>
+                <p class="ptext main-text">{{ res_select.origen_det }}</p>
+              </div>
+              <div class="dItem">
+                <i class="fas main-icon fa-calendar-alt"></i>
+                <p class="ptext main-text">{{ res_select.getDate('origen') }}</p>
+              </div>
+              <div class="dItem">
+                <i class="fas main-icon fa-taxi"></i>
+                <p class="ptext main-text">Traslados</p>
+              </div>
+            </div>
 
-        <b-col class="databoxItem" md="12" lg="12" xl="12">
-          <div class="bottom_box">
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-bus"></i>
-                <p class="ptext main-text"> Bus </p>
-                <p class="ptext main-text"> 15/10/2017 </p>
+            <div class="boxshadow databoxItem">
+              <div class="dItem">
+                <i class="fas main-icon fa-plane-arrival"></i>
+                <p class="ptext main-text"><strong>{{ res_select.destino_a }} </strong>{{ res_select.destino_b }}</p>
               </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>22:00 - 23:00</strong> </p>
+              <div class="dItem">
+                <i class="fas main-icon fa-map-marker-alt"></i>
+                <p class="ptext main-text">{{ res_select.destino_det }}</p>
               </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Traslado en transporte urbano al distrito xxxx </p>
-                </div>
+              <div class="dItem">
+                <i class="fas main-icon fa-calendar-alt"></i>
+                <p class="ptext main-text">{{ res_select.getDate() }}</p>
               </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-car"></i>
-                <p class="ptext main-text"> Auto de flota </p>
-                <p class="ptext main-text"> 15/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>00:00 - 00:15</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> En el distrito xxx se le hace entrega del automovil previamente rentado </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem ">
-                <i class="fas main-icon fa-car"></i>
-                <p class="ptext main-text"> Auto de flota </p>
-                <p class="ptext main-text"> 16/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>08:30 - 08:50</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Traslado desde alojamiento </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem " >
-                <i class="fas main-icon fa-car"></i>
-                <p class="ptext main-text"> Auto de flota </p>
-                <p class="ptext main-text"> 16/10/2017 </p>
-                <div class="botonClose">
-                  <i class="el-icon-circle-close-outline"></i>
-                </div>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>18:00 - 18:30</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Traslado desde centro empresarial </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem ">
-                <i class="fas main-icon fa-plane"></i>
-                <p class="ptext main-text"> Vuelo </p>
-                <p class="ptext main-text"> 19/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>03:00 - 04:00</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Vuelo con destino al aeropuerto de maiquetia </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-plane"></i>
-                <p class="ptext main-text"> Vuelo </p>
-                <p class="ptext main-text"> 19/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>03:00 - 04:00</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Vuelo con destino al aeropuerto de maiquetia </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-plane"></i>
-                <p class="ptext main-text"> Vuelo </p>
-                <p class="ptext main-text"> 19/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>03:00 - 04:00</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text" > Vuelo con destino al aeropuerto de maiquetia </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-plane"></i>
-                <p class="ptext main-text"> Vuelo </p>
-                <p class="ptext main-text"> 19/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>03:00 - 04:00</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Vuelo con destino al aeropuerto de maiquetia </p>
-                </div>
-              </div>
-            </div>
-            <div class="traslado">
-              <div class="trasItem">
-                <i class="fas main-icon fa-plane"></i>
-                <p class="ptext main-text"> Vuelo </p>
-                <p class="ptext main-text"> 19/10/2017 </p>
-              </div>
-              <div class="trasItem">
-                <p class="ptext main-text"> <strong>03:00 - 04:00</strong> </p>
-              </div>
-              <div class="trasItem bottomtext">
-                <div class="textbox">
-                  <p class="ptext main-text"> Vuelo con destino al aeropuerto de maiquetia </p>
-                </div>
+              <div class="dItem">
+                <i class="fas main-icon fa-taxi"></i>
+                <p class="ptext main-text">Traslados</p>
               </div>
             </div>
           </div>
-        </b-col>
 
-        <b-row class="databoxItem">
-          <b-col class="itemForm" md="5" lg="5" xl="5">
-            <div class="label">
-              <p class="ptext">Tipo</p>
+          <div class="container_flexbox databoxItem">
+            <div class="l_label labelm" v-if="!res_select.traslados.length>0">
+              Esta reserva no tiene traslados asignados
             </div>
-            <el-select 
-            size="small"
-              class="timepicket"
-              v-model="traslado.tipo" 
-              placeholder="Tipo de traslado">
-              <el-option
-                v-for="item in tipos_traslados"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled">
-              </el-option>
-            </el-select>
-            <div class="minilabel">
-              <p class="ptext">Seleccione el tipo de transporte que quiere asignar</p>
-            </div>
-          </b-col>
-          <b-col class="itemForm" md="2" lg="2" xl="2">
-            <div class="label">
-              <p class="ptext">Localidad</p>
-            </div>
-            <el-select
-              size="small"
-              class="timepicket"
-              v-model="traslado.localidad" 
-              placeholder="Localidad del traslado">
-              <el-option
-                v-for="item in localidad"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-                :disabled="item.disabled">
-              </el-option>
-            </el-select>
-            <div class="minilabel">
-              <p class="ptext">Localidad del traslado</p>
-            </div>
-          </b-col>
+            <div class="bottom_box" v-else>
+              <div class="traslado" 
+              v-for="item in res_select.traslados"
+              >
+                <div class="trasItem">
+                  <i class="fas main-icon fa-bus"></i>
+                  <p class="ptext main-text"> {{item.tipo}} </p>
+                  <!-- <p class="ptext main-text"> 15/10/2017 </p> -->
+                </div>
+                <div class="trasItem">
+                  <p class="ptext main-text"> <strong>22:00 - 23:00</strong> </p>
+                </div>
+                <div class="trasItem bottomtext">
+                  <div class="textbox">
+                    <p class="ptext main-text">Desde: {{item.origen}} </p>
+                  </div>
+                </div>
+                <div class="trasItem bottomtext">
+                  <div class="textbox">
+                    <p class="ptext main-text">Hasta: {{item.destino}} </p>
+                  </div>
+                </div>
+                <div class="trasItem bottomtext">
+                  <div class="textbox">
+                    <p class="ptext main-text"> {{item.descripcion}} </p>
+                  </div>
+                </div>
+              </div>
 
-          
-          <b-col class="itemForm" md="5" lg="5" xl="5">
-            <div class="label">
-              <p class="ptext">Hora</p>
             </div>
-            <el-time-select
-              size="small"
-              v-model="traslado.hora"
-              :picker-options="{
-                start: '00:00',
-                step: '00:15',
-                end: '23:59'
-              }"
-              placeholder="Select time">
-            </el-time-select>
-            <div class="minilabel">
-              <p class="ptext">Seleccione la hora de traslado aproximada, y rango de tiempo preventivo</p>
-            </div>
-          </b-col>
+          </div>
 
+          <el-form  
+            class="boxshadow"
+            :model="traslado" 
+            :rules="rules" 
+            ref="traslado">
+              <el-col :span="8">
+                <div class="l_label labels">
+                  <p class="ptext">Tipo</p>
+                </div>
+                <el-form-item prop="tipo">
+                  <el-select 
+                    style="width: 100%;"
+                    size="small"
+                    class="timepicket"
+                    v-model="traslado.tipo" 
+                    placeholder="Tipo de traslado">
+                    <el-option
+                      v-for="item in tipos_traslados"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      :disabled="item.disabled">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <div class="l_label labels">
+                  <p class="ptext">Localidad</p>
+                </div>
+                <el-form-item prop="localidad">
+                  <el-select
+                    style="width: 100%;"
+                    size="small"
+                    class="timepicket"
+                    v-model="traslado.localidad" 
+                    placeholder="Localidad del traslado">
+                    <el-option
+                      v-for="item in localidad"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      :disabled="item.disabled">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <div class="l_label labels">
+                  <p class="ptext">Hora</p>
+                </div>
+                <el-form-item prop="hora">
+                  <el-time-select
+                    style="width: 100%;"
+                    size="small"
+                    v-model="traslado.hora"
+                    :picker-options="{
+                      start: '00:00',
+                      step: '00:15',
+                      end: '23:59'
+                    }"
+                    placeholder="Select time">
+                  </el-time-select>
+                </el-form-item>
+              </el-col>
+            
+            <el-col :span="12">
+              <div class="l_label labels">
+                <p class="ptext">Origen</p>
+              </div>
+              <el-form-item prop="origen">
+                <el-input
+                  style="width: 100%;"
+                  size="small"
+                  type="text"
+                  :rows="2"
+                  placeholder="Origen"
+                  v-model="traslado.origen">
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <div class="l_label labels">
+                <p class="ptext">Destino</p>
+              </div>
+              <el-form-item prop="destino">
+                <el-input
+                  style="width: 100%;"
+                  size="small"
+                  type="text"
+                  :rows="2"
+                  placeholder="Destino"
+                  v-model="traslado.destino">
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="24">
+              <div class="l_label labels">
+                <p class="ptext">Descripcion</p>
+              </div>
+              <el-form-item prop="description">
+                <el-input
+                  style="width: 100%;"
+                  size="small"
+                  type="text"
+                  :rows="2"
+                  placeholder="Descripcion"
+                  v-model="traslado.description">
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col 
+              :span="24"
+              class="button_content">
+              <el-button
+              size="mini" 
+              type="primary" 
+              @click="submitForm('traslado')">
+              Agregar</el-button>
+              <el-button
+              size="mini" 
+              @click="resetForm('traslado')">
+              Reset</el-button>
+            </el-col>
+          </el-form>
 
-          <b-col class="itemForm" md="6" lg="6" xl="6">
-            <div class="label">
-              <p class="ptext">Origen</p>
-            </div>
-            <el-input
-              size="small"
-              type="text"
-              :rows="2"
-              placeholder="Please input"
-              v-model="traslado.origen">
-            </el-input>
-            <div class="minilabel">
-              <p class="ptext">Origen del traslado</p>
-            </div>
-          </b-col>
-          <b-col class="itemForm" md="6" lg="6" xl="6">
-            <div class="label">
-              <p class="ptext">Destino</p>
-            </div>
-            <el-input
-              size="small"
-              type="text"
-              :rows="2"
-              placeholder="Please input"
-              v-model="traslado.destino">
-            </el-input>
-            <div class="minilabel">
-              <p class="ptext">Destino del traslado</p>
-            </div>
-          </b-col>
-
-          <b-col class="itemForm" md="9" lg="9" xl="9">
-            <div class="label">
-              <p class="ptext">Descripcion</p>
-            </div>
-            <el-input
-            size="small"
-              type="textarea"
-              :rows="2"
-              placeholder="Please input"
-              v-model="traslado.description">
-            </el-input>
-            <div class="minilabel">
-              <p class="ptext">Detalles del traslado</p>
-            </div>
-          </b-col>
-          <b-col class="itemForm buttonAdd" md="3" lg="3" xl="3">
-            <el-button type="primary" @click="sendtraslado">Agregar Traslado</el-button>
-          </b-col>
         </b-row>
-      </b-row>
-    </b-col>
-  </b-row>
+      </b-col>
+    </b-row>
+  </div>
 </template>
 
 <script>
@@ -399,6 +315,50 @@ export default {
   */
   data () {
     return {
+      rules: {
+               tipo: [
+                 { 
+                  required : true,
+                  message  : 'Seleccione un tipo de traslado',
+                  trigger  : 'change'
+                },
+               ],
+               localidad: [
+                 { 
+                  required : true,
+                  message  : 'Seleccione una region de origen o destino',
+                  trigger  : 'change'
+                },
+               ],
+               hora: [
+                 { 
+                  required : true,
+                  message  : 'Seleccione la hora del traslado',
+                  trigger  : 'change'
+                },
+               ],
+               origen: [
+                 { 
+                  required : true,
+                  message  : 'Ingrese los detalles del origen del traslado',
+                  trigger  : 'blur'
+                },
+               ],
+               destino: [
+                 { 
+                  required : true,
+                  message  : 'Ingrese los detalles del destino del traslado',
+                  trigger  : 'blur'
+                },
+               ],
+               description: [
+                 { 
+                  required : true,
+                  message  : 'Ingrese una descripcion del traslado',
+                  trigger  : 'blur'
+                },
+               ],
+             },
       traslado: {
         tipo        : null,
         localidad   : null,
@@ -450,9 +410,24 @@ export default {
     }
   },
   methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.sendtraslado();
+        } else {
+          console.log('error submit!!');
+          this.$notify.error({
+            title: 'Error de formulario',
+            message: 'Debe completar todos los campos requeridos'
+          });
+          return false;
+        }
+      });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
     sendtraslado(){
-      console.log('Envia traslado')
-
       var a = new Traslado(this.traslado)
       var user = this.$store.getters.currentUser
       a.setUser(user.id)
@@ -510,7 +485,12 @@ export default {
     rowClick(row){
       this.res_select         = new Reservaitem(row);
       this.traslado.reservaid = row.id
-      console.log(this.traslado)
+      if (this.res_select.traslados.length>1) {
+        console.log('tiene reservas')
+      } else {
+        console.log('no tiener tralados')
+      }
+      console.log(this.res_select)
     },
     bottomVisible() {
       const tabla   = document.getElementsByClassName('el-table__body-wrapper')[0]
@@ -572,6 +552,48 @@ export default {
 }
 </script>
 <style lang="scss">
+.button_content{
+  // display: flex;
+  // flex-direction: row;
+  button{
+    // width: 100%;
+    // margin: 0px !important;
+  }
+}
+.tableflex{
+  display: flex;
+  div{
+    // display: table-cell;
+    // width: 50%;
+    width: 100%;
+
+  }
+}
+.container_flexbox{
+  width: 100%;
+}
+
+.icon_container{
+  display: flex;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  i{
+    width: 5vh;
+    height: 5vh;
+  }
+}
+.flexcenter{
+  justify-content: center;
+}
+.rowflex{
+  display: flex;
+  flex-flow: row wrap;
+}
+.colflex{
+  display: flex;
+  flex-flow: column wrap;
+}
 .formGroup{
   margin: 5px;
 }
@@ -592,17 +614,11 @@ export default {
   padding-right: 5px;
   padding-left: 5px;
 }
-.label{
-  color:  rgba(0, 0, 0, 0.8);
-  font-size: 0.8em;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.9);
-}
+
 .minilabel{
   color:  rgba(0, 0, 0, 0.6);
   font-size: 0.7em;
   font-style: italic;
-  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.9);
 }
 .timepicket{
   width: 100% !important;
@@ -637,7 +653,7 @@ export default {
     }
     .databoxItem{
       background-color: white;
-      margin: 8px;
+      // margin: 5px;
       border-radius: 5px;
       padding: 5px;
       box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);

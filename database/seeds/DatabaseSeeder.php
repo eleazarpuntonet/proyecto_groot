@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
         // $this->call(CredencialesTableSeeder::class);
         // $this->call(FacturacionTableSeeder::class);
         $this->call(ReservasTableSeeder::class);
-        // $this->call(TrasladosSeeder::class);
+        $this->call(TrasladosSeeder::class);
         // $this->call(AutorizacionesSeeder::class);
-        // $this->call(ViaticosTableSeeder::class);
+        $this->call(ViaticosTableSeeder::class);
         // $this->call(AutorizacionesSeeder::class);
     }
 }
