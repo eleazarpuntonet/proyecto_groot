@@ -94,6 +94,7 @@ $colorpantoneproblack: #231F20;
 $colorpantonecoolgray: #BBBDC0;
 $colorpantonecoolgrayCool: #6D6E70;
 $pantonetext: #6D6E70;
+$backgroundimage: '/img/login_back.jpg';
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
@@ -102,7 +103,35 @@ $pantonetext: #6D6E70;
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
-
+.buttonline{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 0.7rem;
+  button{
+    margin-left: 3px !important;
+    width: 50%;
+    padding: 7px 7px !important;
+  }
+}
+.rowcentercontainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .card{
+    max-width: 125vh !important;
+    width: 100% !important;
+  }
+}
+.avatarcontainer{
+  margin-right: 5px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  img{
+    height: 10vh;
+  }
+}
 #editButtons{
 	display: flex;
 }
@@ -170,18 +199,18 @@ h1 {
   color: $pantonetext;
 }
 .breadcrumb{
-  margin-bottom: 0px !important;
+  margin-bottom: 15px !important;
 }
 .container-fluid {
     // padding: 0 30px;
-    padding-top    : 0px !important;
-    padding-right  : 0px !important;
-    padding-bottom : 0px !important;
-    padding-left   : 0px !important;
+    // padding-top    : 0px !important;
+    // padding-right  : 0px !important;
+    // padding-bottom : 0px !important;
+    // padding-left   : 0px !important;
 }
 
 .row {
-  margin: 0px !important;
+  // margin: 0px !important;
 }
 
 .el-form-item__content .label{
@@ -202,7 +231,6 @@ h1 {
   color:rgba(109, 110, 113, 1);
   font-family: 'Eurostile LTS';
   // background-color: yellow;
-  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.9);
 }
 .l_label.labelm{
   font-size: 0.85rem !important;
@@ -231,13 +259,60 @@ h1 {
 //   color:rgba(36, 28, 20, 1);
 // }
 .boxshadow{
-  background-color: white;
-  margin: 3px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 5px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
 }
+.app{
+  background: url($backgroundimage) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
+  // background-image: ;
+  // background-repeat: no-repeat;
+  // background-position: right top;
+
+  .appblur{
+    // position: absolute;
+    background: inherit;
+    background-attachment: fixed;
+    div{
+      z-index: 1;
+      box-sizing: border-box;
+    }
+  }
+  .appblur::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+    background:       linear-gradient(
+        rgba(35, 31, 32, 0.3), 
+        rgba(35, 31, 32, 0)
+      ), url($backgroundimage) no-repeat center center fixed; 
+
+  }
+  .appblur::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+
+  }
+}
+
+.roundborder{
+  border-radius: 5px;
+}
 // .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
 //     padding-right: 0px !important;
 //     padding-left: 0px !important;

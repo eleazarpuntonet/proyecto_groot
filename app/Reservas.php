@@ -7,6 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class Reservas extends Model
 {
     protected $table = 'reservas';
+    protected $visible = [
+        'id',
+        'id_user',
+        'alcance',
+        'origen_a',
+        'origen_b',
+        'origen_det',
+        'fecha_partida',
+        'fecha_retorno',
+        'destino_a',
+        'destino_b',
+        'destino_det',
+        'motivo',
+        'agenda',
+        'created_at',
+        'traslados',
+        'user',
+        'viaticos',
+        'autorizaciones',
+    ];
+    protected $with = [
+        'autorizaciones',
+    ];
 
     public function traslados()
     {
@@ -28,7 +51,7 @@ class Reservas extends Model
 
     public function user()
     {
-    	return $this->belongsTo( User::class,'id_user' ,'id');
+    	return $this->belongsTo(User::class,'id_user' ,'id');
     }
 
     public function viaticos()

@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Traslados extends Model
 {
 	protected $table = 'traslados';
+	protected $visible = [
+	    'id',
+	    'valor',
+	    'localidad',
+	    'descripcion',
+	    'tipo',
+	    'origen',
+	    'destino',
+	    'hora',
+	    'proveedor',
+	    'created_at',
+	    'session',
+	];
 
 	public function reservas()
 	{

@@ -65,7 +65,7 @@ import autReservas    from '../../../components/autorizacionesForm'
 import traslados_reserva    from '../../../components/trasladosForm'
 
 Vue.use(Router)
-
+console.log('Ejecuto router')
 class Route_item{
   constructor(item,children){
 
@@ -155,38 +155,40 @@ var Theme_route = new Route_item({
     redir: '/theme/colors'
   },[Colors_route,Typography_route])
 
-
-
+var rolesreservas = ['public']
+var traslados = new Route_item({
+  path:'traslados',
+  name:'Traslados',
+  comp: traslados_reserva,
+  })
+traslados.changeAuth(true,rolesreservas)
+var nreserva = new Route_item({
+  path:'nueva_reserva',
+  name:'Nueva Reserva',
+  comp: nueva_reserva,
+  })  
+nreserva.changeAuth(true,rolesreservas)
+var inreserva = new Route_item({
+  path:'listado_reservas',
+  name:'Indice de Reservas',
+  comp: index_Reservas,
+  })  
+inreserva.changeAuth(true,rolesreservas)
+var detreserva = new Route_item({
+  path:':id_reserva',
+  name:'Detalle de Reserva',
+  comp: detalle_Reserva,
+  })  
+detreserva.changeAuth(true,rolesreservas)
 var MenuReservas = new Route_item({
     path:'reservas',
     name:'Reservas',
     redir: '/reservas/listado_reservas'
   },[
-    new Route_item({
-        path:'traslados',
-        name:'Traslados',
-        comp: traslados_reserva,
-      }),
-      new Route_item({
-          path:'autorizaciones',
-          name:'Gestion de Autorizaciones',
-          comp: autReservas,
-        }),
-      new Route_item({
-          path:'nueva_reserva',
-          name:'Nueva Reserva',
-          comp: nueva_reserva,
-        }),
-      new Route_item({
-          path:'listado_reservas',
-          name:'Indice de Reservas',
-          comp: index_Reservas,
-        }),
-      new Route_item({
-          path:':id_reserva',
-          name:'Detalle de Reserva',
-          comp: detalle_Reserva,
-        }),
+      traslados,
+      nreserva,
+      inreserva,
+      detreserva,
       ])
 
 export default new Router({

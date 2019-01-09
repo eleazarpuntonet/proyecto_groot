@@ -46,123 +46,44 @@ Route::resource('traslados', 'TrasladosController');
 
 Route::resource('reservas', 'ReservasController');
 
+Route::resource('autorizaciones', 'AutorizacionController');
+
 Route::get('estadoslist','metacontroller@ve_estados')->name('metacontroller.ve_estados');
 
 Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metacontroller.ve_ciudades');
 
 Route::get('testing',function(){
 
-	// $proveedor                  = Proveedor::where('nombre', '=', 'GoDaddy')->delete();
-	// $proveedor                  = new Proveedor;
-	// $proveedor->nombre          = 'GoDaddy';
-	// $proveedor->r_social        = 'godaddy.com';
-	// $proveedor->rif             = 'J-1212121';
-	// $proveedor->t_contribuyente = 'Normal';
-	// $proveedor->dir             = 'Bla bla bla bla bla';
-	// $proveedor->autor           = 1;
-	// $proveedor->save();
+	// $reserva = Reservas::find(14);
+	// $autorizacion            = new Autorizaciones;
+	// $autorizacion->recurso   = 'Viatico';
+	// $autorizacion->valor     = 'Aprobado';
+	// $autorizacion->date_auth = date('Y-m-d H:i:s');
+	// $reserva->autorizaciones()->save($autorizacion);
+	$id = 15;
+	$autorizacion =Reservas::whereHas('autorizaciones',function($query) use ($id){
+		$query->where('id', '=', 4);
+	})->get(['id']);
+	// $autorizacion->recurso   = 'Reserva';
+	// $autorizacion->valor     = 'Negada';
+	// $autorizacion->date_auth = date('Y-m-d H:i:s');
+	// $autorizacion->save();
 
-	// $contacto         = Contactos::where('nombre', '=', 'Alguien contesta')->delete();
-	// $contacto         = new Contactos;
-	// $contacto->nombre = 'Alguien contesta';
-	// $contacto->medio  = 'Email';
-	// $contacto->value  = 'Alguien@gmail.com';
-	// $contacto->save();
-	// $proveedor_       = Proveedor::find($proveedor->id)->contacto()->save($contacto);
-	
+	// $reserva->autorizaciones()->save($autorizacion);
 
-	// // $reserva                = Reservas::where('alcance', '=', 'Nacional')->delete();
-	// $reserva                = new Reservas;
-	// $reserva->id_user       = 1;
-	// $reserva->alcance       = 'Nacional';
-	// $reserva->origen_a      = 'Caracas';
-	// $reserva->origen_b      = 'San Martin';
-	// $reserva->origen_det    = 'Av San Martin';
-	// $reserva->fecha_partida = '2018-08-30 00:28:08';
-	// $reserva->fecha_retorno = '2018-09-17 21:03:31';
-	// $reserva->destino_a     = 'Bolivar';
-	// $reserva->destino_b     = 'Paraguana';
-	// $reserva->destino_det   = '8 Becker Lane';
-	// $reserva->motivo        = 'Rumba';
-	// $reserva->agenda        = 'Rumbear mucho';
-	// $reserva->save();
 
-	// $depto                  = Departamentos::where('ref', '=', 'IT')->delete();
-	// $depto                  = new Departamentos;
-	// $depto->disp_name       = 'Information Techology';
-	// $depto->ref             = 'IT';
-	// $depto->gerente_id      = 1;
-	// $depto->coordinador_id  = 2;
-	// $depto->dependencia     = 'Caracas';
-	// $depto->save();
+	// $reservas = User::with([
+	//     // 'autorizaciones:autorizable_id,gerencia',
+	//     // 'fullname',
+	//     // 'autorizaciones:autorizable_id,recurso,valor,date_auth',
+	//     // 'user.departamento.coordinador:id,name,last_name,cargo,avatar',
+	//     // 'user.departamento.gerente:id,name,last_name,cargo,avatar',
+	//     // 'traslados',
+	// ])->find(1);
 
-	// $viatico                  = Viaticos::where('cantidad', '=', '6')->delete();
-	// $viatico_             = new App\Viaticos;
-	// $viatico_->id_reserva = $reserva->id;
-	// $viatico_->rubro      = 'Desayuno';
-	// $viatico_->cantidad   = '6';
-	// $viatico_->val_unit   = '600';
-	// $viatico_->save();
-
-	// $viatico_             = new App\Viaticos;
-	// $viatico_->id_reserva = $reserva->id;
-	// $viatico_->rubro      = 'Almuerzo';
-	// $viatico_->cantidad   = '6';
-	// $viatico_->val_unit   = '800';
-	// $viatico_->save();
-
-	// $viatico_             = new App\Viaticos;
-	// $viatico_->id_reserva = $reserva->id;
-	// $viatico_->rubro      = 'Cena';
-	// $viatico_->cantidad   = '6';
-	// $viatico_->val_unit   = '1200';
-	// $viatico_->save();
-	
-
-	// // $auth                   = Autorizaciones::where('depto_id', '=', $depto->id)->delete();
-	// $auth                   = new Autorizaciones;
-	// $auth->date_auth        = '2018-06-22 12:21:03';
-	// $auth->depto_id         = $depto->id;
-	// $auth->tipo         	= 'aprobacion';
-	// $auth->depto_id         = $depto->id;
-	// $auth->reserva_id       = $reserva->id;
-	// // $auth->save();
-	// $auth 	  = Reservas::find($reserva->id)->autorizaciones()->save($auth);
-
-	// $traslado = Traslados::where('tipo','=','terrestre')->delete();
-	// $traslado              = new Traslados;
-	// $traslado->reservas_id = $reserva->id;
-	// $traslado->tipo        = 'Terrestre';
-	// $traslado->origen      = 'Direccion 1';
-	// $traslado->destino     = 'Direccion 2';
-	// $traslado->servicio    = 'Taxi';
-	// $traslado->proveedor   = $proveedor->id;
-	// $traslado->session     = 1;
-	// $traslado->save();
-	// $reserva_ 	  = Reservas::find($reserva->id)->traslados()->save($traslado);
-	
-	// $reserva_     = Reservas::with([
-	// 	// 'traslados',
-	// 	// 'viaticos',
-	// 	'autorizaciones',
-	// 	// 'autorizaciones.gerencia.coordinador',
-	// 	// 'autorizaciones.gerencia.gerente',
-	// 	'autorizaciones.autorizable',
-	// 	'user'])->find($reserva->id);
-	// $departamento = Departamentos::with('autorizaciones')->find($reserva);
-	// $autorizacion = Autorizaciones::with(['autorizable', 'gerencia'])->find($reserva->id);
-	// $traslados    = Traslados::with(['proveedor','reservas'])->find($traslado->id);
-	// $proveedor_   = Proveedor::with(['traslado','contacto'])->find($proveedor->id);
-
-	$usuario = User::with(['roles','gerencia'])->find(1);
-	// dd($reserva_);
 	return response()->json([
-		// 'Reserva'      => $reserva_,
-		'Usuario'      => $usuario,
-		// 'Departamento' => $departamento,
-		// 'Autorizacion' => $autorizacion,
-		// 'Traslados'    => $traslados,
-		// 'Proveedor'    => $proveedor_,
+		'Reservas'      => $autorizacion,
+
 	], 200);
 
 })->middleware('auth:api');

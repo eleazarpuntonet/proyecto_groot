@@ -5,7 +5,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
+// class User extends Model
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -29,6 +31,26 @@ class User extends Authenticatable implements JWTSubject
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $visible = [
+        'id',
+        'name',
+        'last_name',
+        'cargo',
+        'gerencia',
+        'sede',
+        'email',
+        'avatar',
+        'fullname',
+        'reservas',
+        'departamento',
+        'roles',
+        'getJWTIdentifier',
+        'getJWTCustomClaims',
+    ];
+    // protected $with = [
+    //     'getFullNameAttribute',
+    // ];
 
     public function reservas()
     {
@@ -63,6 +85,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
-
 }

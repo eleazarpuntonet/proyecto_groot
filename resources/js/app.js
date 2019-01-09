@@ -222,10 +222,24 @@ axios.interceptors.response.use(null, (error)=>{
               title: 'Error '+error.response.status,
               message: 'No autenticado'
             });
-            // store.commit('logout')
-            // store.commit('loginFailed',{error: error.response.data.error}) 
-            // router.push('/login')
+            store.commit('logout')
+            store.commit('loginFailed',{error: error.response.data.error}) 
+            router.push('/login')
             console.log('Ejecuto salida')
+        }
+
+        if (error.response.status == 405) {
+            Notification.error({
+              title: 'Error Interno',
+              message: 'Algo anda mal en el servidor'
+            });
+        }
+
+        if (error.response.status == 500) {
+            Notification.error({
+              title: 'Error Interno',
+              message: 'Algo anda mal en el servidor'
+            });
         }
       // Request made and server responded
       // console.log(error.response.data);
@@ -311,6 +325,8 @@ const app = new Vue({
 */
 function matchRoles(x,y){
         let flag = false
+        console.log(x)
+        console.log(y)
 
         x.forEach((x)=>{
             y.forEach((y)=>{

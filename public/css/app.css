@@ -10516,6 +10516,62 @@ a.text-dark:focus {
   }
 }
 
+.buttonline {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 0.7rem;
+}
+
+.buttonline button {
+  margin-left: 3px !important;
+  width: 50%;
+  padding: 7px 7px !important;
+}
+
+.rowcentercontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.rowcentercontainer .card {
+  max-width: 125vh !important;
+  width: 100% !important;
+}
+
+.avatarcontainer {
+  margin-right: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.avatarcontainer img {
+  height: 10vh;
+}
+
 #editButtons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10603,18 +10659,7 @@ h1 {
 }
 
 .breadcrumb {
-  margin-bottom: 0px !important;
-}
-
-.container-fluid {
-  padding-top: 0px !important;
-  padding-right: 0px !important;
-  padding-bottom: 0px !important;
-  padding-left: 0px !important;
-}
-
-.row {
-  margin: 0px !important;
+  margin-bottom: 15px !important;
 }
 
 .el-form-item__content .label {
@@ -10636,7 +10681,6 @@ h1 {
   margin-bottom: 2px;
   color: #6d6e71;
   font-family: 'Eurostile LTS';
-  text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.9);
 }
 
 .l_label.labelm {
@@ -10664,11 +10708,52 @@ h1 {
 }
 
 .boxshadow {
-  background-color: white;
-  margin: 3px;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 5px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   -webkit-box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
           box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
+}
+
+.app {
+  background: url("/img/login_back.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.app .appblur {
+  background: inherit;
+  background-attachment: fixed;
+}
+
+.app .appblur div {
+  z-index: 1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.app .appblur::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(35, 31, 32, 0.3)), to(rgba(35, 31, 32, 0))), url("/img/login_back.jpg") no-repeat center center fixed;
+  background: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0)), url("/img/login_back.jpg") no-repeat center center fixed;
+}
+
+.app .appblur::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.roundborder {
+  border-radius: 5px;
 }
 

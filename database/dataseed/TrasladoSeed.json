@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "id": 1,
+        "reservas_id": 13,
+        "localidad": "Origen",
+        "tipo": "Taxi",
+        "origen": "fasfd",
+        "destino": "asdfa",
+        "hora": "01:00",
+        "descripcion": "asfdadsf",
+        "proveedor": 1,
+        "session": 1,
+        "created_at": "2019-01-07 18:41:23",
+        "updated_at": "2019-01-07 18:41:23"
+    }
+]

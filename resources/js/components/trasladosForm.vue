@@ -3,6 +3,7 @@
     <b-row class="mainWindow">
       <b-col class="sideMenu" md="4" lg="4" xl="4">
         <el-table
+        class="roundborder"
         :highlight-current-row="true"
           :show-header=false
           :data="lista_resevas"
@@ -87,11 +88,11 @@
             </div>
           </div>
 
-          <div class="container_flexbox databoxItem">
+          <div class="container_flexbox databoxItem boxshadow">
             <div class="l_label labelm" v-if="!res_select.traslados.length>0">
               Esta reserva no tiene traslados asignados
             </div>
-            <div class="bottom_box" v-else>
+            <div v-else>
               <div class="traslado" 
               v-for="item in res_select.traslados"
               >
@@ -485,12 +486,14 @@ export default {
     rowClick(row){
       this.res_select         = new Reservaitem(row);
       this.traslado.reservaid = row.id
-      if (this.res_select.traslados.length>1) {
-        console.log('tiene reservas')
-      } else {
-        console.log('no tiener tralados')
-      }
       console.log(this.res_select)
+      if (this.$refs['traslado']) {
+        this.$refs['traslado'].resetFields();
+      }
+      this.localidad[0].value=this.res_select.origen_a
+      this.localidad[0].label=this.res_select.origen_a
+      this.localidad[1].value=this.res_select.destino_a
+      this.localidad[1].label=this.res_select.destino_a
     },
     bottomVisible() {
       const tabla   = document.getElementsByClassName('el-table__body-wrapper')[0]
@@ -559,6 +562,9 @@ export default {
     // width: 100%;
     // margin: 0px !important;
   }
+}
+.el-table__fixed{
+  width: 100% !important;
 }
 .tableflex{
   display: flex;

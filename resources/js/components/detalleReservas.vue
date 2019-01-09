@@ -1,444 +1,343 @@
 <template>
-	<div>
-		<el-card v-if="reserva" class="box-card">
+	<div class="rowcentercontainer">
+		<b-card no-body class="appblur" v-if="reserva">
+		  <b-card-header >
+		  	<div class="clearfix" style="">
+		  		<strong>Reserva {{ reserva.id }}</strong>
 
-			<div slot="header" class="clearfix">
-				<strong>Reserva {{ reserva.id }}</strong>
-				<el-dropdown style="float: right; padding: 3px 0">
-					<span class="el-dropdown-link">
-						<el-button type="primary" size="small">
-							Agregar detalles<i class="el-icon-arrow-down el-icon--right"></i>
-						</el-button>
-					</span>
-					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item>Autorizacion</el-dropdown-item>
-						<el-dropdown-item>Traslado</el-dropdown-item>
-						<el-dropdown-item>Editar reserva</el-dropdown-item>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</div>
+		  		<el-button-group style="float:right;">
+		  		  <el-button 
+		  		  @click="back()"
+		  		  	size="mini" 
+		  		  	type="primary" 
+		  		  	icon="el-icon-arrow-left">Anterior</el-button>
+		  		  <el-button 
+		  		  @click="next()"
+		  		  	size="mini" 
+		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
+		  		</el-button-group>
+		  	</div>
+		  </b-card-header>
+		  <b-card-body>
+		  	<div slot="header" class="clearfix" style="">
+		  		<strong>Reserva {{ reserva.id }}</strong>
 
-			<!-- 
-			*	Caja de Nombre de Usuario
-			-->
-			<b-row class="box_data_reserv">
-				<b-col class="box_notif notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;"><strong>Generar autorizacion de </strong><i>viaticos</i></p>
+		  		<el-button-group style="float:right;">
+		  		  <el-button 
+		  		  @click="back()"
+		  		  	size="mini" 
+		  		  	type="primary" 
+		  		  	icon="el-icon-arrow-left">Anterior</el-button>
+		  		  <el-button 
+		  		  @click="next()"
+		  		  	size="mini" 
+		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
+		  		</el-button-group>
+		  	</div>
+
+		  	<!-- 
+		  	*	Caja de Nombre de Usuario
+		  	-->
+		  	<b-row class="box_data_reserv boxshadow">
+					<div class="avatarcontainer">
+						<img
+						  src="/img/avatars/6.jpg"
+						  class="img-avatar"
+						  alt="admin@bootstrapmaster.com" />
 					</div>
-					<div class="itemsh_box">
-						<el-button-group>
-							<el-button type="primary" icon="el-icon-success" size="small">Aprobar Viaticos</el-button>
-							<el-button type="primary" icon="el-icon-error" size="small">Rechazar Viaticos</el-button>
-						</el-button-group>
-					</div>
-				</b-col>
-				<b-col class="box_notif notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px; font-family: 'Eurostile LTS';"><strong>Generar autorizacion de </strong><i>reserva</i></p>
-					</div>
-					<div class="itemsh_box">
-						<el-button-group>
-							<el-button type="primary" icon="el-icon-success" size="small">Aprobar Reserva</el-button>
-							<el-button type="primary" icon="el-icon-error" size="small">Rechazar Reserva</el-button>
-						</el-button-group>
-					</div>
-				</b-col>
-				<b-col class="box_auth notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;">Reserva Aprobada</p>
-					</div>
-				</b-col>
-				<b-col class="box_auth notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;">Viaticos Aprobados</p>
-					</div>
-				</b-col>
-<!-- 				<b-col class="box_neg notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;">Reserva Rechazada</p>
-					</div>
-				</b-col>
-				<b-col class="box_neg notif_section" md="12" lg="12" xl="12">
-					<div class="itemsh_box">
-						<p style="margin-bottom: 0px;">Viaticos Rechazada</p>
-					</div>
-				</b-col> -->
-			</b-row>
-			<b-row class="box_data_reserv">
-				<b-col class="box box_name" md="12" lg="12" xl="12">
-					<p style="margin-bottom: 0px;"><strong>{{ reserva.user.name }} {{ reserva.user.last_name }}</strong> <i>{{ reserva.user.departamento.disp_name }}</i></p>
-				</b-col>
-			</b-row>
-			<b-row class="box box_data_reserv">
-				<el-button type="primary" icon="el-icon-download" size="mini">Descargar en PDF</el-button>
-			</b-row>
-			<b-row class="box_data_reserv">
-				<b-col md="8" lg="8" xl="8">
-					<b-row>
-						<b-col class="box box_h" md="12" lg="12" xl="12">
-							<b-row>
-								<b-col class="items_box" md="2" lg="2" xl="2">
-									<div class="icon_box main_icon">
-										<i class="fas fa-plane-departure"></i>
-									</div>
-									<div class="date_text">
-										{{ reserv.getDate('origen') }}
-									</div>
-									<div class="date_text">
-										{{ reserv.getHour('origen') }}
-									</div>
-								</b-col>
-								<b-col class="items_box" md="1" lg="1" xl="1" >
-									<div id="separador1" style="margin: auto;"></div>
-								</b-col>
-								<b-col md="9" lg="9" xl="9">
-									<div class="itemsh_box"> 
-										<div class="country">
-											<strong>{{ reserv.getAddress('origen','a')}}</strong>
-										</div>
-										<div class="state">
-											<p style="margin-bottom: 0px; margin-top: 12px;">{{ reserv.getAddress('origen','b')}}</p>
-										</div>
-									</div>
-									<div class="itemsh_box"> 
-										<div style="margin-right:4px;">
-											<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
-										</div>
-										<div class="">
-											<p>{{ reserv.getAddress('origen','c')}}</p>
-										</div>
-									</div>
-								</b-col>
-								<template v-if="!reserv.trslatFlag()">
-									<b-col md="12" lg="12" xl="12">
-										<div id="separador2"></div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-plane"></i>
-											</div>
-											<div class="item">
-												<strong>Vuelo</strong>
-											</div>
-											<div class="item">
-												<p>4:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-car"></i>
-											</div>
-											<div class="item">
-												<strong>Taxi</strong>
-											</div>
-											<div class="item">
-												<p>7:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-car"></i>
-											</div>
-											<div class="item">
-												<strong>Taxi</strong>
-											</div>
-											<div class="item">
-												<p>7:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-									</b-col>
-								</template>
-								<template v-else>
-									<b-col md="12" lg="12" xl="12">
-										<div id="separador2"></div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="item">
-												<p>Esta reserva no posee traslados asignados en esta localidad</p>
-											</div>
-										</div>
-									</b-col>
-								</template>
-							</b-row>
-						</b-col>
-						<b-col class="box box_h" md="12" lg="12" xl="12">
-							<b-row>
-								<b-col class="items_box" md="2" lg="2" xl="2">
-									<div class="icon_box main_icon">
-										<i class="fas fa-plane-arrival"></i>
-									</div>
-									<div class="date_text">
-										{{ reserv.getDate() }}
-									</div>
-									<div class="date_text">
-										{{ reserv.getHour() }}
-									</div>
-								</b-col>
-								<b-col class="items_box" md="1" lg="1" xl="1" >
-									<div id="separador1" style="margin: auto;"></div>
-								</b-col>
-								<b-col md="9" lg="9" xl="9">
-									<div class="itemsh_box"> 
-										<div class="country">
-											<strong>{{ reserv.getAddress('','a')}}</strong>
-										</div>
-										<div class="state">
-											<p style="margin-bottom: 0px; margin-top: 12px;">{{ reserv.getAddress('','b')}}</p>
-										</div>
-									</div>
-									<div class="itemsh_box"> 
-										<div style="margin-right:4px;">
-											<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
-										</div>
-										<div>
-											<p>{{ reserv.getAddress('','c')}}</p>
-										</div>
-									</div>
-								</b-col>
-								<template v-if="!reserv.trslatFlag()">
-									<b-col md="12" lg="12" xl="12">
-										<div id="separador2"></div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-taxi"></i>
-											</div>
-											<div class="item">
-												<strong>Taxi</strong>
-											</div>
-											<div class="item">
-												<p>7:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-car"></i>
-											</div>
-											<div class="item">
-												<strong>Vehiculo de flota</strong>
-											</div>
-											<div class="item">
-												<p>7:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="icon_box item_icon">
-												<i class="fas fa-bus-alt"></i>
-											</div>
-											<div class="item">
-												<strong>Bus</strong>
-											</div>
-											<div class="item">
-												<p>7:00 am -</p>
-											</div>
-											<div class="item">
-												<p>Desplazamiento de la casa al aeropuerto</p>
-											</div>
-										</div>
-									</b-col>
-								</template>
-								<template v-else>
-									<b-col md="12" lg="12" xl="12">
-										<div id="separador2"></div>
-										<div class="itemsh_box center itinerario"> 
-											<div class="item">
-												<p>Esta reserva no posee traslados asignados en esta localidad</p>
-											</div>
-										</div>
-									</b-col>
-								</template>
-							</b-row>
-						</b-col>
-						<b-col class="box box_h" md="12" lg="12" xl="12">
-							<b-row>
-								<b-col md="12" lg="12" xl="12" style="display: flex; font-size: 1.3em; margin: 8px;">
-									<div class="icon_box item_icon">
-										<i class="far fa-money-bill-alt"></i>
-									</div>
-									<div class="item">
-										<strong>Viaticos</strong>
-									</div>
-								</b-col>
-								<b-col md="12" lg="12" xl="12">
-									<el-table
-										size="mini"
-										:data="viatics"
-										border
-										show-summary
-										style="width: 100%; margin-bottom: 20px;">
-										<el-table-column
-											prop="rubro"
-											sortable
-											label="Rubro">
-										</el-table-column>
-										<el-table-column
-											prop="cantidad"
-											sortable
-											label="cant">
-										</el-table-column>
-										<el-table-column
-											prop="val_unit"
-											sortable
-											label="Monto">
-										</el-table-column>
-									</el-table>
-								</b-col>
-							</b-row>
-						</b-col>
-					</b-row>
-				</b-col>
-				<b-col class="box box_v" md="4" lg="4" xl="4">
-					<b-row>
-						<b-col md="12" lg="12" xl="12">
-							<div class="boxtitle">
-								<i class="fas fa-key"></i>
-								<strong>Aprobaciones:</strong>
-							</div>
-							<b-row class="autori">
-								<b-col class="img_ger" md="4" lg="4" xl="4">
-									<img
-									  src="/img/avatars/6.jpg"
-									  class="img-avatar"
-									  alt="admin@bootstrapmaster.com" />
-								</b-col>
-								<b-col class="text_aut" md="8" lg="8" xl="8">
-									<div class="title_ger">
-										<strong style="font-size=1em;">Edgar Saltron</strong>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">Gerente de Information Technology</p>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">17/09/1992</p>
-									</div>
-									<div>
-										<el-button 
-											type="success" 
-											round
-											size="mini"
-											style="
-										    font-size: 1em;
-										    height: 60%;
-										    /* line-height: 1em; */
-										    /* margin: auto; */
-										    display: flex;
-										    flex-direction: column;
-										    justify-content: center;
-										">Viaticos</el-button>
-									</div>
-								</b-col>
-							</b-row>
-							<b-row class="autori">
-								<b-col class="img_ger" md="4" lg="4" xl="4">
-									<img
-									  src="/img/avatars/6.jpg"
-									  class="img-avatar"
-									  alt="admin@bootstrapmaster.com" />
-								</b-col>
-								<b-col class="text_aut" md="8" lg="8" xl="8">
-									<div class="title_ger">
-										<strong style="font-size=1em;">Jackelyne Farias</strong>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">Gerente de Talento Humano</p>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">17/09/1992</p>
-									</div>
-									<div>
-										<el-button 
-											type="success" 
-											round
-											size="mini"
-											style="
-										    font-size: 1em;
-										    height: 60%;
-										    /* line-height: 1em; */
-										    /* margin: auto; */
-										    display: flex;
-										    flex-direction: column;
-										    justify-content: center;
-										">Reserva</el-button>
-									</div>
-								</b-col>
-							</b-row>
-							<b-row class="autori">
-								<b-col class="img_ger" md="4" lg="4" xl="4">
-									<img
-									  src="/img/avatars/6.jpg"
-									  class="img-avatar"
-									  alt="admin@bootstrapmaster.com" />
-								</b-col>
-								<b-col class="text_aut" md="8" lg="8" xl="8">
-									<div class="title_ger">
-										<strong style="font-size=1em;">Esmeralda Da Silva</strong>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">Directora</p>
-									</div>
-									<div>
-										<p style="margin-bottom: 0px;">17/09/1992</p>
-									</div>
-									<div>
-										<el-button 
-											type="success" 
-											round
-											size="mini"
-											style="
-										    font-size: 1em;
-										    height: 60%;
-										    /* line-height: 1em; */
-										    /* margin: auto; */
-										    display: flex;
-										    flex-direction: column;
-										    justify-content: center;
-										">Reserva</el-button>
-									</div>
-								</b-col>
-							</b-row>
-						</b-col>
-						<b-col md="12" lg="12" xl="12">
-							<div id="separador2"></div>
-							<div class="boxtitle">
-								<i class="fas fa-comment"></i>
-								<strong>Motivo:</strong>
-							</div>
-							<div class="boxdesc">
-								<p>
-									{{ reserv.getMeta('motivo') }}
-								</p>
-							</div>
-						</b-col>
-						<b-col md="12" lg="12" xl="12">
-							<div id="separador2"></div>
-							<div class="boxtitle">
-								<i class="fas fa-comment"></i>
-								<strong>Agenda:</strong>
-							</div>
-							<div class="boxdesc">
-								<p>
-									{{ reserv.getMeta('agenda') }}
-								</p>
-							</div>
-						</b-col>
-					</b-row>
-				</b-col>	
-			</b-row>
-		</el-card>
-</div>
+		  		  	<div class="box_name">
+		  				<strong>{{ reserva.user.name }} {{ reserva.user.last_name }}</strong> <i>{{ reserva.user.departamento.disp_name }}</i> 	
+		  		  	</div>
+		  	</b-row>
+		  	<b-row class="box box_data_reserv boxshadow" style="padding: 0px !important;">
+		  		<el-button type="primary" icon="el-icon-download" size="mini">Descargar en PDF</el-button>
+		  	</b-row>
+		  	<b-row class="box_data_reserv">
+		  		<b-col md="8" lg="8" xl="8">
+		  			<b-row>
+		  				<b-col class="box box_h boxshadow" md="12" lg="12" xl="12">
+		  					<b-row>
+		  						<b-col class="items_box" md="2" lg="2" xl="2">
+		  							<div class="icon_box main_icon">
+		  								<i class="fas fa-plane-departure"></i>
+		  							</div>
+		  							<div class="date_text">
+		  								{{ reserv.getDate('origen') }}
+		  							</div>
+		  							<div class="date_text">
+		  								{{ reserv.getHour('origen') }}
+		  							</div>
+		  						</b-col>
+		  						<b-col class="items_box" md="1" lg="1" xl="1" >
+		  							<div id="separador1" style="margin: auto;"></div>
+		  						</b-col>
+		  						<b-col md="9" lg="9" xl="9">
+		  							<div class="itemsh_box"> 
+		  								<div class="country">
+		  									<strong>{{ reserv.getAddress('origen','a')}}</strong>
+		  								</div>
+		  								<div class="state">
+		  									<p style="margin-bottom: 0px; margin-top: 12px;">{{ reserv.getAddress('origen','b')}}</p>
+		  								</div>
+		  							</div>
+		  							<div class="itemsh_box"> 
+		  								<div style="margin-right:4px;">
+		  									<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
+		  								</div>
+		  								<div class="">
+		  									<p>{{ reserv.getAddress('origen','c')}}</p>
+		  								</div>
+		  							</div>
+		  						</b-col>
+		  						<template v-if="reserv.trslatFlag()">
+		  							<b-col md="12" lg="12" xl="12">
+		  								<div id="separador2"></div>
+
+		  								<div v-for="item in reserva.traslados">
+
+		  									<div class="itemsh_box center itinerario" v-if="item.localidad==reserva.origen_a"> 
+		  										<div class="icon_box item_icon">
+		  											<i class="fas fa-plane" v-if="item.tipo=='Vuelo'"></i>
+		  											<i class="fas fa-taxi" v-if="item.tipo=='Taxi'"></i>
+		  											<i class="fas fa-car" v-if="item.tipo=='Auto'"></i>
+		  											<i class="fas fa-bus-alt" v-if="item.tipo=='Bus'"></i>
+		  										</div>
+		  										<div class="item">
+		  											<strong>{{item.tipo}}</strong>
+		  										</div>
+		  										<div class="item">
+		  											<p>{{item.hora}}</p>
+		  										</div>
+		  										<div class="item">
+		  											<p>{{item.descripcion}}</p>
+		  										</div>
+		  									</div>
+		  								</div>
+
+		  							</b-col>
+		  						</template>
+		  						<template v-else>
+		  							<b-col md="12" lg="12" xl="12">
+		  								<div id="separador2"></div>
+		  								<div class="itemsh_box center itinerario"> 
+		  									<div class="item">
+		  										<p>Esta reserva no posee traslados asignados en esta localidad</p>
+		  									</div>
+		  								</div>
+		  							</b-col>
+		  						</template>
+		  					</b-row>
+		  				</b-col>
+		  				<b-col class="box box_h boxshadow" md="12" lg="12" xl="12">
+		  					<b-row>
+		  						<b-col class="items_box" md="2" lg="2" xl="2">
+		  							<div class="icon_box main_icon">
+		  								<i class="fas fa-plane-arrival"></i>
+		  							</div>
+		  							<div class="date_text">
+		  								{{ reserv.getDate() }}
+		  							</div>
+		  							<div class="date_text">
+		  								{{ reserv.getHour() }}
+		  							</div>
+		  						</b-col>
+		  						<b-col class="items_box" md="1" lg="1" xl="1" >
+		  							<div id="separador1" style="margin: auto;"></div>
+		  						</b-col>
+		  						<b-col md="9" lg="9" xl="9">
+		  							<div class="itemsh_box"> 
+		  								<div class="country">
+		  									<strong>{{ reserv.getAddress('','a')}}</strong>
+		  								</div>
+		  								<div class="state">
+		  									<p style="margin-bottom: 0px; margin-top: 12px;">{{ reserv.getAddress('','b')}}</p>
+		  								</div>
+		  							</div>
+		  							<div class="itemsh_box"> 
+		  								<div style="margin-right:4px;">
+		  									<i style="font-size: 1.5em;" class="fas fa-map-marker-alt"></i>
+		  								</div>
+		  								<div>
+		  									<p>{{ reserv.getAddress('','c')}}</p>
+		  								</div>
+		  							</div>
+		  						</b-col>
+		  						<template v-if="reserv.trslatFlag()">
+		  							<b-col md="12" lg="12" xl="12">
+		  								<div id="separador2"></div>
+
+		  								<div v-for="item in reserva.traslados">
+		  									<div class="itemsh_box center itinerario" v-if="item.localidad==reserva.destino_a"> 
+		  										<div class="icon_box item_icon">
+		  											<i class="fas fa-plane" v-if="item.tipo=='Vuelo'"></i>
+		  											<i class="fas fa-taxi" v-if="item.tipo=='Taxi'"></i>
+		  											<i class="fas fa-car" v-if="item.tipo=='Auto'"></i>
+		  											<i class="fas fa-bus-alt" v-if="item.tipo=='Bus'"></i>
+		  										</div>
+		  										<div class="item">
+		  											<strong>{{item.tipo}}</strong>
+		  										</div>
+		  										<div class="item">
+		  											<p>{{item.hora}}</p>
+		  										</div>
+		  										<div class="item">
+		  											<p>{{item.descripcion}}</p>
+		  										</div>
+		  									</div>
+		  								</div>
+
+		  							</b-col>
+		  						</template>
+		  						<template v-else>
+		  							<b-col md="12" lg="12" xl="12">
+		  								<div id="separador2"></div>
+		  								<div class="itemsh_box center itinerario"> 
+		  									<div class="item">
+		  										<p>Esta reserva no posee traslados asignados en esta localidad</p>
+		  									</div>
+		  								</div>
+		  							</b-col>
+		  						</template>
+		  					</b-row>
+		  				</b-col>
+		  				<b-col class="box box_h boxshadow" md="12" lg="12" xl="12">
+		  					<b-row>
+		  						<b-col md="12" lg="12" xl="12" style="display: flex; font-size: 1.3em; margin: 8px;">
+		  							<div class="icon_box item_icon">
+		  								<i class="far fa-money-bill-alt"></i>
+		  							</div>
+		  							<div class="item">
+		  								<strong>Viaticos</strong>
+		  							</div>
+		  						</b-col>
+		  						<b-col md="12" lg="12" xl="12">
+		  							<el-table
+		  								size="mini"
+		  								:data="viatics"
+		  								border
+		  								show-summary
+		  								style="width: 100%; margin-bottom: 20px;">
+		  								<el-table-column
+		  									prop="rubro"
+		  									sortable
+		  									label="Rubro">
+		  								</el-table-column>
+		  								<el-table-column
+		  									prop="cantidad"
+		  									sortable
+		  									label="cant">
+		  								</el-table-column>
+		  								<el-table-column
+		  									prop="val_unit"
+		  									sortable
+		  									label="Monto">
+		  								</el-table-column>
+		  							</el-table>
+		  						</b-col>
+		  					</b-row>
+		  				</b-col>
+		  			</b-row>
+		  		</b-col>
+		  		<b-col class="box box_v" md="4" lg="4" xl="4">
+		  			<b-row style="width:100%; margin-left: 0px;">
+		  				<b-col class="boxshadow" md="12" lg="12" xl="12">
+		  					<div class="boxtitle">
+		  						<i class="fas fa-key"></i>
+		  						<strong>Aprobaciones:</strong>
+		  					</div>
+		  					<template v-if="reserva.autorizaciones">
+		  						<div v-for="item in reserva.autorizaciones">
+		  							<b-row class="autori" v-if="item.gerencia">
+		  								<b-col class="img_ger" md="4" lg="4" xl="4" v-if="item.gerencia.coordinador.name">
+		  									<img
+		  									  :src="'/storage'+item.gerencia.coordinador.avatar"
+		  									  class="img-avatar"
+		  									  alt="admin@bootstrapmaster.com" />
+		  								</b-col>
+		  								<b-col class="text_aut" md="8" lg="8" xl="8">
+		  									<div class="title_ger">
+		  										<strong style="font-size=1em;">{{item.gerencia.coordinador.name}} {{item.gerencia.coordinador.last_name}}</strong>
+		  									</div>
+		  									<div>
+		  										{{ item.gerencia.disp_name}}
+		  									</div>
+		  									<div>
+		  										{{ item.date_auth}}
+		  									</div>
+		  									<div class="buttonline">
+		  										<el-button
+		  											:type="item.valor=='Aprobado'?'success':'danger'" 
+		  											round
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 60%;
+		  										    display: flex;
+		  										    flex-direction: column;
+		  										    justify-content: center;
+		  										">{{ item.recurso }}</el-button>
+		  									</div>
+		  									<div class="buttonline">
+		  										<el-button v-if="authority.reserva"
+		  										@click="authclick(item.recurso,item.id,true)"
+		  											type="primary" 
+		  											round
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 60%;
+		  										    display: flex;
+		  										    flex-direction: column;
+		  										    justify-content: center;
+		  										">Aprobar</el-button>
+		  										<el-button v-if="authority.reserva"
+		  										@click="authclick(item.recurso,item.id,false)"
+		  											type="primary" 
+		  											round
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 60%;
+		  										    display: flex;
+		  										    flex-direction: column;
+		  										    justify-content: center;
+		  										">Rechazar</el-button>
+		  									</div>
+		  								</b-col>
+		  							</b-row>	
+		  						</div>							
+		  					</template>
+		  				</b-col>
+		  				<b-col class="boxshadow" md="12" lg="12" xl="12">
+		  					<div id="separador2"></div>
+		  					<div class="boxtitle">
+		  						<i class="fas fa-comment"></i>
+		  						<strong>Motivo:</strong>
+		  					</div>
+		  					<div class="boxdesc">
+		  						<p>
+		  							{{ reserv.getMeta('motivo') }}
+		  						</p>
+		  					</div>
+		  				</b-col>
+		  				<b-col class="boxshadow" md="12" lg="12" xl="12">
+		  					<div id="separador2"></div>
+		  					<div class="boxtitle">
+		  						<i class="fas fa-comment"></i>
+		  						<strong>Agenda:</strong>
+		  					</div>
+		  					<div class="boxdesc">
+		  						<p>
+		  							{{ reserv.getMeta('agenda') }}
+		  						</p>
+		  					</div>
+		  				</b-col>
+		  			</b-row>
+		  		</b-col>	
+		  	</b-row>
+		  </b-card-body>
+		</b-card>
+	</div>
 </template>
 
 <script>
@@ -559,6 +458,15 @@ class Reserva{
 	  */
 	  data () {
 	  	return {
+	  		authitem:{
+	  			auth_id: null,
+	  			recurso: null,
+	  			valor: null,
+	  		},
+	  		authority:{
+	  			viatico : false,
+	  			reserva : false,
+	  		},
 	  		reserv : null,
 	  		reserva: null,
 	  		viatics: [
@@ -595,26 +503,56 @@ class Reserva{
 
 	  },
 	  methods: {
+	  		authclick(recurso,idauth,val){
+	  			axios.post(route('autorizaciones.update',idauth), {
+					_method: 'patch',
+					value: val,
+					recurso: recurso,
+				    }) 
+	  			    .then(response => {
+	  			        // console.log(response.data)
+	  			        // console.log(response)
+	  			        // console.log(response.status)
+
+	  			        this.reserva.autorizaciones.forEach((x,y)=>{
+	  			        	if (x.id==response.data.id) {
+	  			        		x.valor=response.data.valor
+	  			        	}
+	  			        })
+  			      	})
+  				// console.log(recurso)
+  				// console.log(idauth)
+	  		},
 			handleChange(val) {
 			  console.log(val);
-			}
+			},
+			next(val) {
+				this.$router.push({ path: `/reservas/${this.reserva.id+1}` })
+				console.log();
+				console.log('next');
+			},
+			back(val) {
+				this.$router.push({ path: `/reservas/${this.reserva.id-1}` })
+				console.log(this.reserva.id-1);
+				console.log('back');
+			},
 	  },
 	  beforeMount(){
 	  },
 	  created(){
-
-
-
 	  	axios.get(route('reservas.show',this.$router.app._route.params.id_reserva)) 
 	  	    .then(response => {
 	  	    	this.reserva = response.data.reserva
 	  	    	this.reserv = new Reserva(response.data.reserva)
+	  	    	if (response.data.autoreserva) {
+	  	    		this.authority.reserva = response.data.autoreserva
+	  	    	}
+	  	    	if (response.data.autoviatico) {
+	  	    		this.authority.viatico = response.data.autoviatico
+	  	    	}
 	  	    	// this.viatics = this.reserva.viaticos
 	  	        console.log(this.reserva)
 	  	      })
-	  	    .catch(error => {
-	  	      console.log(error)
-	  	    })
 	  },
 	  mounted(){
 	  },
@@ -623,169 +561,168 @@ class Reserva{
 	}
 </script>
 <style lang="scss">
-// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
-.autori{
-	margin: 5px;
-}
-.notif_section{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	font-size: 1.5em;
-	button{
-		color: white;
-		background-color: #007CC2;
-	}
-	
-}
-.box_notif{
-	background-color: rgba(0, 124, 194, 0.3);
-	border: 1px solid white;
-	font-family: 'Poppins', sans-serif;
-}
-.box_auth{
-	background-color: rgba(251, 175, 63, 0.3);
-	border: 1px solid white;
-	font-family: 'Poppins', sans-serif;
-}
-.box_neg{
-	background-color: rgba(208, 77, 81, 0.3);
-	border: 1px solid white;
-	font-family: 'Poppins', sans-serif;
-}
-#separador2{
-	height:1px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border-bottom:1px solid white;
-}
-#separador1{
-	// border-left: 1px solid white; /* Border on the left */
-	width: 1px; /* Width instead of height */
-	height: 100px;
-	background-color: white;
-}
-.icon_box{
-	margin-top: 0px;
-	margin-left: 5px;
-	margin-right: 5px;
-}
-.box_data_reserv{
-	font-size: 12px;
-	.main_icon{
-		font-size: 3em;
-	}
-	.items_box{
-		margin: auto;
-		text-align: center;
-		display: flex;
-		flex-flow: column nowrap;
-		div {
-			width: 100%;
-			margin: 3px;
-		}
-		.date_text{
-			font-size: 1em;
-			letter-spacing: 1px;
-		}
-	}
-	.itemsh_box{
-		margin: auto;
-		text-align: center;
-		display: flex;
-		flex-flow: row nowrap;
-		position: relative;
-		div{
-			height: 100%;
-		}
-		p{
-			text-align: left;
-			margin-left: 5px;
-			margin-right: 5px;
-		}
-		.country{
-			font-size: 2em;
-			line-height: 2em;
-			letter-spacing: 1px;
-		}
-		.state{
-			font-size: 1.3em;
-			line-height: 2em;	
-		}
-		.item{
-			margin: auto;
-			p{
-				margin: auto;
-				line-height: 1.5em;
-			}
-		}
-		.item_icon{
-			font-size: 1.5em;
-		}
-
-	}
-	.itinerario{
-		margin-bottom: 5px;
-	}
-	.center{
-		justify-content:center !important;
-		font-size: 1.2em;
-	}
-	.box_v{
-		width: 100%;
-	}
-	// .box_h{
-	// 	height: 100%;
-	// }
+	// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 	.box_name{
-		p{
 			font-family: 'Raleway', sans-serif;
 			font-size: 1.4em;
-		}
+			display: flex;
+			flex-direction: column;
 		strong{
 			text-transform: capitalize;
-			font-size: 2.2em;
-			line-height:2.2em;
+			font-size: 3.2em;
+			line-height:1em;
 		}
 	}
-	.box_dep{
-		font-style: italic;
-		font-size: 1.3em;
-		line-height:1.3em;
-		display: flex; 
-		// justify-content: center; 
-		align-items: center;
+
+	.autori{
+		margin: 5px;
 	}
-	.img_ger{
-		margin: auto;
-		padding: 0;
-		text-align: center;
-		img{
-			width: 75%;
+	.notif_section{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		font-size: 1.5em;
+		button{
+			color: white;
+			background-color: #007CC2;
 		}
+		
 	}
-	.text_aut{
-		display: flex; 
-		flex-direction: column;
-		font-size: 0.8em;
-		line-height:0.9em;
-		text-align: left;
-		padding: 3px;
-		div{
-			margin-top:3px;
-			margin-bottom: 3px;
-			p{
-				// margin-bottom: 0px !important;
+	.box_notif{
+		background-color: rgba(0, 124, 194, 0.3);
+		border: 1px solid white;
+		font-family: 'Poppins', sans-serif;
+	}
+	.box_auth{
+		background-color: rgba(251, 175, 63, 0.3);
+		border: 1px solid white;
+		font-family: 'Poppins', sans-serif;
+	}
+	.box_neg{
+		background-color: rgba(208, 77, 81, 0.3);
+		border: 1px solid white;
+		font-family: 'Poppins', sans-serif;
+	}
+	#separador2{
+		height:1px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		border-bottom:1px solid white;
+	}
+	#separador1{
+		// border-left: 1px solid white; /* Border on the left */
+		width: 1px; /* Width instead of height */
+		height: 100px;
+		background-color: white;
+	}
+	.icon_box{
+		margin-top: 0px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	.box_data_reserv{
+		font-size: 12px;
+		.main_icon{
+			font-size: 3em;
+		}
+		.items_box{
+			margin: auto;
+			text-align: center;
+			display: flex;
+			flex-flow: column nowrap;
+			div {
+				width: 100%;
+				margin: 3px;
+			}
+			.date_text{
+				font-size: 1em;
+				letter-spacing: 1px;
 			}
 		}
-		.title_ger{
-			font-size: 1.5em;
+		.itemsh_box{
+			margin: auto;
+			text-align: center;
+			display: flex;
+			flex-flow: row nowrap;
+			position: relative;
+			div{
+				height: 100%;
+			}
+			p{
+				text-align: left;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			.country{
+				font-size: 2em;
+				line-height: 2em;
+				letter-spacing: 1px;
+			}
+			.state{
+				font-size: 1.3em;
+				line-height: 2em;	
+			}
+			.item{
+				margin: auto;
+				p{
+					margin: auto;
+					line-height: 1.5em;
+				}
+			}
+			.item_icon{
+				font-size: 1.5em;
+			}
+
+		}
+		.itinerario{
+			margin-bottom: 5px;
+		}
+		.center{
+			justify-content:center !important;
+			font-size: 1.2em;
+		}
+		.box_v{
+			width: 100%;
+		}
+		.box_dep{
+			font-style: italic;
+			font-size: 1.3em;
+			line-height:1.3em;
+			display: flex; 
+			// justify-content: center; 
+			align-items: center;
+		}
+		.img_ger{
+			margin: auto;
+			padding: 0;
+			text-align: center;
+			img{
+				width: 75%;
+			}
+		}
+		.text_aut{
+			display: flex; 
+			flex-direction: column;
+			font-size: 0.8em;
+			line-height:0.9em;
+			text-align: left;
+			padding: 3px;
+			div{
+				margin-top:3px;
+				margin-bottom: 3px;
+				p{
+					// margin-bottom: 0px !important;
+				}
+			}
+			.title_ger{
+				font-size: 1.5em;
+			}
 		}
 	}
-}
-.box{
-	background-color: rgba(235, 235, 235, 1);
-	border: 1px solid white;
-	font-family: 'Poppins', sans-serif;
-}
+	.box{
+		// background-color: rgba(235, 235, 235, 1);
+		// border: 1px solid white;
+		font-family: 'Poppins', sans-serif;
+	}
+
 </style>

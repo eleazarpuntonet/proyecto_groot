@@ -51,27 +51,27 @@ var themeTitle = new titleItem({
   class: '',
   wrapel: '',
   wrapat: ''
-})
+})//TITULO
 
 var panelPrincipal = new menuBadge({
   name: 'Panel Principal', 
   url:'/dashboard',
   icon: 'icon-speedometer',
   badgevariant: 'primary',
-  badgetext:'Nuevo'
+  // badgetext:'Nuevo'
 })
 
-var colors = new menuItem({
-      name: 'Colors',
-      url: '/theme/colors',
-      icon: 'icon-drop'
-    })
+// var colors = new menuItem({
+//       name: 'Colors',
+//       url: '/theme/colors',
+//       icon: 'icon-drop'
+//     })
 
-var typhography = new menuItem({
-      name: 'Typography',
-      url: '/theme/typography',
-      icon: 'icon-pencil'
-    })
+// var typhography = new menuItem({
+//       name: 'Typography',
+//       url: '/theme/typography',
+//       icon: 'icon-pencil'
+//     })
 
 
 var s_reserva = new menuItem({
@@ -88,12 +88,12 @@ var index_reservas = new menuItem({
       class: 'nav-item',
     })
 
-var addAutorizacion = new menuItem({
-      name: 'Autorizaciones',
-      url: '/reservas/autorizaciones',
-      icon: 'icon-pencil',
-      class: 'nav-item',
-    })
+// var addAutorizacion = new menuItem({
+//       name: 'Autorizaciones',
+//       url: '/reservas/autorizaciones',
+//       icon: 'icon-pencil',
+//       class: 'nav-item',
+//     })
 
 var trasladositem = new menuItem({
       name: 'Traslados',
@@ -110,16 +110,17 @@ var items_Reservas = new menuItem({
     },[
         s_reserva,
         index_reservas,
-        addAutorizacion,
+        // addAutorizacion,
         trasladositem,
       ])
 
+console.log('ejecuto rutas')
 export default {
   items: [
     panelPrincipal,
     themeTitle,
-    colors,
-    typhography,
+    // colors,
+    // typhography,
     items_Reservas,
     {
       divider: true

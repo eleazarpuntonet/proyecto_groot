@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
 use App\Reservas;
 use App\Viaticos;
+use App\Autorizaciones;
 
 class ReservasController extends Controller
 {
@@ -19,7 +20,13 @@ class ReservasController extends Controller
     public function index($page='')
     {
 
-        $reservas = Reservas::with('traslados')->with(['autorizaciones','user.departamento','traslados'])->paginate();
+        $reservas = Reservas::with([
+            'autorizaciones',
+            'user.departamento',
+            'user.departamento.coordinador',
+            'user.departamento.gerente',
+            'traslados',
+        ])->paginate();
         return response()->json([
             'reservas' => $reservas,
         ]);
@@ -46,6 +53,24 @@ class ReservasController extends Controller
      */
     public function store(Request $request)
     {
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
         $reserva                = new Reservas;
         $reserva->id_user       = $request->input('id_user');
         $reserva->alcance       = $request->input('alcance');
@@ -60,6 +85,22 @@ class ReservasController extends Controller
         $reserva->motivo        = $request->input('motivo');
         $reserva->agenda        = $request->input('agenda');
         $reserva->save();
+
+        $autorizacion             = new Autorizaciones;
+        $autorizacion->recurso    = 'Reserva';
+        $autorizacion->valor      = 'En espera';
+        $autorizacion->depto_id   = $user->departamento->id;
+        $autorizacion->reserva_id = $reserva->id;
+        $autorizacion->date_auth  = date('Y-m-d H:i:s');
+        $reserva->autorizaciones()->save($autorizacion);
+
+        $autorizacion             = new Autorizaciones;
+        $autorizacion->recurso    = 'Viatico';
+        $autorizacion->valor      = 'En espera';
+        $autorizacion->depto_id   = $user->departamento->id;
+        $autorizacion->reserva_id = $reserva->id;
+        $autorizacion->date_auth  = date('Y-m-d H:i:s');
+        $reserva->autorizaciones()->save($autorizacion);
         
         if (!empty($request->input('viaticos'))) {
 
@@ -72,7 +113,7 @@ class ReservasController extends Controller
 
             }
         }
-        return Reservas::with('viaticos')->find($reserva->id);
+        return Reservas::with(['viaticos','autorizaciones'])->find($reserva->id);
     }
 
     /**
@@ -84,17 +125,68 @@ class ReservasController extends Controller
     public function show($id)
     {
 
+        try {
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        $userid = $user->id;
+        /*
+        * Busca en la tabla Autorizaciones los registros de esta reserva
+        * donde el COORDINADOR de los departamentos sean igual al usuario logueado
+        */
+        $coordinador = Autorizaciones::where('autorizable_id','=',$id)
+            ->whereHas('gerencia', function($query) use ($userid){
+                $query->whereHas('coordinador', function($query) use ($userid){
+                        $query->where('id','=',$userid);
+                    });
+            })->get();
+            
+        /*
+        * Busca en la tabla Autorizaciones los registros de esta reserva
+        * donde el GERENTE de los departamentos sean igual al usuario logueado
+        */
+        $gerente = Autorizaciones::where('autorizable_id','=',$id)
+            ->whereHas('gerencia', function($query) use ($userid){
+                $query->whereHas('gerente', function($query) use ($userid){
+                        $query->where('id','=',$userid);
+                    });
+            })->get();
+            
+
         $reserva = Reservas::with([
             'viaticos',
+            'viaticos',
             'traslados',
-            'autorizaciones.gerencia.coordinador',
-            'autorizaciones.gerencia.gerente',
+            'autorizaciones',
             'user.departamento',
-            ])
-                        ->findOrFail($id);
-        return response()->json([
-            'reserva' => $reserva,
-        ]);
+            ])->findOrFail($id);
+        // if (count($coordinador)>0 || count($gerente)>0) {
+        if (count($coordinador)>0 || count($gerente)>0 || $userid==1) {
+            return response()->json([
+                'reserva' => $reserva,
+                'autoreserva' => true,
+                'autoviatico' => true,
+            ]);
+        } else {
+            return response()->json([
+                'reserva' => $reserva,
+            ]);
+        }
+
     }
 
     /**
