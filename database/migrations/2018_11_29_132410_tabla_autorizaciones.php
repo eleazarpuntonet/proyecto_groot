@@ -1,5 +1,6 @@
 <?php
 use App\Autorizaciones;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -34,9 +35,9 @@ class TablaAutorizaciones extends Migration
     public function down()
     {
 
-        $data = Autorizaciones::all();
-        $newJson = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents(base_path('database/dataseed/AutorizacionesSeed.json'), stripslashes($newJson));
+        // $data = Autorizaciones::all();
+        // $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        // file_put_contents(base_path('database/dataseed/AutorizacionesSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('autorizaciones');
     }
 }

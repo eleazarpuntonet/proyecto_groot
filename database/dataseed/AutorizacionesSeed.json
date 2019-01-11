@@ -1,602 +1,107 @@
 [
     {
         "id": 1,
-        "date_auth": "2018-03-12 05:41:49",
-        "depto_id": 59,
-        "reserva_id": 18
+        "autorizable_id": 14,
+        "recurso": "Reserva",
+        "valor": "Aprobado",
+        "date_auth": "2019-01-10 18:40:55",
+        "gerencia": {
+            "disp_name": "Coordinacion de Sistemas",
+            "ref": "it",
+            "coordinador": {
+                "id": 3,
+                "name": "Edgar",
+                "last_name": "Saltron",
+                "sede": "Chuao",
+                "email": "edgards@spservicesltd.uk",
+                "avatar": "/avats/user-default.png",
+                "cargo": "Coordinador"
+            },
+            "gerente": null
+        }
     },
     {
         "id": 2,
-        "date_auth": "2018-06-22 12:21:03",
-        "depto_id": 10,
-        "reserva_id": 12
+        "autorizable_id": 14,
+        "recurso": "Viatico",
+        "valor": "Aprobado",
+        "date_auth": "2019-01-10 18:40:57",
+        "gerencia": {
+            "disp_name": "Coordinacion de Sistemas",
+            "ref": "it",
+            "coordinador": {
+                "id": 3,
+                "name": "Edgar",
+                "last_name": "Saltron",
+                "sede": "Chuao",
+                "email": "edgards@spservicesltd.uk",
+                "avatar": "/avats/user-default.png",
+                "cargo": "Coordinador"
+            },
+            "gerente": null
+        }
     },
     {
         "id": 3,
-        "date_auth": "2017-12-24 09:17:29",
-        "depto_id": 11,
-        "reserva_id": 99
+        "autorizable_id": 14,
+        "recurso": "Reserva",
+        "valor": "Rechazado",
+        "date_auth": "2019-01-10 18:41:02",
+        "gerencia": {
+            "disp_name": "Coordinacion de Sistemas",
+            "ref": "it",
+            "coordinador": {
+                "id": 3,
+                "name": "Edgar",
+                "last_name": "Saltron",
+                "sede": "Chuao",
+                "email": "edgards@spservicesltd.uk",
+                "avatar": "/avats/user-default.png",
+                "cargo": "Coordinador"
+            },
+            "gerente": null
+        }
     },
     {
         "id": 4,
-        "date_auth": "2018-04-12 18:25:18",
-        "depto_id": 14,
-        "reserva_id": 99
+        "autorizable_id": 15,
+        "recurso": "Reserva",
+        "valor": "Aprobado",
+        "date_auth": "2019-01-10 17:47:20",
+        "gerencia": {
+            "disp_name": "Coordinacion de Sistemas",
+            "ref": "it",
+            "coordinador": {
+                "id": 3,
+                "name": "Edgar",
+                "last_name": "Saltron",
+                "sede": "Chuao",
+                "email": "edgards@spservicesltd.uk",
+                "avatar": "/avats/user-default.png",
+                "cargo": "Coordinador"
+            },
+            "gerente": null
+        }
     },
     {
         "id": 5,
-        "date_auth": "2018-03-10 00:48:19",
-        "depto_id": 90,
-        "reserva_id": 39
-    },
-    {
-        "id": 6,
-        "date_auth": "2017-10-14 00:57:43",
-        "depto_id": 65,
-        "reserva_id": 83
-    },
-    {
-        "id": 7,
-        "date_auth": "2018-02-13 09:17:11",
-        "depto_id": 68,
-        "reserva_id": 40
-    },
-    {
-        "id": 8,
-        "date_auth": "2017-09-02 15:09:39",
-        "depto_id": 43,
-        "reserva_id": 95
-    },
-    {
-        "id": 9,
-        "date_auth": "2018-07-11 03:18:41",
-        "depto_id": 5,
-        "reserva_id": 88
-    },
-    {
-        "id": 10,
-        "date_auth": "2018-04-19 16:29:56",
-        "depto_id": 70,
-        "reserva_id": 22
-    },
-    {
-        "id": 11,
-        "date_auth": "2017-08-08 14:14:31",
-        "depto_id": 45,
-        "reserva_id": 84
-    },
-    {
-        "id": 12,
-        "date_auth": "2018-03-05 04:44:37",
-        "depto_id": 39,
-        "reserva_id": 30
-    },
-    {
-        "id": 13,
-        "date_auth": "2017-05-22 10:16:10",
-        "depto_id": 67,
-        "reserva_id": 33
-    },
-    {
-        "id": 14,
-        "date_auth": "2018-04-19 00:40:16",
-        "depto_id": 66,
-        "reserva_id": 9
-    },
-    {
-        "id": 15,
-        "date_auth": "2017-06-01 00:50:25",
-        "depto_id": 2,
-        "reserva_id": 84
-    },
-    {
-        "id": 16,
-        "date_auth": "2018-09-28 00:52:01",
-        "depto_id": 15,
-        "reserva_id": 78
-    },
-    {
-        "id": 17,
-        "date_auth": "2017-06-16 15:19:42",
-        "depto_id": 17,
-        "reserva_id": 16
-    },
-    {
-        "id": 18,
-        "date_auth": "2018-04-12 18:39:46",
-        "depto_id": 12,
-        "reserva_id": 94
-    },
-    {
-        "id": 19,
-        "date_auth": "2017-08-12 04:01:02",
-        "depto_id": 85,
-        "reserva_id": 88
-    },
-    {
-        "id": 20,
-        "date_auth": "2017-09-20 16:02:43",
-        "depto_id": 9,
-        "reserva_id": 100
-    },
-    {
-        "id": 21,
-        "date_auth": "2017-08-18 01:37:47",
-        "depto_id": 13,
-        "reserva_id": 32
-    },
-    {
-        "id": 22,
-        "date_auth": "2018-10-10 03:31:36",
-        "depto_id": 60,
-        "reserva_id": 84
-    },
-    {
-        "id": 23,
-        "date_auth": "2017-09-09 19:19:26",
-        "depto_id": 52,
-        "reserva_id": 61
-    },
-    {
-        "id": 24,
-        "date_auth": "2018-02-03 04:14:02",
-        "depto_id": 66,
-        "reserva_id": 32
-    },
-    {
-        "id": 25,
-        "date_auth": "2017-04-16 02:45:46",
-        "depto_id": 63,
-        "reserva_id": 33
-    },
-    {
-        "id": 26,
-        "date_auth": "2017-05-15 20:41:29",
-        "depto_id": 32,
-        "reserva_id": 75
-    },
-    {
-        "id": 27,
-        "date_auth": "2017-01-10 00:03:00",
-        "depto_id": 45,
-        "reserva_id": 98
-    },
-    {
-        "id": 28,
-        "date_auth": "2018-08-18 01:55:37",
-        "depto_id": 25,
-        "reserva_id": 2
-    },
-    {
-        "id": 29,
-        "date_auth": "2017-10-29 10:18:27",
-        "depto_id": 48,
-        "reserva_id": 81
-    },
-    {
-        "id": 30,
-        "date_auth": "2017-01-20 07:58:09",
-        "depto_id": 42,
-        "reserva_id": 30
-    },
-    {
-        "id": 31,
-        "date_auth": "2017-07-02 09:19:33",
-        "depto_id": 92,
-        "reserva_id": 56
-    },
-    {
-        "id": 32,
-        "date_auth": "2018-06-09 22:39:51",
-        "depto_id": 26,
-        "reserva_id": 27
-    },
-    {
-        "id": 33,
-        "date_auth": "2018-07-28 12:27:07",
-        "depto_id": 53,
-        "reserva_id": 71
-    },
-    {
-        "id": 34,
-        "date_auth": "2018-03-10 14:43:18",
-        "depto_id": 75,
-        "reserva_id": 20
-    },
-    {
-        "id": 35,
-        "date_auth": "2017-09-11 20:04:37",
-        "depto_id": 34,
-        "reserva_id": 6
-    },
-    {
-        "id": 36,
-        "date_auth": "2017-01-06 00:31:11",
-        "depto_id": 79,
-        "reserva_id": 73
-    },
-    {
-        "id": 37,
-        "date_auth": "2017-12-03 00:13:02",
-        "depto_id": 29,
-        "reserva_id": 91
-    },
-    {
-        "id": 38,
-        "date_auth": "2018-09-19 06:14:27",
-        "depto_id": 86,
-        "reserva_id": 30
-    },
-    {
-        "id": 39,
-        "date_auth": "2018-03-23 16:04:47",
-        "depto_id": 65,
-        "reserva_id": 55
-    },
-    {
-        "id": 40,
-        "date_auth": "2018-10-03 20:41:53",
-        "depto_id": 48,
-        "reserva_id": 47
-    },
-    {
-        "id": 41,
-        "date_auth": "2018-06-27 22:59:12",
-        "depto_id": 93,
-        "reserva_id": 39
-    },
-    {
-        "id": 42,
-        "date_auth": "2017-11-20 16:17:41",
-        "depto_id": 72,
-        "reserva_id": 45
-    },
-    {
-        "id": 43,
-        "date_auth": "2018-07-18 20:41:14",
-        "depto_id": 59,
-        "reserva_id": 33
-    },
-    {
-        "id": 44,
-        "date_auth": "2018-07-09 09:38:15",
-        "depto_id": 23,
-        "reserva_id": 54
-    },
-    {
-        "id": 45,
-        "date_auth": "2017-10-09 13:32:09",
-        "depto_id": 73,
-        "reserva_id": 98
-    },
-    {
-        "id": 46,
-        "date_auth": "2018-02-06 17:47:56",
-        "depto_id": 57,
-        "reserva_id": 28
-    },
-    {
-        "id": 47,
-        "date_auth": "2017-04-11 03:35:56",
-        "depto_id": 69,
-        "reserva_id": 86
-    },
-    {
-        "id": 48,
-        "date_auth": "2018-02-21 14:05:33",
-        "depto_id": 39,
-        "reserva_id": 15
-    },
-    {
-        "id": 49,
-        "date_auth": "2018-03-06 05:22:44",
-        "depto_id": 52,
-        "reserva_id": 1
-    },
-    {
-        "id": 50,
-        "date_auth": "2017-03-25 00:10:56",
-        "depto_id": 42,
-        "reserva_id": 26
-    },
-    {
-        "id": 51,
-        "date_auth": "2017-03-03 23:28:38",
-        "depto_id": 69,
-        "reserva_id": 39
-    },
-    {
-        "id": 52,
-        "date_auth": "2017-05-27 07:44:25",
-        "depto_id": 37,
-        "reserva_id": 93
-    },
-    {
-        "id": 53,
-        "date_auth": "2018-03-04 22:22:11",
-        "depto_id": 27,
-        "reserva_id": 99
-    },
-    {
-        "id": 54,
-        "date_auth": "2017-05-01 01:41:28",
-        "depto_id": 71,
-        "reserva_id": 51
-    },
-    {
-        "id": 55,
-        "date_auth": "2017-04-22 04:04:06",
-        "depto_id": 23,
-        "reserva_id": 14
-    },
-    {
-        "id": 56,
-        "date_auth": "2018-05-12 00:04:35",
-        "depto_id": 44,
-        "reserva_id": 23
-    },
-    {
-        "id": 57,
-        "date_auth": "2017-02-21 04:13:00",
-        "depto_id": 26,
-        "reserva_id": 82
-    },
-    {
-        "id": 58,
-        "date_auth": "2018-08-31 09:21:19",
-        "depto_id": 23,
-        "reserva_id": 91
-    },
-    {
-        "id": 59,
-        "date_auth": "2017-02-25 16:14:17",
-        "depto_id": 95,
-        "reserva_id": 20
-    },
-    {
-        "id": 60,
-        "date_auth": "2018-06-07 20:22:11",
-        "depto_id": 74,
-        "reserva_id": 77
-    },
-    {
-        "id": 61,
-        "date_auth": "2018-10-13 22:07:11",
-        "depto_id": 56,
-        "reserva_id": 38
-    },
-    {
-        "id": 62,
-        "date_auth": "2018-09-26 17:27:07",
-        "depto_id": 58,
-        "reserva_id": 79
-    },
-    {
-        "id": 63,
-        "date_auth": "2017-11-22 00:58:20",
-        "depto_id": 72,
-        "reserva_id": 42
-    },
-    {
-        "id": 64,
-        "date_auth": "2017-04-12 16:17:59",
-        "depto_id": 58,
-        "reserva_id": 91
-    },
-    {
-        "id": 65,
-        "date_auth": "2017-08-24 01:21:23",
-        "depto_id": 51,
-        "reserva_id": 22
-    },
-    {
-        "id": 66,
-        "date_auth": "2017-06-18 22:43:20",
-        "depto_id": 93,
-        "reserva_id": 74
-    },
-    {
-        "id": 67,
-        "date_auth": "2017-03-02 03:40:52",
-        "depto_id": 22,
-        "reserva_id": 37
-    },
-    {
-        "id": 68,
-        "date_auth": "2017-01-15 02:07:07",
-        "depto_id": 49,
-        "reserva_id": 54
-    },
-    {
-        "id": 69,
-        "date_auth": "2017-06-23 16:36:22",
-        "depto_id": 76,
-        "reserva_id": 35
-    },
-    {
-        "id": 70,
-        "date_auth": "2017-01-27 22:07:56",
-        "depto_id": 5,
-        "reserva_id": 1
-    },
-    {
-        "id": 71,
-        "date_auth": "2017-06-29 05:52:24",
-        "depto_id": 88,
-        "reserva_id": 29
-    },
-    {
-        "id": 72,
-        "date_auth": "2018-07-21 01:26:54",
-        "depto_id": 16,
-        "reserva_id": 16
-    },
-    {
-        "id": 73,
-        "date_auth": "2018-10-03 12:09:36",
-        "depto_id": 76,
-        "reserva_id": 90
-    },
-    {
-        "id": 74,
-        "date_auth": "2018-10-16 01:28:33",
-        "depto_id": 68,
-        "reserva_id": 9
-    },
-    {
-        "id": 75,
-        "date_auth": "2017-04-16 23:00:33",
-        "depto_id": 83,
-        "reserva_id": 51
-    },
-    {
-        "id": 76,
-        "date_auth": "2017-01-27 05:31:45",
-        "depto_id": 84,
-        "reserva_id": 35
-    },
-    {
-        "id": 77,
-        "date_auth": "2017-02-03 04:02:02",
-        "depto_id": 13,
-        "reserva_id": 24
-    },
-    {
-        "id": 78,
-        "date_auth": "2018-10-02 18:38:56",
-        "depto_id": 73,
-        "reserva_id": 22
-    },
-    {
-        "id": 79,
-        "date_auth": "2017-05-27 13:39:22",
-        "depto_id": 95,
-        "reserva_id": 22
-    },
-    {
-        "id": 80,
-        "date_auth": "2018-07-10 22:17:43",
-        "depto_id": 87,
-        "reserva_id": 23
-    },
-    {
-        "id": 81,
-        "date_auth": "2018-07-09 08:02:19",
-        "depto_id": 32,
-        "reserva_id": 80
-    },
-    {
-        "id": 82,
-        "date_auth": "2018-09-06 14:07:09",
-        "depto_id": 79,
-        "reserva_id": 91
-    },
-    {
-        "id": 83,
-        "date_auth": "2018-01-16 08:59:24",
-        "depto_id": 91,
-        "reserva_id": 100
-    },
-    {
-        "id": 84,
-        "date_auth": "2017-06-05 05:23:50",
-        "depto_id": 66,
-        "reserva_id": 43
-    },
-    {
-        "id": 85,
-        "date_auth": "2017-08-29 10:06:03",
-        "depto_id": 14,
-        "reserva_id": 85
-    },
-    {
-        "id": 86,
-        "date_auth": "2017-12-20 17:39:09",
-        "depto_id": 9,
-        "reserva_id": 50
-    },
-    {
-        "id": 87,
-        "date_auth": "2018-03-14 15:08:28",
-        "depto_id": 53,
-        "reserva_id": 2
-    },
-    {
-        "id": 88,
-        "date_auth": "2017-03-21 19:41:22",
-        "depto_id": 3,
-        "reserva_id": 32
-    },
-    {
-        "id": 89,
-        "date_auth": "2017-08-16 22:42:15",
-        "depto_id": 3,
-        "reserva_id": 68
-    },
-    {
-        "id": 90,
-        "date_auth": "2017-06-09 19:50:33",
-        "depto_id": 92,
-        "reserva_id": 32
-    },
-    {
-        "id": 91,
-        "date_auth": "2018-06-22 16:16:07",
-        "depto_id": 73,
-        "reserva_id": 88
-    },
-    {
-        "id": 92,
-        "date_auth": "2018-06-28 16:19:33",
-        "depto_id": 98,
-        "reserva_id": 85
-    },
-    {
-        "id": 93,
-        "date_auth": "2017-02-17 17:36:19",
-        "depto_id": 4,
-        "reserva_id": 27
-    },
-    {
-        "id": 94,
-        "date_auth": "2018-06-10 20:55:18",
-        "depto_id": 92,
-        "reserva_id": 21
-    },
-    {
-        "id": 95,
-        "date_auth": "2017-10-09 09:56:13",
-        "depto_id": 23,
-        "reserva_id": 98
-    },
-    {
-        "id": 96,
-        "date_auth": "2017-07-06 15:03:44",
-        "depto_id": 93,
-        "reserva_id": 1
-    },
-    {
-        "id": 97,
-        "date_auth": "2017-02-24 20:12:45",
-        "depto_id": 67,
-        "reserva_id": 72
-    },
-    {
-        "id": 98,
-        "date_auth": "2017-06-16 10:22:39",
-        "depto_id": 39,
-        "reserva_id": 11
-    },
-    {
-        "id": 99,
-        "date_auth": "2017-04-24 09:27:16",
-        "depto_id": 65,
-        "reserva_id": 62
-    },
-    {
-        "id": 100,
-        "date_auth": "2017-03-09 04:27:59",
-        "depto_id": 85,
-        "reserva_id": 37
+        "autorizable_id": 15,
+        "recurso": "Viatico",
+        "valor": "Rechazado",
+        "date_auth": "2019-01-10 17:47:36",
+        "gerencia": {
+            "disp_name": "Coordinacion de Sistemas",
+            "ref": "it",
+            "coordinador": {
+                "id": 3,
+                "name": "Edgar",
+                "last_name": "Saltron",
+                "sede": "Chuao",
+                "email": "edgards@spservicesltd.uk",
+                "avatar": "/avats/user-default.png",
+                "cargo": "Coordinador"
+            },
+            "gerente": null
+        }
     }
 ]

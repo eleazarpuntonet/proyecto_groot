@@ -646,7 +646,7 @@ class Reserva{
 	  	    		console.log(x)
 	  	    		this.modificable.push({index:y,value:false})
 	  	    	})
-	  	        console.log(this.modificable)
+	  	        console.log(this.reserva)
 	  	      })
 	  	    // this.$forceUpdate();
 	  },

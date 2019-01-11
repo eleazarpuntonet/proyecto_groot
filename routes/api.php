@@ -14,6 +14,7 @@ use App\Departamentos;
 use App\Proveedor;
 use App\Contactos;
 use App\Viaticos;
+use App\Notifications\Notificaciontest;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,16 +55,20 @@ Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metaco
 
 Route::get('testing',function(){
 
-	// $reserva = Reservas::find(14);
+	$reserva = Reservas::find(15);
+	$user = User::find(1);
+
+	$mensaje = 'Primera notificacion';
+	// $user->notify(new Notificaciontest($mensaje));
 	// $autorizacion            = new Autorizaciones;
 	// $autorizacion->recurso   = 'Viatico';
 	// $autorizacion->valor     = 'Aprobado';
 	// $autorizacion->date_auth = date('Y-m-d H:i:s');
 	// $reserva->autorizaciones()->save($autorizacion);
 	$id = 15;
-	$autorizacion =Reservas::whereHas('autorizaciones',function($query) use ($id){
-		$query->where('id', '=', 4);
-	})->get(['id']);
+	// $autorizacion =Reservas::whereHas('autorizaciones',function($query) use ($id){
+	// 	$query->where('id', '=', 4);
+	// })->get(['id']);
 	// $autorizacion->recurso   = 'Reserva';
 	// $autorizacion->valor     = 'Negada';
 	// $autorizacion->date_auth = date('Y-m-d H:i:s');
@@ -82,7 +87,8 @@ Route::get('testing',function(){
 	// ])->find(1);
 
 	return response()->json([
-		'Reservas'      => $autorizacion,
+		'Reservas'      => $reserva,
+		'User'      => $user->departamento,
 
 	], 200);
 

@@ -39,9 +39,9 @@ class CrearTablaReservas extends Migration
     public function down()
     {
 
-        $data = Reservas::all();
-        $newJson = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents(base_path('database/dataseed/ReservasSeed.json'), stripslashes($newJson));
+        // $data = Reservas::all();
+        // $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        // file_put_contents(base_path('database/dataseed/ReservasSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('reservas');
     }
 }

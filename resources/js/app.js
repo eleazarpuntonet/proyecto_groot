@@ -139,12 +139,14 @@ const store = new Vuex.Store({
 	mutations: {
         isAuthenticated (state, payload) {
             console.log('Recibiendo en autenticated')
+            console.log(payload)
             state.isAuthenticated = true
             state.isLoggedIn  = true
             state.auth_error  = null
             state.loading     = false
             state.currentUser = payload.user
             state.currentUser.token = payload.access_token
+            state.currentUser.notifications = payload.notifications
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", state.currentUser.token)
             console.log(JSON.parse(localStorage.getItem('user')))
