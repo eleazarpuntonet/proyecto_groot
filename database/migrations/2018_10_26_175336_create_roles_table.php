@@ -1,4 +1,5 @@
 <?php
+use App\Role;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -25,7 +26,10 @@ class CreateRolesTable extends Migration
      * @return void
      */
     public function down()
-    {
+    {        
+        $data = Role::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/RoleSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('roles');
     }
 }

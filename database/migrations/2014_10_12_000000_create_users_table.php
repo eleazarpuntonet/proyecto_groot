@@ -1,5 +1,5 @@
 <?php
-
+use App\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -37,6 +37,10 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+
+        $data = User::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/UserSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('users');
     }
 }

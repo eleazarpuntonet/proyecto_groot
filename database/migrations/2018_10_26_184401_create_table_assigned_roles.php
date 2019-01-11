@@ -1,5 +1,5 @@
 <?php
-
+use App\AssignedTableRoles;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -29,6 +29,9 @@ class CreateTableAssignedRoles extends Migration
      */
     public function down()
     {
+        $data = AssignedTableRoles::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/AssignedTableRolesSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('assigned_roles');
     }
 }
