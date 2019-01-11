@@ -33,7 +33,7 @@
             <div class="colflex">
               <div class="icon_container flexcenter">
                 <img
-                  src="/img/avatars/6.jpg"
+                  :src="'/storage'+res_select.user_avatar"
                   class="img-avatar"
                   alt="admin@bootstrapmaster.com" />
               </div>
@@ -273,6 +273,7 @@ class Reservaitem{
     this.user_last_name = item.user.last_name
     this.user_depto     = item.user.departamento.disp_name
     this.user_cargo     = item.user.cargo
+    this.user_avatar     = item.user.avatar
   }
 
   getFullname(){
@@ -584,6 +585,8 @@ export default {
   justify-content: center;
   margin-left: 8px;
   margin-right: 8px;
+  width: 7vh;
+  height: 7vh;
   i{
     width: 5vh;
     height: 5vh;

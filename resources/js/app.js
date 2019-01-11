@@ -235,6 +235,13 @@ axios.interceptors.response.use(null, (error)=>{
             });
         }
 
+        if (error.response.status == 404) {
+            Notification.error({
+              title: 'Error en Query',
+              message: 'El query enviado no arrojo ningun resultado'
+            });
+        }
+
         if (error.response.status == 500) {
             Notification.error({
               title: 'Error Interno',

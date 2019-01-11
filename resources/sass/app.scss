@@ -95,6 +95,10 @@ $colorpantonecoolgray: #BBBDC0;
 $colorpantonecoolgrayCool: #6D6E70;
 $pantonetext: #6D6E70;
 $backgroundimage: '/img/login_back.jpg';
+$backgroundimage0: '/img/Background0.jpg';
+$backgroundimage1: '/img/Background_16-9_1.jpg';
+$backgroundimage2: '/img/Background_16-9_2.jpg';
+$backgroundimage3: '/img/Background_16-9_3.jpg';
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
@@ -266,7 +270,7 @@ h1 {
   box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
 }
 .app{
-  background: url($backgroundimage) no-repeat center center fixed; 
+  background: url($backgroundimage1) no-repeat bottom center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -295,7 +299,7 @@ h1 {
     background:       linear-gradient(
         rgba(35, 31, 32, 0.3), 
         rgba(35, 31, 32, 0)
-      ), url($backgroundimage) no-repeat center center fixed; 
+      ), url($backgroundimage1) no-repeat center center fixed; 
 
   }
   .appblur::after{

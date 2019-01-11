@@ -88,7 +88,7 @@ class ReservasController extends Controller
 
         $autorizacion             = new Autorizaciones;
         $autorizacion->recurso    = 'Reserva';
-        $autorizacion->valor      = 'En espera';
+        $autorizacion->valor      = 'Standby';
         $autorizacion->depto_id   = $user->departamento->id;
         $autorizacion->reserva_id = $reserva->id;
         $autorizacion->date_auth  = date('Y-m-d H:i:s');
@@ -96,7 +96,7 @@ class ReservasController extends Controller
 
         $autorizacion             = new Autorizaciones;
         $autorizacion->recurso    = 'Viatico';
-        $autorizacion->valor      = 'En espera';
+        $autorizacion->valor      = 'Standby';
         $autorizacion->depto_id   = $user->departamento->id;
         $autorizacion->reserva_id = $reserva->id;
         $autorizacion->date_auth  = date('Y-m-d H:i:s');

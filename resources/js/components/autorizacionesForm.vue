@@ -1,37 +1,28 @@
 <template>
 	<div>
-		<el-card class="box-card">
 
-			  <div slot="header" class="clearfix">
-			    <strong>Reserva </strong>
-			  </div>
+<!-- 		<el-button-group style="float:right;">
+		  <el-button 
+		  	size="mini" 
+		  	type="primary" 
+		  	icon="el-icon-arrow-left">Anterior</el-button>
+		  <el-button 
+		  	size="mini" 
+		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
+		</el-button-group> -->
+<!-- 		<el-card class="box-card">
 
-			  <el-table
-			    :data="tableData"
-			    height="700"
-			    style="width: 100%">
-			    <el-table-column
-			      prop="id"
-			      label="Nro Reserva">
-			    </el-table-column>
-			    <el-table-column
-			      prop="alcance"
-			      label="Alcance">
-			    </el-table-column>
-			    <el-table-column
-			      prop="id_user"
-			      label="Usuario">
-			    </el-table-column>
-			    <el-table-column
-			      prop="destino_b"
-			      label="Origen">
-			    </el-table-column>
-			    <el-table-column
-			      prop="destino_a"
-			      label="Destino">
-			    </el-table-column>
-			  </el-table>
-		</el-card>
+			<h1>hola</h1>
+		</el-card> -->
+
+		<nav>
+		  <router-link to="/detalle/13">Next</router-link>
+		  <router-link to="/detalle/14">Next</router-link>
+		  <router-link :to="{ name: 'Detalle', params: { id_reserva: 14 }}">User</router-link>
+		</nav>
+		<h1>hola</h1>
+		<router-view></router-view>
+
 	</div>
 </template>
 
@@ -56,64 +47,16 @@
 	  computed: {
 	  },
 	  watch: {
-	    bottom(bottom) {
-	      if (bottom) {
-	        this.onInfinite()
-	      }
-	    }
+
 	  },
 	  methods: {
-	  	bottomVisible() {
-	  	  const tabla   = document.getElementsByClassName('el-table__body-wrapper')[0]
-	  	  var offset    = tabla.offsetHeight
-	  	  var scrolltop = tabla.scrollTop
-	  	  var scroll    = tabla.scrollHeight
-	  	  if (offset + scrolltop === scroll) {
-	  	  	return true
-	  	  }
-	  	  return false
-	  	},
-	  	onInfinite() {
-	  	  setTimeout(() => {
-	  	  	console.log('Pagina'+(this.pagination.currentPage+1))
-	  	    axios.get(route('reservas.index'),{page : (this.pagination.currentPage+1)}) 
-	  	        .then(response => {
-	  	        	this.pagination.nextPagePath = response.data.reservas.next_page_url
-	  	        	this.pagination.prevPagePath = response.data.reservas.prev_page_url
-	  	        	this.pagination.currentPage  = response.data.reservas.current_page
-	  	        	if (!!this.tableData) {
-	  	        		this.tableData            = this.tableData.concat(response.data.reservas.data);
-	  	        	} else {
-	  	        		this.tableData = response.data.reservas.data
-	  	        	}
-	  	          })
-	  	        .catch(error => {
-	  	          console.log(error)
-	  	        })
-	  	   
-	  	  }, 1000);
-	  	},
+
 	  },
 	  beforeMount(){
 	  },
 	  created(){
 	  },
 	  mounted(){
-	  	document.getElementsByClassName('el-table__body-wrapper')[0].addEventListener('scroll', () => {
-	  	  this.bottom = this.bottomVisible()
-	  	})
-	  	axios.get(route('reservas.index')) 
-	  	    .then(response => {
-	  	    	this.pagination.nextPagePath = response.data.reservas.next_page_url
-	  	    	this.pagination.prevPagePath = response.data.reservas.prev_page_url
-	  	    	this.pagination.currentPage  = response.data.reservas.current_page
-	  	    	this.pagination.lastPage     = response.data.reservas.to
-	  	    	this.tableData            = response.data.reservas.data
-	  	        console.log(response.data.reservas)
-	  	      })
-	  	    .catch(error => {
-	  	      console.log(error)
-	  	    })
 	  },
 	  destroyed () {
 	  },

@@ -9,13 +9,39 @@
 					<b-col lg="12" md="12">
 					  <el-table
 					  	id='tableReservas'
-					  	max-height="700"
+					  	max-height="550"
 					    :data="dataReservas"
 					    style="width: 100%">
 						    <el-table-column
-						      label="Nro reserva"
-						      prop="id">
+						      label="Avatar"
+						      prop="user">
+                  <template slot-scope="scope">
+                    <div class="icon_container flexcenter">
+                      <img
+                        :src="'/storage'+scope.row.user.avatar"
+                        class="img-avatar"
+                        alt="admin@bootstrapmaster.com" />
+                    </div>
+                  </template>
 						    </el-table-column>
+                <el-table-column
+                  label="Nombre"
+                  prop="user">
+                  <template slot-scope="scope">
+                    {{scope.row.user.name}} {{scope.row.user.last_name}}
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="Nombre"
+                  prop="user">
+                  <template slot-scope="scope">
+                    {{scope.row.user.departamento.disp_name}}
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="Sede"
+                  prop="user.sede">
+                </el-table-column> 
 						    <el-table-column
 						      label="Alcance"
 						      prop="alcance">
@@ -30,8 +56,8 @@
 						    </el-table-column>
 						    <el-table-column
 						    sortable
-						      label="Fecha de emision"
-						      prop="updated_at">
+						      label="Emision"
+						      prop="created_at">
 						    </el-table-column>
 
 						    <el-table-column
@@ -182,7 +208,10 @@ export default {
   }
 }
 </script>
-<style>
-
+<style lang="scss">
+.icon_container{
+  width: 6.5vh;
+  height: 6.5vh;
+}
 
 </style>

@@ -61,11 +61,13 @@ import nueva_reserva    from '../../../components/formularioDeReservas'
 import index_Reservas    from '../../../components/indexReservas'
 import detalle_Reserva    from '../../../components/detalleReservas'
 import perfilDeUsuario    from '../../../components/userProfile'
-import autReservas    from '../../../components/autorizacionesForm'
 import traslados_reserva    from '../../../components/trasladosForm'
+import autReservas    from '../../../components/autorizacionesForm'
 
 Vue.use(Router)
-console.log('Ejecuto router')
+// var user = JSON.parse(window.localStorage.getItem('user'))
+// console.log(localStorage)
+
 class Route_item{
   constructor(item,children){
 
@@ -156,6 +158,12 @@ var Theme_route = new Route_item({
   },[Colors_route,Typography_route])
 
 var rolesreservas = ['public']
+var indreservas = new Route_item({
+  path:'indice_reservas',
+  name:'Indice',
+  comp: autReservas,
+  })
+indreservas.changeAuth(true,rolesreservas)
 var traslados = new Route_item({
   path:'traslados',
   name:'Traslados',
@@ -180,16 +188,20 @@ var detreserva = new Route_item({
   comp: detalle_Reserva,
   })  
 detreserva.changeAuth(true,rolesreservas)
+
+
 var MenuReservas = new Route_item({
     path:'reservas',
     name:'Reservas',
     redir: '/reservas/listado_reservas'
   },[
-      traslados,
-      nreserva,
-      inreserva,
-      detreserva,
-      ])
+    indreservas,
+    traslados,
+    nreserva,
+    inreserva,
+    detreserva,
+    ])
+
 
 export default new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
@@ -208,8 +220,20 @@ export default new Router({
         panelHome,
         Theme_route,
         MenuReservas,
-        perfilUser,
-        
+        perfilUser, 
+        // {
+        //   path: 'detalle',
+        //   name: 'Homee',
+        //   redirect: '/detalle/14',
+        //   component: autReservas,
+        //   children: [
+        //     new Route_item({
+        //       path:':id_reserva',
+        //       name:'Detalle',
+        //       comp: detalle_Reserva,
+        //       }),      
+        //   ]
+        // },    
       ]
     },
   ]

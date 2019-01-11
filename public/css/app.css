@@ -10717,7 +10717,7 @@ h1 {
 }
 
 .app {
-  background: url("/img/login_back.jpg") no-repeat center center fixed;
+  background: url("/img/Background_16-9_1.jpg") no-repeat bottom center fixed;
   background-size: cover;
 }
 
@@ -10739,8 +10739,8 @@ h1 {
   height: 100%;
   -webkit-filter: blur(4px);
   filter: blur(4px);
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(35, 31, 32, 0.3)), to(rgba(35, 31, 32, 0))), url("/img/login_back.jpg") no-repeat center center fixed;
-  background: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0)), url("/img/login_back.jpg") no-repeat center center fixed;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(35, 31, 32, 0.3)), to(rgba(35, 31, 32, 0))), url("/img/Background_16-9_1.jpg") no-repeat center center fixed;
+  background: linear-gradient(rgba(35, 31, 32, 0.3), rgba(35, 31, 32, 0)), url("/img/Background_16-9_1.jpg") no-repeat center center fixed;
 }
 
 .app .appblur::after {

@@ -8,7 +8,6 @@
               <b-card-body>
                   <img class="navbar-brand-full" src="/img/spsapplogo.png" width="90%" height="auto" alt="Logo SPS">
                 <b-form>
-                  <h1 style="margin-top:35px;">Inicio de Sesion</h1>
                   <p class="text-muted">Ingrese las credenciales asociadas a su cuenta</p>
                   <b-input-group class="mb-3">
 
@@ -50,7 +49,7 @@
                     </b-button>
                     </b-col>
                     <b-col cols="6" class="text-right">
-                      <b-button variant="link" class="px-0">Recuperar credenciales</b-button>
+                      <!-- <b-button variant="link" class="px-0">Recuperar credenciales</b-button> -->
                     </b-col>
                   </b-row>
 
@@ -97,8 +96,8 @@ export default {
 </script>
 <style lang="scss">
   .app{
-    background-image: url("/img/login_back.jpg");
-    background-repeat: no-repeat;
+    // background-image: url("/img/login_back.jpg");
+    // background-repeat: no-repeat;
     // background-position: right top;
   }
 </style>

@@ -971,12 +971,13 @@ label{
 .texttitle{
   padding: 0px;
   &:hover {
-      text-shadow: 2px 2px 6px rgba(35,31,32, 1);
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
   } 
   display: flex;
-  color: rgba(35,31,32,1);
+  color: #BBBDC0;
   font-family: 'Eurostile LTS Demi';
-  text-shadow: 2px 2px 4px rgba(35,31,32, 0.8);
+  // text-shadow: 2px 2px 4px rgba(187, 189, 192, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
 }
 .img_logo{

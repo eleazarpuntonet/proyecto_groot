@@ -7,12 +7,13 @@
 
 		  		<el-button-group style="float:right;">
 		  		  <el-button 
-		  		  @click="back()"
+		  		  @click="back(reserva.id)"
 		  		  	size="mini" 
 		  		  	type="primary" 
 		  		  	icon="el-icon-arrow-left">Anterior</el-button>
 		  		  <el-button 
-		  		  @click="next()"
+	
+		  		  @click.native="next(reserva.id)"
 		  		  	size="mini" 
 		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
 		  		</el-button-group>
@@ -41,7 +42,7 @@
 		  	<b-row class="box_data_reserv boxshadow">
 					<div class="avatarcontainer">
 						<img
-						  src="/img/avatars/6.jpg"
+						  :src="'/storage'+reserva.user.avatar"
 						  class="img-avatar"
 						  alt="admin@bootstrapmaster.com" />
 					</div>
@@ -246,7 +247,7 @@
 		  						<strong>Aprobaciones:</strong>
 		  					</div>
 		  					<template v-if="reserva.autorizaciones">
-		  						<div v-for="item in reserva.autorizaciones">
+		  						<div v-for="(item,index) in reserva.autorizaciones">
 		  							<b-row class="autori" v-if="item.gerencia">
 		  								<b-col class="img_ger" md="4" lg="4" xl="4" v-if="item.gerencia.coordinador.name">
 		  									<img
@@ -273,13 +274,75 @@
 		  										    font-size: 1em;
 		  										    height: 60%;
 		  										    display: flex;
-		  										    flex-direction: column;
-		  										    justify-content: center;
+													line-height:0px;		  										    justify-content: center;
 		  										">{{ item.recurso }}</el-button>
+		  										<el-button
+		  										v-if="item.valor == 'Aprobado'"
+		  											type="success"
+		  											circle
+		  											icon="el-icon-check"
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 2vh;
+		  										    width: 2vh;
+		  										    display: flex;
+		  										    justify-content: center;
+		  										    padding: 0px !important;
+		  										"></el-button>
+		  										<el-button
+		  										v-if="item.valor == 'Rechazado'"
+		  											type="danger"
+		  											circle
+		  											icon="el-icon-close"
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 2vh;
+		  										    width: 2vh;
+		  										    display: flex;
+		  										    justify-content: center;
+		  										    padding: 0px !important;
+		  										"></el-button>
+		  										<el-button
+		  										v-if="item.valor == 'Standby'"
+		  											type="warning"
+		  											circle
+		  											icon="el-icon-time"
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 2vh;
+		  										    width: 2vh;
+		  										    display: flex;
+		  										    justify-content: center;
+		  										    padding: 0px !important;
+		  										"></el-button>
+		  										<el-button
+		  										v-if="authority.reserva == true && item.valor !== 'Standby'"
+		  										@click="editauto(index)"
+		  											type="primary"
+		  											circle
+		  											icon="el-icon-edit"
+		  											size="mini"
+		  											style="
+		  										    font-size: 1em;
+		  										    height: 2vh;
+		  										    width: 2vh;
+		  										    display: flex;
+		  										    justify-content: center;
+		  										    padding: 0px !important;
+		  										"></el-button>
 		  									</div>
 		  									<div class="buttonline">
-		  										<el-button v-if="authority.reserva"
-		  										@click="authclick(item.recurso,item.id,true)"
+		  										<el-button 
+		  										v-if=
+		  										"authority.reserva == true 
+		  										&& item.valor == 'Standby' 
+		  										|| modificable[index].value == true
+		  										&& item.valor !== 'Aprobado' 
+		  										"
+		  										@click="authclick(item.recurso,item.id,true, index)"
 		  											type="primary" 
 		  											round
 		  											size="mini"
@@ -287,11 +350,16 @@
 		  										    font-size: 1em;
 		  										    height: 60%;
 		  										    display: flex;
-		  										    flex-direction: column;
-		  										    justify-content: center;
+													line-height: 0px;		  										    justify-content: center;
 		  										">Aprobar</el-button>
-		  										<el-button v-if="authority.reserva"
-		  										@click="authclick(item.recurso,item.id,false)"
+		  										<el-button 
+		  										v-if=
+		  										"authority.reserva == true 
+		  										&& item.valor == 'Standby' 
+		  										|| modificable[index].value == true
+		  										&& item.valor !== 'Rechazado' 
+		  										"
+		  										@click="authclick(item.recurso,item.id,false, index)"
 		  											type="primary" 
 		  											round
 		  											size="mini"
@@ -299,10 +367,10 @@
 		  										    font-size: 1em;
 		  										    height: 60%;
 		  										    display: flex;
-		  										    flex-direction: column;
-		  										    justify-content: center;
+													line-height: 0px;		  										    justify-content: center;
 		  										">Rechazar</el-button>
 		  									</div>
+		  									{{reserva.autorizaciones[index].autorizable}}
 		  								</b-col>
 		  							</b-row>	
 		  						</div>							
@@ -343,7 +411,6 @@
 <script>
 class Reserva{
   constructor(res){
-  	this.alcance
   	this.id            = res.id
   	this.id_user       = res.id_user
   	this.alcance       = res.alcance
@@ -458,6 +525,7 @@ class Reserva{
 	  */
 	  data () {
 	  	return {
+	  		modificable: [],
 	  		authitem:{
 	  			auth_id: null,
 	  			recurso: null,
@@ -503,16 +571,19 @@ class Reserva{
 
 	  },
 	  methods: {
-	  		authclick(recurso,idauth,val){
+		  	editauto(x,y){
+		  		this.modificable[x].value = !this.modificable[x].value
+		  		console.log(x)
+		  		console.log(this.modificable)
+		  	},
+	  		authclick(recurso,idauth,val,index){
+	  			this.modificable[index].value = !this.modificable[index].value
 	  			axios.post(route('autorizaciones.update',idauth), {
 					_method: 'patch',
 					value: val,
 					recurso: recurso,
 				    }) 
 	  			    .then(response => {
-	  			        // console.log(response.data)
-	  			        // console.log(response)
-	  			        // console.log(response.status)
 
 	  			        this.reserva.autorizaciones.forEach((x,y)=>{
 	  			        	if (x.id==response.data.id) {
@@ -520,21 +591,41 @@ class Reserva{
 	  			        	}
 	  			        })
   			      	})
-  				// console.log(recurso)
-  				// console.log(idauth)
 	  		},
 			handleChange(val) {
 			  console.log(val);
 			},
 			next(val) {
-				this.$router.push({ path: `/reservas/${this.reserva.id+1}` })
-				console.log();
-				console.log('next');
+				var next = val+1;
+				this.$router.push({ path: `/reservas/${next}` })
+
+				axios.get(route('reservas.show',next)) 
+				    .then(response => {
+				    	this.reserva = response.data.reserva
+				    	this.reserv = new Reserva(response.data.reserva)
+				    	if (response.data.autoreserva) {
+				    		this.authority.reserva = response.data.autoreserva
+				    	}
+				    	if (response.data.autoviatico) {
+				    		this.authority.viatico = response.data.autoviatico
+				    	}
+				      })
 			},
 			back(val) {
-				this.$router.push({ path: `/reservas/${this.reserva.id-1}` })
-				console.log(this.reserva.id-1);
-				console.log('back');
+				var back = val-1;
+				this.$router.push({ path: `/reservas/${back}` })
+
+				axios.get(route('reservas.show',back)) 
+				    .then(response => {
+				    	this.reserva = response.data.reserva
+				    	this.reserv = new Reserva(response.data.reserva)
+				    	if (response.data.autoreserva) {
+				    		this.authority.reserva = response.data.autoreserva
+				    	}
+				    	if (response.data.autoviatico) {
+				    		this.authority.viatico = response.data.autoviatico
+				    	}
+				      })
 			},
 	  },
 	  beforeMount(){
@@ -551,8 +642,13 @@ class Reserva{
 	  	    		this.authority.viatico = response.data.autoviatico
 	  	    	}
 	  	    	// this.viatics = this.reserva.viaticos
-	  	        console.log(this.reserva)
+	  	    	this.reserva.autorizaciones.forEach((x,y)=>{
+	  	    		console.log(x)
+	  	    		this.modificable.push({index:y,value:false})
+	  	    	})
+	  	        console.log(this.modificable)
 	  	      })
+	  	    // this.$forceUpdate();
 	  },
 	  mounted(){
 	  },

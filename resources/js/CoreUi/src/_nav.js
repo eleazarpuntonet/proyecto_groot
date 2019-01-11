@@ -88,13 +88,6 @@ var index_reservas = new menuItem({
       class: 'nav-item',
     })
 
-// var addAutorizacion = new menuItem({
-//       name: 'Autorizaciones',
-//       url: '/reservas/autorizaciones',
-//       icon: 'icon-pencil',
-//       class: 'nav-item',
-//     })
-
 var trasladositem = new menuItem({
       name: 'Traslados',
       url: '/reservas/traslados',
@@ -110,11 +103,11 @@ var items_Reservas = new menuItem({
     },[
         s_reserva,
         index_reservas,
-        // addAutorizacion,
         trasladositem,
       ])
 
-console.log('ejecuto rutas')
+// var user = JSON.parse(window.localStorage.getItem('user'))
+// console.log(localStorage)
 export default {
   items: [
     panelPrincipal,
