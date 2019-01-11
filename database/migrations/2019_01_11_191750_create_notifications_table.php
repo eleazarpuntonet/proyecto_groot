@@ -1,5 +1,5 @@
 <?php
-
+use App\Notificationtests;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -30,6 +30,9 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
+        $data = Notificationtests::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/NotificationsSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('notifications');
     }
 }

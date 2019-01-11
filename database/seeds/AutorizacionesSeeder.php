@@ -17,10 +17,14 @@ class AutorizacionesSeeder extends Seeder
     	Autorizaciones::truncate();
 
         foreach ($autorizaciones as $autorizacion) {
-            $auth             = new App\Autorizaciones;
-            $auth->date_auth  = $autorizacion->date_auth;
-            $auth->depto_id   = $autorizacion->depto_id;
-            $auth->reserva_id = $autorizacion->reserva_id;
+
+
+            $auth                 = new App\Autorizaciones;
+            $auth->id             = $autorizacion->id;
+            $auth->autorizable_id = $autorizacion->autorizable_id;
+            $auth->recurso        = $autorizacion->recurso;
+            $auth->valor          = $autorizacion->valor;
+            $auth->date_auth      = $autorizacion->date_auth;
             $auth->save();
         }
     }

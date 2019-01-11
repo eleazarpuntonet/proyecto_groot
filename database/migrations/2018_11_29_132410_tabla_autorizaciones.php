@@ -1,5 +1,6 @@
 <?php
 use App\Autorizaciones;
+use App\Reservas;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -34,10 +35,13 @@ class TablaAutorizaciones extends Migration
      */
     public function down()
     {
+        $data = Reservas::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/ReservasSeed.json'), stripslashes($newJson));
 
-        // $data = Autorizaciones::all();
-        // $newJson = json_encode($data, JSON_PRETTY_PRINT);
-        // file_put_contents(base_path('database/dataseed/AutorizacionesSeed.json'), stripslashes($newJson));
+        $data = Autorizaciones::all();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/AutorizacionesSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('autorizaciones');
     }
 }

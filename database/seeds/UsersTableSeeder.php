@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Eleazar';
         $user->last_name = 'Ortega';
         $user->cargo     = 'Programador';
-        $user->gerencia  = 1;
+        $user->gerencia  = 4;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'eleazaro@spservicesltd.uk';
@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Marialin';
         $user->last_name = 'Lacourt';
         $user->cargo     = 'Periodista';
-        $user->gerencia  = 1;
+        $user->gerencia  = 8;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'marialinl@spservicesltd.uk';
@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Edgar';
         $user->last_name = 'Saltron';
         $user->cargo     = 'Coordinador';
-        $user->gerencia  = 1;
+        $user->gerencia  = 4;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'edgards@spservicesltd.uk';
@@ -67,7 +67,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Luis';
         $user->last_name = 'Depablos';
         $user->cargo     = 'Analista de Soporte';
-        $user->gerencia  = 1;
+        $user->gerencia  = 4;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'luisd@spservicesltd.uk';
@@ -81,7 +81,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Yonny';
         $user->last_name = 'Tamayo';
         $user->cargo     = 'Analista de Soporte';
-        $user->gerencia  = 1;
+        $user->gerencia  = 4;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'yonnyt@spservicesltd.uk';
@@ -107,7 +107,7 @@ class UsersTableSeeder extends Seeder
         $user->name      = 'Ronald';
         $user->last_name = 'F';
         $user->cargo     = 'Diseñador';
-        $user->gerencia  = 1;
+        $user->gerencia  = 8;
         $user->sede      = 'Chuao';
         $user->status    = 'Activo';
         $user->email     = 'ronaldf@spservicesltd.uk';
