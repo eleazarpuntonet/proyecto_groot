@@ -1,1 +1,90 @@
-[]
+[
+    {
+        "id": 1,
+        "id_user": 4,
+        "alcance": "Nacional",
+        "origen_a": "Miranda",
+        "origen_b": "Charallave",
+        "origen_det": "La estrella, 2da etapa, Mercurio.",
+        "fecha_partida": "2019-01-20 00:00:00",
+        "fecha_retorno": "2019-01-23 00:00:00",
+        "destino_a": "Distrito Capital",
+        "destino_b": "El Junquito",
+        "destino_det": "Km 13, Urb Cultura.",
+        "motivo": "Trabajo",
+        "agenda": "Trabajo",
+        "created_at": "2019-01-14 16:40:43",
+        "autorizaciones": [
+            {
+                "id": 1,
+                "autorizable_id": 1,
+                "recurso": "Reserva",
+                "valor": "Standby",
+                "date_auth": "2019-01-14 16:40:44",
+                "gerencia": {
+                    "id": 4,
+                    "disp_name": "Coordinacion de Sistemas",
+                    "ref": "it",
+                    "gerente_id": "3",
+                    "coordinador_id": "3",
+                    "dependencia": null,
+                    "created_at": "2019-01-14 16:39:27",
+                    "updated_at": "2019-01-14 16:39:27",
+                    "coordinador": {
+                        "id": 3,
+                        "name": "Edgar",
+                        "last_name": "Saltron",
+                        "sede": "Chuao",
+                        "email": "edgards@spservicesltd.uk",
+                        "avatar": "/avats/user-default.png",
+                        "cargo": "Coordinador"
+                    },
+                    "gerente": {
+                        "id": 3,
+                        "name": "Edgar",
+                        "last_name": "Saltron",
+                        "sede": "Chuao",
+                        "email": "edgards@spservicesltd.uk",
+                        "avatar": "/avats/user-default.png",
+                        "cargo": "Coordinador"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "autorizable_id": 1,
+                "recurso": "Viatico",
+                "valor": "Standby",
+                "date_auth": "2019-01-14 16:40:44",
+                "gerencia": {
+                    "id": 4,
+                    "disp_name": "Coordinacion de Sistemas",
+                    "ref": "it",
+                    "gerente_id": "3",
+                    "coordinador_id": "3",
+                    "dependencia": null,
+                    "created_at": "2019-01-14 16:39:27",
+                    "updated_at": "2019-01-14 16:39:27",
+                    "coordinador": {
+                        "id": 3,
+                        "name": "Edgar",
+                        "last_name": "Saltron",
+                        "sede": "Chuao",
+                        "email": "edgards@spservicesltd.uk",
+                        "avatar": "/avats/user-default.png",
+                        "cargo": "Coordinador"
+                    },
+                    "gerente": {
+                        "id": 3,
+                        "name": "Edgar",
+                        "last_name": "Saltron",
+                        "sede": "Chuao",
+                        "email": "edgards@spservicesltd.uk",
+                        "avatar": "/avats/user-default.png",
+                        "cargo": "Coordinador"
+                    }
+                }
+            }
+        ]
+    }
+]

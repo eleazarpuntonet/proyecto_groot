@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Departamentos extends Model
 {
     protected $table = 'departamentos';
-    protected $visible = ['disp_name','ref','coordinador','gerente'];
+    // protected $visible = ['disp_name','ref','coordinador','gerente'];
     protected $with = [
         'coordinador:id,name,last_name,sede,email,avatar,cargo',
         'gerente:id,name,last_name,sede,email,avatar,cargo',

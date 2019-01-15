@@ -19,6 +19,12 @@ class DepartamentosSeeder extends Seeder
         foreach ($departamentos as $department) {
             $departamentos                 = new App\Departamentos;
             $departamentos->disp_name      = $department->disp_name;
+
+            if ($department->gerente_id) {
+                $departamentos->gerente_id = $department->gerente_id;
+                $departamentos->coordinador_id = $department->coordinador_id;
+            }
+
             $departamentos->ref            = $department->ref;
             $departamentos->save();
         }

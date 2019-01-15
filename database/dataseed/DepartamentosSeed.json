@@ -1,82 +1,122 @@
 [
-	{
+	{	
 		"disp_name": "Junta Directiva",
-		"ref": "jdirectiva"
+		"ref": "jdirectiva",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Presidencia",
-		"ref": "presidencia"
+		"ref": "presidencia",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Recursos Humanos",
-		"ref": "rrhh"
+		"ref": "rrhh",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Coordinacion de Sistemas",
-		"ref": "it"
+		"ref": "it",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Auditoria Interna",
-		"ref": "audinterna"
+		"ref": "audinterna",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Consultoria Juridica",
-		"ref": "consjuridica"
+		"ref": "consjuridica",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Planificacion Estrategica",
-		"ref": "planestrategica"
+		"ref": "planestrategica",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Asuntos Publicos",
-		"ref": "aspublicos"
+		"ref": "aspublicos",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Finanzas",
-		"ref": "finanzas"
+		"ref": "finanzas",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Nuevos Negocios",
-		"ref": "nnegocios"
+		"ref": "nnegocios",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Gerencia Tecnica Comercial",
-		"ref": "gercomercial"
+		"ref": "gercomercial",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Evaluaciones Economicas",
-		"ref": "eveconomicas"
+		"ref": "eveconomicas",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Infraestructura y Servicios Generales",
-		"ref": "infraestructura"
+		"ref": "infraestructura",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Direccion de Procura",
-		"ref": "procura"
+		"ref": "procura",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Servicios Oriente",
-		"ref": "seroriente"
+		"ref": "seroriente",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Servicios Occidente",
-		"ref": "seroccidente"
+		"ref": "seroccidente",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Peru",
-		"ref": "per"
+		"ref": "per",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Mexico",
-		"ref": "mexico"
+		"ref": "mexico",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Ecuador",
-		"ref": "ecuador"
+		"ref": "ecuador",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	},
-	{
+	{	
 		"disp_name": "Jordania",
-		"ref": "jordania"
+		"ref": "jordania",
+		"coordinador_id": "3",
+		"gerente_id": "3"
 	}
 ]
