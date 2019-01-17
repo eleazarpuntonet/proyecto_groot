@@ -3,26 +3,48 @@
     <b-row class="mainWindow">
       <b-col class="sideMenu" md="4" lg="4" xl="4">
         <el-table
-        class="roundborder"
-        :highlight-current-row="true"
+          class="roundborder"
+          :highlight-current-row="true"
           :show-header=false
           :data="lista_resevas"
-          style="width: 100%;box-shadow: 0px 2px 5px 3px rgba(136, 136, 136, 0.6);"
+          style="box-shadow: 0px 2px 5px 3px rgba(136, 136, 136, 0.6);"
           @current-change="rowClick"
-          max-height="100%">
+          >
           <el-table-column
             fixed
+            align="center"
+            prop="user"
+            width="40%">
+            <template slot-scope="scope">
+              <div class="tableicon">
+                <img
+                  :src="'/storage'+scope.row.user.avatar"
+                  class="img-avatar"
+                  alt="admin@bootstrapmaster.com" />
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            fixed
+            align="center"
+            prop="user"
+            width="100%">
+            <template slot-scope="scope">
+              <div class="tableicon">
+                  {{scope.row.user.name}} {{scope.row.user.last_name}}
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            fixed
+            align="center"
             prop="alcance"
             width="100%">
           </el-table-column>
           <el-table-column
             fixed
-            prop="user.name"
-            width="100%">
-          </el-table-column>
-          <el-table-column
-            fixed
-            prop="destino_b"
+            align="center"
+            prop="destino_a"
             width="100%">
           </el-table-column>
         </el-table>
@@ -43,7 +65,7 @@
                 <h2 class="l_titulo" style="margin-bottom: -0.5rem;">{{ res_select.getFullname() }}</h2>
               </div>
               <div>
-                <p class="ptext main-text"></strong> {{ res_select.user_depto }}</p>
+                </strong> {{ res_select.user_depto }}
               </div>
             </div>
           </div>
@@ -52,43 +74,35 @@
             <div class="boxshadow databoxItem">
               <div class="dItem">
                 <i class="fas main-icon fa-plane-departure"></i>
-                <p class="ptext main-text"><strong>{{ res_select.origen_a }} </strong>{{ res_select.origen_b }}</p>
+                <strong>{{ res_select.origen_a }} </strong>{{ res_select.origen_b }}
               </div>
               <div class="dItem">
                 <i class="fas main-icon fa-map-marker-alt"></i>
-                <p class="ptext main-text">{{ res_select.origen_det }}</p>
+                {{ res_select.origen_det }}
               </div>
               <div class="dItem">
                 <i class="fas main-icon fa-calendar-alt"></i>
-                <p class="ptext main-text">{{ res_select.getDate('origen') }}</p>
-              </div>
-              <div class="dItem">
-                <i class="fas main-icon fa-taxi"></i>
-                <p class="ptext main-text">Traslados</p>
+                {{ res_select.getDate('origen') }}
               </div>
             </div>
 
             <div class="boxshadow databoxItem">
               <div class="dItem">
                 <i class="fas main-icon fa-plane-arrival"></i>
-                <p class="ptext main-text"><strong>{{ res_select.destino_a }} </strong>{{ res_select.destino_b }}</p>
+                <strong>{{ res_select.destino_a }} </strong>{{ res_select.destino_b }}
               </div>
               <div class="dItem">
                 <i class="fas main-icon fa-map-marker-alt"></i>
-                <p class="ptext main-text">{{ res_select.destino_det }}</p>
+                {{ res_select.destino_det }}
               </div>
               <div class="dItem">
                 <i class="fas main-icon fa-calendar-alt"></i>
-                <p class="ptext main-text">{{ res_select.getDate() }}</p>
-              </div>
-              <div class="dItem">
-                <i class="fas main-icon fa-taxi"></i>
-                <p class="ptext main-text">Traslados</p>
+                  {{ res_select.getDate() }}
               </div>
             </div>
           </div>
 
-          <div class="container_flexbox databoxItem boxshadow">
+          <div class="container_flexbox databoxItem boxshadow trasladostable">
             <div class="l_label labelm" v-if="!res_select.traslados.length>0">
               Esta reserva no tiene traslados asignados
             </div>
@@ -96,27 +110,31 @@
               <div class="traslado" 
               v-for="item in res_select.traslados"
               >
-                <div class="trasItem">
-                  <i class="fas main-icon fa-bus"></i>
-                  <p class="ptext main-text"> {{item.tipo}} </p>
-                  <!-- <p class="ptext main-text"> 15/10/2017 </p> -->
+                <div class="trasItem textbox">
+                  <i class="fas main-icon fa-plane" v-if="item.tipo=='Vuelo'"></i>
+                  <i class="fas main-icon fa-taxi" v-if="item.tipo=='Taxi'"></i>
+                  <i class="fas main-icon fa-car" v-if="item.tipo=='Auto'"></i>
+                  <i class="fas main-icon fa-bus-alt" v-if="item.tipo=='Bus'"></i>
                 </div>
-                <div class="trasItem">
-                  <p class="ptext main-text"> <strong>22:00 - 23:00</strong> </p>
+                <div class="trasItem textbox">
+                  {{item.tipo}}
+                </div>
+                <div class="trasItem textbox">
+                  <strong>22:00 - 23:00</strong>
                 </div>
                 <div class="trasItem bottomtext">
                   <div class="textbox">
-                    <p class="ptext main-text">Desde: {{item.origen}} </p>
+                    Desde: {{item.origen}}
                   </div>
                 </div>
                 <div class="trasItem bottomtext">
                   <div class="textbox">
-                    <p class="ptext main-text">Hasta: {{item.destino}} </p>
+                    Hasta: {{item.destino}}
                   </div>
                 </div>
                 <div class="trasItem bottomtext">
                   <div class="textbox">
-                    <p class="ptext main-text"> {{item.descripcion}} </p>
+                    {{item.descripcion}}
                   </div>
                 </div>
               </div>
@@ -436,6 +454,8 @@ export default {
       console.log(a)
       axios.post(route('traslados.store'),a) 
           .then(response => {
+            this.res_select.traslados.push(response.data)
+            this.resetForm('traslado')
             console.log(response)
               this.$notify({
                 title: response.status,
@@ -543,7 +563,8 @@ export default {
             // this.pagination.lastPage     = response.data.reservas.to
             this.lista_resevas            = response.data.reservas.data
             console.log('TRaslados')
-              console.log(response.data.reservas)
+              console.log(response.data.reservas.data.length)
+              
             })
           .catch(error => {
             console.log(error)
@@ -556,6 +577,36 @@ export default {
 }
 </script>
 <style lang="scss">
+.textbox{
+  color: #231F20;
+  font-family: 'Eurostile LTS Demi';
+}
+.trasladostable{
+  overflow-y: scroll; 
+  height:25vh;
+}
+.cell{
+  // min-width: 2vh !important;
+  // width: 100% !important;
+}
+.tableicon{
+  width: 100%;
+  img{
+    width: 4vh;
+    height: 4vh;
+  }
+}
+  .el-table td, .el-table th{
+    padding: 6px 0 !important;
+
+  }
+.el-table__body{
+  width: 100%  !important;
+
+}
+.el-table__fixed-body-wrapper{
+
+}
 .button_content{
   // display: flex;
   // flex-direction: row;
@@ -651,6 +702,7 @@ export default {
 
   }
   .databox{
+
     .title{
       display: flex;
       flex-direction: row;
@@ -685,27 +737,26 @@ export default {
         }
       }
       .traslado{
+                display: flex;
+                flex-direction: row;
+                font-size: 1rem;
         background-color: rgba(187, 189, 192, 0.2);
         box-shadow: 2px 2px 4px 3px rgba(187, 189, 192, 0.7);
-        margin: 5px;
+        margin: 10px 0;
         padding: 3px;
         border-radius: 5px;
         border: 1.5px solid rgba(35, 31, 32, 0.5);
         .trasItem{
           i{
+            font-size: 1.1rem;
             margin-top: auto;
             margin-bottom: auto;
           }
-          p{
-            margin-top: 2px;
-            margin-right: 3px;
-            margin-bottom: 2px;
-            margin-left: 3px;
-          }
             display: flex;
-            flex-direction: row;
-            margin-left:3px;
-            margin-right: 3px;
+            flex-direction: column;
+            margin: 0 10px;
+            // margin-left:3px;
+            // margin-right: 3px;
             font-size: 0.8em;
         }
       }

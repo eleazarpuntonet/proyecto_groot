@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Reservas;
 use App\Viaticos;
 use App\Autorizaciones;
+use App\User;
+use App\Notifications\Notificaciontest;
 
 class ReservasController extends Controller
 {
@@ -71,6 +73,11 @@ class ReservasController extends Controller
 
         }
 
+        $reservauser= User::find($request->input('id_user'));
+        $gerente = User::find($reservauser->departamento->coordinador->id);
+        $mensaje = 'El usuario '.$reservauser->name.' '.$reservauser->last_name.' ha creado una reserva';
+        $gerente->notify(new Notificaciontest($mensaje));
+
         $reserva                = new Reservas;
         $reserva->id_user       = $request->input('id_user');
         $reserva->alcance       = $request->input('alcance');
@@ -101,7 +108,7 @@ class ReservasController extends Controller
         $autorizacion->reserva_id = $reserva->id;
         $autorizacion->date_auth  = date('Y-m-d H:i:s');
         $reserva->autorizaciones()->save($autorizacion);
-        
+
         if (!empty($request->input('viaticos'))) {
 
             foreach ($request->input('viaticos') as $x => $val) {
@@ -166,6 +173,7 @@ class ReservasController extends Controller
                     });
             })->get();
             
+
 
         $reserva = Reservas::with([
             'viaticos',

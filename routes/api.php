@@ -55,17 +55,17 @@ Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metaco
 
 Route::get('testing',function(){
 
-	$reserva = Reservas::find(15);
+	// $reserva = Reservas::find(15);
 	$user = User::find(1);
 
-	$mensaje = 'Primera notificacion';
+	// $mensaje = 'Primera notificacion';
 	// $user->notify(new Notificaciontest($mensaje));
 	// $autorizacion            = new Autorizaciones;
 	// $autorizacion->recurso   = 'Viatico';
 	// $autorizacion->valor     = 'Aprobado';
 	// $autorizacion->date_auth = date('Y-m-d H:i:s');
 	// $reserva->autorizaciones()->save($autorizacion);
-	$id = 15;
+	// $id = 15;
 	// $autorizacion =Reservas::whereHas('autorizaciones',function($query) use ($id){
 	// 	$query->where('id', '=', 4);
 	// })->get(['id']);
@@ -85,10 +85,14 @@ Route::get('testing',function(){
 	//     // 'user.departamento.gerente:id,name,last_name,cargo,avatar',
 	//     // 'traslados',
 	// ])->find(1);
+	$reservauser= User::find(1);
+	$gerente = User::find($reservauser->departamento->coordinador->id);
 
+	$mensaje = 'Primera notificacion';
+	$gerente->notify(new Notificaciontest($mensaje));
 	return response()->json([
-		'Reservas'      => $reserva,
-		'User'      => $user->departamento,
+		// 'Reservas'      => $reserva,
+		'User'      => $gerente,
 
 	], 200);
 

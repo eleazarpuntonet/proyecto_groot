@@ -94,6 +94,7 @@ $colorpantoneproblack: #231F20;
 $colorpantonecoolgray: #BBBDC0;
 $colorpantonecoolgrayCool: #6D6E70;
 $pantonetext: #6D6E70;
+
 $backgroundimage: '/img/login_back.jpg';
 $backgroundimage0: '/img/Background0.jpg';
 $backgroundimage1: '/img/Background_16-9_1.jpg';
@@ -294,11 +295,11 @@ h1 {
     position: absolute;
     width: 100%;
     height: 100%;
-    -webkit-filter: blur(4px);
+    -webkit-filter: blur(6px);
     filter: blur(4px);
     background:       linear-gradient(
-        rgba(250, 250, 250, 0.8), 
-        rgba(35, 31, 32, 0)
+        rgba(109, 110, 112, 0.8),
+        rgba(35, 31, 32, 0.5)
       ), url($backgroundimage1) no-repeat center center fixed; 
 
   }
@@ -310,7 +311,7 @@ h1 {
     width: 100%;
     height: 100%;
     ;
-    background: rgba(250, 250, 250, 0.1);
+    background: rgba(250, 250, 250, 0.5);
 
   }
 }

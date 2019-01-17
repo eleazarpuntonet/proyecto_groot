@@ -11,8 +11,13 @@
         tag="div" 
         class="text-center"><strong>Notificaciones</strong>
       </b-dropdown-header>
-      <b-dropdown-item><i class="fa fa-bell-o" /> Reservas
-        <!-- <b-badge variant="info">{{ itemsCount }}</b-badge> -->
+      <b-dropdown-item>
+        <i class="fa fa-bell-o" />
+        Reservas
+        <b-badge variant="info">{{ itemsCount }}</b-badge>
+        <div style="height: 30px; background-color: yellow;">
+          algo nuevo
+        </div>
       </b-dropdown-item>
       <b-dropdown-item><i class="fa fa-envelope-o" /> Mensajes
         <!-- <b-badge variant="success">{{ itemsCount }}</b-badge> -->

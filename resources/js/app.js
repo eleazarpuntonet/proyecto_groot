@@ -309,8 +309,8 @@ const app = new Vue({
         var roles       = this.$router.history.current.meta.roles
 
         if (reqauth && !currentUser) {
-            this.$router.push('/login')
             console.log('Disparo salida')
+            this.$router.push('/login')
         }
 
         if (thisPath == '/login' && currentUser) {

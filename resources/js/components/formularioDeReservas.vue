@@ -22,9 +22,17 @@
             </div>
           </b-col>
           <b-col lg="5" md="5" style="text-align: right;">
-            <el-radio-group @change="switchChange" v-model="reserva_switch" size="small">
-              <el-radio border :label="1">Reserva Nacional</el-radio>
-              <el-radio border :label="0">Reserva Internacional</el-radio>
+            <el-radio-group
+              class="radiogroupp"
+              fill="#fafafa"
+              text-color="#fafafa"
+              @change="switchChange" 
+              v-model="reserva_switch" 
+              size="small">
+              <el-radio
+                fill="#fafafa"
+               class="buttonradio" border :label="1">Reserva Nacional</el-radio>
+              <el-radio class="buttonradio" border :label="0">Reserva Internacional</el-radio>
             </el-radio-group>
           </b-col>
         </b-row>
@@ -921,7 +929,41 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" >
+$colorpantonered: #EF4034;
+$colorpantone254: #91268F;
+$colorpantone285: #007CC2;
+$colorpantone368: #7AC142;
+$colorpantone143: #FBAF3F;
+$colorblanco: #fafafa;
+$pantonetext: #6D6E70;
+.radiogroupp{
+  .el-radio__label{
+   color: #231F20 !important;
+  }
+  label{
+    border : 1px solid $pantonetext !important;
+    background-color: rgba(251, 175, 63, 0.6);
+  }
+  label.is-checked{
+    border : 1px solid $pantonetext !important;
+    background-color: rgba(251, 175, 63, 0.75);
+  }
+}
+.is-checked{
+  .el-radio__inner{
+    background-color: $pantonetext !important;      
+    border-color: $pantonetext !important;    
+  }
+  .el-radio__label{
+    color: $colorblanco !important;    
+  }
+}
+
+
+.buttonradio{
+  // color:#FBAF3F;
+}
 .titulo-formulario-reservas{
   display: flex;
   flex-direction: row;
