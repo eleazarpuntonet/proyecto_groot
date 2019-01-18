@@ -35,13 +35,14 @@ class TablaAutorizaciones extends Migration
      */
     public function down()
     {
-        $data = Reservas::all();
+        $data = Reservas::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/ReservasSeed.json'), stripslashes($newJson));
 
-        $data = Autorizaciones::all();
+        $data = Autorizaciones::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/AutorizacionesSeed.json'), stripslashes($newJson));
+        
         Schema::dropIfExists('autorizaciones');
     }
 }

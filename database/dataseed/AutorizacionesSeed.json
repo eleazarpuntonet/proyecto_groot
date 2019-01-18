@@ -4,7 +4,39 @@
         "autorizable_id": 1,
         "recurso": "Reserva",
         "valor": "Standby",
-        "date_auth": "2019-01-14 16:40:44",
+        "date_auth": "2019-01-18 19:08:33",
+        "gerencia": null
+    },
+    {
+        "id": 2,
+        "autorizable_id": 1,
+        "recurso": "Viatico",
+        "valor": "Standby",
+        "date_auth": "2019-01-18 19:08:33",
+        "gerencia": null
+    },
+    {
+        "id": 3,
+        "autorizable_id": 2,
+        "recurso": "Reserva",
+        "valor": "Standby",
+        "date_auth": "2019-01-18 19:10:56",
+        "gerencia": null
+    },
+    {
+        "id": 4,
+        "autorizable_id": 2,
+        "recurso": "Viatico",
+        "valor": "Standby",
+        "date_auth": "2019-01-18 19:10:56",
+        "gerencia": null
+    },
+    {
+        "id": 5,
+        "autorizable_id": 3,
+        "recurso": "Reserva",
+        "valor": "Standby",
+        "date_auth": "2019-01-18 19:19:39",
         "gerencia": {
             "id": 4,
             "disp_name": "Coordinacion de Sistemas",
@@ -12,8 +44,8 @@
             "gerente_id": "3",
             "coordinador_id": "3",
             "dependencia": null,
-            "created_at": "2019-01-14 16:39:27",
-            "updated_at": "2019-01-14 16:39:27",
+            "created_at": "2019-01-18 19:19:10",
+            "updated_at": "2019-01-18 19:19:10",
             "coordinador": {
                 "id": 3,
                 "name": "Edgar",
@@ -35,11 +67,11 @@
         }
     },
     {
-        "id": 2,
-        "autorizable_id": 1,
+        "id": 6,
+        "autorizable_id": 3,
         "recurso": "Viatico",
         "valor": "Standby",
-        "date_auth": "2019-01-14 16:40:44",
+        "date_auth": "2019-01-18 19:19:39",
         "gerencia": {
             "id": 4,
             "disp_name": "Coordinacion de Sistemas",
@@ -47,8 +79,8 @@
             "gerente_id": "3",
             "coordinador_id": "3",
             "dependencia": null,
-            "created_at": "2019-01-14 16:39:27",
-            "updated_at": "2019-01-14 16:39:27",
+            "created_at": "2019-01-18 19:19:10",
+            "updated_at": "2019-01-18 19:19:10",
             "coordinador": {
                 "id": 3,
                 "name": "Edgar",

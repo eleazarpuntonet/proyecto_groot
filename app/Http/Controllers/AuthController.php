@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notificationtests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -78,11 +78,17 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+        
+        if ($this->guard()->user()->id === 1) {
+            $user_notif = Notificationtests::all();
+        } else {
+            $user_notif = $this->guard()->user()->notifications;
+        }
         return response()->json([
             'access_token'  => $token,
             'roles'         => $this->guard()->user()->roles,
             'gerencia'      => $this->guard()->user()->departamento,
-            'notifications' => $this->guard()->user()->notifications,
+            'notifications' => $user_notif,
             'user'          => $this->guard()->user(),
             'token_type'    => 'bearer',
             'expires_in'    => $this->guard()->factory()->getTTL() * 60

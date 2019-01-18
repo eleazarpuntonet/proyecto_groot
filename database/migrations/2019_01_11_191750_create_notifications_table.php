@@ -30,7 +30,7 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        $data = Notificationtests::all();
+        $data = Notificationtests::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/NotificationsSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('notifications');
