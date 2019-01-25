@@ -7,6 +7,7 @@ use App\Reservas;
 use App\Viaticos;
 use App\Autorizaciones;
 use App\User;
+Use App\Providers\NuevaReserva;
 use App\Notifications\Notificaciontest;
 
 class ReservasController extends Controller
@@ -75,19 +76,19 @@ class ReservasController extends Controller
 
 
 
-        $reserva                = new Reservas;
-        $reserva->id_user       = $request->input('id_user');
-        $reserva->alcance       = $request->input('alcance');
-        $reserva->origen_a      = $request->input('from_a');
-        $reserva->origen_b      = $request->input('from_b');
-        $reserva->origen_det    = $request->input('adress_a');
-        $reserva->fecha_partida = $request->input('date_a');
-        $reserva->fecha_retorno = $request->input('date_b');
-        $reserva->destino_a     = $request->input('to_a');
-        $reserva->destino_b     = $request->input('to_b');
-        $reserva->destino_det   = $request->input('adress_b');
-        $reserva->motivo        = $request->input('motivo');
-        $reserva->agenda        = $request->input('agenda');
+        $reserva                  = new Reservas;
+        $reserva->id_user         = $request->input('id_user');
+        $reserva->alcance         = $request->input('alcance');
+        $reserva->origen_a        = $request->input('from_a');
+        $reserva->origen_b        = $request->input('from_b');
+        $reserva->origen_det      = $request->input('adress_a');
+        $reserva->fecha_partida   = $request->input('date_a');
+        $reserva->fecha_retorno   = $request->input('date_b');
+        $reserva->destino_a       = $request->input('to_a');
+        $reserva->destino_b       = $request->input('to_b');
+        $reserva->destino_det     = $request->input('adress_b');
+        $reserva->motivo          = $request->input('motivo');
+        $reserva->agenda          = $request->input('agenda');
         $reserva->save();
 
         $autorizacion             = new Autorizaciones;
@@ -106,20 +107,27 @@ class ReservasController extends Controller
         $autorizacion->date_auth  = date('Y-m-d H:i:s');
         $reserva->autorizaciones()->save($autorizacion);
 
-        $reservauser= User::find($request->input('id_user'));
-        $gerente = User::find($reservauser->departamento->coordinador->id);
+        // $reservauser              = User::find($request->input('id_user'));
+        // $gerente                  = User::find($reservauser->departamento->coordinador->id);
 
-        $mensaje              = new \stdClass();
-        $mensaje->user        = $reservauser->name.' '.$reservauser->last_name;
-        $mensaje->userid      = $reservauser->id;
-        $mensaje->recipient   = $gerente->name.' '.$gerente->last_name;
-        $mensaje->recipientid = $gerente->id;
-        $mensaje->reservaid   = $reserva->id;
-        $mensaje->datereserva   = date('Y-m-d H:i:s');
-        $mensaje->text        = 'ah generado una reserva';
+        // $mensaje                  = new \stdClass();
+        // $mensaje->user            = $reservauser->name.' '.$reservauser->last_name;
+        // $mensaje->userid          = $reservauser->id;
+        // $mensaje->recipient       = $gerente->name.' '.$gerente->last_name;
+        // $mensaje->recipientid     = $gerente->id;
+        // $mensaje->reservaid       = $reserva->id;
+        // $mensaje->datereserva     = date('Y-m-d H:i:s');
+        // $mensaje->text            = 'ah generado una reserva';
 
-        // $gerente->notify(new Notificaciontest(json_encode($mensaje)));
-        $gerente->notify(new Notificaciontest($mensaje));
+        // $notificacion             = new Notificaciontest($mensaje);
+
+        // $data                     = new \stdClass();
+        // $data->reserva            = $reserva;
+        // $data->gerente            = $gerente;
+        // $data->notif              = $mensaje;
+
+        // event(new NuevaReserva($data));
+        // $gerente->notify($notificacion);
 
         if (!empty($request->input('viaticos'))) {
 
@@ -132,6 +140,8 @@ class ReservasController extends Controller
 
             }
         }
+        
+        event(new NuevaReserva($reserva));
         return Reservas::with(['viaticos','autorizaciones'])->find($reserva->id);
     }
 

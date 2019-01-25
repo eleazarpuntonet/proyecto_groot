@@ -5,6 +5,7 @@ class menuItem{
         this.name = item.name
         this.url  = item.url
         this.icon = item.icon
+        this.authRol = item.authRol
       break
 
       case 2:
@@ -15,8 +16,13 @@ class menuItem{
         this.url  = item.url
         this.icon = item.icon
         this.children = children
+        this.authRol = item.authRol
       break
     }
+  }
+
+  getRoles(){
+    return this.authRol
   }
 
 
@@ -79,6 +85,7 @@ var s_reserva = new menuItem({
       url: '/reservas/nueva_reserva',
       icon: 'icon-pencil',
       class: 'nav-item',
+      authRol: ['superadmin','public'],
     })
 
 var index_reservas = new menuItem({
@@ -86,6 +93,7 @@ var index_reservas = new menuItem({
       url: '/reservas/listado_reservas',
       icon: 'icon-pencil',
       class: 'nav-item',
+      authRol: ['superadmin','public'],
     })
 
 var trasladositem = new menuItem({
@@ -93,6 +101,7 @@ var trasladositem = new menuItem({
       url: '/reservas/traslados',
       icon: 'icon-pencil',
       class: 'nav-item',
+      authRol: ['superadmin','public'],
     })
 
 var items_Reservas = new menuItem({
@@ -100,6 +109,7 @@ var items_Reservas = new menuItem({
       url: '/reservas',
       icon: 'icon-pencil',
       class: 'nav-item',
+      authRol: []
     },[
         s_reserva,
         index_reservas,
@@ -115,12 +125,12 @@ export default {
     // colors,
     // typhography,
     items_Reservas,
-    {
-      divider: true
-    },
-    {
-      title: true,
-      name: 'Extras'
-    },
+    // {
+    //   divider: true
+    // },
+    // {
+    //   title: true,
+    //   name: 'Extras'
+    // },
   ]
 }
