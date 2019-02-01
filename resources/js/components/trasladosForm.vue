@@ -451,7 +451,6 @@ export default {
       var a = new Traslado(this.traslado)
       var user = this.$store.getters.currentUser
       a.setUser(user.id)
-      console.log(a)
       axios.post(route('traslados.store'),a) 
           .then(response => {
             this.res_select.traslados.push(response.data)

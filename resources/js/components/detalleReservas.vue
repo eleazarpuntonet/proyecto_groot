@@ -612,17 +612,28 @@ class Reserva{
 	  },
 	  methods: {
 		  	clickpdf(){
-		  		var newP = $('p',{
-		  			text: ' algo nuevo'
-		  		});
+		  		// var newP = $('p',{
+		  		// 	text: ' algo nuevo'
+		  		// });
 
 		  		
 		  		
-		  		var doc = new jsPDF()
-		  		doc.fromHTML(document.getElementById('printSheet'))
-		  		// doc.text(35, 25, 'Paranyan loves jsPDF')
-		  		doc.save('Test.pdf');
-		  		console.log('Cloickando pdf');
+		  		// var doc = new jsPDF()
+		  		// doc.fromHTML(document.getElementById('printSheet'))
+		  		// // doc.text(35, 25, 'Paranyan loves jsPDF')
+		  		// doc.save('Test.pdf');
+		  		// console.log('Cloickando pdf');
+
+		  		axios.get(route('files.index'),{responseType: 'blob'}) 
+		  		    .then(response => {
+		  		    	console.log(response)
+		  		    	const url = window.URL.createObjectURL(new Blob([response.data]));
+		  		    	const link = document.createElement('a');
+		  		    	link.href = url;
+		  		    	link.setAttribute('download', 'Reserva.pdf'); //or any other extension
+		  		    	document.body.appendChild(link);
+		  		    	link.click();
+		  		      })
 		  	},
 		  	editauto(x,y){
 		  		this.modificable[x].value = !this.modificable[x].value

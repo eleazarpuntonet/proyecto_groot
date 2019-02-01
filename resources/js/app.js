@@ -182,7 +182,7 @@ const store = new Vuex.Store({
         },
         logout(state){
             state.isAuthenticated = false
-            alert('Se elimina el user')
+            // alert('Se elimina el user')
             localStorage.removeItem("user")
             localStorage.removeItem("jwtToken")
             state.loading     = false

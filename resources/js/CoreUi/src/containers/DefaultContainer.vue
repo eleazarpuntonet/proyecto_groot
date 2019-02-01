@@ -136,19 +136,18 @@ export default {
   },
   beforeMount(){
     nav.items.forEach((val,i,arr)=>{
-
+      // Solo los item de clase 'menuItem entran en la validacion'
     if (val.__proto__.constructor.name == 'menuItem') {
-                                                         
+      // Valida si la funcion permite o no acceder al item de menu                                                         
       if (this.compareRoles(val.authRol)) {
-        
+        // Valida si el elemento tiene, elementos hijos
         if (val.children.length>0) {
-
+          
           let childrens = val.children
           var temp = val
           temp.children=[]
 
           this.nav.push(temp)
-          // console.log(childrens)
           childrens.forEach((value,y,arry)=>{
             console.log('entes del error')
             let temvar = false;

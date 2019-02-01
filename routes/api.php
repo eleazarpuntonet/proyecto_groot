@@ -50,6 +50,8 @@ Route::resource('reservas', 'ReservasController');
 
 Route::resource('autorizaciones', 'AutorizacionController');
 
+Route::resource('files', 'FilesController');
+
 Route::get('estadoslist','metacontroller@ve_estados')->name('metacontroller.ve_estados');
 
 Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metacontroller.ve_ciudades');
