@@ -191,10 +191,10 @@
               </el-col>
               <el-col :span="8">
                 <div class="l_label labels">
-                  <p class="ptext">Hora</p>
+                  <p class="ptext">Fecha y hora</p>
                 </div>
-                <el-form-item prop="hora">
-                  <el-time-select
+                <el-form-item prop="fecha_hora">
+<!--                   <el-time-select
                     style="width: 100%;"
                     size="small"
                     v-model="traslado.hora"
@@ -204,7 +204,15 @@
                       end: '23:59'
                     }"
                     placeholder="Select time">
-                  </el-time-select>
+                  </el-time-select> -->
+                  <el-date-picker
+                  style="width: 100%;"
+                  size="small"
+                  value-format="dd/MM/yyyy H:mm"
+                    v-model="traslado.fecha_hora"
+                    type="datetime"
+                    placeholder="Seleccione la fecha y hora del traslado">
+                  </el-date-picker>
                 </el-form-item>
               </el-col>
             
@@ -313,7 +321,7 @@ class Traslado{
   constructor(item){
     this.tipo        = item.tipo
     this.localidad   = item.localidad
-    this.hora        = item.hora
+    this.fecha_hora  = item.fecha_hora
     this.descripcion = item.description
     this.reserva_id  = item.reservaid
     this.proveedor   = 1
@@ -350,7 +358,7 @@ export default {
                   trigger  : 'change'
                 },
                ],
-               hora: [
+               fecha_hora: [
                  { 
                   required : true,
                   message  : 'Seleccione la hora del traslado',
@@ -382,7 +390,7 @@ export default {
       traslado: {
         tipo        : null,
         localidad   : null,
-        hora        : null,
+        fecha_hora        : null,
         origen      : null,
         destino     : null,
         description : null,
@@ -435,7 +443,6 @@ export default {
         if (valid) {
           this.sendtraslado();
         } else {
-          console.log('error submit!!');
           this.$notify.error({
             title: 'Error de formulario',
             message: 'Debe completar todos los campos requeridos'

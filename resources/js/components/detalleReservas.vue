@@ -88,9 +88,18 @@
 		  				<strong>{{ reserva.user.name }} {{ reserva.user.last_name }}</strong> <i>{{ reserva.user.departamento.disp_name }}</i> 	
 		  		  	</div>
 		  	</b-row>
+
 		  	<b-row class="box box_data_reserv boxshadow" style="padding: 0px !important;">
-		  		<el-button @click="clickpdf()" type="primary" icon="el-icon-download" size="mini">Descargar en PDF</el-button>
+		  		<!-- <a href="'../api/files'+reserva.id" target="_blank"> -->
+		  		<a :href='"../api/files/"+reserva.id' target="_blank">
+		  			<el-button  
+		  			type="primary" 
+		  			icon="el-icon-download" 
+		  			size="mini">Descargar en PDF
+		  			</el-button>
+		  		</a>
 		  	</b-row>
+
 		  	<b-row class="box_data_reserv">
 		  		<b-col md="8" lg="8" xl="8">
 		  			<b-row>
@@ -145,7 +154,7 @@
 		  											<strong>{{item.tipo}}</strong>
 		  										</div>
 		  										<div class="item">
-		  											<p>{{item.hora}}</p>
+		  											<p>{{item.fecha_hora}}</p>
 		  										</div>
 		  										<div class="item">
 		  											<p>{{item.descripcion}}</p>
@@ -217,7 +226,7 @@
 		  											<strong>{{item.tipo}}</strong>
 		  										</div>
 		  										<div class="item">
-		  											<p>{{item.hora}}</p>
+		  											<p>{{item.fecha_hora}}</p>
 		  										</div>
 		  										<div class="item">
 		  											<p>{{item.descripcion}}</p>
@@ -630,7 +639,7 @@ class Reserva{
 		  		    	const url = window.URL.createObjectURL(new Blob([response.data]));
 		  		    	const link = document.createElement('a');
 		  		    	link.href = url;
-		  		    	link.setAttribute('download', 'Reserva.pdf'); //or any other extension
+		  		    	// link.setAttribute('download', 'Reserva.pdf'); //or any other extension
 		  		    	document.body.appendChild(link);
 		  		    	link.click();
 		  		      })

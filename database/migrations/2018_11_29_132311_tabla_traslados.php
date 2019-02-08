@@ -20,7 +20,7 @@ class TablaTraslados extends Migration
             $table->string('tipo')->nullable();//Terrestre,Aereo
             $table->string('origen')->nullable();
             $table->string('destino')->nullable();
-            $table->string('hora')->nullable();
+            $table->string('fecha_hora')->nullable();
             $table->string('descripcion')->nullable();//Taxi, bus, avion, automovil
             $table->integer('proveedor')->nullable();
             $table->integer('session')->nullable();

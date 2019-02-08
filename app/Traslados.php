@@ -16,7 +16,7 @@ class Traslados extends Model
 	    'tipo',
 	    'origen',
 	    'destino',
-	    'hora',
+	    'fecha_hora',
 	    'proveedor',
 	    'created_at',
 	    'session',

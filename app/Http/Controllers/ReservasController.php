@@ -107,28 +107,6 @@ class ReservasController extends Controller
         $autorizacion->date_auth  = date('Y-m-d H:i:s');
         $reserva->autorizaciones()->save($autorizacion);
 
-        // $reservauser              = User::find($request->input('id_user'));
-        // $gerente                  = User::find($reservauser->departamento->coordinador->id);
-
-        // $mensaje                  = new \stdClass();
-        // $mensaje->user            = $reservauser->name.' '.$reservauser->last_name;
-        // $mensaje->userid          = $reservauser->id;
-        // $mensaje->recipient       = $gerente->name.' '.$gerente->last_name;
-        // $mensaje->recipientid     = $gerente->id;
-        // $mensaje->reservaid       = $reserva->id;
-        // $mensaje->datereserva     = date('Y-m-d H:i:s');
-        // $mensaje->text            = 'ah generado una reserva';
-
-        // $notificacion             = new Notificaciontest($mensaje);
-
-        // $data                     = new \stdClass();
-        // $data->reserva            = $reserva;
-        // $data->gerente            = $gerente;
-        // $data->notif              = $mensaje;
-
-        // event(new NuevaReserva($data));
-        // $gerente->notify($notificacion);
-
         if (!empty($request->input('viaticos'))) {
 
             foreach ($request->input('viaticos') as $x => $val) {

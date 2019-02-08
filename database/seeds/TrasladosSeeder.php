@@ -22,7 +22,7 @@ class TrasladosSeeder extends Seeder
             $_traslado->tipo        = $traslado->tipo;
             $_traslado->origen      = $traslado->origen;
             $_traslado->destino     = $traslado->destino;
-            $_traslado->hora        = $traslado->hora;
+            $_traslado->fecha_hora        = $traslado->fecha_hora;
             $_traslado->proveedor   = $traslado->proveedor;
             $_traslado->session     = $traslado->session;
        	    $_traslado->save();

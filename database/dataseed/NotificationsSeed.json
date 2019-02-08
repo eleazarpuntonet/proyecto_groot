@@ -1,12 +1,1 @@
-[
-    {
-        "id": 86,
-        "type": "App\Notifications\Notificaciontest",
-        "notifiable_type": "App\User",
-        "notifiable_id": 3,
-        "data": "{"user":"Eleazar Ortega","userid":1,"recipient":"Edgar Saltron","recipientid":3,"reservaid":3,"text":"ah generado una reserva"}",
-        "read_at": null,
-        "created_at": "2019-01-18 19:19:39",
-        "updated_at": "2019-01-18 19:19:39"
-    }
-]
+[]
