@@ -15,6 +15,7 @@ use App\Proveedor;
 use App\Contactos;
 use App\Viaticos;
 use App\Notifications\Notificaciontest;
+use App\Jobs\JobNuevaReserva;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,52 +50,23 @@ Route::resource('reservas', 'ReservasController');
 
 Route::resource('autorizaciones', 'AutorizacionController');
 
+Route::resource('files', 'FilesController');
+
 Route::get('estadoslist','metacontroller@ve_estados')->name('metacontroller.ve_estados');
 
 Route::get('estadoslist/{id_estado}','metacontroller@ve_ciudades')->name('metacontroller.ve_ciudades');
 
 Route::get('testing',function(){
 
-	// $reserva = Reservas::find(15);
-	$user = User::find(1);
+	dispatch(new JobNuevaReserva());
+	broadcast(new JobNuevaReserva());
 
-	// $mensaje = 'Primera notificacion';
-	// $user->notify(new Notificaciontest($mensaje));
-	// $autorizacion            = new Autorizaciones;
-	// $autorizacion->recurso   = 'Viatico';
-	// $autorizacion->valor     = 'Aprobado';
-	// $autorizacion->date_auth = date('Y-m-d H:i:s');
-	// $reserva->autorizaciones()->save($autorizacion);
-	// $id = 15;
-	// $autorizacion =Reservas::whereHas('autorizaciones',function($query) use ($id){
-	// 	$query->where('id', '=', 4);
-	// })->get(['id']);
-	// $autorizacion->recurso   = 'Reserva';
-	// $autorizacion->valor     = 'Negada';
-	// $autorizacion->date_auth = date('Y-m-d H:i:s');
-	// $autorizacion->save();
-
-	// $reserva->autorizaciones()->save($autorizacion);
-
-
-	// $reservas = User::with([
-	//     // 'autorizaciones:autorizable_id,gerencia',
-	//     // 'fullname',
-	//     // 'autorizaciones:autorizable_id,recurso,valor,date_auth',
-	//     // 'user.departamento.coordinador:id,name,last_name,cargo,avatar',
-	//     // 'user.departamento.gerente:id,name,last_name,cargo,avatar',
-	//     // 'traslados',
-	// ])->find(1);
-	$reservauser= User::find(1);
-	$gerente = User::find($reservauser->departamento->coordinador->id);
-
-	$mensaje = 'Primera notificacion';
-	$gerente->notify(new Notificaciontest($mensaje));
 	return response()->json([
 		// 'Reservas'      => $reserva,
-		'User'      => $gerente,
+		// 'User'      => $gerente,
 
 	], 200);
 
 })->middleware('auth:api');
+
 

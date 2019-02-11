@@ -12,6 +12,8 @@ window.axios.defaults.headers.common = {
 import 'core-js/es6/promise'
 import 'core-js/es6/string'
 import 'core-js/es7/array'
+
+import jsPDF from 'jspdf'
 import Vuex                  from 'vuex'
 import VueRouter             from 'vue-router'
 import Vue                   from 'vue'
@@ -88,15 +90,17 @@ const user = getLocalUser()
 const store = new Vuex.Store({
 	//State guarda las variables
 	state: {
-        isAuthenticated: false,
-        host        : '',
-        sites       : '',
-        currentUser : user,
-        isLoggedIn  : !!user,
-        loading     : false,
-        auth_error  : null,
-        customers   : [],
-        roles       : [],
+        isAuthenticated  : false,
+        host             : '',
+        sites            : '',
+        currentUser      : user,
+        notifications    : [],
+        socket_connected : null,
+        isLoggedIn       : !!user,
+        loading          : false,
+        auth_error       : null,
+        customers        : [],
+        roles            : [],
 
 	},
     //Getters guarda los metodos para obtener
@@ -107,6 +111,9 @@ const store = new Vuex.Store({
         },
         showHost(state){
             return state.host
+        },
+        notifications(state){
+            return state.notifications
         },
         showSites(state){
             return state.sites
@@ -147,9 +154,16 @@ const store = new Vuex.Store({
             state.currentUser = payload.user
             state.currentUser.token = payload.access_token
             state.currentUser.notifications = payload.notifications
+            payload.notifications.forEach((item,index)=>{
+              state.notifications.push(JSON.parse(item.data))
+            })
+                console.log(state.notifications)
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", state.currentUser.token)
             console.log(JSON.parse(localStorage.getItem('user')))
+            if (!window.Echo.auth) {
+                window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
+            }
             axios.defaults.headers.common['Authorization'] = 'Bearer '+state.currentUser.token
         },
         addHost(state,value){
@@ -168,13 +182,16 @@ const store = new Vuex.Store({
         },
         logout(state){
             state.isAuthenticated = false
-            alert('Se elimina el user')
+            // alert('Se elimina el user')
             localStorage.removeItem("user")
             localStorage.removeItem("jwtToken")
             state.loading     = false
             state.currentUser = null
             delete axios.defaults.headers.common['Authorization']
             router.push({path:'/login'})
+        },
+        UPDATE_NOTIF(state,value){
+            state.notifications.push(value)
         },
 	},
 	//Actions guarda los metodos para modificar los state
@@ -204,6 +221,9 @@ axios.interceptors.request.use((config)=>{
       console.log('Interceptando ando:'+!!JSON.parse(localStorage.getItem('user')))
         if (!!JSON.parse(localStorage.getItem('user'))) {
           console.log('Autenticado')
+          if (!window.Echo.auth) {
+              window.Echo.auth= {headers: {Authorization: "Bearer " + user.token}}
+          }
           if (!axios.defaults.headers.common['Authorization']) {
             config.headers.Authorization = 'Bearer '+user.token
             console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
@@ -299,7 +319,7 @@ const app = new Vue({
     	factShow,
     },
     mounted(){
-        console.log('Hola! desde el APP')
+
     },
     beforeCreate() { 
     },

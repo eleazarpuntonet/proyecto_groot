@@ -19,3 +19,15 @@ mix.browserSync({
    	    proxy: 'http://localhost:8000'
    	});
 
+mix.webpackConfig({
+	node: {
+		// target: "node",
+		// externals: {
+		    // uws: "uws",
+		    // ws: "ws",
+		// },
+	    fs: "empty",
+	    // noParse: /ws/,
+	    externals: "empty",
+	}
+})

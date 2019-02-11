@@ -486,7 +486,7 @@
                 <div class="boxshadow" style="display:table; width:100%">
                   <el-button 
                   class="buttoncontrolsend"
-                    @click.prevent="submitForm()"
+                    @click.prevent="validate_send('dataSend')"
                     size="small" 
                     type="primary" 
                     round>Enviar</el-button>
@@ -901,7 +901,10 @@ export default {
                 title: response.status,
                 message: 'Registro creado!',
                 type: 'success'
-              });
+              })
+              this.$router.push({
+                path: `/reservas/${response.data.id}` 
+              })
             })
           .catch(error => {
             this.$notify.error({
@@ -909,7 +912,21 @@ export default {
               message: error.response.data.message
             });
           })
-    }
+    },
+    validate_send(formName){
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.submitForm();
+        } else {
+          console.log('error submit!!');
+          this.$notify.error({
+            title: 'Error de formulario',
+            message: 'Debe completar todos los campos requeridos'
+          });
+          return false;
+        }
+      });
+    },
   },
   beforeMount(){
     axios.get(route('metacontroller.ve_estados')) 

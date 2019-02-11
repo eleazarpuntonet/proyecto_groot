@@ -1,5 +1,43 @@
 <template>
 	<div class="rowcentercontainer">
+		<template v-if='false'>
+		<div id="printSheet">
+			<div class="sheetHeader">
+				<div class="iconMain">
+					<img class="navbar-brand-full" src="/img/spsltdlogo.png" width="160px" alt="CoreUI Logo">
+					<div class="headerBody">
+						<div class="boxname">
+							<span>Eleazar Ortega</span>
+						</div>
+						<div class="boxlabel">
+							<span>Nombre:</span>
+						</div>
+					</div>
+				</div>
+				<div class="headerdatabox">
+					<div class="datarow">
+							Codigo: INV-RH-F-019
+					</div>
+					<div class="datarow">
+							Codigo: 09/09/2019
+					</div>
+					<div class="datarow" style="display: flex; flex-direction: row;">
+						<div style="width: 50%;">
+								Edicion: 1
+						</div>
+						<div style="width: 50%;">
+								Revision: 1
+						</div>
+					</div>
+					<div class="datarow">
+							Pagina 1 de 1
+					</div>
+				</div>
+			</div>
+		</div>
+		</template>
+
+
 		<b-card no-body class="appblur" v-if="reserva">
 		  <b-card-header >
 		  	<div class="clearfix" style="">
@@ -50,9 +88,18 @@
 		  				<strong>{{ reserva.user.name }} {{ reserva.user.last_name }}</strong> <i>{{ reserva.user.departamento.disp_name }}</i> 	
 		  		  	</div>
 		  	</b-row>
+
 		  	<b-row class="box box_data_reserv boxshadow" style="padding: 0px !important;">
-		  		<el-button type="primary" icon="el-icon-download" size="mini">Descargar en PDF</el-button>
+		  		<!-- <a href="'../api/files'+reserva.id" target="_blank"> -->
+		  		<a :href='"../api/files/"+reserva.id' target="_blank">
+		  			<el-button  
+		  			type="primary" 
+		  			icon="el-icon-download" 
+		  			size="mini">Descargar en PDF
+		  			</el-button>
+		  		</a>
 		  	</b-row>
+
 		  	<b-row class="box_data_reserv">
 		  		<b-col md="8" lg="8" xl="8">
 		  			<b-row>
@@ -107,7 +154,7 @@
 		  											<strong>{{item.tipo}}</strong>
 		  										</div>
 		  										<div class="item">
-		  											<p>{{item.hora}}</p>
+		  											<p>{{item.fecha_hora}}</p>
 		  										</div>
 		  										<div class="item">
 		  											<p>{{item.descripcion}}</p>
@@ -179,7 +226,7 @@
 		  											<strong>{{item.tipo}}</strong>
 		  										</div>
 		  										<div class="item">
-		  											<p>{{item.hora}}</p>
+		  											<p>{{item.fecha_hora}}</p>
 		  										</div>
 		  										<div class="item">
 		  											<p>{{item.descripcion}}</p>
@@ -405,10 +452,12 @@
 		  	</b-row>
 		  </b-card-body>
 		</b-card>
+			
 	</div>
 </template>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+import jsPDF from 'jspdf'
 class Reserva{
   constructor(res){
   	this.id            = res.id
@@ -571,6 +620,30 @@ class Reserva{
 
 	  },
 	  methods: {
+		  	clickpdf(){
+		  		// var newP = $('p',{
+		  		// 	text: ' algo nuevo'
+		  		// });
+
+		  		
+		  		
+		  		// var doc = new jsPDF()
+		  		// doc.fromHTML(document.getElementById('printSheet'))
+		  		// // doc.text(35, 25, 'Paranyan loves jsPDF')
+		  		// doc.save('Test.pdf');
+		  		// console.log('Cloickando pdf');
+
+		  		axios.get(route('files.index'),{responseType: 'blob'}) 
+		  		    .then(response => {
+		  		    	console.log(response)
+		  		    	const url = window.URL.createObjectURL(new Blob([response.data]));
+		  		    	const link = document.createElement('a');
+		  		    	link.href = url;
+		  		    	// link.setAttribute('download', 'Reserva.pdf'); //or any other extension
+		  		    	document.body.appendChild(link);
+		  		    	link.click();
+		  		      })
+		  	},
 		  	editauto(x,y){
 		  		this.modificable[x].value = !this.modificable[x].value
 		  		console.log(x)
@@ -656,7 +729,74 @@ class Reserva{
 	  },
 	}
 </script>
+
 <style lang="scss">
+$unitHeight : 90px;
+	#printSheet{
+		padding: 2cm;
+		background-color: white;
+		width: 215.9mm;
+		height: 279.4 mm;
+		.sheetHeader{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			height: $unitHeight;
+			line-height: $unitHeight;
+			background-color: rgba(0, 0, 255, .5);
+			.iconMain{
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				img{
+					margin: 15px;
+				}
+			}
+			.headerBody{
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				text-indent: center;
+				span{
+					display: inline-block;
+					vertical-align: middle;
+					line-height: normal;
+				}
+				.boxname{
+					height: 60%;
+					line-height: inherit;
+					span{
+						font-family: 'Raleway', sans-serif;
+						font-size: 1.5rem;
+					}
+				}
+				.boxlabel{
+					height: 40%;
+					line-height: initial;
+					span{
+						font-size: .5rem;
+						font-family: 'Roboto';
+					}
+				}
+			}
+			.headerdatabox{
+				font-size: .5rem;
+				font-family: 'Roboto';
+				width: 100px;
+				background-color: rgba(255, 0, 0, .5);
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				.datarow{
+					line-height: initial;
+				}
+				span{
+					font-size: .5rem;
+					font-family: 'Roboto';
+				}
+			}
+		}
+	}			
 	// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 	.box_name{
 			font-family: 'Raleway', sans-serif;

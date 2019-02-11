@@ -100,7 +100,7 @@ export default {
   },
   data () {
     return {
-      nav: nav.items
+      nav: []
     }
   },
   computed: {
@@ -110,6 +110,71 @@ export default {
     list () {
       return this.$route.matched.filter((route) => route.name || route.meta.label )
     }
+  },
+  methods:{
+    compareRoles(navitem){
+      var flag = false;
+      var itemNav = navitem
+      if (navitem.length>0) {
+        // console.log(itemNav)
+        this.$store.getters.currentUser.roles.forEach((val,i)=>{
+          // console.log(itemNav)
+          // console.log('antes de public')
+          if (itemNav == 'public') {
+                                                                  console.log('Entra en public')
+          // if (navitem[0] == val.name || navitem[0]==='public') {
+            flag=true
+          }
+        })
+      } else {
+        flag=true
+        console.log('escapa')
+      }
+
+      return flag;
+    }
+  },
+  beforeMount(){
+    nav.items.forEach((val,i,arr)=>{
+      // Solo los item de clase 'menuItem entran en la validacion'
+    if (val.__proto__.constructor.name == 'menuItem') {
+      // Valida si la funcion permite o no acceder al item de menu                                                         
+      if (this.compareRoles(val.authRol)) {
+        // Valida si el elemento tiene, elementos hijos
+        if (val.children.length>0) {
+          
+          let childrens = val.children
+          var temp = val
+          temp.children=[]
+
+          this.nav.push(temp)
+          childrens.forEach((value,y,arry)=>{
+            console.log('entes del error')
+            let temvar = false;
+            value.authRol.forEach((valor,x)=>{
+                temvar=this.compareRoles(valor)
+                
+            })
+            if (temvar) {
+              this.nav[this.nav.length-1].children.push(value)
+            }
+          })
+          
+        } else{
+          this.nav.push(val)
+        }
+
+      }
+    } else {
+      this.nav.push(val)
+    }
+
+
+
+
+    })
+    // this.nav= nav.items
+    // console.log(this.$store.getters.currentUser)
   }
 }
 </script>

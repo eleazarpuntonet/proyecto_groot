@@ -47,7 +47,7 @@ class TrasladosController extends Controller
         $traslado->tipo        = $request->input('tipo');
         $traslado->origen      = $request->input('origen');
         $traslado->destino     = $request->input('destino');
-        $traslado->hora        = $request->input('hora');
+        $traslado->fecha_hora  = $request->input('fecha_hora');
         $traslado->proveedor   = $request->input('proveedor');
         $traslado->session     = $request->input('user_id');
         $traslado->reservas_id = $request->input('reserva_id');
