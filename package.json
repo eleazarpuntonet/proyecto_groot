@@ -24,6 +24,7 @@
         "css-element-queries": "^1.0.5",
         "css-vars-ponyfill": "^1.15.1",
         "element-ui": "^2.4.10",
+        "engine.io-client": "^3.3.2",
         "flag-icon-css": "^3.2.1",
         "font-awesome": "^4.7.0",
         "font-awesome-scss": "^1.0.0",

@@ -121,7 +121,7 @@ export default {
           // console.log(itemNav)
           // console.log('antes de public')
           if (itemNav == 'public') {
-                                                                  console.log('Entra en public')
+            console.log('Entra en public')
           // if (navitem[0] == val.name || navitem[0]==='public') {
             flag=true
           }
@@ -144,8 +144,8 @@ export default {
         if (val.children.length>0) {
           
           let childrens = val.children
-          var temp = val
-          temp.children=[]
+          var temp      = val
+          temp.children = []
 
           this.nav.push(temp)
           childrens.forEach((value,y,arry)=>{
@@ -153,7 +153,6 @@ export default {
             let temvar = false;
             value.authRol.forEach((valor,x)=>{
                 temvar=this.compareRoles(valor)
-                
             })
             if (temvar) {
               this.nav[this.nav.length-1].children.push(value)

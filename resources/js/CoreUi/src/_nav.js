@@ -116,6 +116,33 @@ var items_Reservas = new menuItem({
         trasladositem,
       ])
 
+var usuarios = new menuItem({
+      name: 'Usuario',
+      url: '/usuarios/g_usuario',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
+var empleados = new menuItem({
+      name: 'Empleados',
+      url: '/usuarios/i_empleados',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
+var gestionUsuario = new menuItem({
+      name: 'Talento Humano',
+      url: '/usuarios',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: []
+    },[
+        usuarios,
+        empleados,
+      ])
+
 // var user = JSON.parse(window.localStorage.getItem('user'))
 // console.log(localStorage)
 export default {
@@ -125,6 +152,7 @@ export default {
     // colors,
     // typhography,
     items_Reservas,
+    gestionUsuario,
     // {
     //   divider: true
     // },

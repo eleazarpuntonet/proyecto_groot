@@ -929,13 +929,7 @@ export default {
     },
   },
   beforeMount(){
-    axios.get(route('metacontroller.ve_estados')) 
-        .then(response => {
-            this.countryOptions=response.data
-          })
-        .catch(error => {
-          console.log(error)
-        })
+
   },
   created() {
     let momentjs = document.createElement('script');    

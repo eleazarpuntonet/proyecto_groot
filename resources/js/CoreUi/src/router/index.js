@@ -59,6 +59,8 @@ import Users            from '../views/users/Users'
 import User             from '../views/users/User'
 import nueva_reserva    from '../../../components/formularioDeReservas'
 import index_Reservas    from '../../../components/indexReservas'
+import indexEmpleados    from '../../../components/indexEmpleados'
+import gestion_usuarios    from '../../../components/gestion_usuarios'
 import detalle_Reserva    from '../../../components/detalleReservas'
 import perfilDeUsuario    from '../../../components/userProfile'
 import traslados_reserva    from '../../../components/trasladosForm'
@@ -202,6 +204,29 @@ var MenuReservas = new Route_item({
     detreserva,
     ])
 
+var rolesusuarios = ['public']
+var g_usuario = new Route_item({
+  path:'g_usuario',
+  name:'Gestion de Usuarios',
+  comp: gestion_usuarios,
+  })  
+g_usuario.changeAuth(true,rolesusuarios)
+
+var i_empleados = new Route_item({
+  path:'i_empleados',
+  name:'Indice de Empleados',
+  comp: indexEmpleados,
+  })  
+i_empleados.changeAuth(true,rolesusuarios)
+
+var MenuRRHH = new Route_item({
+    path:'usuarios',
+    name:'GestionUsuario',
+    redir: '/usuarios/g_usuario'
+  },[
+     g_usuario,
+     i_empleados,
+    ])
 
 export default new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
@@ -216,6 +241,7 @@ export default new Router({
       name: 'Home',
       component: DefaultContainer,
       children: [
+        MenuRRHH,
         perfilUser,
         panelHome,
         Theme_route,
