@@ -31,13 +31,13 @@
                     {{scope.row.user.name}} {{scope.row.user.last_name}}
                   </template>
                 </el-table-column>
-                <el-table-column
+<!--                 <el-table-column
                   label="Nombre"
                   prop="user">
                   <template slot-scope="scope">
                     {{scope.row.user.departamento.disp_name}}
                   </template>
-                </el-table-column>
+                </el-table-column> -->
                 <el-table-column
                   label="Sede"
                   prop="user.sede">

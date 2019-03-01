@@ -14,7 +14,7 @@ class CreateDatabasketTable extends Migration
     public function up()
     {
         Schema::create('_databasket', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->increments('id');
             $table->morphs('tobasket');
             $table->string('key');
             $table->text('data');

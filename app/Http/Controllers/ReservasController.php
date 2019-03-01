@@ -91,6 +91,10 @@ class ReservasController extends Controller
         $reserva->agenda          = $request->input('agenda');
         $reserva->save();
 
+
+        $user = User::find($user["id"]);
+
+        // dd($user->departamento);
         $autorizacion             = new Autorizaciones;
         $autorizacion->recurso    = 'Reserva';
         $autorizacion->valor      = 'Standby';
@@ -120,6 +124,7 @@ class ReservasController extends Controller
         }
         
         event(new NuevaReserva($reserva));
+        // return $reserva;
         return Reservas::with(['viaticos','autorizaciones'])->find($reserva->id);
     }
 

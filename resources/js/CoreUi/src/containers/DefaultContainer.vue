@@ -128,7 +128,6 @@ export default {
         })
       } else {
         flag=true
-        console.log('escapa')
       }
 
       return flag;
@@ -149,7 +148,6 @@ export default {
 
           this.nav.push(temp)
           childrens.forEach((value,y,arry)=>{
-            console.log('entes del error')
             let temvar = false;
             value.authRol.forEach((valor,x)=>{
                 temvar=this.compareRoles(valor)

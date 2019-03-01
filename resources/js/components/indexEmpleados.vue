@@ -5,70 +5,101 @@
 				<strong>Reservas</strong>
 			</b-card-header>
 			<b-card-body>
-				<b-row>
-					<b-col lg="12" md="12">
 
-            <el-table
-                :data="tableData4"
-                style="width: 100%"
-                max-height="250">
-                <el-table-column
-                  fixed
-                  prop="date"
-                  label="Fecha"
-                  width="150">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="Nombre"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  prop="state"
-                  label="Estado"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  prop="city"
-                  label="Ciudad"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="Dirección"
-                  width="300">
-                </el-table-column>
-                <el-table-column
-                  prop="zip"
-                  label="Código postal"
-                  width="120">
-                </el-table-column>
-                <el-table-column
-                  fixed="right"
-                  label="Operaciones"
-                  width="120">
-                  <template slot-scope="scope">
-                    <el-button
-                      @click.native.prevent="deleteRow(scope.$index, tableData4)"
-                      type="text"
-                      size="small">
-                      Eliminar
-                    </el-button>
+        <el-container>
+          <el-aside width="30%">
+            <el-menu
+              default-active="2"
+              class="el-menu-vertical-demo">
+              <el-menu-item index="1">
+                <i class="el-icon-menu"></i>
+                <span>Information Techonologi</span>
+              </el-menu-item>
+              <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <span>Asuntos Publicos</span>
+              </el-menu-item>
+              <el-menu-item index="3">
+                <i class="el-icon-menu"></i>
+                <span>Junta Directiva</span>
+              </el-menu-item>
+              <el-menu-item index="4">
+                <i class="el-icon-menu"></i>
+                <span>Junta Directiva</span>
+              </el-menu-item>
+            </el-menu>
+          </el-aside>
+
+
+          <el-container>
+            <el-header>
+              <h1>Fuerza de Trabajo</h1>
+            </el-header>
+            <el-main>
+              <el-table
+                :data="lista_usuarios"
+                style="width: 100%">
+                <el-table-column type="expand">
+                  <template slot-scope="props">
+                    <el-row>
+                      <el-col :span="8">
+                        <div class="grid_8content">
+                          Roles:
+                          <div class="roles_box">
+                            <el-tag size="mini" type="info" v-for="item in props.row.roles" :key="item.id">
+                              {{item.display_name}} 
+                            </el-tag>
+                          </div>
+                        </div>
+                      </el-col>
+                      <el-col :span="8">
+                        <div class="grid_8content">
+                          Canal regular
+                          {{props.row}}
+                          <!-- <p>Coordinador: {{props.row.departamento.coordinador.name}} {{props.row.departamento.coordinador.last_name}}</p> -->
+                          <!-- <p>Gerente : {{props.row.departamento.gerente.name}} {{props.row.departamento.gerente.last_name}}</p> -->
+                        </div>
+                      </el-col>
+                      <el-col :span="8">
+                        <div class="grid_8content">
+                          Canales de contacto:
+                          <div class="main_canal_contacto">
+                            Correo: eleazaro@spservicesltd.uk
+                          </div>
+                        </div>
+                      </el-col>
+                    </el-row>
                   </template>
                 </el-table-column>
+                <el-table-column
+                  label="Nombre"
+                  prop="user">
+                  <template slot-scope="scope">
+                    {{scope.row.name}} {{scope.row.last_name}}
+                  </template>
+                </el-table-column>
+                <el-table-column
+                  label="Cargo"
+                  prop="cargo">
+                </el-table-column>
+                <el-table-column
+                  label="Sede"
+                  prop="sede">
+                </el-table-column>
+                <el-table-column
+                  label="Departamento"
+                  prop="departamento.disp_name">
+                </el-table-column>
               </el-table>
+            </el-main>
+            <el-footer>Pie de página</el-footer>
+          </el-container>
+        </el-container>
 
-					</b-col>
-				</b-row>
-				<b-row>
-					<b-col lg="12" md="12">
-						<el-button
-							@click.prevent='addRow' 
-							type="primary" 
-							plain	
-							>Agregar lineas</el-button>
-					</b-col>
-				</b-row>
+
+
+
+
 			</b-card-body>
 		</b-card>
 	</div>
@@ -83,128 +114,22 @@ export default {
   */
   data () {
     return {
-      tableData4: [{
-        date: '2016-05-03',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-02',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-04',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-01',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-08',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-06',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }, {
-        date: '2016-05-07',
-        name: 'Tom',
-        state: 'California',
-        city: 'Los Angeles',
-        address: 'No. 189, Grove St, Los Angeles',
-        zip: 'CA 90036'
-      }],
-
+      lista_usuarios: [],
     }
   },
   computed: {
   },
   watch: {
-    bottom(bottom) {
-      if (bottom) {
-        this.onInfinite()
-      }
-    }
   },
   methods: {
-  	bottomVisible() {
-  	  const tabla   = document.getElementsByClassName('el-table__body-wrapper')[0]
-  	  var offset    = tabla.offsetHeight
-  	  var scrolltop = tabla.scrollTop
-  	  var scroll    = tabla.scrollHeight
-
-  	  if (offset + scrolltop === scroll) {
-  	  	return true
-  	  }
-  	  return false
-  	},
-  	onInfinite() {
-  	  setTimeout(() => {
-  	    axios.get(route('reservas.index'),{page : this.pagination.currentPage++}) 
-  	        .then(response => {
-  	        	this.pagination.nextPagePath = response.data.reservas.next_page_url
-  	        	this.pagination.prevPagePath = response.data.reservas.prev_page_url
-  	        	this.pagination.currentPage  = response.data.reservas.current_page
-  	        	if (!!this.dataReservas) {
-  	        		this.dataReservas            = this.dataReservas.concat(response.data.reservas.data);
-  	        	} else {
-  	        		this.dataReservas = response.data.reservas.data
-  	        	}
-  	          })
-  	        .catch(error => {
-  	          console.log(error)
-  	        })
-  	   
-  	  }, 1000);
-  	},
-  	handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
-	handleShow(index, row) {
-		index++
-		this.$router.push({ path: `/reservas/${index}` })
-	    console.log(index, row);
-  	},
-
-  },
-  beforeMount(){
   },
   created() {
   },
-  mounted(){
-    document.getElementsByClassName('el-table__body-wrapper')[0].addEventListener('scroll', () => {
-      this.bottom = this.bottomVisible()
-    })
-  	axios.get(route('reservas.index')) 
+  beforeMount(){
+  	axios.get(route('usuarios.index')) 
   	    .then(response => {
-  	    	this.pagination.nextPagePath = response.data.reservas.next_page_url
-  	    	this.pagination.prevPagePath = response.data.reservas.prev_page_url
-  	    	this.pagination.currentPage  = response.data.reservas.current_page
-  	    	this.pagination.lastPage     = response.data.reservas.to
-  	    	this.dataReservas            = response.data.reservas.data
-  	        console.log(response.data.reservas)
+          this.lista_usuarios=response.data.data
+  	        console.log(response)
   	      })
   	    .catch(error => {
   	      // this.$notify.error({
@@ -212,10 +137,17 @@ export default {
   	      //   message: error.response.data.message
   	      // });
   	    })
+        console.log('Ejecutando ando')
   }
 }
 </script>
 <style lang="scss">
+.grid_8content{
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .icon_container{
   width: 6.5vh;
   height: 6.5vh;

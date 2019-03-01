@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Departamentos;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -16,7 +18,12 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return response()->json(User::all());
+        $usuarios = User::with([
+            'departamento',
+            'roles',
+        ])->paginate();
+
+        return response()->json($usuarios);
 
     }
 
@@ -27,7 +34,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -38,27 +45,32 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->file('avatar') == null) {
-            $file = "";
-            return response()->json('Nada por aqui');
-        }else{
-           $file = $request->file('avatar')->store('public/avats');  
-            // return response()->json($request->file('avatar'));
-            return response()->json('Exito');
+       
+       $user = new User;
+       $user->name              = $request->input('name');
+       $user->last_name         = $request->input('last_name');
+       $user->email             = $request->input('email');
+       $user->codigo_empleado   = $request->input('cod_empleado');
+       $user->ci_usuario        = $request->input('ci');
+       $user->cargo             = $request->input('cargo');
+       $user->gerencia          = $request->input('departamento');
+       // $user->sede              = $request->input('sede');
+       $user->sede              = 'Caracas';
+       // $user->password          = $request->input('password');
+       $user->password          = bcrypt(123123);
+       $user->status            = 'Activo';
+       $user->save();
+       $user->departamento()->save(Departamentos::find($request->input('departamento')));
 
+       if (!empty($request->input('roles'))){
+            foreach ($request->input('roles') as $x => $val) {
+                $user->roles()->save(Role::find($val));
+            }
         }
-        // return "Nada retorna";
-        // return "Nada por aqui";
-
-        // $user           = new User;
-        // $user->user     = $request->input('user');
-        // $user->email    = $request->input('email');
-        // $user->password = $request->input('password');
-        // $user->save();
-
-        // return redirect()->route('sites.create')->with('info','Registro completado!');
-        // return response()->json(['stat' => 'Registro completado',
-        //                          'user'=> $user], 200);
+        return User::with([
+            'departamento',
+            'roles',
+        ])->find($user->id);;
     }
     /**
      * Display the specified resource.
@@ -104,4 +116,16 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function search($nameorlastname)
+    {
+        $result = User::with('departamento')->where('name','LIKE','%'.$nameorlastname.'%')
+                        ->orWhere('last_name','LIKE','%'.$nameorlastname.'%')
+                        ->get();
+
+        return $result;
+        // return "retornando busqueda";
+    }
+
+
 }

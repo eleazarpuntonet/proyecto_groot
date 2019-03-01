@@ -902,9 +902,11 @@ export default {
                 message: 'Registro creado!',
                 type: 'success'
               })
-              this.$router.push({
-                path: `/reservas/${response.data.id}` 
-              })
+              console.log(response)
+              console.log(response.data)
+              // this.$router.push({
+              //   path: `/reservas/${response.data.id}` 
+              // })
             })
           .catch(error => {
             this.$notify.error({

@@ -17,6 +17,7 @@ class TablaDepartamentos extends Migration
             $table->increments('id');
             $table->string('disp_name');
             $table->string('ref');
+            $table->string('ceco')->nullable();
             $table->string('gerente_id')->nullable();
             $table->string('coordinador_id')->nullable();
             $table->string('dependencia')->nullable();

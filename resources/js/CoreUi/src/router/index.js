@@ -55,16 +55,20 @@ import Login            from '../views/pages/Login'
 import Register         from '../views/pages/Register'
 
 //    Users
-import Users            from '../views/users/Users'
-import User             from '../views/users/User'
-import nueva_reserva    from '../../../components/formularioDeReservas'
+import Users             from '../views/users/Users'
+import User              from '../views/users/User'
+import nueva_reserva     from '../../../components/formularioDeReservas'
 import index_Reservas    from '../../../components/indexReservas'
 import indexEmpleados    from '../../../components/indexEmpleados'
-import gestion_usuarios    from '../../../components/gestion_usuarios'
-import detalle_Reserva    from '../../../components/detalleReservas'
-import perfilDeUsuario    from '../../../components/userProfile'
-import traslados_reserva    from '../../../components/trasladosForm'
-import autReservas    from '../../../components/autorizacionesForm'
+import gestion_usuarios  from '../../../components/gestion_usuarios'
+import detalle_Reserva   from '../../../components/detalleReservas'
+import perfilDeUsuario   from '../../../components/userProfile'
+import traslados_reserva from '../../../components/trasladosForm'
+import autReservas       from '../../../components/autorizacionesForm'
+import cargaProveedores  from '../../../components/carga_proveedores'
+import cargaUsuarios     from '../../../components/carga_usuarios'
+import cargaRoles        from '../../../components/carga_roles'
+import cargaGerencias    from '../../../components/carga_gerencia'
 
 Vue.use(Router)
 // var user = JSON.parse(window.localStorage.getItem('user'))
@@ -205,12 +209,6 @@ var MenuReservas = new Route_item({
     ])
 
 var rolesusuarios = ['public']
-var g_usuario = new Route_item({
-  path:'g_usuario',
-  name:'Gestion de Usuarios',
-  comp: gestion_usuarios,
-  })  
-g_usuario.changeAuth(true,rolesusuarios)
 
 var i_empleados = new Route_item({
   path:'i_empleados',
@@ -224,8 +222,48 @@ var MenuRRHH = new Route_item({
     name:'GestionUsuario',
     redir: '/usuarios/g_usuario'
   },[
-     g_usuario,
      i_empleados,
+    ])
+
+//Marcador
+var rolescargaDatos = ['public']
+var cargaDeUsuarios = new Route_item({
+  path:'usuarios',
+  name:'Carga de Empleados',
+  comp: cargaUsuarios,
+  })  
+// cargaDeUsuarios.changeAuth(true,rolescargaDatos)
+
+var cargaDeProveedores = new Route_item({
+  path:'proveedores',
+  name:'Carga de Proveedores',
+  comp: cargaProveedores,
+  })  
+// cargaDeProveedores.changeAuth(true,rolescargaDatos)
+
+var cargaDeGerencias = new Route_item({
+  path:'gerencias',
+  name:'Carga de Gerencias',
+  comp: cargaGerencias,
+  })  
+// cargaDeGerencias.changeAuth(true,rolescargaDatos)
+
+var cargaDeRoles = new Route_item({
+  path:'roles',
+  name:'Carga de Roles',
+  comp: cargaRoles,
+  })  
+// cargaDeRoles.changeAuth(true,rolescargaDatos)
+
+var cargaDeDatos = new Route_item({
+    path:'c_datos',
+    name:'Carga de Datos',
+    redir: '/c_datos/usuarios'
+  },[
+     cargaDeUsuarios,
+     cargaDeProveedores,
+     cargaDeGerencias,
+     cargaDeRoles,
     ])
 
 export default new Router({
@@ -241,6 +279,7 @@ export default new Router({
       name: 'Home',
       component: DefaultContainer,
       children: [
+        cargaDeDatos,
         MenuRRHH,
         perfilUser,
         panelHome,

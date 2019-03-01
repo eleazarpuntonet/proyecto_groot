@@ -116,13 +116,9 @@ var items_Reservas = new menuItem({
         trasladositem,
       ])
 
-var usuarios = new menuItem({
-      name: 'Usuario',
-      url: '/usuarios/g_usuario',
-      icon: 'icon-pencil',
-      class: 'nav-item',
-      authRol: ['superadmin','public'],
-    })
+
+
+
 
 var empleados = new menuItem({
       name: 'Empleados',
@@ -139,10 +135,53 @@ var gestionUsuario = new menuItem({
       class: 'nav-item',
       authRol: []
     },[
-        usuarios,
         empleados,
       ])
 
+// Marcador
+var n_depto = new menuItem({
+      name: 'Gerencias',
+      url: '/c_datos/gerencias',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
+var n_proveedor = new menuItem({
+      name: 'Proveedores',
+      url: '/c_datos/proveedores',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
+var n_role = new menuItem({
+      name: 'Roles',
+      url: '/c_datos/roles',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
+var n_usuario = new menuItem({
+      name: 'Usuarios',
+      url: '/c_datos/usuarios',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+var cargaDatos = new menuItem({
+      name: 'Carga de Datos',
+      url: '/c_datos',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: []
+    },[
+        n_depto,
+        n_proveedor,
+        n_role,
+        n_usuario,
+      ])
 // var user = JSON.parse(window.localStorage.getItem('user'))
 // console.log(localStorage)
 export default {
@@ -153,6 +192,7 @@ export default {
     // typhography,
     items_Reservas,
     gestionUsuario,
+    cargaDatos,
     // {
     //   divider: true
     // },

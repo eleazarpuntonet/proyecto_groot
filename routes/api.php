@@ -42,6 +42,7 @@ Route::resource('proveedores','ItWebServicesController');
 
 Route::resource('sites','sitesController');
 
+Route::get('usuarios/search/{usuario}', 'UsersController@search')->name('usuarios.search');
 Route::resource('usuarios', 'UsersController');
 
 Route::resource('traslados', 'TrasladosController');
@@ -52,18 +53,54 @@ Route::resource('autorizaciones', 'AutorizacionController');
 
 Route::resource('files', 'FilesController');
 
+Route::resource('roles', 'RolesController');
+
+Route::resource('gerencias', 'GerenciasController');
+
+Route::resource('proveedores', 'ProveedoresController');
+
+Route::get('textonimage','ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
+require '../vendor/autoload.php';
+	// dispatch(new JobNuevaReserva());
+	// broadcast(new JobNuevaReserva());
 
-	dispatch(new JobNuevaReserva());
-	broadcast(new JobNuevaReserva());
+	// Create image
+	// $image = new \NMC\ImageWithText\Image('/storage/avats/user-default.png');
+	$image = new \NMC\ImageWithText\Image('/public/storage/avats/firma1sps.png');
 
-	return response()->json([
-		// 'Reservas'      => $reserva,
-		// 'User'      => $gerente,
+	// // Add text to image
+	// $text1 = new \NMC\ImageWithText\Text('Thanks for using our image text PHP library!', 3, 25);
+	// $text1->align = 'left';
+	// $text1->color = 'FFFFFF';
+	// $text1->font = 'fonts/Ubuntu-Medium.ttf';
+	// $text1->lineHeight = 36;
+	// $text1->size = 24;
+	// $text1->startX = 40;
+	// $text1->startY = 40;
+	// $image->addText($text1);
 
-	], 200);
+	// // Add more text to image
+	// $text2 = new \NMC\ImageWithText\Text('No, really, thanks!', 1, 30);
+	// $text2->align = 'left';
+	// $text2->color = '000000';
+	// $text2->font = 'fonts/Ubuntu-Medium.ttf';
+	// $text2->lineHeight = 20;
+	// $text2->size = 14;
+	// $text2->startX = 40;
+	// $text2->startY = 140;
+	// $image->addText($text2);
 
-})->middleware('auth:api');
+	// Render image
+	$image->render('destination.jpg');
+
+	// return response()->json([
+	// 	// 'Reservas'      => $reserva,
+	// 	// 'User'      => $gerente,
+
+	// ], 200);
+
+});
 
 

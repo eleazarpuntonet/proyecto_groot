@@ -16,17 +16,17 @@ class DepartamentosSeeder extends Seeder
     	$departamentos = json_decode($data);
     	Departamentos::truncate();
 
-        foreach ($departamentos as $department) {
-            $departamentos                 = new App\Departamentos;
-            $departamentos->disp_name      = $department->disp_name;
+        // foreach ($departamentos as $department) {
+        //     $departamentos                 = new App\Departamentos;
+        //     $departamentos->disp_name      = $department->disp_name;
 
-            if ($department->gerente_id) {
-                $departamentos->gerente_id = $department->gerente_id;
-                $departamentos->coordinador_id = $department->coordinador_id;
-            }
+        //     if ($department->gerente_id) {
+        //         $departamentos->gerente_id = $department->gerente_id;
+        //         $departamentos->coordinador_id = $department->coordinador_id;
+        //     }
 
-            $departamentos->ref            = $department->ref;
-            $departamentos->save();
-        }
+        //     $departamentos->ref            = $department->ref;
+        //     $departamentos->save();
+        // }
     }
 }

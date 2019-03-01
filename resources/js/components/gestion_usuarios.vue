@@ -2,22 +2,6 @@
 	<div class="rowcentercontainer">
 		<b-card no-body class="appblur">
 		  <b-card-header >
-		  	<div class="clearfix" style="">
-		  		<strong>Usuario   reserva.id  </strong>
-
-		  		<el-button-group style="float:right;">
-		  		  <el-button 
-		  		  @click="back(reserva.id)"
-		  		  	size="mini" 
-		  		  	type="primary" 
-		  		  	icon="el-icon-arrow-left">Anterior</el-button>
-		  		  <el-button 
-	
-		  		  @click.native="next(reserva.id)"
-		  		  	size="mini" 
-		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
-		  		</el-button-group>
-		  	</div>
 		  </b-card-header>
 		  <b-card-body>
 		  	<div slot="header" class="clearfix" style="">
@@ -35,21 +19,104 @@
 		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
 		  		</el-button-group>
 		  	</div>
-
-		  	<!-- 
-		  	*	Caja de Nombre de Usuario
-		  	-->
 		  	<b-row class="box_data_reserv boxshadow">
 					<div class="avatarcontainer">
-<!-- 						<img
-						  :src="'/storage'+reserva.user.avatar"
+						<img
+						  src="/storage/avats/user-default.png"
 						  class="img-avatar"
-						  alt="admin@bootstrapmaster.com" /> -->
+						  alt="admin@bootstrapmaster.com" />
 					</div>
 		  		  	<div class="box_name">
 		  				<strong>  Eleazar Ortega</strong> <i>  Coordinacion de Tecnologia  </i> 	
 		  		  	</div>
 		  	</b-row>
+		  	<b-row class="box box_data_reserv boxshadow" style="padding: 0px !important;">
+	  			<el-button  
+	  			type="primary" 
+	  			icon="el-icon-download" 
+	  			size="mini">Descargar Firma Corporativa
+	  			</el-button>
+		  	</b-row>
+
+
+			<div class="formulario_gestion">
+				<el-form :rules="rules_" ref="user_form_" :model="user_form"  size="mini">
+
+
+					<div class="form_line" style="width: 8vw; height: 8vw; align-items: center;"> <img
+						  src="/storage/avats/user-default.png"
+						  class="img-avatar"
+						  alt="admin@bootstrapmaster.com" />
+					</div>	
+					<div class="form_line">
+						<el-form-item prop="name" style="width:100%;">
+							<div class="el_label">Nombre</div>
+							<el-input v-model="user_form.name" ></el-input>
+						</el-form-item>
+
+						<el-form-item prop="s_name" style="width:100%;">
+							<div class="el_label">Apellido</div>
+							<el-input v-model="user_form.s_name" ></el-input>
+						</el-form-item>
+					</div>
+
+					<div class="form_line">
+						<el-form-item prop="ci" style="width:100%;">
+							<div class="el_label">Cedula de Identidad</div>
+							<el-input v-model="user_form.ci" class="input-with-select">
+							  <el-select v-model="user_form.ci" slot="prepend" placeholder="Nac">
+							    <el-option label="V-" value="V-" selected></el-option>
+							    <el-option label="E-" value="E-"></el-option>
+							  </el-select>
+							</el-input>
+						</el-form-item>
+
+						<el-form-item prop="cod_empleado" style="width:50%;">
+							<div class="el_label">Codigo de Empleado</div>
+							<el-input v-model="user_form.cod_empleado" ></el-input>
+						</el-form-item>
+					</div>
+
+					<div class="form_line">
+						<el-form-item prop="departamento" style="width:100%;">
+							<div class="el_label">Departamento</div>
+							<el-select v-model="user_form.departamento" style="width:100%;">
+							  <el-option
+							    v-for="item in options"
+							    :key="item.value"
+							    :label="item.label"
+							    :value="item.value">
+							  </el-option>
+							</el-select>
+						</el-form-item>
+
+						<el-form-item prop="cargo" style="width:100%;">
+							<div class="el_label">Cargo</div>
+							<el-input v-model="user_form.cargo" ></el-input>
+						</el-form-item>
+
+					</div>	
+
+					<div class="form_line">
+						<el-form-item>
+							<div class="el_label">Gestion de roles de acceso</div>
+							<el-transfer
+							  v-model="user_form.roles"
+							  :data="data"
+							  size="mini"
+							  :titles="['Roles','Usuario']">
+							</el-transfer>
+						</el-form-item>
+					</div>
+
+					<el-form-item>
+						<el-button type="primary" @click="submitForm('user_form_')">Enviar</el-button>
+						<el-button @click="resetForm('user_form')">Reset</el-button>
+					</el-form-item>
+
+				</el-form>
+			</div>
+
 
 
 		  </b-card-body>
@@ -57,135 +124,102 @@
 			
 	</div>
 </template>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-import jsPDF from 'jspdf'
-class Reserva{
-  constructor(res){
-  	this.id            = res.id
-  	this.id_user       = res.id_user
-  	this.alcance       = res.alcance
-  	this.origen_a      = res.origen_a
-  	this.origen_b      = res.origen_b
-  	this.origen_det    = res.origen_det
-  	this.fecha_partida = res.fecha_partida
-  	this.fecha_retorno = res.fecha_retorno
-  	this.destino_a     = res.destino_a
-  	this.destino_b     = res.destino_b
-  	this.destino_det   = res.destino_det
-  	this.motivo        = res.motivo
-  	this.agenda        = res.agenda
-  	this.created_at    = res.created_at
-  	this.updated_at    = res.updated_at
-  	this.traslados     = res.traslados
-
-  	this.user_id        = res.user.id
-  	this.user_name      = res.user.name
-  	this.user_last_name = res.user.last_name
-  	this.user_cargo     = res.user.cargo
-  	this.user_sede      = res.user.sede
-  	this.user_email     = res.user.email
-  	this.user_avatar    = res.user.avatar
-  	this.user_status    = res.user.status
-  	this.user_gerencia  = res.user.departamento.disp_name
-  }
-
-  getFullname(){
-  	return this.user_id+' '+this.user_last_name
-  }
-
-  getDate(which){
-  	if (which=='origen') {
-  		var a = new Date(this.fecha_partida)
-  		return `${a.getDate()}/${a.getMonth()}/${a.getFullYear()}`
-  	} else {
-  		var a = new Date(this.fecha_retorno)
-  		return `${a.getDate()}/${a.getMonth()}/${a.getFullYear()}`
-  	}
-  }
-
-  getHour(which){
-  	if (which=='origen') {
-  		var a = new Date(this.fecha_partida)
-  		return `${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`
-  	} else {
-  		var a = new Date(this.fecha_retorno)
-  		return `${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`
-  	}
-  }
-
-  getAddress(which,x){
-  	if (which=='origen') {
-  		switch(x){
-  			case 'a':
-  				return this.origen_a
-  			break;
-  			case 'b':
-  				return this.origen_b
-  			break;
-  			case 'c':
-  				return this.origen_det
-  			break;
-  		}
-  	}
-
-  	switch(x){
-  		case 'a':
-  			return this.destino_a
-  		break;
-  		case 'b':
-  			return this.destino_b
-  		break;
-  		case 'c':
-  			return this.destino_det
-  		break;
-  	}
-  }
-
-  getMeta(which){
-  	if (which=='motivo') {
-  		return this.motivo
-  	}
-  	if (which=='agenda') {
-  		return this.agenda
-  	}
-  }
-
-  trslatFlag(){
-  	if (this.traslados.length==0) {
-  		console.log(`no posee traslados`)
-  		return false
-  	} else {
-  		console.log(`posee traslados`)
-  		return true
-  	}
-  }
-
-  getTraslados(){
-  	if (this.trslatFlag()) {
-  		return this.traslados
-  	} else {
-  		return null
-  	}
-  }
-}
 	export default {
 	  /*
 	  *
 	  * Variables del componente
 	  */
 	  data () {
+	  	const generateData = _ => {
+	  	  const data = [];
+	  	  for (let i = 1; i <= 15; i++) {
+	  	    data.push({
+	  	      key: i,
+	  	      label: `Option ${ i }`,
+	  	      disabled: i % 4 === 0
+	  	    });
+	  	  }
+	  	  return data;
+	  	};
 	  	return {
+	  		user_form:{
+	  			name         : null,
+	  			s_name       : null,
+	  			cargo        : null,
+	  			departamento : null,
+	  			roles        : [],
+	  			cod_empleado : null,
+	  			sede         : null,
+	  			ci           : null,
+	  			status       : "activo",
+	  		},
+	  		rules_: {
+				name: [
+						{ required: true, message: 'El nombre es obligatorio', trigger: 'blur' },
+					],
+				s_name: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],
+				cod_empleado: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],	
+				sede: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],
+				departamento: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],	
+				cargo: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],	
+				ci: [
+						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+					],	
 
+	  		},
+	  		options: [{
+	  		  value: 'Option1',
+	  		  label: 'Option1'
+	  		}, {
+	  		  value: 'Option2',
+	  		  label: 'Option2'
+	  		}, {
+	  		  value: 'Option3',
+	  		  label: 'Option3'
+	  		}, {
+	  		  value: 'Option4',
+	  		  label: 'Option4'
+	  		}, {
+	  		  value: 'Option5',
+	  		  label: 'Option5'
+	  		}],
+	  		data: generateData(),
+	  		value1: [1, 4],
+	  		ci_nac: null,
+	  		ci_num: null,
 	  	}
 	  },
 	  computed: {
 
 	  },
 	  methods: {
-
+	  	submitForm(formName) {
+			this.$refs[formName].validate((valid) => {
+			  if (valid) {
+			    alert('submit!');
+			  } else {
+			    console.log('error submit!!');
+			    return false;
+			  }
+			});
+		},
+		resetForm(formName) {
+			this.$refs[formName].resetFields();
+		}
 	  },
 	  beforeMount(){
+
 	  },
 	  created(){
 	  },
@@ -197,6 +231,38 @@ class Reserva{
 </script>
 
 <style lang="scss">
+.el_label{
+	padding-top: 8px;
+	padding-bottom: 0px;
+	line-height: 1vw;
+	font-size: .7vw;
+	font-family: 'Eurostile LTS';
+}
+.formulario_gestion{
+	width: 50%;
+}
+.form_line{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.el-checkbox__label{
+	padding-top: 2px;
+	padding-bottom: 0px;
+	line-height: 1vw;
+	font-size: .7vw;
+	font-family: 'Eurostile LTS';
+}
+.el-checkbox .el-checkbox__label{
+	font-size: .8vw !important;
+}
+
+
+
+
+
+
 $unitHeight : 90px;
 	#printSheet{
 		padding: 2cm;

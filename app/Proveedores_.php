@@ -8,8 +8,13 @@ class Proveedores_ extends Model
 {
     protected $table = 'proveedores_';
 
-    public function contacto()
+    public function extras()
     {
-    	return $this->belongsTo(Contactos::class,'reserva_id','id');
+        return $this->morphMany(Databasket::class, 'tobasket');
+    }
+
+        public function contacto()
+    {
+        return $this->morphMany(Contactos::class, 'contactable');
     }
 }

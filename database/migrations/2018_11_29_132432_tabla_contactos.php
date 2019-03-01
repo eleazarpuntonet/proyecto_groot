@@ -20,6 +20,7 @@ class TablaContactos extends Migration
             $table->string('nombre')->nullable();
             $table->string('medio');
             $table->string('value');
+            $table->string('descripcion')->nullable();
             $table->timestamps();
         });
     }
