@@ -21,7 +21,7 @@ class UsersController extends Controller
         $usuarios = User::with([
             'departamento',
             'roles',
-        ])->paginate();
+        ])->get();
 
         return response()->json($usuarios);
 
@@ -50,8 +50,8 @@ class UsersController extends Controller
        $user->name              = $request->input('name');
        $user->last_name         = $request->input('last_name');
        $user->email             = $request->input('email');
-       $user->codigo_empleado   = $request->input('cod_empleado');
-       $user->ci_usuario        = $request->input('ci');
+       $user->codigo_empleado   = $request->input('codigo_empleado');
+       $user->ci_usuario        = $request->input('ci_usuario');
        $user->cargo             = $request->input('cargo');
        $user->gerencia          = $request->input('departamento');
        // $user->sede              = $request->input('sede');

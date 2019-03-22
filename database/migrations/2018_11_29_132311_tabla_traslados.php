@@ -38,6 +38,7 @@ class TablaTraslados extends Migration
         $data = Traslados::all();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/TrasladoSeed.json'), stripslashes($newJson));
+        file_put_contents(base_path('database/jsondumps/TrasladoSeed-'.date('d_m_Y-H:i').'.json'), stripslashes($newJson));
         Schema::dropIfExists('traslados');
     }
 }

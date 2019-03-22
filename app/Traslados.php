@@ -9,7 +9,7 @@ class Traslados extends Model
 	protected $table = 'traslados';
 	protected $visible = [
 	    'id',
-	    'reserva_id',
+	    'reservas_id',
 	    'valor',
 	    'localidad',
 	    'descripcion',

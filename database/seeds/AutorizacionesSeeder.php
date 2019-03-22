@@ -12,19 +12,18 @@ class AutorizacionesSeeder extends Seeder
     public function run()
     {
 
-    	$data = File::get("database/dataseed/AutorizacionesSeed.json");
-    	$autorizaciones = json_decode($data);
+        $json = file_get_contents("database/dataseed/AutorizacionSeed.json");
+        $json_data = json_decode($json,true);
     	Autorizaciones::truncate();
 
-        foreach ($autorizaciones as $autorizacion) {
-
-
-            $auth                 = new App\Autorizaciones;
-            $auth->id             = $autorizacion->id;
-            $auth->autorizable_id = $autorizacion->autorizable_id;
-            $auth->recurso        = $autorizacion->recurso;
-            $auth->valor          = $autorizacion->valor;
-            $auth->date_auth      = $autorizacion->date_auth;
+        foreach ($json_data as $autorizacion) {
+            $auth                   = new App\Autorizaciones;
+            $auth->id               = $autorizacion['id'];
+            $auth->autorizable_id   = $autorizacion['autorizable_id'];
+            $auth->autorizable_type = $autorizacion['autorizable_type'];
+            $auth->recurso          = $autorizacion['recurso'];
+            $auth->valor            = $autorizacion['valor'];
+            $auth->date_auth        = $autorizacion['date_auth'];
             $auth->save();
         }
     }

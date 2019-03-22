@@ -31,7 +31,7 @@ class CreateDatabasketTable extends Migration
     {
         $data = Databasket::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents(base_path('database/dataseed/DatabasketSeed.json'), stripslashes($newJson));
+        // file_put_contents(base_path('database/dataseed/DatabasketSeed.json'), stripslashes($newJson));
         Schema::dropIfExists('_databasket');
     }
 }

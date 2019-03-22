@@ -44,10 +44,10 @@
 
 		  	  </el-aside>
 		  	  <el-container>
-		  	    <el-header>
+		  	    <el-header >
 		  		  	<div class="l_box_title">
-		  		  		<el-button @click="callImage" type="warning">Iamgen</el-button>
 		  				<strong>Usuarios</strong> 
+		  		  		<el-button v-if="disabled_flag" @click="callImage" type="warning">Generar Firma</el-button>
 		  		  	</div>
 		  	    </el-header>
 		  	    <el-main>
@@ -145,13 +145,6 @@
 		  	    </el-main>
 		  	  </el-container>
 		  	</el-container>
-
-
-
-
-
-
-
 		  </b-card-body>
 		</b-card>
 			
@@ -172,16 +165,16 @@
 	  		lista_usuarios : [],
 	  		lista_gerencias: [],
 	  		user_form:{
-	  			name         : null,
+	  			name            : null,
 	  			last_name       : null,
-	  			cargo        : null,
-	  			departamento : null,
-	  			roles        : [],
+	  			cargo           : null,
+	  			departamento    : null,
+	  			roles           : [],
 	  			codigo_empleado : null,
-	  			email        : null,
-	  			sede         : null,
-	  			ci_usuario           : null,
-	  			status       : "activo",
+	  			email           : null,
+	  			sede            : null,
+	  			ci_usuario      : null,
+	  			status          : "activo",
 	  		},
 	  		rules_: {
 				name: [
@@ -217,10 +210,13 @@
 	  methods: {
 	  	callImage(){
 	  		// console.log("llamando iamgen")
-	  		axios.get(route('textOnImage')) 
+	  		console.log('Antes de enviar imagen');
+	  		console.log(this.user_form);
+	  		axios.post(route('textOnImage',this.user_form)) 
 	  		    .then(response => {
 	  		    	// this.lista_usuarios.push(response.data)
 	  		    	// this.resetForm(formName)
+	  		    	console.log(response)
 	  		        this.$notify({
 	  		          title: response.status,
 	  		          message: 'Registro creado!',
@@ -252,6 +248,8 @@
 			  if (valid) {
 			    axios.post(route('usuarios.store'),this.user_form) 
 			        .then(response => {
+			        	console.log('Recibiendo submit:=======')
+			        	console.log(response.data)
 			        	this.lista_usuarios.push(response.data)
 			        	this.resetForm(formName)
 			            this.$notify({
@@ -279,6 +277,7 @@
 	  beforeMount(){
 			axios.get(route('roles.index')) 
 			    .then(response => {
+
 			        response.data.forEach((x,y)=>{
 			        	this.lista_roles.push({
 			            key: x.id,
@@ -295,8 +294,10 @@
 			    })
 			axios.get(route('usuarios.index')) 
 			    .then(response => {
-			  this.lista_usuarios=response.data.data
-			  this.usuarios=response.data.data
+			    	console.log('Recibiendo montado:=======')
+			    	console.log(response)
+			  		// this.lista_usuarios = response.data.data
+			  		this.lista_usuarios = response.data
 			      })
 			    .catch(error => {
 			      this.$notify.error({
@@ -306,7 +307,6 @@
 			    })
 			axios.get(route('gerencias.index')) 
 			    .then(response => {
-			    	console.log(response)
 			    	this.lista_gerencias=response.data
 			      })
 			    .catch(error => {

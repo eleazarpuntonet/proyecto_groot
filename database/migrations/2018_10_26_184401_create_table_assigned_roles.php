@@ -29,9 +29,10 @@ class CreateTableAssignedRoles extends Migration
      */
     public function down()
     {
-        $data = AssignedTableRoles::all();
+        $data    = AssignedTableRoles::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/AssignedTableRolesSeed.json'), stripslashes($newJson));
+        file_put_contents(base_path('database/jsondumps/AssignedTableRolesSeed-'.date('d_m_Y-H:i').'.json'), stripslashes($newJson));
         Schema::dropIfExists('assigned_roles');
     }
 }

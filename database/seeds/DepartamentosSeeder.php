@@ -12,21 +12,27 @@ class DepartamentosSeeder extends Seeder
     public function run()
     {
 
-    	$data = File::get("database/dataseed/DepartamentosSeed.json");
-    	$departamentos = json_decode($data);
+        $json = file_get_contents("database/dataseed/DepartamentoSeed.json");
+        $json_data = json_decode($json,true);
     	Departamentos::truncate();
 
-        // foreach ($departamentos as $department) {
-        //     $departamentos                 = new App\Departamentos;
-        //     $departamentos->disp_name      = $department->disp_name;
-
-        //     if ($department->gerente_id) {
-        //         $departamentos->gerente_id = $department->gerente_id;
-        //         $departamentos->coordinador_id = $department->coordinador_id;
-        //     }
-
-        //     $departamentos->ref            = $department->ref;
-        //     $departamentos->save();
-        // }
+        foreach ($json_data as $department) {
+            $departamentos                 = new App\Departamentos;
+            $departamentos->disp_name      = $department['disp_name'];
+            $departamentos->ceco      = $department['ceco'];
+            if (isset($department['descripcion'])) {
+                $departamentos->descripcion      = $department['descripcion'];
+            }
+            if (isset($department['gerente_id'])) {
+                $departamentos->gerente_id      = $department['gerente_id'];
+            }
+            if (isset($department['coordinador_id'])) {
+                $departamentos->coordinador_id      = $department['coordinador_id'];
+            }
+            if (isset($department['dependencia'])) {
+                $departamentos->dependencia      = $department['dependencia'];
+            }
+            $departamentos->save();
+        }
     }
 }

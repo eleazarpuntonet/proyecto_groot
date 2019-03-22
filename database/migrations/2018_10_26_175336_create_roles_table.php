@@ -27,9 +27,10 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {        
-        $data = Role::all();
+        $data = Role::get();
         $newJson = json_encode($data, JSON_PRETTY_PRINT);
         file_put_contents(base_path('database/dataseed/RoleSeed.json'), stripslashes($newJson));
+        file_put_contents(base_path('database/jsondumps/RoleSeed-'.date('d_m_Y-H:i').'.json'), stripslashes($newJson));
         Schema::dropIfExists('roles');
     }
 }

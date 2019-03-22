@@ -1,5 +1,5 @@
 <?php
-
+use App\Viaticos;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -30,6 +30,10 @@ class CreateViaticosTable extends Migration
      */
     public function down()
     {
+        $data    = Viaticos::get();
+        $newJson = json_encode($data, JSON_PRETTY_PRINT);
+        file_put_contents(base_path('database/dataseed/ViaticoSeed.json'), stripslashes($newJson));
+        file_put_contents(base_path('database/jsondumps/ViaticoSeed-'.date('d_m_Y-H:i').'.json'), stripslashes($newJson));
         Schema::dropIfExists('viaticos');
     }
 }

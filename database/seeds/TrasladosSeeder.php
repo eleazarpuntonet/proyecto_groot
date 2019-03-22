@@ -12,20 +12,21 @@ class TrasladosSeeder extends Seeder
      */
     public function run()
     {
-       	$Yraslados = File::get("database/dataseed/TrasladoSeed.json");
-       	$traslados = json_decode($Yraslados);
-       	Traslados::truncate();
+      $json = file_get_contents("database/dataseed/TrasladoSeed.json");
+      $json_data = json_decode($json,true);
+    	Traslados::truncate();
 
-       	foreach ($traslados as $traslado) {
-            $_traslado              = new App\Traslados;
-            $_traslado->reservas_id = $traslado->reservas_id;
-            $_traslado->tipo        = $traslado->tipo;
-            $_traslado->origen      = $traslado->origen;
-            $_traslado->destino     = $traslado->destino;
-            $_traslado->fecha_hora        = $traslado->fecha_hora;
-            $_traslado->proveedor   = $traslado->proveedor;
-            $_traslado->session     = $traslado->session;
-       	    $_traslado->save();
-       	}
+    	foreach ($json_data as $traslado) {
+        $_traslado              = new App\Traslados;
+        $_traslado->reservas_id = $traslado['reservas_id'];
+        $_traslado->tipo        = $traslado['tipo'];
+        $_traslado->localidad   = $traslado['localidad'];
+        $_traslado->origen      = $traslado['origen'];
+        $_traslado->destino     = $traslado['destino'];
+        $_traslado->fecha_hora  = $traslado['fecha_hora'];
+        $_traslado->proveedor   = $traslado['proveedor'];
+        $_traslado->session     = $traslado['session'];
+  	    $_traslado->save();
+    	}
     }
 }

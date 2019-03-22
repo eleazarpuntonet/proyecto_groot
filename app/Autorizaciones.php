@@ -10,14 +10,12 @@ class Autorizaciones extends Model
     protected $visible = [
         'id',
         'autorizable_id',
+        'autorizable_type',
         'recurso',
         'valor',
         'date_auth',
         'gerencia',
         'autorizable',
-    ];
-    protected $with = [
-        'gerencia',
     ];
 
     public function reservas()

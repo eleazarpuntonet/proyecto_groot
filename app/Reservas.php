@@ -27,9 +27,9 @@ class Reservas extends Model
         'viaticos',
         'autorizaciones',
     ];
-    protected $with = [
-        'autorizaciones',
-    ];
+    // protected $with = [
+    //     'autorizaciones',
+    // ];
 
     public function traslados()
     {

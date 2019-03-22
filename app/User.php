@@ -41,12 +41,15 @@ class User extends Authenticatable implements JWTSubject
         'cargo',
         'gerencia',
         'sede',
+        'sexo',
+        'fecha_ing',
         'email',
         'avatar',
         'fullname',
         'reservas',
         'departamento',
         'roles',
+        'status',
         'getJWTIdentifier',
         'getJWTCustomClaims',
     ];
@@ -61,7 +64,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function departamento()
     {
-        return $this->hasOne(Departamentos::class,'id','gerencia');
+        return $this->hasOne(Departamentos::class,'ceco','gerencia');
     }
 
 

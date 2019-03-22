@@ -13,107 +13,52 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users_json = File::get("database/dataseed/UserSeed.json");
-        $data = json_decode($users_json);
+        $json = file_get_contents("database/dataseed/UserSeed.json");
+        $json_data = json_decode($json,true);
+
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         User::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-
-
-        $user            = new App\User;
-        $user->name      = 'Eleazar';
-        $user->last_name = 'Ortega';
-        $user->cargo     = 'Programador';
-        $user->gerencia  = 4;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'eleazaro@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(1);
-        $user->roles()->attach(2);
-        $user->roles()->attach(3);
-        $user->roles()->attach(7);
-
-        $user            = new App\User;
-        $user->name      = 'Marialin';
-        $user->last_name = 'Lacourt';
-        $user->cargo     = 'Periodista';
-        $user->gerencia  = 8;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'marialinl@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
+        // $user            = new App\User;
+        // $user->name      = 'Administrador';
+        // $user->last_name = 'Administrador';
+        // $user->cargo     = 'Administrador';
+        // $user->gerencia  = 1;
+        // $user->sede      = 'Chuao';
+        // $user->email     = 'it@spservicesltd.uk';
+        // $user->status    = 'Activo';
+        // $user->password  = bcrypt('321321');
+        // $user->save();
         // $user->roles()->attach(1);
-        // $user->roles()->attach(2);
-        // $user->roles()->attach(3);
-        // $user->roles()->attach(7);
 
-        $user            = new App\User;
-        $user->name      = 'Edgar';
-        $user->last_name = 'Saltron';
-        $user->cargo     = 'Coordinador';
-        $user->gerencia  = 4;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'edgards@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(6);
+        foreach ($json_data as $userData) {
+            $user                  = new App\User;
+            $user->name            = ucwords(strtolower($userData['name']));
+            $user->last_name       = ucwords(strtolower($userData['last_name']));
+            $user->codigo_empleado = $userData['codigo_empleado'];
+            $user->ci_usuario      = $userData['ci_usuario'];
+            $user->cargo           = ucwords(strtolower($userData['cargo']));
+            $user->gerencia        = $userData['gerencia'];
+            $user->fecha_ing       = DateTime::createFromFormat('d/m/Y', '01/01/2017' );
+            if (isset($userData['sexo'])) {
+                $user->sexo        = $userData['sexo'];
+            }
+            if (isset($userData['sede'])) {
+                $user->sede            = $userData['sede'];
+            }
+            if (isset($userData['avatar'])) {
+                $user->avatar          = $userData['avatar'];
+            }
+            if (isset($userData['email'])) {
+                $user->email           = $userData['email'];
+            }
+            $user->status          = 'NEW';
+            $user->password        = bcrypt('321321');
+            $user->save();
+        }
 
-        $user            = new App\User;
-        $user->name      = 'Luis';
-        $user->last_name = 'Depablos';
-        $user->cargo     = 'Analista de Soporte';
-        $user->gerencia  = 4;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'luisd@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(2);
-        $user->roles()->attach(3);
-        $user->roles()->attach(7);
-
-        $user            = new App\User;
-        $user->name      = 'Yonny';
-        $user->last_name = 'Tamayo';
-        $user->cargo     = 'Analista de Soporte';
-        $user->gerencia  = 4;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'yonnyt@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(2);
-        $user->roles()->attach(3);
-        $user->roles()->attach(7);
-
-        $user            = new App\User;
-        $user->name      = 'Carlos';
-        $user->last_name = 'Escobar';
-        $user->cargo     = 'Gerente';
-        $user->gerencia  = 1;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'carlose@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(5);
-
-        $user            = new App\User;
-        $user->name      = 'Ronald';
-        $user->last_name = 'F';
-        $user->cargo     = 'Diseñador';
-        $user->gerencia  = 8;
-        $user->sede      = 'Chuao';
-        $user->status    = 'Activo';
-        $user->email     = 'ronaldf@spservicesltd.uk';
-        $user->password  = bcrypt('123123');
-        $user->save();
-        $user->roles()->attach(2);
 
 
 
