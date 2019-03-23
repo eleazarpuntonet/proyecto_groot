@@ -21,16 +21,18 @@
 		  	</div>
 
 		  	<el-container>
-		  	  <el-aside width="35%">
+		  	  <el-aside class="l_aside_table" width="35%">
 				<el-table
 				  :data="lista_gerencias"
-				  style="width: 100%">
+				  style="width:100%"
+				  >
 				  <el-table-column
 				    label="Nombre"
 				    prop="disp_name">
 				  </el-table-column>
 				  <el-table-column
-				    label="Centro de costo"
+				  	min-width="40%"
+				    label="C. de costo"
 				    prop="ceco">
 				    <template slot-scope="scope">
 				      {{scope.row.ceco}}

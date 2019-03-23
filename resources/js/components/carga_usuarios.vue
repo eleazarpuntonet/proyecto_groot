@@ -4,26 +4,8 @@
 		  <b-card-header >
 		  </b-card-header>
 		  <b-card-body>
-<!-- 		  	<div slot="header" class="clearfix" style="">
-		  		<strong>Gestion de Usuarios</strong>
-
-		  		<el-button-group style="float:right;">
-		  		  <el-button 
-		  		  @click="back()"
-		  		  	size="mini" 
-		  		  	type="primary" 
-		  		  	icon="el-icon-arrow-left">Anterior</el-button>
-		  		  <el-button 
-		  		  @click="next()"
-		  		  	size="mini" 
-		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
-		  		</el-button-group>
-		  	</div> -->
-
-
-
 		  	<el-container>
-		  	  <el-aside width="35%" style="background-color: white;">
+		  	  <el-aside width="35%" class="l_aside_table" style="background-color: white;">
 		  	  	
 		  	  	<el-table
 		  	  	  :data="lista_usuarios"
@@ -33,13 +15,21 @@
 		  	  	    label="Nombre"
 		  	  	    prop="user">
 		  	  	    <template slot-scope="scope">
-		  	  	      {{scope.row.name}} {{scope.row.last_name}}
+		  	  	      {{short_name(scope.row.name)}} {{short_lastname(scope.row.last_name)}}
 		  	  	    </template>
 		  	  	  </el-table-column>
 		  	  	  <el-table-column
 		  	  	    label="Sede"
 		  	  	    prop="sede">
+		  	  	    <template slot-scope="scope">
+		  	  	      {{deptos_(scope.row)}}
+		  	  	    </template>
 		  	  	  </el-table-column>
+	  	  	    <template slot="empty">
+	  	  	    	<vue-content-loading :width="300" :height="100">
+	  	  	    	  <rect x="75" y="13" rx="4" ry="4" width="100" height="8" />
+	  	  	    	</vue-content-loading>
+	  	  	    </template>
 		  	  	</el-table>
 
 		  	  </el-aside>
@@ -51,6 +41,10 @@
 		  		  	</div>
 		  	    </el-header>
 		  	    <el-main>
+
+	  	  	    	<vue-content-loading :width="300" :height="100">
+	  	  	    	  <rect x="75" y="13" rx="4" ry="4" width="100" height="8" />
+	  	  	    	</vue-content-loading>
 
 		  	    	<div class="formulario_gestion">
 		  	    		<el-form :rules="rules_" ref="user_form_" :model="user_form"  size="mini">
@@ -64,12 +58,12 @@
 		  	    				<div class="form_line_main">
 		  	    					<el-form-item prop="name" style="width:100%;">
 		  	    						<div class="el_label">Nombres</div>
-		  	    						<el-input v-model="user_form.name" ></el-input>
+		  	    						<el-input v-model="user_form.name" :disabled="!editable"></el-input>
 		  	    					</el-form-item>
 
 		  	    					<el-form-item prop="last_name" style="width:100%;">
 		  	    						<div class="el_label">Apellidos</div>
-		  	    						<el-input v-model="user_form.last_name" ></el-input>
+		  	    						<el-input v-model="user_form.last_name" :disabled="!editable"></el-input>
 		  	    					</el-form-item>
 		  	    				</div>
 		  	    			</div>
@@ -77,8 +71,8 @@
 		  	    			<div class="form_line">
 		  	    				<el-form-item prop="ci_usuario" style="width:100%;">
 		  	    					<div class="el_label">Cedula de Identidad</div>
-		  	    					<el-input v-model="user_form.ci_usuario" class="input-with-select">
-		  	    					  <el-select v-model="user_form.ci_usuario" slot="prepend" placeholder="Nac">
+		  	    					<el-input v-model="user_form.ci_usuario" class="input-with-select" :disabled="!editable">
+		  	    					  <el-select v-model="user_form.ci_usuario" slot="prepend" placeholder="Nac" :disabled="!editable">
 		  	    					    <el-option label="V-" value="V-" selected></el-option>
 		  	    					    <el-option label="E-" value="E-"></el-option>
 		  	    					  </el-select>
@@ -87,14 +81,14 @@
 
 		  	    				<el-form-item prop="codigo_empleado" style="width:50%;">
 		  	    					<div class="el_label">Codigo de Empleado</div>
-		  	    					<el-input v-model="user_form.codigo_empleado" ></el-input>
+		  	    					<el-input v-model="user_form.codigo_empleado" :disabled="!editable"></el-input>
 		  	    				</el-form-item>
 		  	    			</div>
 
 		  	    			<div class="form_line">
 		  	    				<el-form-item prop="departamento" style="width:100%;">
 		  	    					<div class="el_label">Departamento</div>
-		  	    					<el-select v-model="user_form.departamento" style="width:100%;">
+		  	    					<el-select v-model="user_form.departamento" style="width:100%;" :disabled="!editable">
 		  	    					  <el-option
 		  	    					    v-for="item in lista_gerencias"
 		  	    					    :key="item.id"
@@ -106,15 +100,15 @@
 
 		  	    				<el-form-item prop="cargo" style="width:100%;">
 		  	    					<div class="el_label">Cargo</div>
-		  	    					<el-input v-model="user_form.cargo" ></el-input>
+		  	    					<el-input v-model="user_form.cargo" :disabled="!editable"></el-input>
 		  	    				</el-form-item>
 		  	    			</div>	
 
 		  	    			<div class="form_line">
 		  	    				<el-form-item prop="email" style="width:100%;">
 		  	    					<div class="el_label">Correo de contacto</div>
-			  	    				<el-input v-model="user_form.email" class="input-with-select" size="mini" :placeholder="user_form.email">
-			  	    				  <el-select v-model="dominio_temp"       slot="append" placeholder="Dominio">
+			  	    				<el-input v-model="user_form.email" class="input-with-select" size="mini" :placeholder="user_form.email" :disabled="!editable">
+			  	    				  <el-select v-model="dominio_temp"       slot="append" placeholder="Dominio" :disabled="!editable">
 				  	    				  <el-option label="@spservicesltd.uk"   value="@spservicesltd.uk" selected></el-option>
 				  	    				  <el-option label="@spservicesinc.uk" 	 value="@spservicesinc.uk"></el-option>
 			  	    				  </el-select>
@@ -129,19 +123,17 @@
 		  	    					  v-model="temp_roles"
 		  	    					  :data="lista_roles"
 		  	    					  size="mini"
-		  	    					  :titles="['Roles','Usuario']">
+		  	    					  :titles="['Roles','Usuario']" :disabled="!editable">
 		  	    					</el-transfer>
 		  	    				</el-form-item>
 		  	    			</div>
 
-		  	    			<el-form-item>
+		  	    			<el-form-item v-if="editable">
 		  	    				<el-button type="primary" @click="submitForm('user_form_')">Enviar</el-button>
 		  	    				<el-button @click="resetForm('user_form_')">Reset</el-button>
 		  	    			</el-form-item>
-
 		  	    		</el-form>
 		  	    	</div>
-
 		  	    </el-main>
 		  	  </el-container>
 		  	</el-container>
@@ -151,6 +143,10 @@
 	</div>
 </template>
 <script>
+	import {VueContentLoading} from         'vue-content-loading';
+
+
+
 	export default {
 	  /*
 	  *
@@ -159,6 +155,7 @@
 	  data () {
 	  	return {
 	  		dominio_temp   : null,
+	  		editable   : false,
 	  		temp_roles     : [],
 	  		disabled_flag  : false,
 	  		lista_roles    : [],
@@ -207,15 +204,13 @@
 	  computed: {
 
 	  },
+	  components: {
+	      VueContentLoading,
+	  },
 	  methods: {
 	  	callImage(){
-	  		// console.log("llamando iamgen")
-	  		console.log('Antes de enviar imagen');
-	  		console.log(this.user_form);
 	  		axios.post(route('textOnImage',this.user_form)) 
 	  		    .then(response => {
-	  		    	// this.lista_usuarios.push(response.data)
-	  		    	// this.resetForm(formName)
 	  		    	console.log(response)
 	  		        this.$notify({
 	  		          title: response.status,
@@ -231,7 +226,9 @@
 	  		    })
 	  	},
 	  	row_click(row,event,column){
+	  		console.log(row)
 	  		this.user_form     = row
+	  		this.user_form.departamento     = row.departamento.id
 	  		this.temp_roles    = []
 	  		this.disabled_flag = true
 	  		row.roles.forEach((x,y)=>{
@@ -246,23 +243,22 @@
 	  		this.user_form.email+= this.dominio_temp
 			this.$refs[formName].validate((valid) => {
 			  if (valid) {
-			    axios.post(route('usuarios.store'),this.user_form) 
+			  	// console.log(this.user_form.id)
+			    axios.patch(route('usuarios.update',this.user_form.id)) 
 			        .then(response => {
-			        	console.log('Recibiendo submit:=======')
-			        	console.log(response.data)
-			        	this.lista_usuarios.push(response.data)
+			        	// this.lista_usuarios.push(response.data)
 			        	this.resetForm(formName)
-			            this.$notify({
-			              title: response.status,
-			              message: 'Registro creado!',
-			              type: 'success'
-			            })
+			            // this.$notify({
+			            //   title: response.status,
+			            //   message: 'Registro creado!',
+			            //   type: 'success'
+			            // })
 			          })
 			        .catch(error => {
-			          this.$notify.error({
-			            title: 'Error '+error.response.status,
-			            message: error.response.data.message
-			          });
+			          // this.$notify.error({
+			          //   title: 'Error '+error.response.status,
+			          //   message: error.response.data.message
+			          // });
 			        })
 			  } else {
 			    return false;
@@ -272,12 +268,37 @@
 		resetForm(formName) {
 			this.$refs[formName].resetFields();
 			this.temp_roles=[]
+		},
+		short_name(name){
+			var str = name.split(" ")
+				return str[0]
+
+		},
+		short_lastname(name){
+			var str = name.split(" ")
+			if (str.length == 1) {
+				return str[0]
+			} else if (str.length == 2) {
+				return str[0]+" "+str[1][0]+"."
+			} else if (str.length == 3) {
+				return str[0]+" "+str[1][0]+"."
+			}
+		},
+		deptos_(obj){
+			if (obj.departamento) {
+				var splitted_text = obj.departamento.disp_name.split(" ")
+				if (splitted_text.length>2) {
+					// return splitted_text[0]+" "+splitted_text[1][3]
+					return splitted_text[0]+" "+splitted_text[1].substring(0,4)+"..."
+				} else {
+					return splitted_text[0]
+				}
+			}
 		}
 	  },
 	  beforeMount(){
 			axios.get(route('roles.index')) 
 			    .then(response => {
-
 			        response.data.forEach((x,y)=>{
 			        	this.lista_roles.push({
 			            key: x.id,

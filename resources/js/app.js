@@ -13,33 +13,37 @@ import 'core-js/es6/promise'
 import 'core-js/es6/string'
 import 'core-js/es7/array'
 
-import jsPDF from 'jspdf'
-import Vuex                  from 'vuex'
-import VueRouter             from 'vue-router'
-import Vue                   from 'vue'
-import axios                 from 'axios'
-import VueAxios              from 'vue-axios'
-import sitestable            from './components/sites_comp/sites_list.vue'
-import editForm              from './components/sites_comp/sites_edit.vue'
-import singleSiteShow        from './components/sites_comp/sites_show.vue'
-import proveeList            from './components/prov_comp/prov_list.vue'
-import proveeShow            from './components/prov_comp/prov_show.vue'
-import proveeNew             from './components/prov_comp/prov_new.vue'
-import proveeEdit            from './components/prov_comp/prov_edit.vue'
-import credList              from './components/cred_comp/cred_list.vue'
-import credEdit              from './components/cred_comp/cred_edit.vue'
-import credNew               from './components/cred_comp/cred_new.vue'
-import credShow              from './components/cred_comp/cred_show.vue'
-import factList              from './components/fact_comp/fact_list.vue'
-import factNew               from './components/fact_comp/fact_new.vue'
-import factEdit              from './components/fact_comp/fact_edit.vue'
-import factShow              from './components/fact_comp/fact_show.vue'
-import cssVars               from 'css-vars-ponyfill'
-import BootstrapVue          from 'bootstrap-vue'
-import App                   from './App.vue'
-import router                from './CoreUi/src/router/index.js'
-import {getLocalUser}        from './auth.js'
-import { Notification } from 'element-ui';
+import jsPDF             from         'jspdf'
+import Vuex              from         'vuex'
+import VueRouter         from         'vue-router'
+import Vue               from         'vue'
+import axios             from         'axios'
+import VueAxios          from         'vue-axios'
+import sitestable        from         './components/sites_comp/sites_list.vue'
+import editForm          from         './components/sites_comp/sites_edit.vue'
+import singleSiteShow    from         './components/sites_comp/sites_show.vue'
+import proveeList        from         './components/prov_comp/prov_list.vue'
+import proveeShow        from         './components/prov_comp/prov_show.vue'
+import proveeNew         from         './components/prov_comp/prov_new.vue'
+import proveeEdit        from         './components/prov_comp/prov_edit.vue'
+import credList          from         './components/cred_comp/cred_list.vue'
+import credEdit          from         './components/cred_comp/cred_edit.vue'
+import credNew           from         './components/cred_comp/cred_new.vue'
+import credShow          from         './components/cred_comp/cred_show.vue'
+import factList          from         './components/fact_comp/fact_list.vue'
+import factNew           from         './components/fact_comp/fact_new.vue'
+import factEdit          from         './components/fact_comp/fact_edit.vue'
+import factShow          from         './components/fact_comp/fact_show.vue'
+import cssVars           from         'css-vars-ponyfill'
+import BootstrapVue      from         'bootstrap-vue'
+import App               from         './App.vue'
+import router            from         './CoreUi/src/router/index.js'
+import {getLocalUser}    from         './auth.js'
+import VueContentLoading from         'vue-content-loading';
+import {                 VclFacebook, VclInstagram                             }    from         'vue-content-loading'
+import {                 Notification }                                        from 'element-ui'
+import infiniteScroll    from         'vue-infinite-scroll'
+
 Vue.component('site-new',          require('./components/sites_comp/sites_new.vue'));
 Vue.component('sites-table',       require('./components/sites_comp/sites_list.vue'));
 Vue.component('sites-edit',        require('./components/sites_comp/sites_edit.vue'));
@@ -56,13 +60,11 @@ Vue.component('fact-list',         require('./components/fact_comp/fact_list.vue
 Vue.component('fact-new',          require('./components/fact_comp/fact_new.vue'));
 Vue.component('fact-edit',         require('./components/fact_comp/fact_edit.vue'));
 Vue.component('fact-show',         require('./components/fact_comp/fact_show.vue'));
-Vue.component('mapbox', require('mapbox-gl-vue/src/components/Mapbox.vue'))
-import Mapbox from 'mapbox-gl-vue';
 Vue.use(VueAxios, axios)
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
-import infiniteScroll from 'vue-infinite-scroll'
 Vue.use(infiniteScroll)
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import locale from 'element-ui/lib/locale/lang/en'
@@ -317,6 +319,9 @@ const app = new Vue({
     	factNew,
     	factEdit,
     	factShow,
+        VclFacebook,
+        VclInstagram,
+        VueContentLoading,
     },
     mounted(){
 

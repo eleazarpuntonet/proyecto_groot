@@ -21,7 +21,7 @@
 		  	</div>
 
 		  	<el-container>
-		  	  <el-aside width="35%">
+		  	  <el-aside class="l_aside_table" width="35%">
 				<el-table
 				  :data="lista_proveedores"
 				  style="width: 100%">

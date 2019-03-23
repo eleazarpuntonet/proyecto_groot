@@ -28,10 +28,10 @@
             fixed
             align="center"
             prop="user"
-            width="100%">
+            width="70%">
             <template slot-scope="scope">
               <div class="tableicon">
-                  {{scope.row.user.name}} {{scope.row.user.last_name}}
+                  {{short_name(scope.row.user.name)}} {{short_lastname(scope.row.user.last_name)}}
               </div>
             </template>
           </el-table-column>
@@ -39,13 +39,13 @@
             fixed
             align="center"
             prop="alcance"
-            width="100%">
+            width="50%">
           </el-table-column>
           <el-table-column
             fixed
             align="center"
             prop="destino_a"
-            width="100%">
+            width="50%">
           </el-table-column>
         </el-table>
       </b-col>
@@ -438,6 +438,21 @@ export default {
     }
   },
   methods: {
+    short_name(name){
+      var str = name.split(" ")
+        return str[0]
+
+    },
+    short_lastname(name){
+      var str = name.split(" ")
+      if (str.length == 1) {
+        return str[0]
+      } else if (str.length == 2) {
+        return str[0]+" "+str[1][0]+"."
+      } else if (str.length == 3) {
+        return str[0]+" "+str[1][0]+"."
+      }
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {

@@ -116,6 +116,10 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.l_aside_table{
+  overflow-y: scroll;
+  height: 60vw;
+}
 .buttonline{
   display: flex;
   flex-direction: row;

@@ -10516,6 +10516,11 @@ a.text-dark:focus {
   }
 }
 
+.l_aside_table {
+  overflow-y: scroll;
+  height: 60vw;
+}
+
 .buttonline {
   display: -webkit-box;
   display: -ms-flexbox;
