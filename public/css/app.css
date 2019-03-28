@@ -10521,6 +10521,10 @@ a.text-dark:focus {
   height: 60vw;
 }
 
+.el-table__empty-text {
+  width: 100% !important;
+}
+
 .buttonline {
   display: -webkit-box;
   display: -ms-flexbox;

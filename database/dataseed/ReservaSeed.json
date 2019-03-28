@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "id": 1,
+        "id_user": 1,
+        "alcance": "Nacional",
+        "origen_a": "Amazonas",
+        "origen_b": "Puerto Ayacucho",
+        "origen_det": "fasd",
+        "fecha_partida": "2019-03-12 00:00:00",
+        "fecha_retorno": "2019-03-13 00:00:00",
+        "destino_a": "Apure",
+        "destino_b": "Bruzual",
+        "destino_det": "fasdf",
+        "motivo": "asdf",
+        "agenda": "asdf",
+        "created_at": "2019-03-25 16:38:41"
+    }
+]

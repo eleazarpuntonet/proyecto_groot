@@ -140,7 +140,9 @@
 			  	    				</el-input>
 		  	    				</el-form-item>
 		  	    			</div>
+
 						</template>
+
 
 						<template v-if="tmp_extra">
 		  	    			<div class="form_line">
@@ -166,23 +168,19 @@
 		  	    			</div>
 						</template>
 
-
+						<el-form-item v-if="editable">
+							<el-button size="mini" type="primary" @click="submitForm('proveedores_form')">Enviar</el-button>
+							<el-button size="mini" @click="resetForm('proveedores_form')">Reset</el-button>
+						</el-form-item>
 
 		  	    		</el-form>
-
 		  	    	</div>
 		  	    </el-main>
 		  	    <el-footer>
-		  	    	<el-button size="mini" type="primary" @click="submitForm('proveedores_form')">Enviar</el-button>
-		  	    	<el-button size="mini" @click="resetForm('proveedores_form')">Reset</el-button>
+
 		  	    </el-footer>
 		  	  </el-container>
 		  	</el-container>
-
-
-
-
-
 		  </b-card-body>
 		</b-card>
 			
@@ -203,6 +201,7 @@
 	  data () {
 
 	  	return {
+	  		editable: false,
 	  		tmp_contact: false,
 	  		tmp_extra: false,
 	  		arr_temp:[],

@@ -2,10 +2,11 @@ class menuItem{
   constructor(item,children){
     switch(arguments.length){
       case 1:
-        this.name = item.name
-        this.url  = item.url
-        this.icon = item.icon
+        this.name    = item.name
+        this.url     = item.url
+        this.icon    = item.icon
         this.authRol = item.authRol
+        this.id_path = item.id_path
       break
 
       case 2:
@@ -79,8 +80,8 @@ var panelPrincipal = new menuBadge({
 //       icon: 'icon-pencil'
 //     })
 
-
 var s_reserva = new menuItem({
+      id_path: 'reserv002i',
       name: 'Solicitud de Reserva',
       url: '/reservas/nueva_reserva',
       icon: 'icon-pencil',
@@ -89,6 +90,7 @@ var s_reserva = new menuItem({
     })
 
 var index_reservas = new menuItem({
+      id_path: 'reserv003i',
       name: 'Indice de Reservas',
       url: '/reservas/listado_reservas',
       icon: 'icon-pencil',
@@ -97,6 +99,7 @@ var index_reservas = new menuItem({
     })
 
 var trasladositem = new menuItem({
+    id_path: 'reserv004i',
       name: 'Traslados',
       url: '/reservas/traslados',
       icon: 'icon-pencil',
@@ -105,6 +108,7 @@ var trasladositem = new menuItem({
     })
 
 var items_Reservas = new menuItem({
+      id_path: 'reserv001m',
       name: 'Reservas',
       url: '/reservas',
       icon: 'icon-pencil',
@@ -115,10 +119,6 @@ var items_Reservas = new menuItem({
         index_reservas,
         trasladositem,
       ])
-
-
-
-
 
 var empleados = new menuItem({
       name: 'Empleados',
@@ -188,8 +188,6 @@ export default {
   items: [
     panelPrincipal,
     themeTitle,
-    // colors,
-    // typhography,
     items_Reservas,
     gestionUsuario,
     cargaDatos,

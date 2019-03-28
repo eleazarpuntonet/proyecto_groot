@@ -61,6 +61,7 @@
 
 <script>
 import nav from '../_nav'
+
 import { 
         Header  as AppHeader,
         Sidebar as AppSidebar,
@@ -129,11 +130,32 @@ export default {
       } else {
         flag=true
       }
-
       return flag;
     }
   },
   beforeMount(){
+
+    console.log(this.$store.getters.currentUser.roles)
+    // axios.post(route('roles.Authpath',this.$store.getters.currentUser.roles)) 
+    //     .then(response => {
+    //                          console.log(response)
+    //         // response.data.forEach((x,y)=>{
+    //         //   this.lista_roles.push({
+    //         //     key: x.id,
+    //         //     label: x.display_name,
+    //         //     disabled: false
+    //         //   })
+    //         // })
+    //       })
+    //     .catch(error => {
+    //       this.$notify.error({
+    //         title: 'Error '+error.response.status,
+    //         message: error.response.data.message
+    //       });
+    //     })
+
+
+
     nav.items.forEach((val,i,arr)=>{
       // Solo los item de clase 'menuItem entran en la validacion'
     if (val.__proto__.constructor.name == 'menuItem') {
@@ -165,10 +187,6 @@ export default {
     } else {
       this.nav.push(val)
     }
-
-
-
-
     })
     // this.nav= nav.items
     // console.log(this.$store.getters.currentUser)

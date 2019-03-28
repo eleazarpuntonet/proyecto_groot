@@ -25,11 +25,10 @@
 		  	  	      {{deptos_(scope.row)}}
 		  	  	    </template>
 		  	  	  </el-table-column>
-	  	  	    <template slot="empty">
-	  	  	    	<vue-content-loading :width="300" :height="100">
-	  	  	    	  <rect x="75" y="13" rx="4" ry="4" width="100" height="8" />
-	  	  	    	</vue-content-loading>
-	  	  	    </template>
+		  	  	    <template slot="empty">
+		  	  	    	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
+		  	  	    	</VclTable>
+		  	  	    </template>
 		  	  	</el-table>
 
 		  	  </el-aside>
@@ -41,11 +40,6 @@
 		  		  	</div>
 		  	    </el-header>
 		  	    <el-main>
-
-	  	  	    	<vue-content-loading :width="300" :height="100">
-	  	  	    	  <rect x="75" y="13" rx="4" ry="4" width="100" height="8" />
-	  	  	    	</vue-content-loading>
-
 		  	    	<div class="formulario_gestion">
 		  	    		<el-form :rules="rules_" ref="user_form_" :model="user_form"  size="mini">
 		  	    			<div style="display: flex; flex-direction: row;">
@@ -143,7 +137,7 @@
 	</div>
 </template>
 <script>
-	import {VueContentLoading} from         'vue-content-loading';
+	import {VueContentLoading,VclTable} from         'vue-content-loading';
 
 
 
@@ -206,6 +200,7 @@
 	  },
 	  components: {
 	      VueContentLoading,
+	      VclTable,
 	  },
 	  methods: {
 	  	callImage(){
@@ -347,6 +342,10 @@
 </script>
 
 <style lang="scss">
+.LoadingAnimation{
+	padding-left: 1vh;
+	padding-right: 1vh;
+}
 .el_label{
 	padding-top: 8px;
 	padding-bottom: 0px;

@@ -72,7 +72,7 @@ import cargaGerencias    from '../../../components/carga_gerencia'
 
 Vue.use(Router)
 // var user = JSON.parse(window.localStorage.getItem('user'))
-// console.log(localStorage)
+console.log("Entro en rutas")
 
 class Route_item{
   constructor(item,children){
@@ -144,25 +144,6 @@ var panelHome = new Route_item({
   })
 panelHome.changeAuth(true,['public'])
 
-var Colors_route = new Route_item({
-    path:'colors',
-    name:'Colors',
-    comp: Colors,
-  })
-
-var Typography_route = new Route_item({
-    path:'typography',
-    name:'Typography',
-    comp: Typography,
-  })
-Typography_route.changeAuth(true,['admin'])
-
-var Theme_route = new Route_item({
-    path:'theme',
-    name:'Theme',
-    redir: '/theme/colors'
-  },[Colors_route,Typography_route])
-
 var rolesreservas = ['public']
 var indreservas = new Route_item({
   path:'indice_reservas',
@@ -232,28 +213,28 @@ var cargaDeUsuarios = new Route_item({
   name:'Carga de Empleados',
   comp: cargaUsuarios,
   })  
-// cargaDeUsuarios.changeAuth(true,rolescargaDatos)
+cargaDeUsuarios.changeAuth(true,rolescargaDatos)
 
 var cargaDeProveedores = new Route_item({
   path:'proveedores',
   name:'Carga de Proveedores',
   comp: cargaProveedores,
   })  
-// cargaDeProveedores.changeAuth(true,rolescargaDatos)
+cargaDeProveedores.changeAuth(true,rolescargaDatos)
 
 var cargaDeGerencias = new Route_item({
   path:'gerencias',
   name:'Carga de Gerencias',
   comp: cargaGerencias,
   })  
-// cargaDeGerencias.changeAuth(true,rolescargaDatos)
+cargaDeGerencias.changeAuth(true,rolescargaDatos)
 
 var cargaDeRoles = new Route_item({
   path:'roles',
   name:'Carga de Roles',
   comp: cargaRoles,
   })  
-// cargaDeRoles.changeAuth(true,rolescargaDatos)
+cargaDeRoles.changeAuth(true,rolescargaDatos)
 
 var cargaDeDatos = new Route_item({
     path:'c_datos',
@@ -283,9 +264,8 @@ export default new Router({
         MenuRRHH,
         perfilUser,
         panelHome,
-        Theme_route,
+        // Theme_route,
         MenuReservas,
-        perfilUser, 
         // {
         //   path: 'detalle',
         //   name: 'Homee',

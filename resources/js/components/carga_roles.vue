@@ -62,7 +62,7 @@
 		  	    				</el-form-item>
 		  	    			</div>
 
-		  	    			<el-form-item>
+		  	    			<el-form-item v-if="editable">
 		  	    				<el-button type="primary" @click="submitForm('roles_form')">Enviar</el-button>
 		  	    				<el-button @click="resetForm('roles_form')">Reset</el-button>
 		  	    			</el-form-item>
@@ -91,6 +91,7 @@
 	  data () {
 
 	  	return {
+	  		editable: false,
 	  		roles_form_:{},
 	  		rules_: {
 				name: [

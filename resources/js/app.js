@@ -96,6 +96,7 @@ const store = new Vuex.Store({
         host             : '',
         sites            : '',
         currentUser      : user,
+        roles_auth      : [],
         notifications    : [],
         socket_connected : null,
         isLoggedIn       : !!user,
@@ -147,7 +148,8 @@ const store = new Vuex.Store({
 	//de forma SINCRONA
 	mutations: {
         isAuthenticated (state, payload) {
-            console.log('Recibiendo en autenticated')
+            // console.log('Recibiendo en autenticated')
+            // console.log(payload)
             console.log(payload)
             state.isAuthenticated = true
             state.isLoggedIn  = true
@@ -159,10 +161,10 @@ const store = new Vuex.Store({
             payload.notifications.forEach((item,index)=>{
               state.notifications.push(JSON.parse(item.data))
             })
-                console.log(state.notifications)
+                // console.log(state.notifications)
             localStorage.setItem("user", JSON.stringify(state.currentUser))
             localStorage.setItem("jwtToken", state.currentUser.token)
-            console.log(JSON.parse(localStorage.getItem('user')))
+            // console.log(JSON.parse(localStorage.getItem('user')))
             if (!window.Echo.auth) {
                 window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
             }
@@ -220,18 +222,18 @@ const store = new Vuex.Store({
 axios.interceptors.request.use((config)=>{
 
       let user = JSON.parse(localStorage.getItem('user'))
-      console.log('Interceptando ando:'+!!JSON.parse(localStorage.getItem('user')))
+      // console.log('Interceptando ando:'+!!JSON.parse(localStorage.getItem('user')))
         if (!!JSON.parse(localStorage.getItem('user'))) {
-          console.log('Autenticado')
+          // console.log('Autenticado')
           if (!window.Echo.auth) {
               window.Echo.auth= {headers: {Authorization: "Bearer " + user.token}}
           }
           if (!axios.defaults.headers.common['Authorization']) {
             config.headers.Authorization = 'Bearer '+user.token
-            console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
+            // console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
           }
         } else {
-          console.log('No Autenticado')
+          // console.log('No Autenticado')
           store.commit('logout')
           router.push('/login')
           delete axios.defaults.headers.common['Authorization']
@@ -250,7 +252,7 @@ axios.interceptors.response.use(null, (error)=>{
             store.commit('logout')
             store.commit('loginFailed',{error: error.response.data.error}) 
             router.push('/login')
-            console.log('Ejecuto salida')
+            // console.log('Ejecuto salida')
         }
 
         if (error.response.status == 405) {
@@ -335,7 +337,7 @@ const app = new Vue({
         var roles       = this.$router.history.current.meta.roles
 
         if (reqauth && !currentUser) {
-            console.log('Disparo salida')
+            // console.log('Disparo salida')
             this.$router.push('/login')
         }
 
@@ -360,8 +362,8 @@ const app = new Vue({
 */
 function matchRoles(x,y){
         let flag = false
-        console.log(x)
-        console.log(y)
+        // console.log(x)
+        // console.log(y)
 
         x.forEach((x)=>{
             y.forEach((y)=>{
@@ -388,7 +390,7 @@ router.beforeEach((to,from, next)=>{
         const currentUser = store.state.currentUser
         const homeRoute   = '/dashboard'
         const loginRoute  = '/login'
-        console.log(from.path+' -> '+to.path)
+        // console.log(from.path+' -> '+to.path)
 
         // console.log(rolesToPath)
         // console.log(currentUser.roles)
@@ -412,11 +414,11 @@ router.beforeEach((to,from, next)=>{
         else if (reqAuth && currentUser) {
             let auth = matchRoles(rolesToPath,currentUser.roles)
             if (auth) {
-                console.log('Si pasa')
+                // console.log('Si pasa')
                 next()
             } else {
-                console.log('No pasa')
-                console.log(auth)
+                // console.log('No pasa')
+                // console.log(auth)
                 router.push(homeRoute)
             }
         }

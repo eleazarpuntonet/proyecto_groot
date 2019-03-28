@@ -120,6 +120,9 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
   overflow-y: scroll;
   height: 60vw;
 }
+.el-table__empty-text{
+    width: 100% !important;
+}
 .buttonline{
   display: flex;
   flex-direction: row;

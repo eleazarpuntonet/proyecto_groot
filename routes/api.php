@@ -14,6 +14,7 @@ use App\Departamentos;
 use App\Proveedor;
 use App\Contactos;
 use App\Viaticos;
+use App\Tableauthrole;
 use App\Notifications\Notificaciontest;
 use App\Jobs\JobNuevaReserva;
 
@@ -53,6 +54,7 @@ Route::resource('autorizaciones', 'AutorizacionController');
 
 Route::resource('files', 'FilesController');
 
+Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
 Route::resource('roles', 'RolesController');
 
 Route::resource('gerencias', 'GerenciasController');
@@ -63,13 +65,14 @@ Route::post('textonimage/{user}','ImageController@textOnImage')->name('textOnIma
 
 Route::get('testing',function(){
 
-	$user = User::with('departamento')->find(1);
-	return $user;
-	// return response()->json([
-	// 	// 'Reservas'      => $reserva,
-	// 	// 'User'      => $gerente,
+	$user = Role::with('auth_roles')->find(1);
+	$role = Tableauthrole::with('path_auth')->find('reserv002i');
+	// return $user;
+	return response()->json([
+		'Role'      => $user,
+		'Paths'      => $role,
 
-	// ], 200);
+	], 200);
 
 });
 

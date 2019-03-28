@@ -90,4 +90,9 @@ class RolesController extends Controller
     {
         //
     }
+
+    public function path_auth($id)
+    {
+        return $id;
+    }
 }

@@ -127,7 +127,8 @@
 		  	    				</el-form-item>
 		  	    			</div>
 
-		  	    			<el-form-item>
+
+		  	    			<el-form-item v-if="editable">
 		  	    				<el-button type="primary" @click="submitForm('gerencia_form_')">Enviar</el-button>
 		  	    				<el-button @click="resetForm('gerencia_form_')">Reset</el-button>
 		  	    			</el-form-item>
@@ -137,11 +138,6 @@
 		  	    </el-main>
 		  	  </el-container>
 		  	</el-container>
-
-
-
-
-
 		  </b-card-body>
 		</b-card>
 			
@@ -156,6 +152,7 @@
 	  data () {
 
 	  	return {
+	  		editable: false,
 	  		gerencia_form:{},
 	  		rules_: {
 				name: [
