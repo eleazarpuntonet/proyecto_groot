@@ -44,6 +44,7 @@ Route::resource('proveedores','ItWebServicesController');
 Route::resource('sites','sitesController');
 
 Route::get('usuarios/search/{usuario}', 'UsersController@search')->name('usuarios.search');
+Route::get('usuarios/path_auth/{usuario}', 'UsersController@path_auth')->name('usuarios.paths');
 Route::resource('usuarios', 'UsersController');
 
 Route::resource('traslados', 'TrasladosController');
@@ -65,12 +66,13 @@ Route::post('textonimage/{user}','ImageController@textOnImage')->name('textOnIma
 
 Route::get('testing',function(){
 
-	$user = Role::with('auth_roles')->find(1);
-	$role = Tableauthrole::with('path_auth')->find('reserv002i');
-	// return $user;
 	return response()->json([
-		'Role'      => $user,
-		'Paths'      => $role,
+		// 'User'      => User::with('roles.auth_roles')->find(1),
+		'Role'      => Role::find(1)->auth_roles,
+		// 'Role'      => Role::get(),
+
+		// 'Paths'      => Tableauthrole::with('path_auth')->find('reserv002i'),
+		// 'Paths'      => Tableauthrole::get(),
 
 	], 200);
 

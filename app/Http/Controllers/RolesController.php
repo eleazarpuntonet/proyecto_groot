@@ -41,7 +41,7 @@ class RolesController extends Controller
         $role->name         = $request->name;
         $role->display_name = $request->display_name;
         $role->description  = $request->description;
-        $role->save();
+        // $role->save();
         
         return $role;
     }
@@ -93,6 +93,7 @@ class RolesController extends Controller
 
     public function path_auth($id)
     {
-        return $id;
+        $Rol = Role::find($id)->auth_roles;
+        return $Rol;
     }
 }

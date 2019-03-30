@@ -127,5 +127,12 @@ class UsersController extends Controller
         // return "retornando busqueda";
     }
 
+    public function path_auth($id)
+    {
+        $result = User::with('roles.auth_roles')->find(1);
+
+        return $result;
+        // return "retornando busqueda";
+    }
 
 }

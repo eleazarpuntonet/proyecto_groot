@@ -24,6 +24,7 @@
 		  	  <el-aside class="l_aside_table" width="35%">
 				<el-table
 				  :data="lista_roles"
+				  @row-click="role_click"
 				  style="width: 100%">
 				  <el-table-column
 				    label="Role"
@@ -69,20 +70,28 @@
 
 		  	    		</el-form>
 		  	    	</div>
+
+		  	    	<div class="path_table">
+		  	    		<div class="boxCheckbox">
+		  	    			<div class="itemcheckbox" v-for="path in path_routes">
+		  	    				<div style="margin: 6px 0;"></div>
+		  	    				<el-checkbox :indeterminate="path.flagInd" v-model="path.flag" @change="handleCheckAllChange(path)" size="small">{{ path.name }}</el-checkbox>
+		  	    				<el-checkbox-group v-model="path.cont" @change="handleCheckItem(path)" size="small">
+		  	    				  <el-checkbox-button v-for="subpath in path.sub_path" :label="subpath.idOriginal" :key="subpath.idOriginal" border>{{subpath.name}}</el-checkbox-button>
+		  	    				</el-checkbox-group>
+		  	    			</div>
+		  	    		</div>
+		  	    	</div>
 		  	    </el-main>
 		  	  </el-container>
 		  	</el-container>
-
-
-
-
-
 		  </b-card-body>
 		</b-card>
 			
 	</div>
 </template>
 <script>
+	import nav from '../CoreUi/src/_nav';
 	export default {
 	  /*
 	  *
@@ -91,41 +100,101 @@
 	  data () {
 
 	  	return {
-	  		editable: false,
-	  		roles_form_:{},
-	  		rules_: {
+	  		nav         : [],
+	  		path_routes : [],
+	  		_routes : [],
+	  		editable    : true,
+	  		roles_form_ : {},
+	  		lista_roles : [],
+	  		rules_      : {
 				name: [
-						{ required: true, message: 'El nombre es obligatorio', trigger: 'blur' },
-					],
+						{ required: true,
+						message: 'El nombre es obligatorio',
+						trigger: 'blur' 
+					},
+				],
 				display_name: [
-						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
-					],
+						{ required: true,
+						message: 'El apellido es obligatorio',
+						trigger: 'blur' 
+					},
+				],
 				description: [
-						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
-					],	
-
+						{ required: true,
+						message: 'El apellido es obligatorio',
+						trigger: 'blur' 
+					},
+				],	
 	  		},
-	  		lista_roles: [],
 	  	}
 	  },
 	  computed: {
 
 	  },
 	  methods: {
+	  	handleCheckAllChange(val) {
+	  	  val.flagInd=false;
+	  	  if (val.cont.length===0) {
+					val.sub_path.forEach((value,index,arr)=>{
+						val.cont.push(value.idOriginal)
+					})
+	  	  } else {
+	  	  	val.cont=[]
+	  	  }
+
+	  	},
+	  	handleCheckItem(value) {
+	  	  let checkedCount = value.cont.length;
+	  	  value.flag       = checkedCount === value.sub_path.length;
+	  	  value.flagInd    = checkedCount > 0 && checkedCount < value.sub_path.length;
+	  	},
+	  	id_filter(id_path){
+			let idpath      = id_path
+			let count       = 0
+			let indexSlice  = 0
+	  		idpath.split('').forEach((value,index)=>{
+	  			count++
+	  			if (parseInt(value) || value ==='0') {
+	  				if (indexSlice === 0) {
+	  					indexSlice = count
+	  				}
+	  			}
+	  		})
+	  		indexSlice--
+	  		return {
+				idOriginal : id_path,
+				id_text    : idpath.substring(0,indexSlice),
+				id_int     : idpath.substring(indexSlice,(indexSlice+3)),
+				id_item    : idpath.substring((indexSlice+3),(indexSlice+5))
+	  		}
+	  	},
 	  	submitForm(formName) {
 			this.$refs[formName].validate((valid) => {
+				let path_toSend = []
+				this.path_routes.forEach((val,index)=>{
+					if (val.cont.length!=0) {
+						console.log("no esta vacio")
+						path_toSend.push(val.idOriginal)
+						val.cont.forEach((x,index)=>{
+							path_toSend.push(x)
+						})
+					} 
+				})
+				console.log(path_toSend)
+
+				
 			  if (valid) {
-			    	axios.post(route('roles.store',this.roles_form_)) 
-			    	    .then(response => {
-			    	    	this.resetForm(formName);
-			            	this.lista_roles.push(response.data)
-			    	      })
-			    	    .catch(error => {
-			    	      this.$notify.error({
-			    	        title: 'Error '+error.response.status,
-			    	        message: error.response.data.message
-			    	      });
-			    	    })
+					axios.post(route('roles.store',this.roles_form_)) 
+					.then(response => {
+						this.resetForm(formName);
+					  	this.lista_roles.push(response.data)
+					  })
+					.catch(error => {
+					  this.$notify.error({
+					    title: 'Error '+error.response.status,
+					    message: error.response.data.message
+					  });
+					})
 			  } else {
 			    console.log('error submit!!');
 			    return false;
@@ -134,17 +203,72 @@
 		},
 		resetForm(formName) {
 			this.$refs[formName].resetFields();
-		}
+		},
+		role_click(val){
+			this.path_routes= []
+			this.roles_form_ = val
+			axios.post(route('roles.Authpath',val.id)) 
+			    .then(response => {
+			    	let lista_paths = response.data
+			    	this._routes.forEach((x,index)=>{
+			    		if (lista_paths.some(path => path.pathitem_id == x.idOriginal)) {
+			    			// Si el item del menu se encuentra en el arreglo autorizado
+			    			// se barren las sub rutas
+			    			// para filtrar otros items
+		    				this.path_routes.push(x)
+		    				this.path_routes[(this.path_routes.length-1)].cont = []
+			    			x.sub_path.forEach((xa,arr)=>{
+			    				if (lista_paths.some(path => path.pathitem_id == xa.idOriginal)) {
+			    					this.path_routes[(this.path_routes.length-1)].cont.push(xa.idOriginal)
+			    				} 
+			    			})
+			    		} else {
+			    			this.path_routes.push(x)
+			    			this.path_routes[(this.path_routes.length-1)].cont = []
+			    		}
+			    		let tamanoCont           = this.path_routes[(this.path_routes.length-1)].cont.length
+			    		let tamanoSubpaths       = this.path_routes[(this.path_routes.length-1)].sub_path.length
+			    		this.path_routes[(this.path_routes.length-1)].flag    = tamanoCont === tamanoSubpaths
+			    		this.path_routes[(this.path_routes.length-1)].flagInd = tamanoCont > 0 && tamanoCont < tamanoSubpaths
+			    	})
+		      })
+			    .catch(error => {
+			    	console.log(error)
+			  //     this.$notify.error({
+					// title: 'Error '+error.response.status,
+					// message: error.response.data.message
+			  //     });
+			    })
+		},
 	  },
 	  beforeMount(){
+  		nav.items.forEach((val,index)=>{
+				if (val.__proto__.constructor.name == 'menuItem') {
+					var brute_id      = this.id_filter(val.id_path)
+					brute_id.flag     = false
+					brute_id.flagInd     = false
+					brute_id.name     = val.name
+					brute_id.cont     = []
+					brute_id.sub_path = []
+
+					val.children.forEach((value,index)=>{
+						let x  = this.id_filter(value.id_path)
+						x.flag = false
+						x.name = value.name
+						brute_id.sub_path.push(x)
+					})
+					this.path_routes.push(brute_id)
+				}
+				this._routes = this.path_routes
+  		})
 		axios.get(route('roles.index')) 
 		    .then(response => {
 	        	this.lista_roles=response.data
 		      })
 		    .catch(error => {
 		      this.$notify.error({
-		        title: 'Error '+error.response.status,
-		        message: error.response.data.message
+				title: 'Error '+error.response.status,
+				message: error.response.data.message
 		      });
 		    })
 	  },
@@ -158,6 +282,9 @@
 </script>
 
 <style lang="scss">
+.path_table{
+	// background-color: rgba(0, 0, 255, .5);
+}
 .el_label{
 	padding-top: 8px;
 	padding-bottom: 0px;
@@ -182,13 +309,8 @@
 	font-family: 'Eurostile LTS';
 }
 .el-checkbox .el-checkbox__label{
-	font-size: .8vw !important;
+	font-size: 1.2vw !important;
 }
-
-
-
-
-
 
 $unitHeight : 90px;
 	#printSheet{

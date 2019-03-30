@@ -101,7 +101,8 @@ export default {
   },
   data () {
     return {
-      nav: []
+      nav: [],
+      paths_auth: [],
     }
   },
   computed: {
@@ -122,7 +123,6 @@ export default {
           // console.log(itemNav)
           // console.log('antes de public')
           if (itemNav == 'public') {
-            console.log('Entra en public')
           // if (navitem[0] == val.name || navitem[0]==='public') {
             flag=true
           }
@@ -135,59 +135,78 @@ export default {
   },
   beforeMount(){
 
-    console.log(this.$store.getters.currentUser.roles)
-    // axios.post(route('roles.Authpath',this.$store.getters.currentUser.roles)) 
-    //     .then(response => {
-    //                          console.log(response)
-    //         // response.data.forEach((x,y)=>{
-    //         //   this.lista_roles.push({
-    //         //     key: x.id,
-    //         //     label: x.display_name,
-    //         //     disabled: false
-    //         //   })
-    //         // })
-    //       })
-    //     .catch(error => {
-    //       this.$notify.error({
-    //         title: 'Error '+error.response.status,
-    //         message: error.response.data.message
-    //       });
-    //     })
-
-
-
-    nav.items.forEach((val,i,arr)=>{
-      // Solo los item de clase 'menuItem entran en la validacion'
-    if (val.__proto__.constructor.name == 'menuItem') {
-      // Valida si la funcion permite o no acceder al item de menu                                                         
-      if (this.compareRoles(val.authRol)) {
-        // Valida si el elemento tiene, elementos hijos
-        if (val.children.length>0) {
-          
-          let childrens = val.children
-          var temp      = val
-          temp.children = []
-
-          this.nav.push(temp)
-          childrens.forEach((value,y,arry)=>{
-            let temvar = false;
-            value.authRol.forEach((valor,x)=>{
-                temvar=this.compareRoles(valor)
-            })
-            if (temvar) {
-              this.nav[this.nav.length-1].children.push(value)
+    let userid = this.$store.getters.currentUser.roles
+    axios.get(route('usuarios.paths',userid)) 
+        .then(response => {
+          // Esta funcion se encargar
+          // de guardar en paths_auth
+          // las rutas autorizadas para
+          // cada rol del usuario
+           response.data.roles.forEach((val,index)=>{
+            if (val.auth_roles.length > 0) {
+              val.auth_roles.forEach((val,index)=>{
+                if (this.paths_auth.length === 0 ) {
+                  this.paths_auth.push(val)
+                } else {
+                  let found = this.paths_auth.some(path => path.pathitem_id == val.pathitem_id)
+                  if (!found) {
+                    this.paths_auth.push(val)
+                  }
+                }
+              })
             }
-          })
-          
-        } else{
-          this.nav.push(val)
-        }
+           })
 
-      }
-    } else {
-      this.nav.push(val)
-    }
-    })
+           nav.items.forEach((val,i,arr)=>{
+             // Solo los item de clase 'menuItem entran en la validacion'
+             if (val.__proto__.constructor.name == 'menuItem') {
+               // Valida si la funcion permite o no acceder al item de menu   
+               let superFlag = this.paths_auth.some(path => path.pathitem_id == val.id_path)
+               if (superFlag) {
+
+                if (val.children.length>0) {
+                  // Guardo las subrutas/pestanas en una variable
+                  // para barrerlos mas tarde
+                  let childrens = val.children
+                  // Guardo la ruta en una variable
+                  // temporal para guardarla en el maestro
+                  // de rutas que se imprimiran
+                  var temp      = val
+                  // Vacio los children de la ruta
+                  // en el temporal para que no tenga subrutas/pestanas
+                  temp.children = []
+                  // Guardo la ruta temporal sin children
+                  // en el maestro de rutas a imprimir
+                  this.nav.push(temp)
+                  // Comienzo a barrer las subrutas para filtrarlas
+                  // y guardar solo las subrutas autorizadas
+                  childrens.forEach((value,y,arry)=>{
+                    // Busca el id_path de las rutas children
+                    // en el arreglo paths_auth(que son las rutas autorizadas
+                    //  proporcionadas por el servidor)
+                    let flagFound = this.paths_auth.some(path => path.pathitem_id == value.id_path)
+                    if (flagFound) {
+                      this.nav[this.nav.length-1].children.push(value)
+                    }
+                  })
+                  
+                } else{
+                  this.nav.push(val)
+                }
+
+               }
+             } else {
+               this.nav.push(val)
+             }
+           })
+          })
+        .catch(error => {
+          console.log(error)
+        })
+
+
+
+
     // this.nav= nav.items
     // console.log(this.$store.getters.currentUser)
   }
