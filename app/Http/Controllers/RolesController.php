@@ -41,7 +41,14 @@ class RolesController extends Controller
         $role->name         = $request->name;
         $role->display_name = $request->display_name;
         $role->description  = $request->description;
-        // $role->save();
+        $role->save();
+
+        $pack_paths = json_decode($request->input('pack_idPaths'));
+        if (!empty($pack_paths)) {
+            foreach ($pack_paths as $val) {
+                $role->auth_roles()->attach($val);
+            }
+        }
         
         return $role;
     }

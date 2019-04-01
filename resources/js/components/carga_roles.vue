@@ -9,30 +9,33 @@
 
 		  		<el-button-group style="float:right;">
 		  		  <el-button 
-		  		  @click="back()"
-		  		  	size="mini" 
-		  		  	type="primary" 
-		  		  	icon="el-icon-arrow-left">Anterior</el-button>
+		  		  	@click = "back()"
+		  		  	size   = "mini"
+		  		  	type   = "primary"
+		  		  	icon   = "el-icon-arrow-left">Anterior
+		  		  </el-button>
 		  		  <el-button 
-		  		  @click="next()"
-		  		  	size="mini" 
-		  		  	type="primary">Siguiente<i class="el-icon-arrow-right el-icon-right"></i></el-button>
+		  		  @click = "next()"
+		  		  size   = "mini"
+		  		  type   = "primary">Siguiente
+		  		  	<i class="el-icon-arrow-right el-icon-right"></i>
+		  		  </el-button>
 		  		</el-button-group>
 		  	</div>
 
 		  	<el-container>
 		  	  <el-aside class="l_aside_table" width="35%">
 				<el-table
-				  :data="lista_roles"
-				  @row-click="role_click"
-				  style="width: 100%">
+				  :data      = "lista_roles"
+				  @row-click = "role_click"
+				  style      = "width: 100%">
 				  <el-table-column
-				    label="Role"
-				    prop="display_name">
+				    label = "Role"
+				    prop  = "display_name">
 				  </el-table-column>
 				  <el-table-column
-				    label="Descripcion"
-				    prop="description">
+				    label = "Descripcion"
+				    prop  = "description">
 				  </el-table-column>
 				</el-table>
 		  	  </el-aside>
@@ -44,28 +47,49 @@
 				</el-header>
 		  	    <el-main>
 		  	    	<div class="formulario_gestion">
-		  	    		<el-form :rules="rules_" ref="roles_form" :model="roles_form_"  size="mini">
+		  	    		<el-form 
+		  	    			:rules="rules_" 
+		  	    			ref="roles_form" 
+		  	    			:model="roles_form_"  
+		  	    			size="mini">
 
 		  	    			<div class="form_line">
 		  	    				<el-form-item prop="name" style="width:30%;">
 		  	    					<div class="el_label">Referencia</div>
-		  	    					<el-input v-model="roles_form_.name" ></el-input>
+		  	    					<el-input 
+		  	    						v-model   = "roles_form_.name"
+		  	    						:disabled = "!editable">
+		  	    						</el-input>
 		  	    				</el-form-item>
 
-		  	    				<el-form-item prop="display_name" style="width:50%;">
-		  	    					<div class="el_label">Nombre</div>
-		  	    					<el-input v-model="roles_form_.display_name" ></el-input>
+		  	    				<el-form-item 
+		  	    					prop="display_name" 
+		  	    					style="width:50%;">
+		  	    					<div class="el_label">Nombre
+		  	    					</div>
+		  	    					<el-input 
+		  	    						v-model   = "roles_form_.display_name"
+		  	    						:disabled = "!editable">
+		  	    					</el-input>
 		  	    				</el-form-item>
 
 		  	    				<el-form-item prop="description" style="width:100%;">
 		  	    					<div class="el_label">Descripcion</div>
-		  	    					<el-input v-model="roles_form_.description" ></el-input>
+		  	    					<el-input 
+		  	    						v-model   = "roles_form_.description"
+		  	    						:disabled = "!editable">
+		  	    						</el-input>
 		  	    				</el-form-item>
 		  	    			</div>
 
 		  	    			<el-form-item v-if="editable">
-		  	    				<el-button type="primary" @click="submitForm('roles_form')">Enviar</el-button>
-		  	    				<el-button @click="resetForm('roles_form')">Reset</el-button>
+		  	    				<el-button 
+		  	    					type   = "primary"
+		  	    					@click = "submitForm('roles_form')">Enviar
+		  	    				</el-button>
+		  	    				<el-button 
+		  	    					@click="resetForm('roles_form')">Reset
+		  	    				</el-button>
 		  	    			</el-form-item>
 
 		  	    		</el-form>
@@ -75,9 +99,24 @@
 		  	    		<div class="boxCheckbox">
 		  	    			<div class="itemcheckbox" v-for="path in path_routes">
 		  	    				<div style="margin: 6px 0;"></div>
-		  	    				<el-checkbox :indeterminate="path.flagInd" v-model="path.flag" @change="handleCheckAllChange(path)" size="small">{{ path.name }}</el-checkbox>
-		  	    				<el-checkbox-group v-model="path.cont" @change="handleCheckItem(path)" size="small">
-		  	    				  <el-checkbox-button v-for="subpath in path.sub_path" :label="subpath.idOriginal" :key="subpath.idOriginal" border>{{subpath.name}}</el-checkbox-button>
+		  	    				<el-checkbox 
+		  	    					:indeterminate = "path.flagInd"
+		  	    					v-model        = "path.flag"
+		  	    					@change        = "handleCheckAllChange(path)"
+		  	    					size           = "small"
+		  	    					:disabled      = "!editable">{{ path.name }}
+		  	    				</el-checkbox>
+		  	    				<el-checkbox-group 
+		  	    					v-model   = "path.cont"
+		  	    					@change   = "handleCheckItem(path)"
+		  	    					size      = "small"
+		  	    					:disabled = "!editable">
+		  	    				  <el-checkbox-button 
+		  	    				  	v-for  = "subpath in path.sub_path"
+		  	    				  	:label = "subpath.idOriginal"
+		  	    				  	:key   = "subpath.idOriginal"
+		  	    				  	border>{{subpath.name}}
+		  	    				  </el-checkbox-button>
 		  	    				</el-checkbox-group>
 		  	    			</div>
 		  	    		</div>
@@ -100,10 +139,20 @@
 	  data () {
 
 	  	return {
+	  		editable    : false,
+	  		edt_form    : {
+	  			textGroup:{
+	  				editAuth : false,
+	  				roleAuth : ['superadmin'],
+	  			},
+	  			roleGroup: {
+	  				editAuth : false,
+	  				roleAuth : ['superadmin'],
+	  			}
+	  		},
 	  		nav         : [],
 	  		path_routes : [],
-	  		_routes : [],
-	  		editable    : true,
+	  		_routes     : [],
 	  		roles_form_ : {},
 	  		lista_roles : [],
 	  		rules_      : {
@@ -173,20 +222,17 @@
 				let path_toSend = []
 				this.path_routes.forEach((val,index)=>{
 					if (val.cont.length!=0) {
-						console.log("no esta vacio")
 						path_toSend.push(val.idOriginal)
 						val.cont.forEach((x,index)=>{
 							path_toSend.push(x)
 						})
 					} 
 				})
-				console.log(path_toSend)
-
-				
+				this.roles_form_.pack_idPaths = JSON.stringify(path_toSend);
 			  if (valid) {
 					axios.post(route('roles.store',this.roles_form_)) 
 					.then(response => {
-						this.resetForm(formName);
+						this.roles_form_ = {}
 					  	this.lista_roles.push(response.data)
 					  })
 					.catch(error => {
@@ -195,6 +241,7 @@
 					    message: error.response.data.message
 					  });
 					})
+
 			  } else {
 			    console.log('error submit!!');
 			    return false;
@@ -205,7 +252,7 @@
 			this.$refs[formName].resetFields();
 		},
 		role_click(val){
-			this.path_routes= []
+			this.path_routes = []
 			this.roles_form_ = val
 			axios.post(route('roles.Authpath',val.id)) 
 			    .then(response => {
@@ -231,7 +278,7 @@
 			    		this.path_routes[(this.path_routes.length-1)].flag    = tamanoCont === tamanoSubpaths
 			    		this.path_routes[(this.path_routes.length-1)].flagInd = tamanoCont > 0 && tamanoCont < tamanoSubpaths
 			    	})
-		      })
+		 	    })
 			    .catch(error => {
 			    	console.log(error)
 			  //     this.$notify.error({
@@ -262,15 +309,15 @@
 				this._routes = this.path_routes
   		})
 		axios.get(route('roles.index')) 
-		    .then(response => {
-	        	this.lista_roles=response.data
-		      })
-		    .catch(error => {
-		      this.$notify.error({
-				title: 'Error '+error.response.status,
-				message: error.response.data.message
-		      });
-		    })
+			.then(response => {
+			  	this.lista_roles=response.data
+			  })
+			.catch(error => {
+			  this.$notify.error({
+			title: 'Error '+error.response.status,
+			message: error.response.data.message
+			  });
+			})
 	  },
 	  created(){
 	  },
