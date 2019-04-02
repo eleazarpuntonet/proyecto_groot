@@ -43,6 +43,7 @@ Route::resource('proveedores','ItWebServicesController');
 
 Route::resource('sites','sitesController');
 
+Route::get('usuarios/actionsauth/{usuario}', 'UsersController@actions_auth')->name('usuarios.actionsauth');
 Route::get('usuarios/search/{usuario}', 'UsersController@search')->name('usuarios.search');
 Route::get('usuarios/path_auth/{usuario}', 'UsersController@path_auth')->name('usuarios.paths');
 Route::resource('usuarios', 'UsersController');
@@ -68,7 +69,7 @@ Route::get('testing',function(){
 
 	return response()->json([
 		// 'User'      => User::with('roles.auth_roles')->find(1),
-		'Role'      => Role::find(1)->auth_roles,
+		'Role'      => Role::find(1)->auth_actions,
 		// 'Role'      => Role::get(),
 
 		// 'Paths'      => Tableauthrole::with('path_auth')->find('reserv002i'),

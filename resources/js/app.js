@@ -202,6 +202,7 @@ const store = new Vuex.Store({
             state.notifications.push(value)
         },
         ADD_PATHSARR(state,value){
+            console.log('Estohy en el store')
             value.forEach((v,i)=>{
                 state.path_Auth.push(v)
             })

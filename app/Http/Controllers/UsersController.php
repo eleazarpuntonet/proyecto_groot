@@ -124,7 +124,6 @@ class UsersController extends Controller
                         ->get();
 
         return $result;
-        // return "retornando busqueda";
     }
 
     public function path_auth($id)
@@ -132,7 +131,14 @@ class UsersController extends Controller
         $result = User::with('roles.auth_roles')->find(1);
 
         return $result;
-        // return "retornando busqueda";
     }
+
+    public function actions_auth($id)
+    {
+        $result = User::with('roles.auth_actions')->find(1);
+
+        return $result;
+    }
+
 
 }

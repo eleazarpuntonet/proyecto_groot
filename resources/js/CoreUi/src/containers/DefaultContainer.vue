@@ -156,6 +156,7 @@ export default {
               })
             }
            })
+          this.$store.commit('ADD_PATHSARR',this.paths_auth)
 
            nav.items.forEach((val,i,arr)=>{
              // Solo los item de clase 'menuItem entran en la validacion'

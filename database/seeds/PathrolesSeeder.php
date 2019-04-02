@@ -27,7 +27,7 @@ class PathrolesSeeder extends Seeder
         $json_data = json_decode($json,true);
         Tableassgnauthrole::truncate();
         foreach ($json_data as $assignpath) {
-			$pathItem               = new App\Tableauthrole;
+			$pathItem               = new App\Tableassgnauthrole;
 			$pathItem->pathitem_id  = $assignpath['pathitem_id'];
 			$pathItem->role_id      = $assignpath['role_id'];
 			$pathItem->save();

@@ -17,6 +17,11 @@ class Role extends Model
     {
         // $role->auth_roles()->attach('rrhh002i');
         return $this->belongsToMany(Tableauthrole::class,'pathitems_roles','role_id','pathitem_id');
+    }
 
+    public function auth_actions()
+    {
+        // $role->auth_actions()->attach('dataload003i2');
+        return $this->belongsToMany(ActionsAuth::class,'authactions_roles','role_id','action_id');
     }
 }

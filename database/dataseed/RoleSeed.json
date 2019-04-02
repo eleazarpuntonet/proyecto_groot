@@ -4,15 +4,23 @@
         "name": "superadmin",
         "display_name": "Super Administrador",
         "description": "Administrador de codigo de sitio",
-        "created_at": "2019-03-28 00:46:51",
-        "updated_at": "2019-03-28 00:46:51"
+        "created_at": "2019-04-01 18:31:46",
+        "updated_at": "2019-04-01 18:31:46"
     },
     {
         "id": 2,
         "name": "usuario",
         "display_name": "Usuario general",
         "description": "Usuario general",
-        "created_at": "2019-03-28 00:46:52",
-        "updated_at": "2019-03-28 00:46:52"
+        "created_at": "2019-04-01 18:31:46",
+        "updated_at": "2019-04-01 18:31:46"
+    },
+    {
+        "id": 3,
+        "name": "nuevo",
+        "display_name": "Rolnuevo",
+        "description": "Nuevorol",
+        "created_at": "2019-04-01 18:31:46",
+        "updated_at": "2019-04-01 18:31:46"
     }
 ]
