@@ -13,14 +13,9 @@
         "destino_det": "fasdf",
         "motivo": "asdf",
         "agenda": "asdf",
-<<<<<<< HEAD
-<<<<<<< HEAD
-        "created_at": "2019-03-25 16:38:41"
-=======
-        "created_at": "2019-03-25 16:32:02"
->>>>>>> Maquina de desarrollo completa
-=======
+
+        "created_at": "2019-03-25 16:38:41",
+        "created_at": "2019-03-25 16:32:02",
         "created_at": "2019-04-01 18:31:46"
->>>>>>> origin/laptodev
     }
 ]

@@ -4,9 +4,11 @@
 		  <b-card-header >
 		  </b-card-header>
 		  <b-card-body>
+		  	<!-- 
+		  		* Panel de Titulo 
+		  	-->
 		  	<div slot="header" class="clearfix" style="">
 		  		<strong>Gestion de Usuarios</strong>
-
 		  		<el-button-group style="float:right;">
 		  		  <el-button 
 		  		  	@click = "back()"
@@ -23,7 +25,13 @@
 		  		</el-button-group>
 		  	</div>
 
+		  	<!-- 
+		  		* Contenido de la pagina 
+		  	-->
 		  	<el-container>
+		  		<!-- 
+		  			* Tabla de indice izquierda / aside table 
+		  		-->
 		  	  <el-aside class="l_aside_table" width="35%">
 				<el-table
 				  :data      = "lista_roles"
@@ -39,6 +47,9 @@
 				  </el-table-column>
 				</el-table>
 		  	  </el-aside>
+		  	  <!-- 
+		  	  	* Contenedor derecho del contenido 
+		  	  -->
 		  	  <el-container>
 				<el-header>
 				  	<div class="l_box_title">
@@ -82,17 +93,17 @@
 		  	    				</el-form-item>
 		  	    			</div>
 
-		  	    			<el-form-item v-if="formAuth('roles','crea') || formAuth('roles','borra')">
-		  	    				<el-button v-if="formAuth('roles','crea')"
+		  	    			<el-form-item v-if="auth.roleform.crea || auth.roleform.borra">
+		  	    				<el-button v-if="auth.roleform.crea"
 		  	    					type   = "primary"
 		  	    					@click = "submitForm('roles_form')">Enviar
 		  	    				</el-button>
 		  	    				<el-button
-		  	    					v-if="formAuth('roles','crea')" 
+		  	    					v-if="auth.roleform.crea" 
 		  	    					@click="resetForm('roles_form')">Reset
 		  	    				</el-button>
 		  	    				<el-button 
-		  	    					v-if="formAuth('roles','borra')"
+		  	    					v-if="auth.roleform.borra"
 		  	    					@click="console.log('Ejecuto boton de eliminar')">Eliminar
 		  	    				</el-button>
 		  	    			</el-form-item>
@@ -109,13 +120,13 @@
 		  	    					v-model        = "path.flag"
 		  	    					@change        = "handleCheckAllChange(path)"
 		  	    					size           = "small"
-		  	    					:disabled      = "!editable">{{ path.name }}
+		  	    					:disabled      = "!auth.pathform.crea">{{ path.name }}
 		  	    				</el-checkbox>
 		  	    				<el-checkbox-group 
 		  	    					v-model   = "path.cont"
 		  	    					@change   = "handleCheckItem(path)"
 		  	    					size      = "small"
-		  	    					:disabled = "!formAuth('paths','crea')">
+		  	    					:disabled = "!auth.pathform.crea">
 		  	    				  <el-checkbox-button 
 		  	    				  	v-for  = "subpath in path.sub_path"
 		  	    				  	:label = "subpath.idOriginal"
@@ -136,6 +147,48 @@
 </template>
 <script>
 	import nav from '../CoreUi/src/_nav';
+	import auths from '../auth_items'
+
+	// class Action_authitem{
+	//   constructor(item_id){
+	//   	this.desc     = item
+	//   	this.name     = item
+	//   	this.actionid = item
+	//   	this.lee      = item
+	//   	this.escribe  = item
+	//   	this.borra    = item
+	//   	this.crea     = item
+
+	//     switch(arguments.length){
+	//       case 1:
+	//         this.name    = item.name
+	//         this.url     = item.url
+	//         this.icon    = item.icon
+	//         this.authRol = item.authRol
+	//         this.id_path = item.id_path
+	//       break
+
+	//       case 2:
+	//         if (item.class) {
+	//           this.class = item.class
+	//         }
+	//         this.id_path = item.id_path
+	//         this.name = item.name
+	//         this.url  = item.url
+	//         this.icon = item.icon
+	//         this.children = children
+	//         this.authRol = item.authRol
+	//       break
+	//     }
+	//   }
+
+	//   getRoles(){
+	//     return this.authRol
+	//   }
+
+
+	// }
+
 	export default {
 	  /*
 	  *
@@ -145,6 +198,10 @@
 
 	  	return {
 	  		editable    : false,
+	  		auth : {
+	  			roleform: auths.submit_roles,
+	  			pathform: auths.submit_paths,
+	  		},
 	  		actionSetup : {
 					switchroles: { 
 						desc     : 'Acciones de edicion de acceso a pestañas',
@@ -373,37 +430,42 @@
 			})
 
     	axios.get(route('usuarios.actionsauth',this.$store.getters.currentUser.id)) 
-      .then(response => {
+      	.then(response => {
+	      	if (response.data.roles.length > 0) {
+	      		response.data.roles.forEach((x,index)=>{
+	      			if (x.auth_actions.length > 0) {
+      						console.log(this.auth.roleform.setAuth(x.auth_actions))
+      						console.log(this.auth.pathform.setAuth(x.auth_actions)
+      						)
+	      				// x.auth_actions.forEach((action,index)=>{
 
-      	if (response.data.roles.length > 0) {
-      		response.data.roles.forEach((x,index)=>{
-      			if (x.auth_actions.length > 0) {
-      				x.auth_actions.forEach((action,index)=>{
+      					// 	// console.log(action)
+      					// 	// console.log(auths.submit_roles.setAuth(action))
+      					// 	console.log(this.auth.roleform.setAuth(action))
+	      				// 	if (this.actionSetup.switchroles.actionid == action.action_id) {
+	      				// 		this.actionSetup.switchroles.desc    = action.action_desc
+	      				// 		this.actionSetup.switchroles.name    = action.action_name
+	      				// 		let permissions                      = action.action_permissions.split("")
+	      				// 		this.actionSetup.switchroles.lee     = permissions.some(p => p == 'l')
+	      				// 		this.actionSetup.switchroles.escribe = permissions.some(p => p == 'e')
+	      				// 		this.actionSetup.switchroles.borra   = permissions.some(p => p == 'b')
+	      				// 		this.actionSetup.switchroles.crea    = permissions.some(p => p == 'c')
+	      				// 	}
+	      				// 	if (this.actionSetup.switchpaths.actionid == action.action_id) {
+	      				// 		this.actionSetup.switchpaths.desc    = action.action_desc
+	      				// 		this.actionSetup.switchpaths.name    = action.action_name
+	      				// 		let permissions                      = action.action_permissions.split("")
+	      				// 		this.actionSetup.switchpaths.lee     = permissions.some(p => p == 'l')
+	      				// 		this.actionSetup.switchpaths.escribe = permissions.some(p => p == 'e')
+	      				// 		this.actionSetup.switchpaths.borra   = permissions.some(p => p == 'b')
+	      				// 		this.actionSetup.switchpaths.crea    = permissions.some(p => p == 'c')
+	      				// 	}
 
-
-      					if (this.actionSetup.switchroles.actionid == action.action_id) {
-      						this.actionSetup.switchroles.desc    = action.action_desc
-      						this.actionSetup.switchroles.name    = action.action_name
-      						let permissions                      = action.action_permissions.split("")
-      						this.actionSetup.switchroles.lee     = permissions.some(p => p == 'l')
-      						this.actionSetup.switchroles.escribe = permissions.some(p => p == 'e')
-      						this.actionSetup.switchroles.borra   = permissions.some(p => p == 'b')
-      						this.actionSetup.switchroles.crea    = permissions.some(p => p == 'c')
-      					}
-      					if (this.actionSetup.switchpaths.actionid == action.action_id) {
-      						this.actionSetup.switchpaths.desc    = action.action_desc
-      						this.actionSetup.switchpaths.name    = action.action_name
-      						let permissions                      = action.action_permissions.split("")
-      						this.actionSetup.switchpaths.lee     = permissions.some(p => p == 'l')
-      						this.actionSetup.switchpaths.escribe = permissions.some(p => p == 'e')
-      						this.actionSetup.switchpaths.borra   = permissions.some(p => p == 'b')
-      						this.actionSetup.switchpaths.crea    = permissions.some(p => p == 'c')
-      					}
-
-      				})
-      			}
-      		})
-      	}
+	      				// })
+	      			}
+	      		})
+	      	}
+	      	console.log(this.auth.roleform.crea)
       }).catch( error => {
       	console.log(error)
       })
