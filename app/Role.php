@@ -15,16 +15,13 @@ class Role extends Model
 
     public function auth_roles()
     {
-        // return $this->belongsToMany(Tableauthrole::class,'pathitems_roles','role_id','pathitem_id');
+        // $role->auth_roles()->attach('rrhh002i');
         return $this->belongsToMany(Tableauthrole::class,'pathitems_roles','role_id','pathitem_id');
+    }
 
-                // return $this->hasManyThrough( 
-                //                          Role::class, //tabla destino
-                //                          AssignedTableRoles::class,//tabla intermedia
-                //                          'user_id', //Llave que relaciona la TABLA INTERMEDIA -> TABLA ORIGEN (Autorizaciones)
-                //                          'id', //Llave que relaciona la TABLA DESTINO -> TABLA INTERMEDIA (Autorizaciones->Departamentos)
-                //                          'id', //Llave que relaciona la TABLA ORIGEN -> TABLA INTERMEDIA (Reservas->Autorizaciones)
-                //                          'role_id'//Llave que relaciona la TABLA INTERMEDIA -> TABLA DESTINO (Autorizaciones->Departamentos)
-                //                          );
+    public function auth_actions()
+    {
+        // $role->auth_actions()->attach('dataload003i2');
+        return $this->belongsToMany(ActionsAuth::class,'authactions_roles','role_id','action_id');
     }
 }

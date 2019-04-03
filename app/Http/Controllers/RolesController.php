@@ -42,6 +42,13 @@ class RolesController extends Controller
         $role->display_name = $request->display_name;
         $role->description  = $request->description;
         $role->save();
+
+        $pack_paths = json_decode($request->input('pack_idPaths'));
+        if (!empty($pack_paths)) {
+            foreach ($pack_paths as $val) {
+                $role->auth_roles()->attach($val);
+            }
+        }
         
         return $role;
     }
@@ -93,6 +100,7 @@ class RolesController extends Controller
 
     public function path_auth($id)
     {
-        return $id;
+        $Rol = Role::find($id)->auth_roles;
+        return $Rol;
     }
 }

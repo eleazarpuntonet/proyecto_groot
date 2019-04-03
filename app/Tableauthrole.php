@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tableauthrole extends Model
 {
-   	protected $table      = 'path_items';
-   	public $timestamps    = false;	
-   	protected $primaryKey = 'pathitem_id';
-   	protected $casts = ['pathitem_id' => 'string'];
+	protected $table       = 'path_items';
+	public $timestamps     = false;	
+	protected $primaryKey  = 'pathitem_id';
+	protected $casts       = ['pathitem_id' => 'string'];
 
 
     public function path_auth()
