@@ -15,6 +15,7 @@ use App\Proveedor;
 use App\Contactos;
 use App\Viaticos;
 use App\Tableauthrole;
+use App\ActionsAuth;
 use App\Notifications\Notificaciontest;
 use App\Jobs\JobNuevaReserva;
 
@@ -44,8 +45,11 @@ Route::resource('proveedores','ItWebServicesController');
 Route::resource('sites','sitesController');
 
 Route::get('usuarios/actionsauth/{usuario}', 'UsersController@actions_auth')->name('usuarios.actionsauth');
+
 Route::get('usuarios/search/{usuario}', 'UsersController@search')->name('usuarios.search');
+
 Route::get('usuarios/path_auth/{usuario}', 'UsersController@path_auth')->name('usuarios.paths');
+
 Route::resource('usuarios', 'UsersController');
 
 Route::resource('traslados', 'TrasladosController');
@@ -57,23 +61,20 @@ Route::resource('autorizaciones', 'AutorizacionController');
 Route::resource('files', 'FilesController');
 
 Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
+
 Route::resource('roles', 'RolesController');
 
 Route::resource('gerencias', 'GerenciasController');
 
 Route::resource('proveedores', 'ProveedoresController');
 
-Route::post('textonimage/{user}','ImageController@textOnImage')->name('textOnImage');
+Route::post('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
 
 	return response()->json([
-		// 'User'      => User::with('roles.auth_roles')->find(1),
-		'Role'      => Role::find(1)->auth_actions,
-		// 'Role'      => Role::get(),
-
-		// 'Paths'      => Tableauthrole::with('path_auth')->find('reserv002i'),
-		// 'Paths'      => Tableauthrole::get(),
+		'Path'      => Tableauthrole::with('actions')->find('dataload003i'),
+		'Paths'      => ActionsAuth::get()
 
 	], 200);
 

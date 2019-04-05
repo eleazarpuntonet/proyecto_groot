@@ -33,7 +33,6 @@ class Actionauth{
   setAuth(actions){
    if (actions.length>0) {
       actions.forEach((val,index)=>{
-        console.log(val)
         if (val.action_id == this.actionid) {
           this.setInfo({
             name: val.action_desc,
@@ -48,9 +47,6 @@ class Actionauth{
 
       })
     }
-
-
-    
     return this
   }
 }

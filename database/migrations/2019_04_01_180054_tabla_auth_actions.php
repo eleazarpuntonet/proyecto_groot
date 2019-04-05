@@ -20,6 +20,7 @@ class TablaAuthActions extends Migration
             $table->string('action_name');
             $table->string('action_desc');
             $table->string('action_permissions');
+            $table->string('path_id');
             $table->timestamps();
         });
 

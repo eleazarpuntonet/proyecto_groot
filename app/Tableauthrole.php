@@ -18,5 +18,10 @@ class Tableauthrole extends Model
     	return $this->belongsToMany(Role::class,'pathitems_roles','pathitem_id','role_id');
     }
 
+    public function actions()
+    {
+    	// return $this->hasMany(ActionsAuth::class, 'action_id');
+    	return $this->hasMany(ActionsAuth::class, 'path_id', 'pathitem_id');
+    }
 
 }

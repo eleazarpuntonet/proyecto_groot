@@ -69,7 +69,7 @@
 		  	    					<div class="el_label">Referencia</div>
 		  	    					<el-input 
 		  	    						v-model   = "roles_form_.name"
-		  	    						:disabled = "!formAuth('roles','crea')">
+		  	    						:disabled = "!auth.roleform.crea">
 		  	    						</el-input>
 		  	    				</el-form-item>
 
@@ -80,7 +80,7 @@
 		  	    					</div>
 		  	    					<el-input 
 		  	    						v-model   = "roles_form_.display_name"
-		  	    						:disabled = "!formAuth('roles','crea')">
+		  	    						:disabled = "!auth.roleform.crea">
 		  	    					</el-input>
 		  	    				</el-form-item>
 
@@ -88,7 +88,7 @@
 		  	    					<div class="el_label">Descripcion</div>
 		  	    					<el-input 
 		  	    						v-model   = "roles_form_.description"
-		  	    						:disabled = "!formAuth('roles','crea')">
+		  	    						:disabled = "!auth.roleform.crea">
 		  	    						</el-input>
 		  	    				</el-form-item>
 		  	    			</div>
@@ -118,16 +118,15 @@
 		  	    				<el-checkbox 
 		  	    					:indeterminate = "path.flagInd"
 		  	    					v-model        = "path.flag"
-		  	    					@change        = "handleCheckAllChange(path)"
 		  	    					size           = "small"
 		  	    					:disabled      = "!auth.pathform.crea">{{ path.name }}
 		  	    				</el-checkbox>
 		  	    				<el-checkbox-group 
 		  	    					v-model   = "path.cont"
-		  	    					@change   = "handleCheckItem(path)"
 		  	    					size      = "small"
 		  	    					:disabled = "!auth.pathform.crea">
 		  	    				  <el-checkbox-button 
+		  	    				  @change="handleCheckItem(path)"
 		  	    				  	v-for  = "subpath in path.sub_path"
 		  	    				  	:label = "subpath.idOriginal"
 		  	    				  	:key   = "subpath.idOriginal"
@@ -195,292 +194,257 @@
 	  * Variables del componente
 	  */
 	  data () {
-
 	  	return {
 	  		editable    : false,
 	  		auth : {
 	  			roleform: auths.submit_roles,
 	  			pathform: auths.submit_paths,
 	  		},
-	  		actionSetup : {
-					switchroles: { 
-						desc     : 'Acciones de edicion de acceso a pestañas',
-						name     : 'roles',
-						actionid : 'dataload003i1',
-						lee      : false,
-						escribe  : false,
-						borra    : false,
-						crea     : false,
-					},
-					switchpaths : { 
-						desc     : 'Acciones de edicion de acceso a pestañas',
-						name     : 'paths',
-						actionid : 'dataload003i2',
-						lee      : false,
-						escribe  : false,
-						borra    : false,
-						crea     : false,
-					},
-	  		},
-	  		nav         : [],
-	  		path_routes : [],
-	  		_routes     : [],
-	  		roles_form_ : {},
-	  		lista_roles : [],
-	  		rules_      : {
-				name: [
-					{ 
-						required: true,
-						message: 'El nombre es obligatorio',
-						trigger: 'blur' 
-					},
-				],
-				display_name: [
-					{ 
-						required: true,
-						message: 'El apellido es obligatorio',
-						trigger: 'blur' 
-					},
-				],
-				description: [
-					{ 
-						required: true,
-						message: 'El apellido es obligatorio',
-						trigger: 'blur' 
-					},
-				],	
-	  		},
-	  	}
-	  },
-	  computed: {
-
-	  },
-	  methods: {
-			formAuth(quien,action){
-				switch(quien){
-					case 'roles':
-						switch(action){
-							case 'lee'     :
-								return this.actionSetup.switchroles.lee
-							break
-							case 'escribe' :
-								return this.actionSetup.switchroles.escribe
-							break
-							case 'borra'   :
-								return this.actionSetup.switchroles.borra
-							break
-							case 'crea'    :
-								return this.actionSetup.switchroles.crea
-							break
-						}
-					break
-					case 'paths':
-						switch(action){
-							case 'lee'     :
-								return this.actionSetup.switchpaths.lee
-							break
-							case 'escribe' :
-								return this.actionSetup.switchpaths.escribe
-							break
-							case 'borra'   :
-								return this.actionSetup.switchpaths.borra
-							break
-							case 'crea'    :
-								return this.actionSetup.switchpaths.crea
-							break
-						}
-					break
-				}
+			nav         : [],
+			path_routes : [],
+			_routes     : [],
+			roles_form_ : {},
+			lista_roles : [],
+			rules_      : {
+			name: [
+				{ 
+					required: true,
+					message: 'El nombre es obligatorio',
+					trigger: 'blur' 
+				},
+			],
+			display_name: [
+				{ 
+					required: true,
+					message: 'El apellido es obligatorio',
+					trigger: 'blur' 
+				},
+			],
+			description: [
+				{ 
+					required: true,
+					message: 'El apellido es obligatorio',
+					trigger: 'blur' 
+				},
+			],	
 			},
-			handleCheckAllChange(val) {
-			  val.flagInd=false;
-			  if (val.cont.length===0) {
-					val.sub_path.forEach((value,index,arr)=>{
-						val.cont.push(value.idOriginal)
+		}
+	},
+	computed: {
+
+	},
+	methods: {
+		handleCheckAllChange(val) {
+			console.log(val)
+		  val.flagInd=false;
+		  if (val.cont.length===0) {
+				val.sub_path.forEach((value,index,arr)=>{
+					val.cont.push(value.idOriginal)
+				})
+		  } else {
+		  	val.cont=[]
+		  }
+		},
+		handleCheckItem(value) {
+		  let checkedCount = value.cont.length;
+		  value.flag       = checkedCount === value.sub_path.length;
+		  value.flagInd    = checkedCount > 0 && checkedCount < value.sub_path.length;
+		  console.log(value)
+		},
+		id_filter(id_path){
+			let idpath      = id_path
+			let count       = 0
+			let indexSlice  = 0
+				idpath.split('').forEach((value,index)=>{
+					count++
+					if (parseInt(value) || value ==='0') {
+						if (indexSlice === 0) {
+							indexSlice = count
+						}
+					}
+				})
+				indexSlice--
+				return {
+				idOriginal : id_path,
+				id_text    : idpath.substring(0,indexSlice),
+				id_int     : idpath.substring(indexSlice,(indexSlice+3)),
+				id_item    : idpath.substring((indexSlice+3),(indexSlice+5))
+				}
+		},
+		submitForm(formName) {
+			this.$refs[formName].validate((valid) => {
+				let path_toSend = []
+				this.path_routes.forEach((val,index)=>{
+					if (val.cont.length!=0) {
+						path_toSend.push(val.idOriginal)
+						val.cont.forEach((x,index)=>{
+							path_toSend.push(x)
+						})
+					} 
+				})
+				this.roles_form_.pack_idPaths = JSON.stringify(path_toSend);
+			  if (valid) {
+					axios.post(route('roles.store',this.roles_form_)) 
+					.then(response => {
+						this.roles_form_ = {}
+					  	this.lista_roles.push(response.data)
+					  })
+					.catch(error => {
+					  this.$notify.error({
+					    title: 'Error '+error.response.status,
+					    message: error.response.data.message
+					  });
 					})
 			  } else {
-			  	val.cont=[]
+			    console.log('error submit!!');
+			    return false;
 			  }
-			},
-			handleCheckItem(value) {
-			  let checkedCount = value.cont.length;
-			  value.flag       = checkedCount === value.sub_path.length;
-			  value.flagInd    = checkedCount > 0 && checkedCount < value.sub_path.length;
-			},
-			id_filter(id_path){
-				let idpath      = id_path
-				let count       = 0
-				let indexSlice  = 0
-					idpath.split('').forEach((value,index)=>{
-						count++
-						if (parseInt(value) || value ==='0') {
-							if (indexSlice === 0) {
-								indexSlice = count
-							}
-						}
-					})
-					indexSlice--
-					return {
-					idOriginal : id_path,
-					id_text    : idpath.substring(0,indexSlice),
-					id_int     : idpath.substring(indexSlice,(indexSlice+3)),
-					id_item    : idpath.substring((indexSlice+3),(indexSlice+5))
-					}
-			},
-			submitForm(formName) {
-				this.$refs[formName].validate((valid) => {
-					let path_toSend = []
-					this.path_routes.forEach((val,index)=>{
-						if (val.cont.length!=0) {
-							path_toSend.push(val.idOriginal)
-							val.cont.forEach((x,index)=>{
-								path_toSend.push(x)
-							})
-						} 
-					})
-					this.roles_form_.pack_idPaths = JSON.stringify(path_toSend);
-				  if (valid) {
-						axios.post(route('roles.store',this.roles_form_)) 
-						.then(response => {
-							this.roles_form_ = {}
-						  	this.lista_roles.push(response.data)
-						  })
-						.catch(error => {
-						  this.$notify.error({
-						    title: 'Error '+error.response.status,
-						    message: error.response.data.message
-						  });
-						})
-				  } else {
-				    console.log('error submit!!');
-				    return false;
-				  }
-				});
-			},
-			resetForm(formName) {
-				this.$refs[formName].resetFields();
-			},
-			role_click(val){
-				this.path_routes = []
-				this.roles_form_ = val
-				axios.post(route('roles.Authpath',val.id)) 
-				    .then(response => {
-				    	let lista_paths = response.data
-				    	this._routes.forEach((x,index)=>{
-				    		if (lista_paths.some(path => path.pathitem_id == x.idOriginal)) {
-				    			// Si el item del menu se encuentra en el arreglo autorizado
-				    			// se barren las sub rutas
-				    			// para filtrar otros items
-			    				this.path_routes.push(x)
-			    				this.path_routes[(this.path_routes.length-1)].cont = []
-				    			x.sub_path.forEach((xa,arr)=>{
-				    				if (lista_paths.some(path => path.pathitem_id == xa.idOriginal)) {
-				    					this.path_routes[(this.path_routes.length-1)].cont.push(xa.idOriginal)
-				    				} 
-				    			})
-				    		} else {
-				    			this.path_routes.push(x)
-				    			this.path_routes[(this.path_routes.length-1)].cont = []
-				    		}
-				    		let tamanoCont           = this.path_routes[(this.path_routes.length-1)].cont.length
-				    		let tamanoSubpaths       = this.path_routes[(this.path_routes.length-1)].sub_path.length
-				    		this.path_routes[(this.path_routes.length-1)].flag    = tamanoCont === tamanoSubpaths
-				    		this.path_routes[(this.path_routes.length-1)].flagInd = tamanoCont > 0 && tamanoCont < tamanoSubpaths
-				    	})
-			 	    })
-				    .catch(error => {
-				    	console.log(error)
-				  //     this.$notify.error({
-						// title: 'Error '+error.response.status,
-						// message: error.response.data.message
-				  //     });
-				    })
-			},
-	  },
-	  beforeMount(){
-	  	var ruth = []
-  		nav.items.forEach((val,index)=>{
-				if (val.__proto__.constructor.name == 'menuItem') {
-					var brute_id      = this.id_filter(val.id_path)
-					brute_id.flag     = false
-					brute_id.flagInd     = false
-					brute_id.name     = val.name
-					brute_id.cont     = []
-					brute_id.sub_path = []
+			});
+		},
+		resetForm(formName) {
+			this.$refs[formName].resetFields();
+		},
+		role_click(val){
+			this.path_routes = []  //RUTAS FILTRADAS
+			this.roles_form_ = val //Guardo en la variable modelo de formulario, el objeto rol seleccionado
+			axios.post(route('roles.Authpath',val.id)) //Peticion API para obtener RUTAS AUTORIZADAS del rol seleccionado
+			.then(response => {
+				let lista_paths = response.data.auth_roles //RUTAS AUTORIZADAS del rol
+				// let lista_paths = response.data.auth_actions //ACCIONES AUTORIZADAS de cada ruta
+				console.log(response.data)
+				this._routes.forEach((x,index)=>{
+					if (lista_paths.some(path => path.pathitem_id == x.idOriginal)) {
+						// Si el item del menu se encuentra en el arreglo autorizado
+						// se barren las sub rutas
+						// para filtrar otros items
+						this.path_routes.push(x) //Guarda valor encontrado en arreglo de RUTAS FITRADAS
+						this.path_routes[(this.path_routes.length-1)].cont = [] //Al ultimo item del arreglo de rutas se crea la propiedad cont donde se guardaran los id de SUBRUTAS AUTORIZADAS
+						x.sub_path.forEach((xa,arr)=>{
+							let idsubpath = xa.idOriginal
+							// Se barren las subrutas de TODAS LAS RUTAS
+							if (lista_paths.some(path => path.pathitem_id == idsubpath)) {
+								// valida si en las subrutas de TODAS LAS RUTAS se encuentra el id de la SUBRUTA AUTORIZADA
 
-					val.children.forEach((value,index)=>{
-						let x  = this.id_filter(value.id_path)
-						x.flag = false
-						x.name = value.name
-						brute_id.sub_path.push(x)
-					})
-					this.path_routes.push(brute_id)
-				}
-				this._routes = this.path_routes
+								// let temp = lista_paths.find(path => path.pathitem_id == idsubpath)
+								// if (temp.actions.length>0) {
+								// 	console.log(temp.actions)
+								// } else {
+								// 	console.log('sin actions')
+								// }
+								this.path_routes[(this.path_routes.length-1)].cont.push(idsubpath)
+								// guarda valor de la subruta actual en la propiedad cont del ultimo indice del arreglo de RUTAS FILTRADAS
+
+							} 
+						})
+					} else {
+						// Si el item del menu se NO encuentra en el arreglo autorizado igual se agrega la ruta en al arreglo de RUTAS FILTRADAS pero con la propiedad CONT vacia
+						this.path_routes.push(x)
+						this.path_routes[(this.path_routes.length-1)].cont = []
+					}
+					let tamanoCont           = this.path_routes[(this.path_routes.length-1)].cont.length
+					let tamanoSubpaths       = this.path_routes[(this.path_routes.length-1)].sub_path.length
+					this.path_routes[(this.path_routes.length-1)].flag    = tamanoCont === tamanoSubpaths
+					this.path_routes[(this.path_routes.length-1)].flagInd = tamanoCont > 0 && tamanoCont < tamanoSubpaths
+				})
+			})
+			.catch(error => {
+				console.log(error)
+			})
+		},
+	},
+	beforeMount(){
+  		nav.items.forEach((val,index)=>{
+			if (val.__proto__.constructor.name == 'menuItem') {
+				var brute_id      = this.id_filter(val.id_path)
+				brute_id.flag     = false
+				brute_id.flagInd  = false
+				brute_id.name     = val.name
+				brute_id.cont     = []
+				brute_id.sub_path = []
+				val.children.forEach((value,index)=>{
+					let x  = this.id_filter(value.id_path)
+					x.flag = false
+					x.name = value.name
+					brute_id.sub_path.push(x)
+				})
+				this.path_routes.push(brute_id)
+			}
+			this._routes = this.path_routes
   		})
 
-			axios.get(route('roles.index')) 
-			.then(response => {
-		  	this.lista_roles=response.data
-		  }).catch(error => {
-			  this.$notify.error({
-					title: 'Error '+error.response.status,
-					message: error.response.data.message
-			  });
-			})
+		// axios.get(route('roles.create')) 
+		// .then(response => {
+		// 		// this.lista_roles=response.data
+		// 		console.log(response)
+		// 		response.data.forEach((val,index)=>{
+		// 			let x = val.action_id
+		// 			let idfather = x.slice(0,x.length-1)
+		// 			this._routes.forEach((path,index)=>{
+		// 				path.sub_path.forEach((subpt,subindex)=>{
+		// 					if (subpt.idOriginal == idfather) {
+		// 					console.log(subpt.idOriginal)
+		// 					console.log("id padre "+idfather)
+
+		// 					}
+		// 				})
+
+		// 				console.log(path.subpath.find())
+		// 				// if (path.sub_path.some( path => path.idOriginal == idfather)) {
+		// 				// 	let index = path.sub_path.findIndex( path => path.idOriginal == idfather)
+		// 				// 	// console.log(path.sub_path[index])
+		// 				// 	console.log(path.idOriginal)
+		// 				// 	// console.log(idfather)
+		// 				// }
+		// 			})
+		// 		})
+		// }).catch(error => {
+		// 	// this.$notify.error({
+		// 	// 	title: 'Error '+error.response.status,
+		// 	// 	message: error.response.data.message
+		// 	// });
+		// 	console.log(error)
+		// })
+
+		axios.get(route('roles.index')) 
+		.then(response => {
+	  		this.lista_roles=response.data
+		}).catch(error => {
+			this.$notify.error({
+				title: 'Error '+error.response.status,
+				message: error.response.data.message
+			});
+		})
 
     	axios.get(route('usuarios.actionsauth',this.$store.getters.currentUser.id)) 
       	.then(response => {
 	      	if (response.data.roles.length > 0) {
 	      		response.data.roles.forEach((x,index)=>{
 	      			if (x.auth_actions.length > 0) {
-      						console.log(this.auth.roleform.setAuth(x.auth_actions))
-      						console.log(this.auth.pathform.setAuth(x.auth_actions)
-      						)
-	      				// x.auth_actions.forEach((action,index)=>{
-
-      					// 	// console.log(action)
-      					// 	// console.log(auths.submit_roles.setAuth(action))
-      					// 	console.log(this.auth.roleform.setAuth(action))
-	      				// 	if (this.actionSetup.switchroles.actionid == action.action_id) {
-	      				// 		this.actionSetup.switchroles.desc    = action.action_desc
-	      				// 		this.actionSetup.switchroles.name    = action.action_name
-	      				// 		let permissions                      = action.action_permissions.split("")
-	      				// 		this.actionSetup.switchroles.lee     = permissions.some(p => p == 'l')
-	      				// 		this.actionSetup.switchroles.escribe = permissions.some(p => p == 'e')
-	      				// 		this.actionSetup.switchroles.borra   = permissions.some(p => p == 'b')
-	      				// 		this.actionSetup.switchroles.crea    = permissions.some(p => p == 'c')
-	      				// 	}
-	      				// 	if (this.actionSetup.switchpaths.actionid == action.action_id) {
-	      				// 		this.actionSetup.switchpaths.desc    = action.action_desc
-	      				// 		this.actionSetup.switchpaths.name    = action.action_name
-	      				// 		let permissions                      = action.action_permissions.split("")
-	      				// 		this.actionSetup.switchpaths.lee     = permissions.some(p => p == 'l')
-	      				// 		this.actionSetup.switchpaths.escribe = permissions.some(p => p == 'e')
-	      				// 		this.actionSetup.switchpaths.borra   = permissions.some(p => p == 'b')
-	      				// 		this.actionSetup.switchpaths.crea    = permissions.some(p => p == 'c')
-	      				// 	}
-
-	      				// })
+						this.auth.roleform.setAuth(x.auth_actions)
+						this.auth.pathform.setAuth(x.auth_actions)
 	      			}
 	      		})
 	      	}
-	      	console.log(this.auth.roleform.crea)
-      }).catch( error => {
-      	console.log(error)
-      })
-
-	  },
-	  created(){
-	  },
-	  mounted(){
-	  },
-	  destroyed () {
-	  },
+		}).catch( error => {
+			console.log(error)
+		})
+	},
+	created(){
+	},
+	mounted(){
+	},
+	destroyed () {
+	},
 	}
 </script>
 
 <style lang="scss">
+.itemcheckbox{
+	padding: 10px;
+	background-color: white;
+	border-radius: 10px;
+	margin: 10px;
+}
 .path_table{
 	// background-color: rgba(0, 0, 255, .5);
 }

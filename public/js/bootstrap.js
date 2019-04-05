@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1552);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1553);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -17443,7 +17443,7 @@ function load() {
 
   // If debug isn't set in LS, and we're in Electron, try to load $DEBUG
   if (!r && typeof process !== 'undefined' && 'env' in process) {
-    r = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","NODE_ENV":"development"}).DEBUG;
+    r = Object({"MIX_PUSHER_APP_KEY":"","MIX_PUSHER_APP_CLUSTER":"mt1","MIX_APP_URL":"http://127.0.0.1:8000","NODE_ENV":"development"}).DEBUG;
   }
 
   return r;
@@ -26087,7 +26087,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 1552:
+/***/ 1553:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(118);

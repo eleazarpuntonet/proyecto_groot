@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "id": 1,
+        "action_id": "dataload003i1",
+        "action_name": "roles",
+        "action_desc": "Acciones de edicion de acceso a pestau00f1as",
+        "action_permissions": "lebc",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "action_id": "dataload003i2",
+        "action_name": "paths",
+        "action_desc": "Acciones de edicion de acceso a pestau00f1as",
+        "action_permissions": "lebc",
+        "created_at": null,
+        "updated_at": null
+    }
+]
