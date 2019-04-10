@@ -116,6 +116,7 @@
 		  	    			<div class="itemcheckbox" v-for="path in path_routes">
 		  	    				<div style="margin: 6px 0;"></div>
 		  	    				<el-checkbox 
+		  	    					@change = "handleCheckAllChange(path)"
 		  	    					:indeterminate = "path.flagInd"
 		  	    					v-model        = "path.flag"
 		  	    					size           = "small"
@@ -125,14 +126,36 @@
 		  	    					v-model   = "path.cont"
 		  	    					size      = "small"
 		  	    					:disabled = "!auth.pathform.crea">
-		  	    				  <el-checkbox-button 
-		  	    				  @change="handleCheckItem(path)"
-		  	    				  	v-for  = "subpath in path.sub_path"
-		  	    				  	:label = "subpath.idOriginal"
-		  	    				  	:key   = "subpath.idOriginal"
-		  	    				  	border>{{subpath.name}}
-		  	    				  </el-checkbox-button>
+		  	    					<template v-for  = "subpath in path.sub_path">
+		  	    						<el-checkbox-button 
+		  	    							@change="handleCheckItem(path)"
+		  	    							:label = "subpath.idOriginal"
+		  	    							:key   = "subpath.idOriginal"
+		  	    							border>{{subpath.name}}
+		  	    						</el-checkbox-button>		  	    						
+		  	    					</template>
 		  	    				</el-checkbox-group>
+		  	    				<el-collapse v-model="activeNames" @change="handleChange">
+	    							<template v-for  = "actionsAllowed in path.act">
+			  	    				  <el-collapse-item :title="actionsAllowed.action_name" :name="actionsAllowed.action_id">
+	    								<!-- {{ actionsAllowed.allowed }} -->
+	    								<div class="labelActAllow">
+<!-- 	    									<div class="actName">
+	    										{{actionsAllowed.action_name}}
+	    									</div> -->
+	    									<div class="actDesc">
+	    										{{actionsAllowed.action_desc}}
+	    									</div>
+	    								</div>
+				  	    				<el-checkbox-group v-model="actionsAllowed.allowed" size="mini" >
+				  	    				  <el-checkbox label="L" border>Lee</el-checkbox>
+				  	    				  <el-checkbox label="E" border>Escribe</el-checkbox>
+				  	    				  <el-checkbox label="M" border>Modifica</el-checkbox>
+				  	    				  <el-checkbox label="B" border>Borra</el-checkbox>
+				  	    				</el-checkbox-group>
+	    							  </el-collapse-item>
+	    							</template>
+    							</el-collapse>
 		  	    			</div>
 		  	    		</div>
 		  	    	</div>
@@ -148,46 +171,6 @@
 	import nav from '../CoreUi/src/_nav';
 	import auths from '../auth_items'
 
-	// class Action_authitem{
-	//   constructor(item_id){
-	//   	this.desc     = item
-	//   	this.name     = item
-	//   	this.actionid = item
-	//   	this.lee      = item
-	//   	this.escribe  = item
-	//   	this.borra    = item
-	//   	this.crea     = item
-
-	//     switch(arguments.length){
-	//       case 1:
-	//         this.name    = item.name
-	//         this.url     = item.url
-	//         this.icon    = item.icon
-	//         this.authRol = item.authRol
-	//         this.id_path = item.id_path
-	//       break
-
-	//       case 2:
-	//         if (item.class) {
-	//           this.class = item.class
-	//         }
-	//         this.id_path = item.id_path
-	//         this.name = item.name
-	//         this.url  = item.url
-	//         this.icon = item.icon
-	//         this.children = children
-	//         this.authRol = item.authRol
-	//       break
-	//     }
-	//   }
-
-	//   getRoles(){
-	//     return this.authRol
-	//   }
-
-
-	// }
-
 	export default {
 	  /*
 	  *
@@ -195,6 +178,8 @@
 	  */
 	  data () {
 	  	return {
+			checkboxGroup6: [],
+
 	  		editable    : false,
 	  		auth : {
 	  			roleform: auths.submit_roles,
@@ -234,6 +219,18 @@
 
 	},
 	methods: {
+		allowAct(path){
+			path.act = []
+			path.cont.forEach((va,ia) => {
+				let x = path.sub_path.find(sub => sub.idOriginal === va)
+				if (x.action.length > 0) {
+					x.action.forEach((vb,ib) => {
+						vb.allowed = []
+						path.act.push(vb)
+					})
+				}
+			})
+		},
 		handleCheckAllChange(val) {
 			console.log(val)
 		  val.flagInd=false;
@@ -244,12 +241,13 @@
 		  } else {
 		  	val.cont=[]
 		  }
+		  this.allowAct(val)
 		},
 		handleCheckItem(value) {
 		  let checkedCount = value.cont.length;
 		  value.flag       = checkedCount === value.sub_path.length;
 		  value.flagInd    = checkedCount > 0 && checkedCount < value.sub_path.length;
-		  console.log(value)
+		  this.allowAct(value)
 		},
 		id_filter(id_path){
 			let idpath      = id_path
@@ -311,7 +309,6 @@
 			.then(response => {
 				let lista_paths = response.data.auth_roles //RUTAS AUTORIZADAS del rol
 				// let lista_paths = response.data.auth_actions //ACCIONES AUTORIZADAS de cada ruta
-				console.log(response.data)
 				this._routes.forEach((x,index)=>{
 					if (lista_paths.some(path => path.pathitem_id == x.idOriginal)) {
 						// Si el item del menu se encuentra en el arreglo autorizado
@@ -325,15 +322,9 @@
 							if (lista_paths.some(path => path.pathitem_id == idsubpath)) {
 								// valida si en las subrutas de TODAS LAS RUTAS se encuentra el id de la SUBRUTA AUTORIZADA
 
-								// let temp = lista_paths.find(path => path.pathitem_id == idsubpath)
-								// if (temp.actions.length>0) {
-								// 	console.log(temp.actions)
-								// } else {
-								// 	console.log('sin actions')
-								// }
+								let temp = lista_paths.find(path => path.pathitem_id == idsubpath)
 								this.path_routes[(this.path_routes.length-1)].cont.push(idsubpath)
 								// guarda valor de la subruta actual en la propiedad cont del ultimo indice del arreglo de RUTAS FILTRADAS
-
 							} 
 						})
 					} else {
@@ -346,6 +337,9 @@
 					this.path_routes[(this.path_routes.length-1)].flag    = tamanoCont === tamanoSubpaths
 					this.path_routes[(this.path_routes.length-1)].flagInd = tamanoCont > 0 && tamanoCont < tamanoSubpaths
 				})
+				this.path_routes.forEach((v,i) => {
+					this.allowAct(v)
+				})
 			})
 			.catch(error => {
 				console.log(error)
@@ -353,57 +347,45 @@
 		},
 	},
 	beforeMount(){
-  		nav.items.forEach((val,index)=>{
-			if (val.__proto__.constructor.name == 'menuItem') {
-				var brute_id      = this.id_filter(val.id_path)
-				brute_id.flag     = false
-				brute_id.flagInd  = false
-				brute_id.name     = val.name
-				brute_id.cont     = []
-				brute_id.sub_path = []
-				val.children.forEach((value,index)=>{
-					let x  = this.id_filter(value.id_path)
-					x.flag = false
-					x.name = value.name
-					brute_id.sub_path.push(x)
+		axios.get(route('roles.create')) 
+		.then(response => {
+				// this.lista_roles=response.data
+				console.log(response)
+				  		nav.items.forEach((val,index)=>{
+							if (val.__proto__.constructor.name == 'menuItem') {
+								var brute_id      = this.id_filter(val.id_path)
+								brute_id.flag     = false
+								brute_id.flagInd  = false
+								brute_id.name     = val.name
+								brute_id.cont     = []
+								brute_id.actAllow = []
+								brute_id.act      = []
+								brute_id.sub_path = []
+								val.children.forEach((value,index)=>{
+									let x  = this.id_filter(value.id_path)
+									x.flag = false
+									x.name = value.name
+									x.action = []
+									brute_id.sub_path.push(x)
+								})
+								this.path_routes.push(brute_id)
+							}
+							this._routes = this.path_routes
+				  		})
+				response.data.forEach((val,index)=>{
+					let x = val.action_id
+					let idfather = x.slice(0,x.length-1)
+					this._routes.forEach((path,index)=>{
+						path.sub_path.forEach((subpt,subindex)=>{
+							if (subpt.idOriginal == idfather) {
+								subpt.action.push(val)
+							}
+						})
+					})
 				})
-				this.path_routes.push(brute_id)
-			}
-			this._routes = this.path_routes
-  		})
-
-		// axios.get(route('roles.create')) 
-		// .then(response => {
-		// 		// this.lista_roles=response.data
-		// 		console.log(response)
-		// 		response.data.forEach((val,index)=>{
-		// 			let x = val.action_id
-		// 			let idfather = x.slice(0,x.length-1)
-		// 			this._routes.forEach((path,index)=>{
-		// 				path.sub_path.forEach((subpt,subindex)=>{
-		// 					if (subpt.idOriginal == idfather) {
-		// 					console.log(subpt.idOriginal)
-		// 					console.log("id padre "+idfather)
-
-		// 					}
-		// 				})
-
-		// 				console.log(path.subpath.find())
-		// 				// if (path.sub_path.some( path => path.idOriginal == idfather)) {
-		// 				// 	let index = path.sub_path.findIndex( path => path.idOriginal == idfather)
-		// 				// 	// console.log(path.sub_path[index])
-		// 				// 	console.log(path.idOriginal)
-		// 				// 	// console.log(idfather)
-		// 				// }
-		// 			})
-		// 		})
-		// }).catch(error => {
-		// 	// this.$notify.error({
-		// 	// 	title: 'Error '+error.response.status,
-		// 	// 	message: error.response.data.message
-		// 	// });
-		// 	console.log(error)
-		// })
+		}).catch(error => {
+			console.log(error)
+		})
 
 		axios.get(route('roles.index')) 
 		.then(response => {
@@ -439,6 +421,21 @@
 </script>
 
 <style lang="scss">
+.labelActAllow{
+	display: flex;
+	flex-direction: row;
+	font-size: 12px;
+	color: #fff;
+    background-color: #409EFF;
+    border-radius: 3px;
+    padding: 5px;
+	.actName{
+		width: 30%;
+	}
+	.actDesc{
+		width: 100%;
+	}
+}
 .itemcheckbox{
 	padding: 10px;
 	background-color: white;
