@@ -135,27 +135,48 @@
 		  	    						</el-checkbox-button>		  	    						
 		  	    					</template>
 		  	    				</el-checkbox-group>
-		  	    				<el-collapse v-model="activeNames" @change="handleChange">
-	    							<template v-for  = "actionsAllowed in path.act">
-			  	    				  <el-collapse-item :title="actionsAllowed.action_name" :name="actionsAllowed.action_id">
-	    								<!-- {{ actionsAllowed.allowed }} -->
-	    								<div class="labelActAllow">
-<!-- 	    									<div class="actName">
-	    										{{actionsAllowed.action_name}}
-	    									</div> -->
-	    									<div class="actDesc">
-	    										{{actionsAllowed.action_desc}}
-	    									</div>
-	    								</div>
-				  	    				<el-checkbox-group v-model="actionsAllowed.allowed" size="mini" >
-				  	    				  <el-checkbox label="L" border>Lee</el-checkbox>
-				  	    				  <el-checkbox label="E" border>Escribe</el-checkbox>
-				  	    				  <el-checkbox label="M" border>Modifica</el-checkbox>
-				  	    				  <el-checkbox label="B" border>Borra</el-checkbox>
-				  	    				</el-checkbox-group>
-	    							  </el-collapse-item>
-	    							</template>
-    							</el-collapse>
+		  	    				<el-collapse accordion>
+									<template v-for="action in path.act">
+									<!-- {{ action }} -->
+										<el-collapse-item :title="action.action_name" >
+											<div class="labelActAllow">
+												<div class="actDesc">
+													{{action.action_desc}}
+												</div>
+												<div class="switchs">
+													<div class="switchitem">
+														<el-switch
+															v-model="action.lee"
+															active-text="Lee"
+															>
+														</el-switch>
+													</div>
+													<div class="switchitem">
+														<el-switch
+															v-model="action.escribe"
+															active-text="Escribe"
+															>
+														</el-switch>
+													</div>
+													<div class="switchitem">
+														<el-switch
+															v-model="action.modifica"
+															active-text="Modifica"
+															>
+														</el-switch>
+													</div>
+													<div class="switchitem">
+														<el-switch
+															v-model="action.borra"
+															active-text="Borra"
+															>
+														</el-switch>
+													</div>
+												</div>
+											</div>
+										</el-collapse-item>
+									</template>
+		  	    				</el-collapse>
 		  	    			</div>
 		  	    		</div>
 		  	    	</div>
@@ -178,8 +199,8 @@
 	  */
 	  data () {
 	  	return {
-			checkboxGroup6: [],
-
+	  		value3 : null,
+	  		checkboxGroup6: [],
 	  		editable    : false,
 	  		auth : {
 	  			roleform: auths.submit_roles,
@@ -219,6 +240,13 @@
 
 	},
 	methods: {
+		checkChange(item,index,action){
+			item.allowed.push(action)
+			console.log(index)
+			console.log(action)
+			console.log(item)
+
+		},
 		allowAct(path){
 			path.act = []
 			path.cont.forEach((va,ia) => {
@@ -426,14 +454,17 @@
 	flex-direction: row;
 	font-size: 12px;
 	color: #fff;
-    background-color: #409EFF;
-    border-radius: 3px;
-    padding: 5px;
-	.actName{
+	.switchs{
 		width: 30%;
+    	padding: 5px;
 	}
 	.actDesc{
-		width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    	border-radius: 3px;
+		width: 70%;
+    	background-color: #409EFF;
 	}
 }
 .itemcheckbox{
