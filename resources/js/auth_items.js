@@ -38,11 +38,11 @@ class Actionauth{
             name: val.action_desc,
             desc: val.action_desc
           })
-          let permissions  = val.action_permissions.split("")
-          this.lee     = permissions.some(p => p == 'l')
-          this.escribe = permissions.some(p => p == 'e')
-          this.borra   = permissions.some(p => p == 'b')
-          this.crea    = permissions.some(p => p == 'c')
+          // let permissions  = val.action_permissions.split("")
+          this.lee     = true
+          this.escribe = true
+          this.borra   = true
+          this.crea    = true
         }
 
       })

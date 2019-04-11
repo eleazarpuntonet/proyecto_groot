@@ -69,6 +69,7 @@ import cargaProveedores  from '../../../components/carga_proveedores'
 import cargaUsuarios     from '../../../components/carga_usuarios'
 import cargaRoles        from '../../../components/carga_roles'
 import cargaGerencias    from '../../../components/carga_gerencia'
+import permisos    from '../../../components/panelPermisos'
 
 Vue.use(Router)
 // var user = JSON.parse(window.localStorage.getItem('user'))
@@ -236,6 +237,13 @@ var cargaDeRoles = new Route_item({
   })  
 cargaDeRoles.changeAuth(true,rolescargaDatos)
 
+var Permisologia = new Route_item({
+  path:'permisos',
+  name:'Permisos',
+  comp: permisos,
+  })  
+Permisologia.changeAuth(true,rolescargaDatos)
+
 var cargaDeDatos = new Route_item({
     path:'c_datos',
     name:'Carga de Datos',
@@ -245,6 +253,7 @@ var cargaDeDatos = new Route_item({
      cargaDeProveedores,
      cargaDeGerencias,
      cargaDeRoles,
+     Permisologia,
     ])
 
 export default new Router({

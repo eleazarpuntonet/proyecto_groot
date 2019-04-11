@@ -16,6 +16,7 @@ use App\Contactos;
 use App\Viaticos;
 use App\Tableauthrole;
 use App\ActionsAuth;
+use App\Permisos;
 use App\Notifications\Notificaciontest;
 use App\Jobs\JobNuevaReserva;
 
@@ -73,8 +74,11 @@ Route::post('textonimage/{user}', 'ImageController@textOnImage')->name('textOnIm
 Route::get('testing',function(){
 
 	return response()->json([
-		'Path'      => Tableauthrole::with('actions')->find('dataload003i'),
-		'Paths'      => ActionsAuth::get()
+		// 'Actions'      => ActionsAuth::with('permisos')->get(),
+		// 'Roles'      => Role::with('role_permisos')->get(),
+		'Paths'      => Permisos::with(['role','actions'])->get(),
+		// 'Path'      => Tableauthrole::with('actions')->find('dataload003i1'),
+		// 'Paths'      => ActionsAuth::get()
 
 	], 200);
 

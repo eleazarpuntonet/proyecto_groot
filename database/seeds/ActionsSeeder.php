@@ -20,7 +20,6 @@ class ActionsSeeder extends Seeder
     			$actionAuth->action_id    = $actions['action_id'];
     			$actionAuth->action_name  = $actions['action_name'];
     			$actionAuth->action_desc  = $actions['action_desc'];
-                $actionAuth->action_permissions  = $actions['action_permissions'];
                 $actionAuth->path_id  = $actions['path_id'];
     			$actionAuth->save();
             }

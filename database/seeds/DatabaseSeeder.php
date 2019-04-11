@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TrasladosSeeder::class);
         $this->call(ActionsSeeder::class);
         $this->call(PathrolesSeeder::class);
-        // $this->call(ViaticosTableSeeder::class);
+        $this->call(PermisosSeeder::class);
     }
 }

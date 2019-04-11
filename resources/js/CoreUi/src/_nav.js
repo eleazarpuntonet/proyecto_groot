@@ -155,6 +155,15 @@ var gestionUsuario = new menuItem({
 // id_path: 'dataload003i',
 // id_path: 'dataload002i',
 // id_path: 'dataload001m',
+var permisologia = new menuItem({
+      id_path: 'dataload006i',
+      name: 'Permisos',
+      url: '/c_datos/permisos',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
 var n_depto = new menuItem({
       id_path: 'dataload005i',
       name: 'Gerencias',
@@ -202,6 +211,7 @@ var cargaDatos = new menuItem({
         n_proveedor,
         n_role,
         n_usuario,
+        permisologia,
       ])
 // var user = JSON.parse(window.localStorage.getItem('user'))
 // console.log(localStorage)

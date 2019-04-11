@@ -281,20 +281,20 @@
 			let idpath      = id_path
 			let count       = 0
 			let indexSlice  = 0
-				idpath.split('').forEach((value,index)=>{
-					count++
-					if (parseInt(value) || value ==='0') {
-						if (indexSlice === 0) {
-							indexSlice = count
-						}
-					}
-				})
+				// idpath.split('').forEach((value,index)=>{
+				// 	count++
+				// 	if (parseInt(value) || value ==='0') {
+				// 		if (indexSlice === 0) {
+				// 			indexSlice = count
+				// 		}
+				// 	}
+				// })
 				indexSlice--
 				return {
 				idOriginal : id_path,
-				id_text    : idpath.substring(0,indexSlice),
-				id_int     : idpath.substring(indexSlice,(indexSlice+3)),
-				id_item    : idpath.substring((indexSlice+3),(indexSlice+5))
+				// id_text    : idpath.substring(0,indexSlice),
+				// id_int     : idpath.substring(indexSlice,(indexSlice+3)),
+				// id_item    : idpath.substring((indexSlice+3),(indexSlice+5))
 				}
 		},
 		submitForm(formName) {
@@ -381,7 +381,8 @@
 				console.log(response)
 				  		nav.items.forEach((val,index)=>{
 							if (val.__proto__.constructor.name == 'menuItem') {
-								var brute_id      = this.id_filter(val.id_path)
+								var brute_id      = {}
+								brute_id.idOriginal     = val.id_path
 								brute_id.flag     = false
 								brute_id.flagInd  = false
 								brute_id.name     = val.name

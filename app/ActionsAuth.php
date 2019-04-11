@@ -22,4 +22,9 @@ class ActionsAuth extends Model
     {
     	return $this->belongsTo(Tableauthrole::class, 'pathitem_id', 'path_id');
     }
+
+    public function permisos()
+    {
+        return $this->hasMany(Permisos::class, 'action_id', 'action_id');
+    }
 }
