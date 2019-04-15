@@ -10767,12 +10767,3 @@ h1 {
   border-radius: 5px;
 }
 
-.el-table td,
-.el-table th {
-  padding-top: 5px !important;
-  padding-bottom: 5px !important;
-  padding-left: 2px !important;
-  padding-right: 2px !important;
-  font-size: 0.8vw !important;
-}
-

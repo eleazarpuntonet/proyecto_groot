@@ -1,0 +1,87 @@
+[
+    {
+        "id": 1,
+        "pathitem_id": "reserv001m",
+        "role_id": "1"
+    },
+    {
+        "id": 2,
+        "pathitem_id": "reserv002i",
+        "role_id": "1"
+    },
+    {
+        "id": 3,
+        "pathitem_id": "reserv003i",
+        "role_id": "1"
+    },
+    {
+        "id": 4,
+        "pathitem_id": "reserv004i",
+        "role_id": "1"
+    },
+    {
+        "id": 5,
+        "pathitem_id": "reserv001m",
+        "role_id": "2"
+    },
+    {
+        "id": 6,
+        "pathitem_id": "reserv002i",
+        "role_id": "2"
+    },
+    {
+        "id": 7,
+        "pathitem_id": "dataload001m",
+        "role_id": "1"
+    },
+    {
+        "id": 8,
+        "pathitem_id": "dataload002i",
+        "role_id": "1"
+    },
+    {
+        "id": 9,
+        "pathitem_id": "dataload003i",
+        "role_id": "1"
+    },
+    {
+        "id": 10,
+        "pathitem_id": "dataload004i",
+        "role_id": "1"
+    },
+    {
+        "id": 11,
+        "pathitem_id": "dataload005i",
+        "role_id": "1"
+    },
+    {
+        "id": 12,
+        "pathitem_id": "rrhh002i",
+        "role_id": "1"
+    },
+    {
+        "id": 13,
+        "pathitem_id": "rrhh001m",
+        "role_id": "1"
+    },
+    {
+        "id": 14,
+        "pathitem_id": "reserv001m",
+        "role_id": "11"
+    },
+    {
+        "id": 15,
+        "pathitem_id": "reserv002i",
+        "role_id": "11"
+    },
+    {
+        "id": 16,
+        "pathitem_id": "reserv003i",
+        "role_id": "11"
+    },
+    {
+        "id": 17,
+        "pathitem_id": "reserv004i",
+        "role_id": "11"
+    }
+]

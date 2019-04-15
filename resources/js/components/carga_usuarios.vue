@@ -222,10 +222,10 @@
 	  	},
 	  	row_click(row,event,column){
 	  		console.log(row)
-	  		this.user_form     = row
-	  		this.user_form.departamento     = row.departamento.id
-	  		this.temp_roles    = []
-	  		this.disabled_flag = true
+			this.user_form               = row
+			this.user_form.departamento  = row.departamento.id
+			this.temp_roles              = []
+			this.disabled_flag           = true
 	  		row.roles.forEach((x,y)=>{
 	        	this.temp_roles.push(x.id)
 	  		})

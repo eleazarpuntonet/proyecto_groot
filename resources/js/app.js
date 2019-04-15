@@ -104,6 +104,7 @@ const store = new Vuex.Store({
         auth_error       : null,
         customers        : [],
         roles            : [],
+        path_Auth        : [],
 
 	},
     //Getters guarda los metodos para obtener
@@ -142,7 +143,10 @@ const store = new Vuex.Store({
         pathAuth(rolesToPath){
             // console.log(this.state.currentUser.roles)
             return
-        }
+        },
+        getPaths (state) {
+            return state.path_Auth
+        },
     },    
 	//Mutations guarda los metodos para modificar los state
 	//de forma SINCRONA
@@ -196,6 +200,12 @@ const store = new Vuex.Store({
         },
         UPDATE_NOTIF(state,value){
             state.notifications.push(value)
+        },
+        ADD_PATHSARR(state,value){
+            console.log('Estohy en el store')
+            value.forEach((v,i)=>{
+                state.path_Auth.push(v)
+            })
         },
 	},
 	//Actions guarda los metodos para modificar los state

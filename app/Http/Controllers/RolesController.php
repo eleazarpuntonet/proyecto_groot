@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use App\ActionsAuth;
 
 class RolesController extends Controller
 {
@@ -26,7 +27,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return ActionsAuth::get();
     }
 
     /**
@@ -42,6 +43,13 @@ class RolesController extends Controller
         $role->display_name = $request->display_name;
         $role->description  = $request->description;
         $role->save();
+
+        $pack_paths = json_decode($request->input('pack_idPaths'));
+        if (!empty($pack_paths)) {
+            foreach ($pack_paths as $val) {
+                $role->auth_roles()->attach($val);
+            }
+        }
         
         return $role;
     }
@@ -54,7 +62,6 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -93,6 +100,11 @@ class RolesController extends Controller
 
     public function path_auth($id)
     {
-        return $id;
+        // $Rol = Role::find($id)->auth_roles;
+        $Rol = Role::with(['auth_roles.actions'])->find($id);
+        // $Rol = Role::with(['auth_roles.actions','auth_actions'])->find($id);
+        return $Rol;
     }
+    
+
 }

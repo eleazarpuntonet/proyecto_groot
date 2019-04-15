@@ -13,6 +13,7 @@ class menuItem{
         if (item.class) {
           this.class = item.class
         }
+        this.id_path = item.id_path
         this.name = item.name
         this.url  = item.url
         this.icon = item.icon
@@ -80,6 +81,13 @@ var panelPrincipal = new menuBadge({
 //       icon: 'icon-pencil'
 //     })
 
+
+// id_path: 'reserv001m',
+// id_path: 'reserv002i',
+// id_path: 'reserv003i',
+// id_path: 'reserv004i',
+
+
 var s_reserva = new menuItem({
       id_path: 'reserv002i',
       name: 'Solicitud de Reserva',
@@ -99,7 +107,7 @@ var index_reservas = new menuItem({
     })
 
 var trasladositem = new menuItem({
-    id_path: 'reserv004i',
+      id_path: 'reserv004i',
       name: 'Traslados',
       url: '/reservas/traslados',
       icon: 'icon-pencil',
@@ -120,7 +128,10 @@ var items_Reservas = new menuItem({
         trasladositem,
       ])
 
+// id_path:'rrhh002i',
+// id_path:'rrhh001m',
 var empleados = new menuItem({
+      id_path:'rrhh002i',
       name: 'Empleados',
       url: '/usuarios/i_empleados',
       icon: 'icon-pencil',
@@ -129,6 +140,7 @@ var empleados = new menuItem({
     })
 
 var gestionUsuario = new menuItem({
+      id_path:'rrhh001m',
       name: 'Talento Humano',
       url: '/usuarios',
       icon: 'icon-pencil',
@@ -138,8 +150,22 @@ var gestionUsuario = new menuItem({
         empleados,
       ])
 
-// Marcador
+// id_path: 'dataload005i',
+// id_path: 'dataload004i',
+// id_path: 'dataload003i',
+// id_path: 'dataload002i',
+// id_path: 'dataload001m',
+var permisologia = new menuItem({
+      id_path: 'dataload006i',
+      name: 'Permisos',
+      url: '/c_datos/permisos',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+
 var n_depto = new menuItem({
+      id_path: 'dataload005i',
       name: 'Gerencias',
       url: '/c_datos/gerencias',
       icon: 'icon-pencil',
@@ -148,6 +174,7 @@ var n_depto = new menuItem({
     })
 
 var n_proveedor = new menuItem({
+      id_path: 'dataload004i',
       name: 'Proveedores',
       url: '/c_datos/proveedores',
       icon: 'icon-pencil',
@@ -156,6 +183,7 @@ var n_proveedor = new menuItem({
     })
 
 var n_role = new menuItem({
+      id_path: 'dataload003i',
       name: 'Roles',
       url: '/c_datos/roles',
       icon: 'icon-pencil',
@@ -164,6 +192,7 @@ var n_role = new menuItem({
     })
 
 var n_usuario = new menuItem({
+      id_path: 'dataload002i',
       name: 'Usuarios',
       url: '/c_datos/usuarios',
       icon: 'icon-pencil',
@@ -171,6 +200,7 @@ var n_usuario = new menuItem({
       authRol: ['superadmin','public'],
     })
 var cargaDatos = new menuItem({
+      id_path: 'dataload001m',
       name: 'Carga de Datos',
       url: '/c_datos',
       icon: 'icon-pencil',
@@ -181,6 +211,7 @@ var cargaDatos = new menuItem({
         n_proveedor,
         n_role,
         n_usuario,
+        permisologia,
       ])
 // var user = JSON.parse(window.localStorage.getItem('user'))
 // console.log(localStorage)
