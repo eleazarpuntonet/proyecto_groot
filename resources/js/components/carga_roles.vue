@@ -380,26 +380,26 @@
 				// this.lista_roles=response.data
 				console.log(response)
 				  		nav.items.forEach((val,index)=>{
-							if (val.__proto__.constructor.name == 'menuItem') {
-								var brute_id      = {}
-								brute_id.idOriginal     = val.id_path
-								brute_id.flag     = false
-								brute_id.flagInd  = false
-								brute_id.name     = val.name
-								brute_id.cont     = []
-								brute_id.actAllow = []
-								brute_id.act      = []
-								brute_id.sub_path = []
-								val.children.forEach((value,index)=>{
-									let x  = this.id_filter(value.id_path)
-									x.flag = false
-									x.name = value.name
-									x.action = []
-									brute_id.sub_path.push(x)
-								})
-								this.path_routes.push(brute_id)
-							}
-							this._routes = this.path_routes
+								if (val.__proto__.constructor.name == 'menuItem') {
+									var brute_id      = {}
+									brute_id.idOriginal     = val.id_path
+									brute_id.flag     = false
+									brute_id.flagInd  = false
+									brute_id.name     = val.name
+									brute_id.cont     = []
+									brute_id.actAllow = []
+									brute_id.act      = []
+									brute_id.sub_path = []
+									val.children.forEach((value,index)=>{
+										let x  = this.id_filter(value.id_path)
+										x.flag = false
+										x.name = value.name
+										x.action = []
+										brute_id.sub_path.push(x)
+									})
+									this.path_routes.push(brute_id)
+								}
+								this._routes = this.path_routes
 				  		})
 				response.data.forEach((val,index)=>{
 					let x = val.action_id
