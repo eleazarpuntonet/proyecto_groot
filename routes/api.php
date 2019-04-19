@@ -62,6 +62,7 @@ Route::resource('autorizaciones', 'AutorizacionController');
 Route::resource('files', 'FilesController');
 
 Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
+Route::post('roles/permisos/{data}', 'RolesController@permisos')->name('roles.permisos');
 
 Route::resource('roles', 'RolesController');
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\ActionsAuth;
+use App\Permisos;
 
 class RolesController extends Controller
 {
@@ -106,5 +107,16 @@ class RolesController extends Controller
         return $Rol;
     }
     
+    public function permisos($data)
+    {
+        $objeto = json_decode($data);
+        // dd($objeto);
+
+        // $Rol = Role::find($id)->auth_roles;
+        // $Rol = Role::with(['auth_roles.actions'])->find($id);
+        // $Rol = Role::with(['auth_roles.actions','auth_actions'])->find($id);
+        return Permisos::get();
+        // return $objeto->findRutas;
+    }
 
 }

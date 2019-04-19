@@ -93,6 +93,7 @@ const store = new Vuex.Store({
 	//State guarda las variables
 	state: {
         isAuthenticated  : false,
+        asideData         : null,
         host             : '',
         sites            : '',
         currentUser      : user,
@@ -110,6 +111,9 @@ const store = new Vuex.Store({
     //Getters guarda los metodos para obtener
     //los datos de State
     getters: {
+        getAsideData (state) {
+            return state.asideData
+        },
         isAuthenticated (state) {
             return state.isAuthenticated
         },
@@ -206,6 +210,9 @@ const store = new Vuex.Store({
             value.forEach((v,i)=>{
                 state.path_Auth.push(v)
             })
+        },
+        SETASIDEDATA(state,val){
+            state.asideData = val
         },
 	},
 	//Actions guarda los metodos para modificar los state

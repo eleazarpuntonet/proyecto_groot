@@ -10,76 +10,89 @@
 	} from '../apiCalls.js'
 
 	export default {
-	  /*
-	  *
-	  * Variables del componente
-	  */
-	  data () {
-	  	return {
-			roles                       : null,
-			rutas                       : null,
-			actions                     : null,
-			temp                        : null,
-			temporalTablaRutasSelection : null,
-			temporalTablaRutasMultiple  : null,
-	  	}
-	},
-	computed: {
+			data () {
+				return {
+				rolesTemp                   : null,
+				roles                       : null,
+				rutas                       : null,
+				actions                     : null,
+				temp                        : null,
+				temporalTablaRutasSelection : null,
+				temporalTablaRutasMultiple  : null,
+				defaultProps: {
+				  children: 'children',
+				  label: 'name'
+				},
 
-	},
-	methods: {
-		roleClick(row,column,event){
-			getRutasRoles(row.id)
-			.then((res)=>{
-				this.toggleSelection(this.rutas.rutasFilter(res))
-				// console.log(res)
-			}).catch((error)=>{
-				console.log(error)
-			})
+				}
 		},
-		toggleSelection(rows) {
-			console.log(this.$refs.multipleTable)
-			console.log(rows)
-			if (rows) {
-				rows.forEach(row => {
-				  this.$refs.multipleTable.toggleRowSelection(row);
-				});
-			} 
-			// else {
-			// this.$refs.multipleTable.clearSelection();
-			// }
+		computed: {
 		},
-		handSelectionChange(val){
-			this.temporalTablaRutasMultiple = val;
+		methods: {
+			checkChangeRuta(nodo , select , children){
+				let paqueteASide       = {}
+				let checked            = this.$refs.treeRutas.getCheckedKeys()
+				let halfChecked        = this.$refs.treeRutas.getHalfCheckedKeys()
+				paqueteASide.findRutas = []
+				checked.forEach(each     => paqueteASide.findRutas.push(each))
+				halfChecked.forEach(each => paqueteASide.findRutas.push(each))
+				this.$store.commit('SETASIDEDATA', paqueteASide)
+			},
+			roleClick(row,column,event){
+				console.log('Roleckick')
+				// console.log(row)
+				getRutasRoles(row.id)
+				.then((res)=>{
+					this.rolesTemp = this.rutas.rutasFilter(res)
+					if (this.$refs.treeRutas) {
+						this.$refs.treeRutas.setCheckedKeys([], true)
+						this.rolesTemp.forEach( each => this.$refs.treeRutas.setChecked(each.ruta_id, true))
+					}
+					
+				}).catch((error)=>{
+					console.log(error)
+				})
+			},
+			getCheckedKeys(){
+				if (this.rolesTemp) {
+					let rutasChecked = []
+					this.rolesTemp.forEach( each => rutasChecked.push(each.ruta_id))
+					return rutasChecked
+				} else {
+					console.log('no hay nada')
+					return []
+				}
+			}
 		},
-	},
-	beforeMount(){
-		getActions()
-			.then(res=>{
-				this.actions = res
-			}).catch(error=>{
-				console.log(error)
-			})
-		getRoles()
-			.then(res=>{
-				this.roles = res
-			}).catch(error=>{
-				console.log(error)
-			})
-		currUserActions(this.$store.getters.currentUser.id)
-			.then(res=>{
-				console.log(res)
-			}).catch(error=>{
-				console.log(error)
-			})
-		this.rutas = GetRutas(nav)
-	},
-	created(){
-	},
-	mounted(){
-	},
-	destroyed () {
-	},
+		beforeMount(){
+			getActions()
+				.then(res=>{
+					this.actions = res
+				}).catch(error=>{
+					console.log(error)
+				})
+			getRoles()
+				.then(res=>{
+					this.roles = res
+					console.log(this.roles[0])
+				}).catch(error=>{
+					console.log(error)
+				})
+			currUserActions(this.$store.getters.currentUser.id)
+				.then(res=>{
+					console.log(res)
+				}).catch(error=>{
+					console.log(error)
+				})
+			this.rutas = GetRutas(nav)
+		},
+		created(){
+		},
+		mounted(){
+			// console.log(this.$refs.treeRutas.toggleRowSelection(this.roles[0],true))
+		},
+		destroyed () {
+		},
 	}
 </script>
 <template>
@@ -90,84 +103,33 @@
 		  <b-card-body>
 		  	<div class="bodycontainer">
 		  		<div class="tablaroles">
-		  			<el-table
-		  				fit
-		  			  :data="roles"
-		  			  stripe
-		  			  @row-click="roleClick"
-		  			  style="width: 100%">
-		  			  <el-table-column
-		  			    prop="display_name"
-		  			    label="Rol"
-		  			    width="180">
-		  			  </el-table-column>
-		  			</el-table>
-		  		</div>
-		  		<div class="tablactions">
 					<el-table
-					:reserve-selection="true"
-					:data             = "rutas.rutasTree"
-					row-key          = "ruta_id"
-					border
-					ref               = "multipleTable"
-					@selection-change = "handSelectionChange"
-					style             = "width: 100%">
+					fit
+					:data="roles"
+					ref='tablaRoles'
+					stripe
+					@row-click="roleClick"
+					style="width: 100%">
 						<el-table-column
-							class-name             = "tableCellClass"
-							type                   = "selection"
-							min-width              = "10">
-						</el-table-column>
-						<el-table-column
-							:show-overflow-tooltip = "true"
-							prop                   = "ruta_id"
-							label                  = "Id"
-							min-width              = "30">
-						</el-table-column>
-						<el-table-column
-							:show-overflow-tooltip = "true"
-							prop                   = "name"
-							label                  = "Nombre"
-							min-width              = "60">
-						</el-table-column>
-						<el-table-column type="expand">
-							<template slot-scope="props">
-							<div class="tablaChild">
-							<el-table
-								:show-header="false"
-							  :data             = "props.row.child"
-							  style             = "width: 100%">
-							  <el-table-column
-							  	class-name             = "tableCellClass"
-							  	type                   = "selection"
-							  	min-width              = "10">
-							  </el-table-column>
-							  <el-table-column
-							  	:show-overflow-tooltip = "true"
-							  	prop                   = "ruta_id"
-							  	label                  = "Id"
-							  	min-width              = "30">
-							  </el-table-column>
-							  <el-table-column
-							  	:show-overflow-tooltip = "true"
-							  	prop                   = "name"
-							  	label                  = "Nombre"
-							  	min-width              = "60">
-							  </el-table-column>
-							  <el-table-column type="expand">
-							    <template slot-scope="props">
-							      <p>Estado: {{ props.row }}</p>
-							    </template>
-							  </el-table-column>
-							</el-table>
-							</div>
-							</template>
-						</el-table-column>
-						<el-table-column type="expand">
-							<template slot-scope="props">
-								{{props.row}}
-							</template>
+						prop="display_name"
+						label="Rol"
+						width="180">
 						</el-table-column>
 					</el-table>
+		  		</div>
+		  		<div class="treeRutas">
+		  			<el-tree
+		  			v-if="this.rolesTemp"
+		  			  show-checkbox
+		  			  accordion
+		  			  ref = "treeRutas"
+		  			  :default-checked-keys = "getCheckedKeys()"
+		  			  :highlight-current = "true"
+		  			  :data                 = "rutas.rutasTree"
+		  			  node-key              = "ruta_id"
+		  			  @check-change = "checkChangeRuta"
+		  			  :props                = "defaultProps">
+		  			</el-tree>
 		  		</div>
 		  	</div>
 		  </b-card-body>
@@ -181,7 +143,7 @@
 	flex-direction  : row;
 	flex-wrap       : nowrap;
 	justify-content : space-between;
-	.tablactions{
+	.treeRutas{
 		width          : 70%;
 		margin-left    : 10px;
 	}

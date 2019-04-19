@@ -42,6 +42,22 @@ export function getRutasRoles(userId){
   })
 }
 
+export function getPermisosRutasRoles(val){
+  return new Promise((res,rej)=>{
+
+    let x = {}
+    x.data = JSON.stringify(val);
+    axios.post(route('roles.permisos',x))
+    // axios.post(route('roles.permisos','informacion enviada'))
+    .then(response => {
+      console.log("recibniendo paquete")
+      res(response)
+    }).catch( error => {
+      rej(error)
+    })
+  })
+}
+
 export function GetRutas(rutas){
   let rutasx = {
     rutasTree   : [],
@@ -64,14 +80,15 @@ export function GetRutas(rutas){
       stRuta.cont              = []
       stRuta.act               = []
       rutasx.rutasInline.push(stRuta)
-      stRuta.child             = []
+      stRuta.children             = []
+      stRuta.hasChildren = true
       val.children.forEach((value,index)=>{
         let x     = {}
         x.ruta_id = value.id_path
         x.flag    = false
         x.name    = value.name
         rutasx.rutasInline.push(x)
-        stRuta.child.push(x)
+        stRuta.children.push(x)
       })
       rutasx.rutasTree.push(stRuta)
     }
