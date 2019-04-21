@@ -12,13 +12,11 @@
 	export default {
 			data () {
 				return {
-				rolesTemp                   : null,
-				roles                       : null,
-				rutas                       : null,
-				actions                     : null,
-				temp                        : null,
-				temporalTablaRutasSelection : null,
-				temporalTablaRutasMultiple  : null,
+				rolesTemp    : null,
+				roles        : null,
+				rutas        : null,
+				actions      : null,
+				roleSelected : null,
 				defaultProps: {
 				  children: 'children',
 				  label: 'name'
@@ -34,24 +32,14 @@
 				let checked            = this.$refs.treeRutas.getCheckedKeys()
 				let halfChecked        = this.$refs.treeRutas.getHalfCheckedKeys()
 				paqueteASide.findRutas = []
+				paqueteASide.role      = this.roleSelected
 				checked.forEach(each     => paqueteASide.findRutas.push(each))
 				halfChecked.forEach(each => paqueteASide.findRutas.push(each))
-				this.$store.commit('SETASIDEDATA', paqueteASide)
+				// this.$store.commit('SETASIDEDATA', paqueteASide)
+				this.$store.dispatch('load_permisos', paqueteASide)
 			},
 			roleClick(row,column,event){
-				console.log('Roleckick')
-				// console.log(row)
-				getRutasRoles(row.id)
-				.then((res)=>{
-					this.rolesTemp = this.rutas.rutasFilter(res)
-					if (this.$refs.treeRutas) {
-						this.$refs.treeRutas.setCheckedKeys([], true)
-						this.rolesTemp.forEach( each => this.$refs.treeRutas.setChecked(each.ruta_id, true))
-					}
-					
-				}).catch((error)=>{
-					console.log(error)
-				})
+
 			},
 			getCheckedKeys(){
 				if (this.rolesTemp) {
@@ -62,6 +50,21 @@
 					console.log('no hay nada')
 					return []
 				}
+			},
+			changeRoleSelection(currentRow , oldRow){
+				this.roleSelected = currentRow
+				$(".app").addClass("aside-menu-show")
+				getRutasRoles(currentRow.id)
+				.then((res)=>{
+					this.rolesTemp = this.rutas.rutasFilter(res)
+					if (this.$refs.treeRutas) {
+						this.$refs.treeRutas.setCheckedKeys([], true)
+						this.rolesTemp.forEach( each => this.$refs.treeRutas.setChecked(each.ruta_id, true))
+						this.checkChangeRuta()
+					}
+				}).catch((error)=>{
+					console.log(error)
+				})
 			}
 		},
 		beforeMount(){
@@ -74,16 +77,18 @@
 			getRoles()
 				.then(res=>{
 					this.roles = res
-					console.log(this.roles[0])
+					this.$refs.tablaRoles.setCurrentRow(this.roles[0])
+					this.changeRoleSelection(this.roles[0])
+					// console.log(this.roles[0])
 				}).catch(error=>{
 					console.log(error)
 				})
-			currUserActions(this.$store.getters.currentUser.id)
-				.then(res=>{
-					console.log(res)
-				}).catch(error=>{
-					console.log(error)
-				})
+			// currUserActions(this.$store.getters.currentUser.id)
+			// 	.then(res=>{
+			// 		console.log(res)
+			// 	}).catch(error=>{
+			// 		console.log(error)
+			// 	})
 			this.rutas = GetRutas(nav)
 		},
 		created(){
@@ -109,6 +114,8 @@
 					ref='tablaRoles'
 					stripe
 					@row-click="roleClick"
+					highlight-current-row
+					@current-change="changeRoleSelection"
 					style="width: 100%">
 						<el-table-column
 						prop="display_name"
@@ -119,17 +126,17 @@
 		  		</div>
 		  		<div class="treeRutas">
 		  			<el-tree
-		  			v-if="this.rolesTemp"
-		  			  show-checkbox
-		  			  accordion
-		  			  ref = "treeRutas"
-		  			  :default-checked-keys = "getCheckedKeys()"
-		  			  :highlight-current = "true"
-		  			  :data                 = "rutas.rutasTree"
-		  			  node-key              = "ruta_id"
-		  			  @check-change = "checkChangeRuta"
-		  			  :props                = "defaultProps">
+						v-if="this.rolesTemp"
+						show-checkbox
+						ref = "treeRutas"
+						@check-change="checkChangeRuta"
+						:default-checked-keys = "getCheckedKeys()"
+						:highlight-current = "true"
+						:data                 = "rutas.rutasTree"
+						node-key              = "ruta_id"
+						:props                = "defaultProps">
 		  			</el-tree>
+						<!-- @check-change = "checkChangeRuta" -->
 		  		</div>
 		  	</div>
 		  </b-card-body>
@@ -143,6 +150,12 @@
 	flex-direction  : row;
 	flex-wrap       : nowrap;
 	justify-content : space-between;
+	.tableCellClass{
+		padding        : 0.5px;
+		display        : inline-block;
+		height         : 100%;
+		vertical-align : middle;
+	}
 	.treeRutas{
 		width          : 70%;
 		margin-left    : 10px;
@@ -159,12 +172,7 @@
 		}
 	}
 }
-.tableCellClass{
-	padding        : 0.5px;
-	display        : inline-block;
-	height         : 100%;
-	vertical-align : middle;
-}
+
 .el-table td, .el-table th {
 	padding-top    : 0.5vh !important;
 	padding-bottom : 0.5vh !important;

@@ -16,6 +16,7 @@ class ActionPermisions extends Migration
         Schema::create('action_permisions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('role_id');
+            $table->string('ruta_id');
             $table->string('action_id');
             $table->string('lee');
             $table->string('escribe');

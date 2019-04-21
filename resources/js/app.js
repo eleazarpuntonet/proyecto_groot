@@ -12,7 +12,9 @@ window.axios.defaults.headers.common = {
 import 'core-js/es6/promise'
 import 'core-js/es6/string'
 import 'core-js/es7/array'
-
+import {
+  getPermisosRutasRoles,
+} from './apiCalls.js'
 import jsPDF             from         'jspdf'
 import Vuex              from         'vuex'
 import VueRouter         from         'vue-router'
@@ -89,150 +91,171 @@ const user = getLocalUser()
 *que podran ser accesadas desde
 *cualquier componente en la aplicacion
 */
+import state from './cleaninglady/State';
+import actions from './cleaninglady/Actions';
+import getters from './cleaninglady/Getters';
+import mutations from './cleaninglady/Mutations';
 const store = new Vuex.Store({
-	//State guarda las variables
-	state: {
-        isAuthenticated  : false,
-        asideData         : null,
-        host             : '',
-        sites            : '',
-        currentUser      : user,
-        roles_auth      : [],
-        notifications    : [],
-        socket_connected : null,
-        isLoggedIn       : !!user,
-        loading          : false,
-        auth_error       : null,
-        customers        : [],
-        roles            : [],
-        path_Auth        : [],
+    //State guarda las variables
+    state: {
+          isAuthenticated  : false,
+          permisos_roles         : null,
+          host             : '',
+          sites            : '',
+          currentUser      : user,
+          roles_auth      : [],
+          notifications    : [],
+          socket_connected : null,
+          isLoggedIn       : !!user,
+          loading          : false,
+          auth_error       : null,
+          customers        : [],
+          roles            : [],
+          path_Auth        : [],
 
-	},
-    //Getters guarda los metodos para obtener
-    //los datos de State
-    getters: {
-        getAsideData (state) {
-            return state.asideData
-        },
-        isAuthenticated (state) {
-            return state.isAuthenticated
-        },
-        showHost(state){
-            return state.host
-        },
-        notifications(state){
-            return state.notifications
-        },
-        showSites(state){
-            return state.sites
-        },
-        isLoggedIn(state){
-            return state.isLoggedIn
-        },
-        isLoading(state){
-            return state.loading
-        },
-        currentUser(state){
-            return state.currentUser
-        },
-        authError(state){
-            return state.auth_error
-        },
-        customers(state){
-            return state.customers
-        },
-        roles(state){
-            return state.roles
-        },
-        pathAuth(rolesToPath){
-            // console.log(this.state.currentUser.roles)
-            return
-        },
-        getPaths (state) {
-            return state.path_Auth
-        },
-    },    
-	//Mutations guarda los metodos para modificar los state
-	//de forma SINCRONA
-	mutations: {
-        isAuthenticated (state, payload) {
-            // console.log('Recibiendo en autenticated')
-            // console.log(payload)
-            console.log(payload)
-            state.isAuthenticated = true
-            state.isLoggedIn  = true
-            state.auth_error  = null
-            state.loading     = false
-            state.currentUser = payload.user
-            state.currentUser.token = payload.access_token
-            state.currentUser.notifications = payload.notifications
-            payload.notifications.forEach((item,index)=>{
-              state.notifications.push(JSON.parse(item.data))
-            })
-                // console.log(state.notifications)
-            localStorage.setItem("user", JSON.stringify(state.currentUser))
-            localStorage.setItem("jwtToken", state.currentUser.token)
-            // console.log(JSON.parse(localStorage.getItem('user')))
-            if (!window.Echo.auth) {
-                window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
-            }
-            axios.defaults.headers.common['Authorization'] = 'Bearer '+state.currentUser.token
-        },
-        addHost(state,value){
-            state.host = value
-        },
-        addSite(state,value){
-            state.sites = value
-        },
-        login(state){
-            state.loading    = true
-            state.auth_error = null
-        },
-        loginFailed(state, payload){
-            state.loading    = false
-            state.auth_error = payload.error
-        },
-        logout(state){
-            state.isAuthenticated = false
-            // alert('Se elimina el user')
-            localStorage.removeItem("user")
-            localStorage.removeItem("jwtToken")
-            state.loading     = false
-            state.currentUser = null
-            delete axios.defaults.headers.common['Authorization']
-            router.push({path:'/login'})
-        },
-        UPDATE_NOTIF(state,value){
-            state.notifications.push(value)
-        },
-        ADD_PATHSARR(state,value){
-            console.log('Estohy en el store')
-            value.forEach((v,i)=>{
-                state.path_Auth.push(v)
-            })
-        },
-        SETASIDEDATA(state,val){
-            state.asideData = val
-        },
-	},
-	//Actions guarda los metodos para modificar los state
-	//de forma ASINCRONA
-	actions: {
-        // Perform VueAuthenticate login using Vuex actions
-        login (context, payload) {
-            context.commit('isAuthenticated', {
-                user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),
-                isAuthenticated: true
-            })
-            router.push({path:'/'})
-        },
-		sendHost(state,value){
-			store.commit('addHost',value)
-		},
-		sendSites(state,value){
-			store.commit('addSite',value)
-		},
-	},
+    },
+      //Getters guarda los metodos para obtener
+      //los datos de State
+      getters: {
+          getPermisosRoles (state) {
+              return state.permisos_roles
+          },
+          isAuthenticated (state) {
+              return state.isAuthenticated
+          },
+          showHost(state){
+              return state.host
+          },
+          notifications(state){
+              return state.notifications
+          },
+          showSites(state){
+              return state.sites
+          },
+          isLoggedIn(state){
+              return state.isLoggedIn
+          },
+          isLoading(state){
+              return state.loading
+          },
+          currentUser(state){
+              return state.currentUser
+          },
+          authError(state){
+              return state.auth_error
+          },
+          customers(state){
+              return state.customers
+          },
+          roles(state){
+              return state.roles
+          },
+          pathAuth(rolesToPath){
+              // console.log(this.state.currentUser.roles)
+              return
+          },
+          getPaths (state) {
+              return state.path_Auth
+          },
+      },    
+    //Mutations guarda los metodos para modificar los state
+    //de forma SINCRONA
+    mutations: {
+          isAuthenticated (state, payload) {
+              // console.log('Recibiendo en autenticated')
+              // console.log(payload)
+              console.log(payload)
+              state.isAuthenticated = true
+              state.isLoggedIn  = true
+              state.auth_error  = null
+              state.loading     = false
+              state.currentUser = payload.user
+              state.currentUser.token = payload.access_token
+              state.currentUser.notifications = payload.notifications
+              payload.notifications.forEach((item,index)=>{
+                state.notifications.push(JSON.parse(item.data))
+              })
+                  // console.log(state.notifications)
+              localStorage.setItem("user", JSON.stringify(state.currentUser))
+              localStorage.setItem("jwtToken", state.currentUser.token)
+              // console.log(JSON.parse(localStorage.getItem('user')))
+              if (!window.Echo.auth) {
+                  window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
+              }
+              axios.defaults.headers.common['Authorization'] = 'Bearer '+state.currentUser.token
+          },
+          addHost(state,value){
+              state.host = value
+          },
+          addSite(state,value){
+              state.sites = value
+          },
+          login(state){
+              state.loading    = true
+              state.auth_error = null
+          },
+          loginFailed(state, payload){
+              state.loading    = false
+              state.auth_error = payload.error
+          },
+          logout(state){
+              state.isAuthenticated = false
+              // alert('Se elimina el user')
+              localStorage.removeItem("user")
+              localStorage.removeItem("jwtToken")
+              state.loading     = false
+              state.currentUser = null
+              delete axios.defaults.headers.common['Authorization']
+              router.push({path:'/login'})
+          },
+          UPDATE_NOTIF(state,value){
+              state.notifications.push(value)
+          },
+          ADD_PATHSARR(state,value){
+              console.log('Estohy en el store')
+              value.forEach((v,i)=>{
+                  state.path_Auth.push(v)
+              })
+          },
+          SETPERMISOS_ROLES(state,val){
+              state.permisos_roles = val
+          },
+    },
+    //Actions guarda los metodos para modificar los state
+    //de forma ASINCRONA
+    actions: {
+          // Perform VueAuthenticate login using Vuex actions
+      login (context, payload) {
+          context.commit('isAuthenticated', {
+              user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),
+              isAuthenticated: true
+          })
+          router.push({path:'/'})
+      },
+      sendHost(state,value){
+        store.commit('addHost',value)
+      },
+      sendSites(state,value){
+        store.commit('addSite',value)
+      },
+      load_permisos(context,value){
+        console.log('cargando dispatch')
+        console.log(value)
+        getPermisosRutasRoles(value)
+        .then(response => {
+          context.commit('SETPERMISOS_ROLES',{
+            permisos: response,
+            role: value.role
+          })
+        }).catch( error => {
+          console.log(error)
+        })
+      },
+    },
+    // Casi lo logro!
+    // actions,
+    // getters,
+    // mutations
 })
 
 

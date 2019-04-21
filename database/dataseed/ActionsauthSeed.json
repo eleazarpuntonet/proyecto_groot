@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "id": 1,
+        "action_id": "dataload003i1",
+        "action_name": "Roles",
+        "action_desc": "Permite la edicion de los roles de usuarios",
+        "path_id": "dataload003i",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "action_id": "dataload003i2",
+        "action_name": "Vistas",
+        "action_desc": "Acciones de edicion de acceso a pestau00f1as",
+        "path_id": "dataload003i",
+        "created_at": null,
+        "updated_at": null
+    }
+]

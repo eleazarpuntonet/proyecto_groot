@@ -73,11 +73,13 @@ Route::resource('proveedores', 'ProveedoresController');
 Route::post('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
+	$objetos = ["reserv001m", "reserv002i", "reserv003i", "reserv004i", "rrhh001m", "rrhh002i", "dataload001m", "dataload005i", "dataload004i", "dataload003i", "dataload002i", "dataload006i"];
+	$id = 1;
 
 	return response()->json([
 		// 'Actions'      => ActionsAuth::with('permisos')->get(),
 		// 'Roles'      => Role::with('role_permisos')->get(),
-		'Paths'      => Permisos::with(['role','actions'])->get(),
+		'Permisos'      => Permisos::whereIn('ruta_id',$objetos)->where('role_id','=',$id)->get(),
 		// 'Path'      => Tableauthrole::with('actions')->find('dataload003i1'),
 		// 'Paths'      => ActionsAuth::get()
 

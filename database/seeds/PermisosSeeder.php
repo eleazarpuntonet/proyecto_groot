@@ -20,6 +20,7 @@ class PermisosSeeder extends Seeder
 			$permiso            = new App\Permisos;
 			$permiso->id        = $item->id;
 			$permiso->role_id   = $item->role_id;
+			$permiso->ruta_id   = $item->ruta_id;
 			$permiso->action_id = $item->action_id;
 			$permiso->lee       = $item->lee;
 			$permiso->escribe   = $item->escribe;

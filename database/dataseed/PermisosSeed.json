@@ -1,1 +1,50 @@
-[]
+[
+    {
+        "id": 1,
+        "role_id": "1",
+        "action_id": "dataload003i1",
+        "ruta_id": "dataload003i",
+        "lee": "true",
+        "escribe": "true",
+        "modifica": "true",
+        "borra": "true",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "role_id": "1",
+        "action_id": "dataload003i2",
+        "ruta_id": "dataload003i",
+        "lee": "true",
+        "escribe": "true",
+        "modifica": "true",
+        "borra": "true",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 3,
+        "role_id": "2",
+        "action_id": "dataload003i1",
+        "ruta_id": "dataload003i",
+        "lee": "true",
+        "escribe": "true",
+        "modifica": "false",
+        "borra": "false",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 4,
+        "role_id": "2",
+        "action_id": "dataload003i2",
+        "ruta_id": "dataload003i",
+        "lee": "true",
+        "escribe": "true",
+        "modifica": "false",
+        "borra": "false",
+        "created_at": null,
+        "updated_at": null
+    }
+]

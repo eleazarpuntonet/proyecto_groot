@@ -110,13 +110,11 @@ class RolesController extends Controller
     public function permisos($data)
     {
         $objeto = json_decode($data);
-        // dd($objeto);
+        return Permisos::with('actions')
+            ->whereIn('ruta_id', $objeto->findRutas)
+            ->where('role_id', '=', $objeto->role->id)
+            ->get();
 
-        // $Rol = Role::find($id)->auth_roles;
-        // $Rol = Role::with(['auth_roles.actions'])->find($id);
-        // $Rol = Role::with(['auth_roles.actions','auth_actions'])->find($id);
-        return Permisos::get();
-        // return $objeto->findRutas;
     }
 
 }

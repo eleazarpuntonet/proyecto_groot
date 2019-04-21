@@ -44,14 +44,26 @@ export function getRutasRoles(userId){
 
 export function getPermisosRutasRoles(val){
   return new Promise((res,rej)=>{
-
     let x = {}
     x.data = JSON.stringify(val);
     axios.post(route('roles.permisos',x))
-    // axios.post(route('roles.permisos','informacion enviada'))
     .then(response => {
-      console.log("recibniendo paquete")
-      res(response)
+      console.log(response)
+      var permisos = []
+      response.data.forEach((each, index) =>{
+        let t         = {}
+        t.action_id   = each.action_id
+        t.action_name = each.actions.action_name
+        t.action_desc = each.actions.action_desc
+        t.action_id   = each.actions.action_id
+        t.role_id     = each.role_id
+        t.lee         = JSON.parse(each.lee)
+        t.escribe     = JSON.parse(each.escribe)
+        t.modifica    = JSON.parse(each.modifica)
+        t.borra       = JSON.parse(each.borra)
+        permisos.push(t)
+      })
+      res(permisos)
     }).catch( error => {
       rej(error)
     })

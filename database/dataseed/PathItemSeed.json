@@ -86,5 +86,13 @@
         "pathitem_desc": "Pestana de carga de gerencias",
         "created_at": null,
         "updated_at": null
+    },
+    {
+        "id": 12,
+        "pathitem_id": "dataload006i",
+        "pathitem_name": "Permisos",
+        "pathitem_desc": "Panel de control de permisologia",
+        "created_at": null,
+        "updated_at": null
     }
 ]
