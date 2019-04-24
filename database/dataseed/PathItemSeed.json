@@ -90,8 +90,8 @@
     {
         "id": 12,
         "pathitem_id": "dataload006i",
-        "pathitem_name": "Permisos",
-        "pathitem_desc": "Panel de control de permisologia",
+        "pathitem_name": "Permisologia",
+        "pathitem_desc": "Pertau00f1a de configuracion de permisos",
         "created_at": null,
         "updated_at": null
     }

@@ -247,6 +247,10 @@ const store = new Vuex.Store({
             permisos: response,
             role: value.role
           })
+
+          if (!$("body").hasClass("aside-menu-lg-show")) {
+            $("body").toggleClass("aside-menu-lg-show")
+          }
         }).catch( error => {
           console.log(error)
         })

@@ -94,10 +94,28 @@
           <el-checkbox v-model="permiso.borra"></el-checkbox>
         </div>
       </div>
+      <div class="buttonLine">
+        <el-button
+          type="primary"
+          size="mini">
+          Editar CRUD
+        </el-button>
+        <el-button
+          type="primary"
+          size="mini">
+          Actualizar rutas
+        </el-button>
+      </div>
     </b-tab>
   </b-tabs>
 </template>
 <style lang="scss">
+  .buttonLine{
+    margin: 10px 5px;
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-between;    
+  }
   .nav-link {
       padding: 0.15rem 0.4rem !important;
   }

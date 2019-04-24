@@ -3,17 +3,26 @@
         "id": 1,
         "action_id": "dataload003i1",
         "action_name": "Roles",
-        "action_desc": "Permite la edicion de los roles de usuarios",
+        "action_desc": "Permite la edicion de roles de usuario",
         "path_id": "dataload003i",
-        "created_at": null,
+        "created_at": "0000-00-00 00:00:00",
         "updated_at": null
     },
     {
         "id": 2,
         "action_id": "dataload003i2",
         "action_name": "Vistas",
-        "action_desc": "Acciones de edicion de acceso a pestau00f1as",
+        "action_desc": "Permite el acceso a las diferentes pestau00f1as",
         "path_id": "dataload003i",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 3,
+        "action_id": "reserv002i1",
+        "action_name": "Solicitud de reserva",
+        "action_desc": "Accede al formulario de solicitud de reservas",
+        "path_id": "reserv002i",
         "created_at": null,
         "updated_at": null
     }

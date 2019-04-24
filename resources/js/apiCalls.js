@@ -79,7 +79,23 @@ export function GetRutas(rutas){
       rutasAutorizadas.forEach((val,index)=>{
         rutasFiltradas.push(this.rutasInline.find((ruta => ruta.ruta_id === val.pathitem_id)))
       })
-    return rutasFiltradas
+      return rutasFiltradas
+    },
+    changeDisabled(bool){
+      this.rutasTree.forEach((each)=>{
+        !bool?each.disabled = true:each.disabled = false
+        if (each.children.length>0) {
+          each.children.forEach((eachA)=>{
+            !bool?eachA.disabled = true:eachA.disabled = false
+          })
+        }
+      })
+    },
+    diffRutas(checkd,autoriz){
+      let deleted = autoriz.filter(x => !checkd.includes(x.ruta_id))
+      let added   = checkd.filter(x => !autoriz.some(item => item.ruta_id === x))
+      return {'deleted': deleted.map(x => x.ruta_id),
+              'added' : added}
     }
   }
   rutas.items.forEach((val,index)=>{
@@ -89,13 +105,13 @@ export function GetRutas(rutas){
       stRuta.flagAll           = false
       stRuta.flagIndetermiante = false
       stRuta.name              = val.name
-      stRuta.cont              = []
-      stRuta.act               = []
+      stRuta.disabled              = true
       rutasx.rutasInline.push(stRuta)
-      stRuta.children             = []
-      stRuta.hasChildren = true
+      stRuta.children          = []
+      stRuta.hasChildren       = true
       val.children.forEach((value,index)=>{
         let x     = {}
+        x.disabled = true
         x.ruta_id = value.id_path
         x.flag    = false
         x.name    = value.name
