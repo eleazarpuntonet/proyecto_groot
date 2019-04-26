@@ -123,3 +123,31 @@ export function GetRutas(rutas){
   })
   return rutasx
 }
+
+export function sendRutasActualizadas(val){
+  return new Promise((res,rej)=>{
+    let x = {}
+    x.data = JSON.stringify(val);
+    axios.post(route('roles.savepath',x))
+    .then(response => {
+      console.log(response)
+      res(response)
+    }).catch( error => {
+      rej(error)
+    })
+  })
+}
+
+export function sendPermisosActualizados(val){
+  return new Promise((res,rej)=>{
+    let x = {}
+    x.data = JSON.stringify(val);
+    axios.post(route('roles.savepermisos',x))
+    .then(response => {
+      console.log(response)
+      res(response)
+    }).catch( error => {
+      rej(error)
+    })
+  })
+}

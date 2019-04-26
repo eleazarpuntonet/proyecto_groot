@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto);@font-face {
+@import url(https://fonts.googleapis.com/css?family=Poppins|Roboto);@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto);@font-face {
   font-family: 'Eurostile LTS Demi';
   src: url(/fonts/EurostileLTStd-Demi.otf?8d4cfe95d8cc272c346bccedaf909230) format("opentype");
 }
@@ -10514,6 +10514,29 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+.aside-menu {
+  width: 350px !important;
+}
+
+.app-body .aside-menu {
+  -ms-flex: 0 0 350px !important;
+  -webkit-box-flex: 0 !important;
+          flex: 0 0 350px !important;
+}
+
+html[dir="rtl"] .aside-menu {
+  margin-left: -350px !important;
+}
+
+html:not([dir="rtl"]) .aside-menu {
+  margin-right: -350px !important;
+}
+
+html:not([dir="rtl"]) .aside-menu-show .aside-menu,
+html:not([dir="rtl"]) .aside-menu-lg-show .aside-menu {
+  margin-right: 0 !important;
 }
 
 .l_aside_table {

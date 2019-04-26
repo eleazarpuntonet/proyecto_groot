@@ -63,6 +63,8 @@ Route::resource('files', 'FilesController');
 
 Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
 Route::post('roles/permisos/{data}', 'RolesController@permisos')->name('roles.permisos');
+Route::post('roles/savepath/{data}', 'RolesController@savepath')->name('roles.savepath');
+Route::post('roles/savepermisos/{data}', 'RolesController@savepermisos')->name('roles.savepermisos');
 
 Route::resource('roles', 'RolesController');
 
@@ -77,11 +79,7 @@ Route::get('testing',function(){
 	$id = 1;
 
 	return response()->json([
-		// 'Actions'      => ActionsAuth::with('permisos')->get(),
-		// 'Roles'      => Role::with('role_permisos')->get(),
 		'Permisos'      => Permisos::whereIn('ruta_id',$objetos)->where('role_id','=',$id)->get(),
-		// 'Path'      => Tableauthrole::with('actions')->find('dataload003i1'),
-		// 'Paths'      => ActionsAuth::get()
 
 	], 200);
 

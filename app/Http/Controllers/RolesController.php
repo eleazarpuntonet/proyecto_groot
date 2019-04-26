@@ -101,9 +101,7 @@ class RolesController extends Controller
 
     public function path_auth($id)
     {
-        // $Rol = Role::find($id)->auth_roles;
         $Rol = Role::with(['auth_roles.actions'])->find($id);
-        // $Rol = Role::with(['auth_roles.actions','auth_actions'])->find($id);
         return $Rol;
     }
     
@@ -115,6 +113,44 @@ class RolesController extends Controller
             ->where('role_id', '=', $objeto->role->id)
             ->get();
 
+    }
+
+    public function savepath($data)
+    {
+        $objeto = json_decode($data);
+        $role = Role::find($objeto->role);
+        if (!empty($objeto->added)) {
+            foreach ($objeto->added as $val) {
+                $role->auth_roles()->attach($val->ruta_id);
+            }
+        }
+        if (!empty($objeto->deleted)) {
+            foreach ($objeto->deleted as $val) {
+                $role->auth_roles()->detach($val->ruta_id);
+            }
+        }
+        return $role;
+    }
+
+    public function savepermisos($data)
+    {
+        $objeto = json_decode($data);
+
+        if (!empty($objeto->permisos)) {
+            foreach ($objeto->permisos as $val) {
+                $valor = Permisos::where('role_id', '=', $objeto->role)
+                ->where('action_id', '=', $val->action_id)
+                ->update([
+                    'lee'      => $val->lee === 'true' ? 'true' : 'false',
+                    'escribe'  => $val->escribe === 'true' ? 'true' : 'false',
+                    'modifica' => $val->modifica === 'true' ? 'true' : 'false',
+                    'borra'    => $val->borra === 'true' ? 'true' : 'false'
+                ]);
+                dd($val->lee);
+            }
+        }
+
+        return $objeto->permisos;
     }
 
 }

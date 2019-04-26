@@ -1,94 +1,56 @@
 
 // Fonts
 $font_path: '../../public/fonts/spsfonts/';
-
-
+@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto');
 @font-face{
   font-family       : 'Eurostile LTS Demi';
   src               : url($font_path +'EurostileLTStd-Demi.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'Eurostile LTS DemiOblique';
   src               : url($font_path +'EurostileLTStd-DemiOblique.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'Eurostile LTS Ex2';
   src               : url($font_path +'EurostileLTStd-Ex2.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'Eurostile LTS Oblique';
   src               : url($font_path +'EurostileLTStd-Oblique.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'Eurostile LTS';
   src               : url($font_path +'EurostileLTStd.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'HelveticaNeue LTS';
   src               : url($font_path +'HelveticaNeueLTStd-It.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'HelveticaNeue LTS Lt';
   src               : url($font_path +'HelveticaNeueLTStd-Lt.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'HelveticaNeue Condensed';
   src               : url($font_path +'HelveticaNeueLTStd-LtCn.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'HelveticaNeue Italic';
   src               : url($font_path +'HelveticaNeueLTStd-LtCnO.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
 
 @font-face{
   font-family       : 'HelveticaNeue Bold';
   src               : url($font_path +'HelveticaNeueLTStd-Hv.otf') format("opentype");
-  // font-style     : italic, oblique;
-  // font-weight    : 400;
-  // text-rendering : optimizeLegibility;
 }
-
-// font-family: 'Poppins', sans-serif;
-// font-family: 'Roboto Condensed', sans-serif;
-// font-family: 'Roboto Mono', monospace;
-// font-family: 'Roboto', sans-serif;
-// font-family: 'Nunito Sans', sans-serif;
-// font-family: 'Nunito', sans-serif;
 
 $helvetica: 'HelveticaNeue LTS Lt';
 $eurostyle: 'Eurostile LTS Demi';
@@ -116,6 +78,24 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+.aside-menu {
+  width: 350px !important;
+}
+.app-body .aside-menu {
+    -ms-flex: 0 0 350px !important;
+    flex: 0 0 350px !important;
+}
+html[dir="rtl"] .aside-menu {
+  margin-left: -350px !important;
+}
+html:not([dir="rtl"]) .aside-menu {
+  margin-right: -350px !important;
+}
+html:not([dir="rtl"]) .aside-menu-show .aside-menu, html:not([dir="rtl"]) .aside-menu-lg-show .aside-menu {
+    margin-right: 0 !important;
+}
+
+
 .l_aside_table{
   overflow-y: scroll;
   height: 60vw;

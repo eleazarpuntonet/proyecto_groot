@@ -239,8 +239,6 @@ const store = new Vuex.Store({
         store.commit('addSite',value)
       },
       load_permisos(context,value){
-        console.log('cargando dispatch')
-        console.log(value)
         getPermisosRutasRoles(value)
         .then(response => {
           context.commit('SETPERMISOS_ROLES',{
@@ -256,10 +254,6 @@ const store = new Vuex.Store({
         })
       },
     },
-    // Casi lo logro!
-    // actions,
-    // getters,
-    // mutations
 })
 
 
