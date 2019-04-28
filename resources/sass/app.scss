@@ -1,7 +1,7 @@
 
 // Fonts
 $font_path: '../../public/fonts/spsfonts/';
-@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto');
+@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto:200');
 @font-face{
   font-family       : 'Eurostile LTS Demi';
   src               : url($font_path +'EurostileLTStd-Demi.otf') format("opentype");
@@ -55,15 +55,15 @@ $font_path: '../../public/fonts/spsfonts/';
 $helvetica: 'HelveticaNeue LTS Lt';
 $eurostyle: 'Eurostile LTS Demi';
 $fonttitlesize: 2em;
-$colorpantonered: #EF4034;
-$colorpantone254: #91268F;
-$colorpantone285: rgba(0, 124, 194, 1);
-$colorpantone368: #7AC142;
-$colorpantone143: rgba(251, 175, 63, 1);
-$colorpantoneproblack: #231F20;
-$colorpantonecoolgray: #BBBDC0;
-$colorpantonecoolgrayCool: #6D6E70;
-$pantonetext: #6D6E70;
+$colorpantonered: rgb(239,64,52);
+$colorpantone254: rgb(145,38,143);
+$colorpantone285: rgb(0, 124, 194);
+$colorpantone368: rgb(122,193,66);
+$colorpantone143: rgb(251, 175, 63);
+$colorpantoneproblack: rgb(35,31,32);
+$colorpantonecoolgray: rgb(187,189,192);
+$colorpantonecoolgrayCool: rgb(109,110,112);
+$pantonetext: rgb(109,110,112);
 
 $backgroundimage: '/img/login_back.jpg';
 $backgroundimage0: '/img/Background0.jpg';
@@ -78,6 +78,16 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// ESTILO DE BOTONES MINI
+.el-button--mini, .el-button--mini.is-round {
+    padding: 4px 8px !important;
+}
+.el-button--mini, .el-button--small {
+    font-size: 11px !important;
+    border-radius: 3px !important;
+}
+
+// MODIFICACIONES DE TAMAÑO DEL ASIDE
 .aside-menu {
   width: 350px !important;
 }
@@ -199,7 +209,12 @@ h1 {
   color: $pantonetext;
 }
 .breadcrumb{
-  margin-bottom: 15px !important;
+  margin-bottom: 0px !important;
+  padding: 0.25rem 1rem !important;
+  font-size: 0.7rem;
+  font-family       : 'Roboto';
+  font-weight: 200;
+
 }
 .container-fluid {
     // padding: 0 30px;

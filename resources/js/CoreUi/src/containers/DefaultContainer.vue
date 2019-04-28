@@ -36,7 +36,7 @@
       </AppSidebar>
       <main class="main">
         <Breadcrumb :list="list"/>
-        <div class="container-fluid">
+        <div class="wall">
           <router-view></router-view>
         </div>
       </main>
@@ -60,156 +60,171 @@
 </template>
 
 <script>
-import nav from '../_nav'
+  import nav from '../_nav'
 
-import { 
-        Header  as AppHeader,
-        Sidebar as AppSidebar,
-        Aside   as AppAside,
-        Footer  as TheFooter,
-        SidebarToggler, 
-        SidebarFooter, 
-        SidebarForm, 
-        SidebarHeader, 
-        SidebarMinimizer, 
-        SidebarNav, 
-        AsideToggler, 
-        Breadcrumb 
-      } from '@coreui/vue'
-import DefaultAside from './DefaultAside'
-import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
-import NotificationsBell from '../../../components/notificationsbell.vue'
+  import { 
+          Header  as AppHeader,
+          Sidebar as AppSidebar,
+          Aside   as AppAside,
+          Footer  as TheFooter,
+          SidebarToggler, 
+          SidebarFooter, 
+          SidebarForm, 
+          SidebarHeader, 
+          SidebarMinimizer, 
+          SidebarNav, 
+          AsideToggler, 
+          Breadcrumb 
+        } from '@coreui/vue'
+  import DefaultAside from './DefaultAside'
+  import DefaultHeaderDropdownAccnt from './DefaultHeaderDropdownAccnt'
+  import NotificationsBell from '../../../components/notificationsbell.vue'
 
-export default {
-  name: 'DefaultContainer',
-  components: {
-    AsideToggler,
-    AppHeader,
-    AppSidebar,
-    AppAside,
-    TheFooter,
-    Breadcrumb,
-    DefaultAside,
-    DefaultHeaderDropdownAccnt,
-    NotificationsBell,
-    SidebarForm,
-    SidebarFooter,
-    SidebarToggler,
-    SidebarHeader,
-    SidebarNav,
-    SidebarMinimizer
-  },
-  data () {
-    return {
-      nav: [],
-      paths_auth: [],
-    }
-  },
-  computed: {
-    name () {
-      return this.$route.name
+  export default {
+    name: 'DefaultContainer',
+    components: {
+      AsideToggler,
+      AppHeader,
+      AppSidebar,
+      AppAside,
+      TheFooter,
+      Breadcrumb,
+      DefaultAside,
+      DefaultHeaderDropdownAccnt,
+      NotificationsBell,
+      SidebarForm,
+      SidebarFooter,
+      SidebarToggler,
+      SidebarHeader,
+      SidebarNav,
+      SidebarMinimizer
     },
-    list () {
-      return this.$route.matched.filter((route) => route.name || route.meta.label )
-    }
-  },
-  methods:{
-    compareRoles(navitem){
-      var flag = false;
-      var itemNav = navitem
-      if (navitem.length>0) {
-        // console.log(itemNav)
-        this.$store.getters.currentUser.roles.forEach((val,i)=>{
-          // console.log(itemNav)
-          // console.log('antes de public')
-          if (itemNav == 'public') {
-          // if (navitem[0] == val.name || navitem[0]==='public') {
-            flag=true
-          }
-        })
-      } else {
-        flag=true
+    data () {
+      return {
+        nav: [],
+        paths_auth: [],
       }
-      return flag;
-    }
-  },
-  beforeMount(){
-
-    let userid = this.$store.getters.currentUser.roles
-    axios.get(route('usuarios.paths',userid)) 
-        .then(response => {
-          // Esta funcion se encargar
-          // de guardar en paths_auth
-          // las rutas autorizadas para
-          // cada rol del usuario
-           response.data.roles.forEach((val,index)=>{
-            if (val.auth_roles.length > 0) {
-              val.auth_roles.forEach((val,index)=>{
-                if (this.paths_auth.length === 0 ) {
-                  this.paths_auth.push(val)
-                } else {
-                  let found = this.paths_auth.some(path => path.pathitem_id == val.pathitem_id)
-                  if (!found) {
-                    this.paths_auth.push(val)
-                  }
-                }
-              })
+    },
+    computed: {
+      name () {
+        return this.$route.name
+      },
+      list () {
+        return this.$route.matched.filter((route) => route.name || route.meta.label )
+      }
+    },
+    methods:{
+      compareRoles(navitem){
+        var flag = false;
+        var itemNav = navitem
+        if (navitem.length>0) {
+          // console.log(itemNav)
+          this.$store.getters.currentUser.roles.forEach((val,i)=>{
+            // console.log(itemNav)
+            // console.log('antes de public')
+            if (itemNav == 'public') {
+            // if (navitem[0] == val.name || navitem[0]==='public') {
+              flag=true
             }
-           })
-          this.$store.commit('ADD_PATHSARR',this.paths_auth)
-
-           nav.items.forEach((val,i,arr)=>{
-             // Solo los item de clase 'menuItem entran en la validacion'
-             if (val.__proto__.constructor.name == 'menuItem') {
-               // Valida si la funcion permite o no acceder al item de menu   
-               let superFlag = this.paths_auth.some(path => path.pathitem_id == val.id_path)
-               if (superFlag) {
-
-                if (val.children.length>0) {
-                  // Guardo las subrutas/pestanas en una variable
-                  // para barrerlos mas tarde
-                  let childrens = val.children
-                  // Guardo la ruta en una variable
-                  // temporal para guardarla en el maestro
-                  // de rutas que se imprimiran
-                  var temp      = val
-                  // Vacio los children de la ruta
-                  // en el temporal para que no tenga subrutas/pestanas
-                  temp.children = []
-                  // Guardo la ruta temporal sin children
-                  // en el maestro de rutas a imprimir
-                  this.nav.push(temp)
-                  // Comienzo a barrer las subrutas para filtrarlas
-                  // y guardar solo las subrutas autorizadas
-                  childrens.forEach((value,y,arry)=>{
-                    // Busca el id_path de las rutas children
-                    // en el arreglo paths_auth(que son las rutas autorizadas
-                    //  proporcionadas por el servidor)
-                    let flagFound = this.paths_auth.some(path => path.pathitem_id == value.id_path)
-                    if (flagFound) {
-                      this.nav[this.nav.length-1].children.push(value)
-                    }
-                  })
-                  
-                } else{
-                  this.nav.push(val)
-                }
-
-               }
-             } else {
-               this.nav.push(val)
-             }
-           })
           })
-        .catch(error => {
-          console.log(error)
-        })
+        } else {
+          flag=true
+        }
+        return flag;
+      }
+    },
+    beforeMount(){
+
+      let userid = this.$store.getters.currentUser.roles
+      axios.get(route('usuarios.paths',userid)) 
+          .then(response => {
+            // Esta funcion se encargar
+            // de guardar en paths_auth
+            // las rutas autorizadas para
+            // cada rol del usuario
+             response.data.roles.forEach((val,index)=>{
+              if (val.auth_roles.length > 0) {
+                val.auth_roles.forEach((val,index)=>{
+                  if (this.paths_auth.length === 0 ) {
+                    this.paths_auth.push(val)
+                  } else {
+                    let found = this.paths_auth.some(path => path.pathitem_id == val.pathitem_id)
+                    if (!found) {
+                      this.paths_auth.push(val)
+                    }
+                  }
+                })
+              }
+             })
+            this.$store.commit('ADD_PATHSARR',this.paths_auth)
+
+             nav.items.forEach((val,i,arr)=>{
+               // Solo los item de clase 'menuItem entran en la validacion'
+               if (val.__proto__.constructor.name == 'menuItem') {
+                 // Valida si la funcion permite o no acceder al item de menu   
+                 let superFlag = this.paths_auth.some(path => path.pathitem_id == val.id_path)
+                 if (superFlag) {
+
+                  if (val.children.length>0) {
+                    // Guardo las subrutas/pestanas en una variable
+                    // para barrerlos mas tarde
+                    let childrens = val.children
+                    // Guardo la ruta en una variable
+                    // temporal para guardarla en el maestro
+                    // de rutas que se imprimiran
+                    var temp      = val
+                    // Vacio los children de la ruta
+                    // en el temporal para que no tenga subrutas/pestanas
+                    temp.children = []
+                    // Guardo la ruta temporal sin children
+                    // en el maestro de rutas a imprimir
+                    this.nav.push(temp)
+                    // Comienzo a barrer las subrutas para filtrarlas
+                    // y guardar solo las subrutas autorizadas
+                    childrens.forEach((value,y,arry)=>{
+                      // Busca el id_path de las rutas children
+                      // en el arreglo paths_auth(que son las rutas autorizadas
+                      //  proporcionadas por el servidor)
+                      let flagFound = this.paths_auth.some(path => path.pathitem_id == value.id_path)
+                      if (flagFound) {
+                        this.nav[this.nav.length-1].children.push(value)
+                      }
+                    })
+                    
+                  } else{
+                    this.nav.push(val)
+                  }
+
+                 }
+               } else {
+                 this.nav.push(val)
+               }
+             })
+            })
+          .catch(error => {
+            console.log(error)
+          })
 
 
 
 
-    // this.nav= nav.items
-    // console.log(this.$store.getters.currentUser)
+      // this.nav= nav.items
+      // console.log(this.$store.getters.currentUser)
+    }
   }
-}
 </script>
+<style lang="scss">
+.wall{
+  height: 100%;
+  padding: 10px;
+  background-color: #DFE3E8;
+  -webkit-box-shadow: inset 
+  6px //The horizontal offset
+  6px //The vertical offset
+  7px //The blur radius (optional)
+  -5px //The spread radius
+  #787986; //Color
+     -moz-box-shadow: inset 6px 6px 7px -5px #787986;
+          box-shadow: inset 6px 6px 7px -5px #787986;
+}
+</style>

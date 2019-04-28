@@ -70,6 +70,7 @@ import cargaUsuarios     from '../../../components/carga_usuarios'
 import cargaRoles        from '../../../components/carga_roles'
 import cargaGerencias    from '../../../components/carga_gerencia'
 import permisos    from '../../../components/panelPermisos'
+import rfq from '../../../components/procuraRfq'
 
 Vue.use(Router)
 // var user = JSON.parse(window.localStorage.getItem('user'))
@@ -256,6 +257,20 @@ var cargaDeDatos = new Route_item({
      Permisologia,
     ])
 
+var rfqForm = new Route_item({
+  path:'rfq',
+  name:'rfq',
+  comp: rfq,
+  })  
+rfqForm.changeAuth(true,rolescargaDatos)
+var procura = new Route_item({
+    path:'procura',
+    name:'Procura',
+    redir: '/procura/rfq'
+  },[
+     rfqForm,
+    ])
+
 export default new Router({
   mode: 'history', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'open active',
@@ -269,6 +284,7 @@ export default new Router({
       name: 'Home',
       component: DefaultContainer,
       children: [
+        procura,
         cargaDeDatos,
         MenuRRHH,
         perfilUser,

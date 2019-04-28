@@ -213,8 +213,25 @@ var cargaDatos = new menuItem({
         n_usuario,
         permisologia,
       ])
-// var user = JSON.parse(window.localStorage.getItem('user'))
-// console.log(localStorage)
+
+var rfq = new menuItem({
+      id_path: 'procura002i',
+      name: 'RFQ',
+      url: '/procura/rfq',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
+var procura = new menuItem({
+      id_path: 'procura001m',
+      name: 'Procura',
+      url: '/procura',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: []
+    },[
+        rfq
+      ])
 export default {
   items: [
     panelPrincipal,
@@ -222,6 +239,7 @@ export default {
     items_Reservas,
     gestionUsuario,
     cargaDatos,
+    procura,
     // {
     //   divider: true
     // },

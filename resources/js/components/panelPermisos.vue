@@ -175,77 +175,90 @@
 <template>
 	<div class="bodycontainer">
 		<div class="tablaroles">
-		<el-table
-		fit
-		:data="roles"
-		ref='tablaRoles'
-		highlight-current-row
-		@current-change="changeRoleSelection">
-			<el-table-column
-			prop="display_name"
-			label="Rol"
-			min-width="100">
-			</el-table-column>
-		</el-table>
+			<el-table
+				fit
+				:data="roles"
+				ref='tablaRoles'
+				highlight-current-row
+				@current-change="changeRoleSelection">
+				<el-table-column
+				prop="display_name"
+				label="Rol"
+				min-width="100">
+				</el-table-column>
+			</el-table>
 		</div>
 		<template v-for="permiso in rutas.rutasTree">
 			<br>
 		</template>
 		<div class="treeRutas">
-			<div class="buttonsUpdateTree">
+			<div class="buttonsUpdateTree l_radiusBorder">
 				<el-button
-				@click="updateCRUD()"
-				icon="el-icon-view"
-				  type="primary"
-				  :disabled="this.editableRutas"
-				  size="mini">
-				  Ver permisos
+					@click="updateCRUD()"
+					icon="el-icon-view"
+					type="primary"
+					:disabled="this.editableRutas"
+					size="mini">
+					Ver permisos
 				</el-button>
 				<el-button
-				@click="updateRUTAS"
-				icon="el-icon-edit"
-				  :disabled="this.editableRutas"
-				  type="primary"
-				  size="mini">
-				  Editar accesos
+					@click="updateRUTAS"
+					icon="el-icon-edit"
+					:disabled="this.editableRutas"
+					type="primary"
+					size="mini">
+					Editar accesos
 				</el-button>
 				<el-button
-				@click="sendCHANGES"
-				icon="el-icon-refresh"
-				  :disabled="!this.editableRutas"
-				  type="primary"
-				  size="mini">
-				  Actualizar accesos
+					@click="sendCHANGES"
+					icon="el-icon-refresh"
+					:disabled="!this.editableRutas"
+					type="primary"
+					size="mini">
+					Actualizar accesos
 				</el-button>
 			</div>
 			<el-tree
-			v-if="this.rolesTemp"
-			show-checkbox
-			ref = "treeRutas"
-			@check-change="checkChangeRuta"
-			:check-strictly="true"
-			:default-checked-keys = "getCheckedKeys()"
-			:highlight-current = "true"
-			:data                 = "rutas.rutasTree"
-			node-key              = "ruta_id"
-			:props                = "defaultProps">
+				v-if="this.rolesTemp"
+				show-checkbox
+				ref = "treeRutas"
+				@check-change="checkChangeRuta"
+				:check-strictly="true"
+				:default-checked-keys = "getCheckedKeys()"
+				:highlight-current = "true"
+				:data                 = "rutas.rutasTree"
+				node-key              = "ruta_id"
+				:props                = "defaultProps">
 			</el-tree>
 		</div>
 	</div>
 </template>
 <style lang="scss">
+.l_radiusBorder{
+	border-radius: 5px;
+}
 .bodycontainer{
 	display         : flex;
 	flex-direction  : row;
 	flex-wrap       : nowrap;
 	justify-content : space-between;
 	.buttonsUpdateTree{
-		background-color: white;
-		padding: 5px 3px;
+		background-color: #007CC2;
+		padding: 4px 4px;
 		display         : flex;
 		flex-direction  : row;
 		flex-wrap       : nowrap;
 		justify-content : flex-end;
+		.el-button--primary {
+		    color: #FEF7ED !important;
+		    background-color: #175291 !important;
+		    border-color: #FEF7ED !important;
+		}
+		.is-disabled{
+			color: #FEF7ED !important;
+			background-color: #73B7DD!important;
+			border-color: #FEF7ED !important;
+		}
 	}
 	.customTreeNode{
 		display         : flex;
@@ -268,9 +281,41 @@
 	.treeRutas{
 		width          : 70%;
 		margin-left    : 10px;
+		.el-tree{
+			border-radius: 5px;
+			margin-top: 5px;
+			.el-tree-node__label{
+			font-family: 'Roboto';	
+			}
+
+			.is-expanded{
+				.el-tree-node {
+					border-radius: 5px;
+			    	color: #007CC2 !important;
+					background-color: rgba(0,124,194,0.2) !important;
+					margin: 1px 1px;
+				}
+			}
+			.el-tree-node:focus>.el-tree-node__content {
+			    background-color: #007CC2 !important;
+			    color: #D9D9DB !important;
+				border-radius: 5px;
+
+			}
+		}
+
 	}
 	.tablaroles{
 		width          : 30%;
+		.el-table {
+		    border-radius: 5px;
+		    .el-table__header{
+		    	th{
+	    		    background-color: #007CC2;
+    		        color: #FEF7ED;
+		    	}
+		    }
+		}
 	}
 	.cell{
 		display        : inline-block;
@@ -287,7 +332,7 @@
 	padding-bottom : 0.5vh !important;
 	padding-left   : 2px !important;
 	padding-right  : 2px !important;
-	font-size      : 0.8vw !important;
+	font-size      : 1vw !important;
 }
 
 label{
