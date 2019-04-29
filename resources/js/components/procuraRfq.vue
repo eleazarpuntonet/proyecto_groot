@@ -11,10 +11,10 @@
 
 	export default {
 			data () {
-					return {
-						formRFQ : {},
-						formEMP : {}
-					}
+				return {
+					formRFQ : {},
+					formEMP : {},
+				}
 		},
 		computed : {},
 		watch    : {},
@@ -56,7 +56,7 @@
 							<el-input
 								placeholder="Descripcion"
 								size="small"
-								v-model="desc_corta">
+								v-model="formRFQ.desc_corta">
 							</el-input>
 						</el-form-item>
 					</div>
@@ -67,7 +67,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="marca" 
+								v-model="formRFQ.marca" 
 								clearable 
 								placeholder="Marca">
 							  <el-option
@@ -83,7 +83,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="cliente" 
+								v-model="formRFQ.cliente"
 								clearable 
 								placeholder="Cliente">
 							  <el-option
@@ -99,7 +99,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="comp_cliente" 
+								v-model="formRFQ.comp_cliente" 
 								clearable 
 								placeholder="Comprador cliente">
 							  <el-option
@@ -118,7 +118,7 @@
 							  size="small"
 							  style="width:100%" 
 							  id="fecha_recib"
-							  v-model="fecha_recibida"
+							  v-model="formRFQ.fecha_recibida"
 							  type="date"
 							  value-format="yyyy-MM-dd"
 							  placeholder="Fecha recibida">
@@ -131,7 +131,7 @@
 							  size="small"
 							  style="width:100%" 
 							  id="fecha_original"
-							  v-model="fecha_original"
+							  v-model="formRFQ.fecha_original"
 							  type="date"
 							  value-format="yyyy-MM-dd"
 							  placeholder="Fecha original">
@@ -144,7 +144,7 @@
 							  size="small"
 							  style="width:100%" 
 							  id="fecha_cotizacion"
-							  v-model="fecha_cotizacion"
+							  v-model="formRFQ.fecha_cotizacion"
 							  type="date"
 							  value-format="yyyy-MM-dd"
 							  placeholder="Fecha cotizacion">
@@ -157,7 +157,7 @@
 							  size="small"
 							  style="width:100%" 
 							  id="fecha_extendida"
-							  v-model="fecha_extendida"
+							  v-model="formRFQ.fecha_extendida"
 							  type="date"
 							  value-format="yyyy-MM-dd"
 							  placeholder="Fecha extendida">
@@ -171,7 +171,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="moneda" 
+								v-model="formRFQ.moneda" 
 								clearable 
 								placeholder="Moneda">
 							  <el-option
@@ -186,7 +186,7 @@
 							<div class="el_label">Estimado $</div>
 							<el-input 
 								size="small"
-								v-model="estimado_cli" 
+								v-model="formRFQ.estimado_cli" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -196,7 +196,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="status" 
+								v-model="formRFQ.status" 
 								clearable 
 								placeholder="Status">
 							  <el-option
@@ -212,7 +212,7 @@
 							<el-select 
 								style="width:100%"
 								size="small"
-								v-model="comprador_scz" 
+								v-model="formRFQ.comprador_scz" 
 								clearable 
 								placeholder="Comprador SCZ">
 							  <el-option
@@ -225,12 +225,12 @@
 					</div>
 
 					<div class="form_line">
-						<el-form-item prop="comprador_scz" style="width:100%;">
+						<el-form-item prop="comentarios" style="width:100%;">
 							<el-input
 							  type="textarea"
 							  :rows="5"
 							  placeholder="Comentarios"
-							  v-model="comentarios">
+							  v-model="formRFQ.comentarios">
 							</el-input>
 						</el-form-item>
 					</div>
@@ -242,7 +242,7 @@
 							<el-input 
 								placeholder="Total items"
 								size="small"
-								v-model="total_items" 
+								v-model="formRFQ.total_items" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -251,7 +251,7 @@
 							<el-input 
 								placeholder="Cotizados"
 								size="small"
-								v-model="cotizados" 
+								v-model="formRFQ.cotizados"  
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -260,7 +260,7 @@
 							<el-input 
 								placeholder="Por cotizar"
 								size="small"
-								v-model="por_cotizar" 
+								v-model="formRFQ.por_cotizar" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -271,7 +271,7 @@
 							<el-input 
 								placeholder="% Avance"
 								size="small"
-								v-model="avance" 
+								v-model="formRFQ.avance" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -280,7 +280,7 @@
 							<el-input 
 								placeholder="RFI"
 								size="small"
-								v-model="rfi" 
+								v-model="formRFQ.rfi" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -291,7 +291,7 @@
 							<el-input 
 								placeholder="Total $"
 								size="small"
-								v-model="total_cotizacion" 
+								v-model="formRFQ.total_cotizacion" 
 								:disabled="false">
 								<template slot="prepend">Total $</template>
 							</el-input>
@@ -301,7 +301,7 @@
 							<el-input 
 								placeholder="Otros costos"
 								size="small"
-								v-model="otros_costos" 
+								v-model="formRFQ.otros_costos" 
 								:disabled="false">
 							</el-input>
 						</el-form-item>
@@ -309,7 +309,7 @@
 					<div class="form_line">
 						<div style="width:50%; text-align: center;">
 							<el-checkbox 
-								v-model="checked">Proceso de Comercial?
+								v-model="formRFQ.proc_comercialCheck">Proceso de Comercial?
 							</el-checkbox>
 						</div>
 						<div style="width:50%; text-align: center;">
@@ -361,7 +361,7 @@
 				  				<el-select 
 				  					style="width:100%"
 				  					size="small"
-				  					v-model="empresa" 
+				  					v-model="formEMP.empresa" 
 				  					clearable>
 				  				  <el-option
 				  				    key="item.value"
@@ -374,7 +374,7 @@
 				  			<el-form-item prop="n_peticion" style="width:10%;">
 				  				<el-input 
 				  					size="small"
-				  					v-model="n_peticion" 
+				  					v-model="formEMP.n_peticion" 
 				  					:disabled="false">
 				  				</el-input>
 				  			</el-form-item>
@@ -382,7 +382,7 @@
 				  			<el-form-item prop="profit" style="width:10%;">
 				  				<el-input 
 				  					size="small"
-				  					v-model="profit" 
+				  					v-model="formEMP.profit" 
 				  					:disabled="false">
 				  				</el-input>
 				  			</el-form-item>
@@ -390,7 +390,7 @@
 				  			<el-form-item prop="total_venta" style="width:10%;">
 				  				<el-input 
 				  					size="small"
-				  					v-model="total_venta" 
+				  					v-model="formEMP.total_venta" 
 				  					:disabled="false">
 				  				</el-input>
 				  			</el-form-item>
@@ -418,7 +418,7 @@
 				  			<el-form-item prop="total_venta" style="width:35%;">
 				  				<el-input 
 				  					size="small"
-				  					v-model="total_venta" 
+				  					v-model="formEMP.total_venta" 
 				  					:disabled="false">
 				  				</el-input>
 				  			</el-form-item>
