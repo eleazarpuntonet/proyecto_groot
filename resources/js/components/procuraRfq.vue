@@ -29,7 +29,7 @@
 	<div class="RFQView">
 		<el-form ref="formularioProcuraRFQ" :model="formRFQ">
 			<div class="formContainer">
-				<div class="rightSideForm">
+				<div class="rightSideForm l_radiusBorder">
 					<div class="form_line">
 						<el-form-item prop="proceso" style="width:30%;">
 							<div class="el_label">Proceso</div>
@@ -235,7 +235,7 @@
 						</el-form-item>
 					</div>
 				</div>
-				<div class="leftSideForm">
+				<div class="leftSideForm l_radiusBorder">
 					<div class="form_line">
 						<el-form-item prop="total_items" style="width:33%;">
 							<div class="el_label">Total items</div>
@@ -350,7 +350,7 @@
 		</el-form>
 
 		<el-form ref="formularioEmpresas" :model="formEMP">
-			<div class="form_line formEmpresas">
+			<div class="form_line formEmpresas l_radiusBorder">
 				<el-table
 					empty-text="Aun no se ha agregado ninguna empresa"
 				  	:data="tableData"
@@ -472,6 +472,12 @@
 	</div>
 </template>
 <style lang="scss">
+.l_radiusBorder{
+	border-radius: 5px;
+    box-shadow: 4px 4px 5px -3px rgba(35,31,32,0.5);
+    margin: 5px 5px;
+    padding: 0 5px;
+}
 .RFQView{
 	.el-table__empty-block {
 	    display: none !important;	
@@ -482,9 +488,15 @@
 		width: 100%;
 		.rightSideForm{
 			width: 60%;
+    		background-color: #EBEAEA;
 		}
 		.leftSideForm{
 			width: 40%;
+			padding: 0 5px;
+			background-color: #BCBEC0;
+			.el-table{
+				border-radius: 5px !important;
+			}
 		}
 		.el-table td, .el-table th {
 			font-size: 12px !important;
@@ -502,6 +514,10 @@
 		}
 	}
 	.formEmpresas{
+    	background-color: #EBEAEA;
+    	.el-table{
+    		border-radius: 5px !important;
+    	}
 		.el-table td, .el-table th {
 			font-size: 12px !important;
 		    padding: 0px 0 !important;
