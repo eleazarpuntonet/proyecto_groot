@@ -151,3 +151,25 @@ export function sendPermisosActualizados(val){
     })
   })
 }
+
+export function getDepartamentos(){
+  return new Promise((res,rej)=>{
+    axios.get(route('gerencias.index')) 
+    .then(response => {
+      res(response.data)
+    }).catch(error => {
+      rej(error)
+    })
+  })
+}
+export function getUsuarios(){
+  return new Promise((res,rej)=>{
+    axios.get(route('usuarios.index')) 
+        .then(response => {
+          res(response.data)
+          })
+        .catch(error => {
+          rej(error)
+        })
+  })
+}

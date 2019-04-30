@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins|Roboto:200);@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto);@font-face {
+@import url(https://fonts.googleapis.com/css?family=Poppins|Roboto:200,bold);@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto);@font-face {
   font-family: 'Eurostile LTS Demi';
   src: url(/fonts/EurostileLTStd-Demi.otf?8d4cfe95d8cc272c346bccedaf909230) format("opentype");
 }
@@ -46,6 +46,40 @@
 @font-face {
   font-family: 'HelveticaNeue Bold';
   src: url(/fonts/HelveticaNeueLTStd-Hv.otf?19f8d00e507858a750cc961c7e45562c) format("opentype");
+}
+
+:root {
+  --farmbackregular: #EBEAEA;
+  --farmbackdark: #BCBEC0;
+}
+
+.l_radiusBorder {
+  border-radius: 5px;
+  -webkit-box-shadow: 4px 4px 5px -3px rgba(35, 31, 32, 0.5);
+          box-shadow: 4px 4px 5px -3px rgba(35, 31, 32, 0.5);
+  margin: 5px 5px;
+  padding: 0 5px;
+}
+
+.el_label {
+  padding-top: 8px;
+  padding-bottom: 0px;
+  line-height: 1vw;
+  font-size: .7vw;
+  font-family: 'Eurostile LTS';
+}
+
+.form_line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 /*!

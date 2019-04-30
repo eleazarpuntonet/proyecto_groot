@@ -28,6 +28,9 @@
 <template>
 	<div class="RFQView">
 		<el-form ref="formularioProcuraRFQ" :model="formRFQ">
+			<div class="topSideForm l_radiusBorder">
+				PR19-12
+			</div>
 			<div class="formContainer">
 				<div class="rightSideForm l_radiusBorder">
 					<div class="form_line">
@@ -472,15 +475,21 @@
 	</div>
 </template>
 <style lang="scss">
-.l_radiusBorder{
-	border-radius: 5px;
-    box-shadow: 4px 4px 5px -3px rgba(35,31,32,0.5);
-    margin: 5px 5px;
-    padding: 0 5px;
-}
 .RFQView{
 	.el-table__empty-block {
 	    display: none !important;	
+	}
+	.topSideForm{
+		width: 100%;
+		height: 40px;
+		background-color: #EBEAEA;
+		font-size: 1.9vw;
+		color: #231F20;
+		font-family: 'Roboto';
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-style: bold;
 	}
 	.formContainer{
 		display: flex;

@@ -1,141 +1,3 @@
-<template>
-	<div class="rowcentercontainer">
-		<b-card no-body class="appblur">
-		  <b-card-header >
-		  </b-card-header>
-		  <b-card-body>
-		  	<el-container>
-		  	  <el-aside width="35%" class="l_aside_table" style="background-color: white;">
-		  	  	
-		  	  	<el-table
-		  	  	  :data="lista_usuarios"
-		  	  	  @row-click="row_click"
-		  	  	  style="width: 100%">
-		  	  	  <el-table-column
-		  	  	    label="Nombre"
-		  	  	    prop="user">
-		  	  	    <template slot-scope="scope">
-		  	  	      {{short_name(scope.row.name)}} {{short_lastname(scope.row.last_name)}}
-		  	  	    </template>
-		  	  	  </el-table-column>
-		  	  	  <el-table-column
-		  	  	    label="Sede"
-		  	  	    prop="sede">
-		  	  	    <template slot-scope="scope">
-		  	  	      {{deptos_(scope.row)}}
-		  	  	    </template>
-		  	  	  </el-table-column>
-		  	  	    <template slot="empty">
-		  	  	    	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
-		  	  	    	</VclTable>
-		  	  	    </template>
-		  	  	</el-table>
-
-		  	  </el-aside>
-		  	  <el-container>
-		  	    <el-header >
-		  		  	<div class="l_box_title">
-		  				<strong>Usuarios</strong> 
-		  		  		<el-button v-if="disabled_flag" @click="callImage" type="warning">Generar Firma</el-button>
-		  		  	</div>
-		  	    </el-header>
-		  	    <el-main>
-		  	    	<div class="formulario_gestion">
-		  	    		<el-form :rules="rules_" ref="user_form_" :model="user_form"  size="mini">
-		  	    			<div style="display: flex; flex-direction: row;">
-		  	    				<div class="form_line" style="width: 9vw; height: 9vw; align-items: center;"> 
-		  	    					<img
-		  	    					  src="/storage/avats/user-default.png"
-		  	    					  class="img-avatar"
-		  	    					  alt="admin@bootstrapmaster.com" />
-		  	    				</div>	
-		  	    				<div class="form_line_main">
-		  	    					<el-form-item prop="name" style="width:100%;">
-		  	    						<div class="el_label">Nombres</div>
-		  	    						<el-input v-model="user_form.name" :disabled="!editable"></el-input>
-		  	    					</el-form-item>
-
-		  	    					<el-form-item prop="last_name" style="width:100%;">
-		  	    						<div class="el_label">Apellidos</div>
-		  	    						<el-input v-model="user_form.last_name" :disabled="!editable"></el-input>
-		  	    					</el-form-item>
-		  	    				</div>
-		  	    			</div>
-
-		  	    			<div class="form_line">
-		  	    				<el-form-item prop="ci_usuario" style="width:100%;">
-		  	    					<div class="el_label">Cedula de Identidad</div>
-		  	    					<el-input v-model="user_form.ci_usuario" class="input-with-select" :disabled="!editable">
-		  	    					  <el-select v-model="user_form.ci_usuario" slot="prepend" placeholder="Nac" :disabled="!editable">
-		  	    					    <el-option label="V-" value="V-" selected></el-option>
-		  	    					    <el-option label="E-" value="E-"></el-option>
-		  	    					  </el-select>
-		  	    					</el-input>
-		  	    				</el-form-item>
-
-		  	    				<el-form-item prop="codigo_empleado" style="width:50%;">
-		  	    					<div class="el_label">Codigo de Empleado</div>
-		  	    					<el-input v-model="user_form.codigo_empleado" :disabled="!editable"></el-input>
-		  	    				</el-form-item>
-		  	    			</div>
-
-		  	    			<div class="form_line">
-		  	    				<el-form-item prop="departamento" style="width:100%;">
-		  	    					<div class="el_label">Departamento</div>
-		  	    					<el-select v-model="user_form.departamento" style="width:100%;" :disabled="!editable">
-		  	    					  <el-option
-		  	    					    v-for="item in lista_gerencias"
-		  	    					    :key="item.id"
-		  	    					    :label="item.disp_name"
-		  	    					    :value="item.id">
-		  	    					  </el-option>
-		  	    					</el-select>
-		  	    				</el-form-item>
-
-		  	    				<el-form-item prop="cargo" style="width:100%;">
-		  	    					<div class="el_label">Cargo</div>
-		  	    					<el-input v-model="user_form.cargo" :disabled="!editable"></el-input>
-		  	    				</el-form-item>
-		  	    			</div>	
-
-		  	    			<div class="form_line">
-		  	    				<el-form-item prop="email" style="width:100%;">
-		  	    					<div class="el_label">Correo de contacto</div>
-			  	    				<el-input v-model="user_form.email" class="input-with-select" size="mini" :placeholder="user_form.email" :disabled="!editable">
-			  	    				  <el-select v-model="dominio_temp"       slot="append" placeholder="Dominio" :disabled="!editable">
-				  	    				  <el-option label="@spservicesltd.uk"   value="@spservicesltd.uk" selected></el-option>
-				  	    				  <el-option label="@spservicesinc.uk" 	 value="@spservicesinc.uk"></el-option>
-			  	    				  </el-select>
-			  	    				</el-input>
-		  	    				</el-form-item>							
-							</div>
-
-		  	    			<div class="form_line">
-		  	    				<el-form-item>
-		  	    					<div class="el_label">Gestion de roles de acceso</div>
-		  	    					<el-transfer
-		  	    					  v-model="temp_roles"
-		  	    					  :data="lista_roles"
-		  	    					  size="mini"
-		  	    					  :titles="['Roles','Usuario']" :disabled="!editable">
-		  	    					</el-transfer>
-		  	    				</el-form-item>
-		  	    			</div>
-
-		  	    			<el-form-item v-if="editable">
-		  	    				<el-button type="primary" @click="submitForm('user_form_')">Enviar</el-button>
-		  	    				<el-button @click="resetForm('user_form_')">Reset</el-button>
-		  	    			</el-form-item>
-		  	    		</el-form>
-		  	    	</div>
-		  	    </el-main>
-		  	  </el-container>
-		  	</el-container>
-		  </b-card-body>
-		</b-card>
-			
-	</div>
-</template>
 <script>
 	import {VueContentLoading,VclTable} from         'vue-content-loading';
 
@@ -340,290 +202,180 @@
 	  },
 	}
 </script>
+<template>
+	<div class="usersView">
+		<div class="contRightSide l_radiusBorder">
+			<el-table
+			  :data="lista_usuarios"
+			  @row-click="row_click"
+			  style="width: 100%">
+			  <el-table-column
+			    label="Nombre"
+			    prop="user">
+			    <template slot-scope="scope">
+			      {{short_name(scope.row.name)}} {{short_lastname(scope.row.last_name)}}
+			    </template>
+			  </el-table-column>
+			  <el-table-column
+			    label="Sede"
+			    prop="sede">
+			    <template slot-scope="scope">
+			      {{deptos_(scope.row)}}
+			    </template>
+			  </el-table-column>
+			    <template slot="empty">
+			    	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
+			    	</VclTable>
+			    </template>
+			</el-table>
+		</div>
+		<div style="display: flex; flex-direction: column; width: 65%;">
+			<div class="topSideForm l_radiusBorder">
+				Usuarios
+			</div>
+			<div class="contLeftSide l_radiusBorder">
+				<el-form :rules="rules_" ref="user_form_" :model="user_form"  size="mini" style="width: 100%;">
+					<div style="display: flex; flex-direction: row;">
+						<div class="form_line" style="width: 9vw; height: 9vw; align-items: center;"> 
+							<img
+							  src="/storage/avats/user-default.png"
+							  class="img-avatar"
+							  alt="admin@bootstrapmaster.com" />
+						</div>	
+						<div class="form_line_main">
+							<el-form-item prop="name" style="width:100%;">
+								<div class="el_label">Nombres</div>
+								<el-input v-model="user_form.name" :disabled="!editable"></el-input>
+							</el-form-item>
 
+							<el-form-item prop="last_name" style="width:100%;">
+								<div class="el_label">Apellidos</div>
+								<el-input v-model="user_form.last_name" :disabled="!editable"></el-input>
+							</el-form-item>
+						</div>
+					</div>
+
+					<div class="form_line">
+						<el-form-item prop="ci_usuario" style="width:100%;">
+							<div class="el_label">Cedula de Identidad</div>
+							<el-input v-model="user_form.ci_usuario" class="input-with-select" :disabled="!editable">
+							  <el-select v-model="user_form.ci_usuario" slot="prepend" placeholder="Nac" :disabled="!editable">
+							    <el-option label="V-" value="V-" selected></el-option>
+							    <el-option label="E-" value="E-"></el-option>
+							  </el-select>
+							</el-input>
+						</el-form-item>
+
+						<el-form-item prop="codigo_empleado" style="width:50%;">
+							<div class="el_label">Codigo de Empleado</div>
+							<el-input v-model="user_form.codigo_empleado" :disabled="!editable"></el-input>
+						</el-form-item>
+					</div>
+
+					<div class="form_line">
+						<el-form-item prop="departamento" style="width:100%;">
+							<div class="el_label">Departamento</div>
+							<el-select v-model="user_form.departamento" style="width:100%;" :disabled="!editable">
+							  <el-option
+							    v-for="item in lista_gerencias"
+							    :key="item.id"
+							    :label="item.disp_name"
+							    :value="item.id">
+							  </el-option>
+							</el-select>
+						</el-form-item>
+
+						<el-form-item prop="cargo" style="width:100%;">
+							<div class="el_label">Cargo</div>
+							<el-input v-model="user_form.cargo" :disabled="!editable"></el-input>
+						</el-form-item>
+					</div>	
+
+					<div class="form_line">
+						<el-form-item prop="email" style="width:100%;">
+							<div class="el_label">Correo de contacto</div>
+							<el-input v-model="user_form.email" class="input-with-select" size="mini" :placeholder="user_form.email" :disabled="!editable">
+							  <el-select v-model="dominio_temp"       slot="append" placeholder="Dominio" :disabled="!editable">
+								  <el-option label="@spservicesltd.uk"   value="@spservicesltd.uk" selected></el-option>
+								  <el-option label="@spservicesinc.uk" 	 value="@spservicesinc.uk"></el-option>
+							  </el-select>
+							</el-input>
+						</el-form-item>							
+				</div>
+
+					<div class="form_line">
+						<el-form-item>
+							<div class="el_label">Gestion de roles de acceso</div>
+							<el-transfer
+							  v-model="temp_roles"
+							  :data="lista_roles"
+							  size="mini"
+							  :titles="['Roles','Usuario']" :disabled="!editable">
+							</el-transfer>
+						</el-form-item>
+					</div>
+
+					<el-form-item v-if="editable">
+						<el-button type="primary" @click="submitForm('user_form_')">Enviar</el-button>
+						<el-button @click="resetForm('user_form_')">Reset</el-button>
+					</el-form-item>
+				</el-form>
+			</div>
+		</div>
+	</div>
+</template>
 <style lang="scss">
-.LoadingAnimation{
-	padding-left: 1vh;
-	padding-right: 1vh;
-}
-.el_label{
-	padding-top: 8px;
-	padding-bottom: 0px;
-	line-height: 1vw;
-	font-size: .7vw;
-	font-family: 'Eurostile LTS';
-}
-.formulario_gestion{
-	width: 100%;
-}
-.form_line{
+.usersView{
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-}
-.form_line_main{
-	padding-left: 30px;
+	flex-direction:row;
 	width: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.el-checkbox__label{
-	padding-top: 2px;
-	padding-bottom: 0px;
-	line-height: 1vw;
-	font-size: .7vw;
-	font-family: 'Eurostile LTS';
-}
-.el-checkbox .el-checkbox__label{
-	font-size: .8vw !important;
-}
-.el-checkbox__label span{
-	font-size: .8vw !important;
-}
-.el-transfer-panel{
-	width: 18vw !important;
-}
-.el-transfer__buttons{
-  	padding: 0 5px !important;
-}
-.el-input-group__append{
-	width: 30% !important;
-}
-
-
-
-
-$unitHeight : 90px;
-	#printSheet{
-		padding: 2cm;
-		background-color: white;
-		width: 215.9mm;
-		height: 279.4 mm;
-		.sheetHeader{
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			height: $unitHeight;
-			line-height: $unitHeight;
-			background-color: rgba(0, 0, 255, .5);
-			.iconMain{
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				img{
-					margin: 15px;
-				}
-			}
-			.headerBody{
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				text-indent: center;
-				span{
-					display: inline-block;
-					vertical-align: middle;
-					line-height: normal;
-				}
-				.boxname{
-					height: 60%;
-					line-height: inherit;
-					span{
-						font-family: 'Raleway', sans-serif;
-						font-size: 1.5rem;
-					}
-				}
-				.boxlabel{
-					height: 40%;
-					line-height: initial;
-					span{
-						font-size: .5rem;
-						font-family: 'Roboto';
-					}
-				}
-			}
-			.headerdatabox{
-				font-size: .5rem;
-				font-family: 'Roboto';
-				width: 100px;
-				background-color: rgba(255, 0, 0, .5);
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				.datarow{
-					line-height: initial;
-				}
-				span{
-					font-size: .5rem;
-					font-family: 'Roboto';
-				}
-			}
+	.form_line_main{
+		width: 100%;
+	    margin: 0 20px;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	}
+	.topSideForm{
+		width: 100%;
+		height: 40px;
+		background-color: #EBEAEA;
+		font-size: 1.9vw;
+		color: #231F20;
+		font-family: 'Roboto';
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		font-style: bold;
+	}
+	.contRightSide{
+		width: 35%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		background-color: #EBEAEA;
+		.el-table{
+			border-radius: 5px !important;
+			margin-top: 5px;
 		}
-	}			
-	// @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
-	.l_box_title{
-			text-align:center;
-			font-family: 'Raleway', sans-serif;
-			font-size: 1.4em;
-			display: flex;
-			flex-direction: column;
-		strong{
-			text-transform: capitalize;
-			font-size: 2em;
-			line-height:1em;
+		.el-table td, .el-table th {
+			font-size: 12px !important;
+		    padding: 0px 0 !important;
+		    min-width: 0;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    text-overflow: ellipsis;
+		    vertical-align: middle;
+		    position: relative;
+		    text-align: left;
 		}
 	}
-
-	.autori{
-		margin: 5px;
-	}
-	.notif_section{
+	.contLeftSide{
+		width: 100%;
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
-		font-size: 1.5em;
-		button{
-			color: white;
-			background-color: #007CC2;
-		}
-		
+		background-color: #EBEAEA;
+		padding: 10px 15px;
 	}
-	.box_notif{
-		background-color: rgba(0, 124, 194, 0.3);
-		border: 1px solid white;
-		font-family: 'Poppins', sans-serif;
-	}
-	.box_auth{
-		background-color: rgba(251, 175, 63, 0.3);
-		border: 1px solid white;
-		font-family: 'Poppins', sans-serif;
-	}
-	.box_neg{
-		background-color: rgba(208, 77, 81, 0.3);
-		border: 1px solid white;
-		font-family: 'Poppins', sans-serif;
-	}
-	#separador2{
-		height:1px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		border-bottom:1px solid white;
-	}
-	#separador1{
-		// border-left: 1px solid white; /* Border on the left */
-		width: 1px; /* Width instead of height */
-		height: 100px;
-		background-color: white;
-	}
-	.icon_box{
-		margin-top: 0px;
-		margin-left: 5px;
-		margin-right: 5px;
-	}
-	.box_data_reserv{
-		font-size: 12px;
-		.main_icon{
-			font-size: 3em;
-		}
-		.items_box{
-			margin: auto;
-			text-align: center;
-			display: flex;
-			flex-flow: column nowrap;
-			div {
-				width: 100%;
-				margin: 3px;
-			}
-			.date_text{
-				font-size: 1em;
-				letter-spacing: 1px;
-			}
-		}
-		.itemsh_box{
-			margin: auto;
-			text-align: center;
-			display: flex;
-			flex-flow: row nowrap;
-			position: relative;
-			div{
-				height: 100%;
-			}
-			p{
-				text-align: left;
-				margin-left: 5px;
-				margin-right: 5px;
-			}
-			.country{
-				font-size: 2em;
-				line-height: 2em;
-				letter-spacing: 1px;
-			}
-			.state{
-				font-size: 1.3em;
-				line-height: 2em;	
-			}
-			.item{
-				margin: auto;
-				p{
-					margin: auto;
-					line-height: 1.5em;
-				}
-			}
-			.item_icon{
-				font-size: 1.5em;
-			}
-
-		}
-		.itinerario{
-			margin-bottom: 5px;
-		}
-		.center{
-			justify-content:center !important;
-			font-size: 1.2em;
-		}
-		.box_v{
-			width: 100%;
-		}
-		.box_dep{
-			font-style: italic;
-			font-size: 1.3em;
-			line-height:1.3em;
-			display: flex; 
-			// justify-content: center; 
-			align-items: center;
-		}
-		.img_ger{
-			margin: auto;
-			padding: 0;
-			text-align: center;
-			img{
-				width: 75%;
-			}
-		}
-		.text_aut{
-			display: flex; 
-			flex-direction: column;
-			font-size: 0.8em;
-			line-height:0.9em;
-			text-align: left;
-			padding: 3px;
-			div{
-				margin-top:3px;
-				margin-bottom: 3px;
-				p{
-					// margin-bottom: 0px !important;
-				}
-			}
-			.title_ger{
-				font-size: 1.5em;
-			}
-		}
-	}
-	.box{
-		// background-color: rgba(235, 235, 235, 1);
-		// border: 1px solid white;
-		font-family: 'Poppins', sans-serif;
-	}
-
+}
 </style>

@@ -214,6 +214,7 @@
   }
 </script>
 <style lang="scss">
+
 .wall{
   height: 100%;
   padding: 10px;

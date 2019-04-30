@@ -1,7 +1,7 @@
 
 // Fonts
 $font_path: '../../public/fonts/spsfonts/';
-@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto:200');
+@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto:200,bold');
 @font-face{
   font-family       : 'Eurostile LTS Demi';
   src               : url($font_path +'EurostileLTStd-Demi.otf') format("opentype");
@@ -75,7 +75,28 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 // Variables
 @import 'variables';
-
+:root {
+  --farmbackregular: #EBEAEA;
+  --farmbackdark: #BCBEC0;
+}
+.l_radiusBorder{
+    border-radius: 5px;
+    box-shadow: 4px 4px 5px -3px rgba(35,31,32,0.5);
+    margin: 5px 5px;
+    padding: 0 5px;
+}
+.el_label{
+  padding-top: 8px;
+  padding-bottom: 0px;
+  line-height: 1vw;
+  font-size: .7vw;
+  font-family: 'Eurostile LTS';
+}
+.form_line{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // ESTILO DE BOTONES MINI
