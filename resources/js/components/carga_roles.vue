@@ -12,6 +12,7 @@
 	  		value3 : null,
 	  		checkboxGroup6: [],
 	  		editable    : false,
+	  		searchbox: null,
 	  		auth : {
 	  			roleform: auths.submit_roles,
 	  			pathform: auths.submit_paths,
@@ -197,17 +198,35 @@
 	}
 </script>
 <template>
-	<div class="rolesView">
+	<div class="rolesView ele_modelview_A">
 		<div class="contRightSide l_radiusBorder">
+			<div class="searchBox">
+				<el-input 
+					size="mini"
+					placeholder="Buscar nombre"
+					clearable 
+					v-model="searchbox">
+					<el-button 
+						slot="prepend" 
+						icon="el-icon-search">
+					</el-button>
+				</el-input>
+			</div>
 			<el-table
-			  :data      = "lista_roles"
+          	tooltip-effect="light"
+			  max-height="600"
+			  :data="lista_roles.filter(data => !searchbox || data.display_name.toLowerCase().includes(searchbox.toLowerCase()))"
+			  :default-sort = "{prop: 'display_name', order: 'ascending'}"
 			  @row-click = "role_click"
 			  style      = "width: 100%">
 			  <el-table-column
 			    label = "Role"
+            	:show-overflow-tooltip="true"
+			    sortable
 			    prop  = "display_name">
 			  </el-table-column>
 			  <el-table-column
+            	:show-overflow-tooltip="true"
 			    label = "Descripcion"
 			    prop  = "description">
 			  </el-table-column>
@@ -278,51 +297,4 @@
 	</div>
 </template>
 <style lang="scss">
-.rolesView{
-	display        : flex;
-	flex-direction : row;
-	.topSideForm{
-		width            : 100%;
-		height           : 40px;
-		background-color : #EBEAEA;
-		font-size        : 1.9vw;
-		color            : #231F20;
-		font-family      : 'Roboto';
-		display          : flex;
-		flex-direction   : column;
-		justify-content  : center;
-		font-style       : bold;
-	}
-	.contRightSide{
-		display          : flex;
-		width            : 35%;
-		flex-direction   : column;
-		justify-content  : flex-start;
-		background-color : #EBEAEA;
-		.el-table{
-			border-radius      : 5px !important;
-			margin-top         : 5px;
-		}
-		.el-table td, .el-table th {
-			font-size          : 12px !important;
-			padding            : 0px 0 !important;
-			min-width          : 0;
-			-webkit-box-sizing : border-box;
-			box-sizing         : border-box;
-			text-overflow      : ellipsis;
-			vertical-align     : middle;
-			position           : relative;
-			text-align         : left;
-		}
-	}
-	.contLeftSide{
-		display          : flex;
-		width            : 100%;
-		width            : 100%;
-		display          : flex;
-		flex-direction   : row;
-		background-color : #EBEAEA;
-
-	}
-}
 </style>

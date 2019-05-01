@@ -1,7 +1,7 @@
 
 // Fonts
 $font_path: '../../public/fonts/spsfonts/';
-@import url('https://fonts.googleapis.com/css?family=Poppins|Roboto:200,bold');
+@import url('https://fonts.googleapis.com/css?family=Bitter:400,700|Lato|Merriweather+Sans:400,700|Open+Sans:400,700|PT+Sans:400,700|Roboto:300,400|Rokkitt:400,700|Source+Sans+Pro:300,400,700');
 @font-face{
   font-family       : 'Eurostile LTS Demi';
   src               : url($font_path +'EurostileLTStd-Demi.otf') format("opentype");
@@ -89,14 +89,68 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
   padding-top: 8px;
   padding-bottom: 0px;
   line-height: 1vw;
-  font-size: .7vw;
-  font-family: 'Eurostile LTS';
+  font-size: 1vw;
+  // font-family: 'Eurostile LTS';
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .form_line{
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+.ele_modelview_A{
+  display        : flex;
+  flex-direction : row;
+  .topSideForm{
+    width: 100%;
+    height: 40px;
+    background-color: #002E47;
+    font-size: 2vw;
+    color: white;
+    text-shadow: 1px 1px 3px #231F20;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-style: bold;
+  }
+  .contRightSide{
+    display          : flex;
+    width            : 35%;
+    flex-direction   : column;
+    justify-content  : flex-start;
+    background-color : #EBEAEA;
+    .searchBox{
+      margin-top: 5px;
+    }
+    .el-table{
+      border-radius      : 5px !important;
+      margin-top         : 5px;
+    }
+    .el-table td, .el-table th {
+      font-size          : 12px !important;
+      padding            : 0px 0 !important;
+      min-width          : 0;
+      -webkit-box-sizing : border-box;
+      box-sizing         : border-box;
+      text-overflow      : ellipsis;
+      vertical-align     : middle;
+      position           : relative;
+      text-align         : left;
+    }
+  }
+  .contLeftSide{
+    display          : flex;
+    width            : 100%;
+    width            : 100%;
+    display          : flex;
+    flex-direction   : row;
+    background-color : #EBEAEA;
+
+  }
+}
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // ESTILO DE BOTONES MINI

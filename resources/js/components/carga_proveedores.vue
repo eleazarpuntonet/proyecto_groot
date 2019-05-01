@@ -1,163 +1,3 @@
-<template>
-	<div class="proveedoresView">
-		<div class="contRightSide l_radiusBorder">
-			<el-table
-			  :data="lista_proveedores"
-			  style="width: 100%">
-			  <el-table-column
-			    label="Nombre"
-			    prop="nombre">
-			  </el-table-column>
-			  <el-table-column
-			    label="Pais"
-			    prop="pais">
-			  </el-table-column>
-			  <el-table-column
-			    label="Rif"
-			    prop="rif">
-			  </el-table-column>
-			  <template slot="empty">
-			  	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
-			  	</VclTable>
-			  </template>
-			</el-table>	
-		</div>
-		<div style="display: flex; flex-direction: column; width: 65%;">
-			<div class="topSideForm l_radiusBorder">
-				Proveedores
-			</div>
-			<div class="contLeftSide l_radiusBorder">
-				<el-form :rules="rules_proveedores" ref="proveedores_form" :model="proveedores_form_"  size="mini" style="width: 100%">
-					<div class="form_line">
-						<el-form-item prop="nombre" style="width:35%;">
-							<div class="el_label">Nombre</div>
-							<el-input v-model="proveedores_form_.nombre" ></el-input>
-						</el-form-item>
-
-						<el-form-item prop="r_social" style="width:35%;">
-							<div class="el_label">Razon social</div>
-							<el-input v-model="proveedores_form_.r_social" ></el-input>
-						</el-form-item>
-
-						<el-form-item prop="rif" style="width:30%;">
-							<div class="el_label">Rif</div>
-							<el-input v-model="proveedores_form_.rif" class="input-with-select">
-							  <el-select v-model="proveedores_form_.rif" slot="prepend" placeholder="Nac">
-							    <el-option label="J-" value="J-" selected></el-option>
-							    <el-option label="E-" value="E-"></el-option>
-							  </el-select>
-							</el-input>
-						</el-form-item>
-					</div>
-
-					<div class="form_line">
-						<el-form-item prop="t_contribuyente" style="width:30%;">
-							<div class="el_label">Tipo de contribuyente</div>
-							<el-select v-model="proveedores_form_.t_contribuyente" placeholder="Contribuyente">
-							  <el-option label="Ordinario" value="Ordinario" selected></el-option>
-							  <el-option label="Formal" value="Formal"></el-option>
-							  <el-option label="Especial" value="Especial"></el-option>
-							</el-select>
-						</el-form-item>
-
-						<el-form-item prop="pais" style="width:30%;">
-							<div class="el_label">Pais</div>
-							<el-select v-model="proveedores_form_.pais" placeholder="Pais">
-							  <el-option label="Venezuela" value="Venezuela," selected></el-option>
-							  <el-option label="Otro" value="Otro"></el-option>
-							</el-select>
-						</el-form-item>
-
-						<el-form-item prop="dir" style="width:70%;">
-							<div class="el_label">Direccion</div>
-							<el-input v-model="proveedores_form_.dir" :disabled="(!proveedores_form_.pais)?true:false">
-							</el-input>
-						</el-form-item>
-					</div>
-
-
-					<el-button 
-						:class="(tmp_contact || tmp_extra)?'no_visible':'nada'"
-						@click="_contact(true)"
-						size="mini" 
-						type="primary" 
-						icon="el-icon-circle-plus">Agregar contacto
-					</el-button>
-
-					<el-button 
-						:class="(tmp_extra || tmp_contact)?'no_visible':'nada'"
-						@click="_extra(true)"
-						size="mini" 
-						type="primary" 
-						icon="el-icon-circle-plus">Agregar informacion extra
-					</el-button>
-
-
-				<template v-if="tmp_contact">
-						<div class="form_line">
-							<el-form-item prop="contacto" style="width:50%;">
-								<div class="el_label">Nombre</div>
-								<el-input v-model="contactos_form_.nombre">
-								</el-input>
-							</el-form-item>
-							<el-form-item prop="contacto" style="width:50%;">
-								<div class="el_label">Descripcion</div>
-								<el-input v-model="contactos_form_.descripcion">
-								</el-input>
-							</el-form-item>
-					</div>
-
-						<div class="form_line">
-							<el-form-item prop="contacto" style="width:100%;">
-								<div class="el_label">Datos de contacto</div>
-			    				<el-input v-model="contactos_form_.value" class="input-with-select" size="mini" :placeholder="contactos_form_.medio">
-			    				  <el-select v-model="contactos_form_.medio"       slot="prepend" placeholder="Medio de contacto">
-				    				  <el-option label="Correo"         value="Correo">         </el-option>
-				    				  <el-option label="Telefono" 		value="Telefono"> 		</el-option>
-				    				  <el-option label="Whatsapp"       value="Whatsapp">       </el-option>
-				    				  <el-option label="Skype"          value="Skype">          </el-option>
-			    				  </el-select>
-			    				  <el-button @click="add_contact()" slot="append" icon="el-icon-check" class="cn_buttonadd"></el-button>
-			    				</el-input>
-							</el-form-item>
-						</div>
-				</template>
-
-
-				<template v-if="tmp_extra">
-						<div class="form_line">
-							<el-form-item prop="contacto" style="width:100%;">
-								<div class="el_label">Informacion Extra</div>
-			  	    			<div class="form_line">
-			  	    				<el-form-item prop="contacto" style="width:100%;">
-			  	    					<div class="el_label">Descripcion</div>
-			  	    					<el-input v-model="extra_form.data" placeholder="Detalles ">
-			  	    						<el-select
-			  	    							slot="prepend"
-			  	    						  	v-model="extra_form.key"
-			  	    						  	filterable
-			  	    						  	allow-create
-			  	    						  	placeholder="Tipo">
-			  	    						  	<el-option label="Nuevo" value="Nuevo"></el-option>
-			  	    						</el-select>
-			  	    						<el-button @click="add_extra()" slot="append" icon="el-icon-check" class="cn_buttonadd"></el-button>
-			  	    					</el-input>
-			  	    				</el-form-item>
-								</div>
-							</el-form-item>
-						</div>
-				</template>
-
-				<el-form-item v-if="true">
-					<el-button size="mini" type="primary" @click="submitForm('proveedores_form')">Enviar</el-button>
-					<el-button size="mini" @click="resetForm('proveedores_form')">Reset</el-button>
-				</el-form-item>
-				</el-form>	
-			</div>
-		</div>
-
-	</div>
-</template>
 <script>
 	import {VueContentLoading,VclTable} from         'vue-content-loading';
 	class InfoExtra{
@@ -321,53 +161,167 @@
 	  },
 	}
 </script>
+<template>
+	<div class="proveedoresView ele_modelview_A">
+		<div class="contRightSide l_radiusBorder">
+			<el-table
+				max-height="600"
+			  :data="lista_proveedores"
+			  style="width: 100%">
+			  <el-table-column
+			    label="Nombre"
+			    prop="nombre">
+			  </el-table-column>
+			  <el-table-column
+			    label="Pais"
+			    prop="pais">
+			  </el-table-column>
+			  <el-table-column
+			    label="Rif"
+			    prop="rif">
+			  </el-table-column>
+			  <template slot="empty">
+			  	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
+			  	</VclTable>
+			  </template>
+			</el-table>	
+		</div>
+		<div style="display: flex; flex-direction: column; width: 65%;">
+			<div class="topSideForm l_radiusBorder">
+				Proveedores
+			</div>
+			<div class="contLeftSide l_radiusBorder">
+				<el-form :rules="rules_proveedores" ref="proveedores_form" :model="proveedores_form_"  size="mini" style="width: 100%">
+					<div class="form_line">
+						<el-form-item prop="nombre" style="width:35%;">
+							<div class="el_label">Nombre</div>
+							<el-input v-model="proveedores_form_.nombre" ></el-input>
+						</el-form-item>
 
+						<el-form-item prop="r_social" style="width:35%;">
+							<div class="el_label">Razon social</div>
+							<el-input v-model="proveedores_form_.r_social" ></el-input>
+						</el-form-item>
+
+						<el-form-item prop="rif" style="width:30%;">
+							<div class="el_label">Rif</div>
+							<el-input v-model="proveedores_form_.rif" class="input-with-select">
+							  <el-select v-model="proveedores_form_.rif" slot="prepend" placeholder="Nac">
+							    <el-option label="J-" value="J-" selected></el-option>
+							    <el-option label="E-" value="E-"></el-option>
+							  </el-select>
+							</el-input>
+						</el-form-item>
+					</div>
+
+					<div class="form_line">
+						<el-form-item prop="t_contribuyente" style="width:30%;">
+							<div class="el_label">Tipo de contribuyente</div>
+							<el-select v-model="proveedores_form_.t_contribuyente" placeholder="Contribuyente">
+							  <el-option label="Ordinario" value="Ordinario" selected></el-option>
+							  <el-option label="Formal" value="Formal"></el-option>
+							  <el-option label="Especial" value="Especial"></el-option>
+							</el-select>
+						</el-form-item>
+
+						<el-form-item prop="pais" style="width:30%;">
+							<div class="el_label">Pais</div>
+							<el-select v-model="proveedores_form_.pais" placeholder="Pais">
+							  <el-option label="Venezuela" value="Venezuela," selected></el-option>
+							  <el-option label="Otro" value="Otro"></el-option>
+							</el-select>
+						</el-form-item>
+
+						<el-form-item prop="dir" style="width:70%;">
+							<div class="el_label">Direccion</div>
+							<el-input v-model="proveedores_form_.dir" :disabled="(!proveedores_form_.pais)?true:false">
+							</el-input>
+						</el-form-item>
+					</div>
+
+
+					<el-button 
+						:class="(tmp_contact || tmp_extra)?'no_visible':'nada'"
+						@click="_contact(true)"
+						size="mini" 
+						type="primary" 
+						icon="el-icon-circle-plus">Agregar contacto
+					</el-button>
+
+					<el-button 
+						:class="(tmp_extra || tmp_contact)?'no_visible':'nada'"
+						@click="_extra(true)"
+						size="mini" 
+						type="primary" 
+						icon="el-icon-circle-plus">Agregar informacion extra
+					</el-button>
+
+
+				<template v-if="tmp_contact">
+						<div class="form_line">
+							<el-form-item prop="contacto" style="width:50%;">
+								<div class="el_label">Nombre</div>
+								<el-input v-model="contactos_form_.nombre">
+								</el-input>
+							</el-form-item>
+							<el-form-item prop="contacto" style="width:50%;">
+								<div class="el_label">Descripcion</div>
+								<el-input v-model="contactos_form_.descripcion">
+								</el-input>
+							</el-form-item>
+					</div>
+
+						<div class="form_line">
+							<el-form-item prop="contacto" style="width:100%;">
+								<div class="el_label">Datos de contacto</div>
+			    				<el-input v-model="contactos_form_.value" class="input-with-select" size="mini" :placeholder="contactos_form_.medio">
+			    				  <el-select v-model="contactos_form_.medio"       slot="prepend" placeholder="Medio de contacto">
+				    				  <el-option label="Correo"         value="Correo">         </el-option>
+				    				  <el-option label="Telefono" 		value="Telefono"> 		</el-option>
+				    				  <el-option label="Whatsapp"       value="Whatsapp">       </el-option>
+				    				  <el-option label="Skype"          value="Skype">          </el-option>
+			    				  </el-select>
+			    				  <el-button @click="add_contact()" slot="append" icon="el-icon-check" class="cn_buttonadd"></el-button>
+			    				</el-input>
+							</el-form-item>
+						</div>
+				</template>
+
+
+				<template v-if="tmp_extra">
+						<div class="form_line">
+							<el-form-item prop="contacto" style="width:100%;">
+								<div class="el_label">Informacion Extra</div>
+			  	    			<div class="form_line">
+			  	    				<el-form-item prop="contacto" style="width:100%;">
+			  	    					<div class="el_label">Descripcion</div>
+			  	    					<el-input v-model="extra_form.data" placeholder="Detalles ">
+			  	    						<el-select
+			  	    							slot="prepend"
+			  	    						  	v-model="extra_form.key"
+			  	    						  	filterable
+			  	    						  	allow-create
+			  	    						  	placeholder="Tipo">
+			  	    						  	<el-option label="Nuevo" value="Nuevo"></el-option>
+			  	    						</el-select>
+			  	    						<el-button @click="add_extra()" slot="append" icon="el-icon-check" class="cn_buttonadd"></el-button>
+			  	    					</el-input>
+			  	    				</el-form-item>
+								</div>
+							</el-form-item>
+						</div>
+				</template>
+
+				<el-form-item v-if="true">
+					<el-button size="mini" type="primary" @click="submitForm('proveedores_form')">Enviar</el-button>
+					<el-button size="mini" @click="resetForm('proveedores_form')">Reset</el-button>
+				</el-form-item>
+				</el-form>	
+			</div>
+		</div>
+
+	</div>
+</template>
 <style lang="scss">
-	.proveedoresView{
-		display: flex;
-		flex-direction: row;
-		.topSideForm{
-			width: 100%;
-			height: 40px;
-			background-color: #EBEAEA;
-			font-size: 1.9vw;
-			color: #231F20;
-			font-family: 'Roboto';
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			font-style: bold;
-		}
-		.contRightSide{
-			display: flex;
-			width: 35%;
-			flex-direction: column;
-			justify-content: flex-start;
-			background-color: #EBEAEA;
-			.el-table{
-				border-radius: 5px !important;
-				margin-top: 5px;
-			}
-			.el-table td, .el-table th {
-				font-size: 12px !important;
-			    padding: 0px 0 !important;
-			    min-width: 0;
-			    -webkit-box-sizing: border-box;
-			    box-sizing: border-box;
-			    text-overflow: ellipsis;
-			    vertical-align: middle;
-			    position: relative;
-			    text-align: left;
-			}
-		}
-		.contLeftSide{
-			display: flex;
-			width: 100%;
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			background-color: #EBEAEA;
 
-		}
-	}
 </style>

@@ -562,12 +562,11 @@
 
 }
 .el_label{
-	padding-left: 3px;
-	padding-top: 8px;
-	padding-bottom: 0px;
-	line-height: 1vw;
-	font-size: .7vw;
-	font-family: 'Eurostile LTS';
+  padding-top: 8px;
+  padding-bottom: 0px;
+  line-height: 1vw;
+  font-size: 1vw;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 .form_line{
 	display: flex;

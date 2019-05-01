@@ -1,5 +1,8 @@
 <script>
 	import {VueContentLoading,VclTable} from         'vue-content-loading';
+	import {
+		getDepartamentos,
+	} from '../apiCalls.js'
 	export default {
 	  /*
 	  *
@@ -114,11 +117,9 @@
 		 },
 	  },
 	  beforeMount(){
-	  		  	axios.get(route('gerencias.index')) 
+	  		  	getDepartamentos() 
 	  		  	    .then(response => {
-	  		  	    	console.log(response)
-	  		  	    	this.lista_gerencias=response.data
-
+	  		  	    	this.lista_gerencias=response
 	  		  	    	ceco: "asdf"
 	  		  	    	coordinador: null
 	  		  	    	coordinador_id: null
@@ -150,19 +151,25 @@
 	}
 </script>
 <template>
-	<div class="gerenciasView">
+	<div class="gerenciasView ele_modelview_A">
 		<div class="contRightSide l_radiusBorder">
 			<el-table
 			  :data="lista_gerencias"
 			  style="width:100%"
+			  :default-sort = "{prop: 'disp_name', order: 'ascending'}"
+			  max-height="600"
 			  >
 			  <el-table-column
+			  :show-overflow-tooltip="true"
 			  	min-width="60%"
 			    label="Nombre"
+			    sortable
 			    prop="disp_name">
 			  </el-table-column>
 			  <el-table-column
+			  :show-overflow-tooltip="true"
 			  	min-width="40%"
+			  	sortable
 			    label="C. de costo"
 			    prop="ceco">
 			    <template slot-scope="scope">
@@ -269,49 +276,5 @@
 	</div>
 </template>
 <style lang="scss">
-.gerenciasView{
-	display: flex;
-	flex-direction:row;
-	width: 100%;
-	.topSideForm{
-		width: 100%;
-		height: 40px;
-		background-color: #EBEAEA;
-		font-size: 1.9vw;
-		color: #231F20;
-		font-family: 'Roboto';
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		font-style: bold;
-	}
-	.contRightSide{
-		width: 35%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		background-color: #EBEAEA;
-		.el-table{
-			border-radius: 5px !important;
-			margin-top: 5px;
-		}
-		.el-table td, .el-table th {
-			font-size: 12px !important;
-		    padding: 0px 0 !important;
-		    min-width: 0;
-		    -webkit-box-sizing: border-box;
-		    box-sizing: border-box;
-		    text-overflow: ellipsis;
-		    vertical-align: middle;
-		    position: relative;
-		    text-align: left;
-		}
-	}
-	.contLeftSide{
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		background-color: #EBEAEA;
-	}
-}
+
 </style>

@@ -1,508 +1,433 @@
 <template>
-<div id="app" class="rowcentercontainer">
-    <b-card no-body class="appblur">
-      <b-card-header >
-        <strong>Formulario de Solicitud de Servicio de Reservas</strong>
-      </b-card-header>
-      <b-card-body>
-        <b-row>
-          <b-col lg="7" md="7">
-            <div class="titulo-formulario-reservas">
-              <div>
-                <img
-                  src="../../../public/img/logosps.png"
-                  alt="Logo SPS"/>
+  <div class="reservasView ele_modelview_A">
+    <div style="display: flex; flex-direction: column; width: 100%;">
+      <div class="topSideForm l_radiusBorder">
+        <div class="titleForm" v-if="dataSend.t_reserva">
+          <div class="logoGroup">
+            <img
+              src="../../../public/img/logosps.png"
+              alt="Logo SPS"/>
+          </div>
+          <span v-if="dataSend.t_reserva=='nac'" class="texttitle">Reservas Nacionales</span>
+          <span v-else class="texttitle">Reservas Internacionales</span>
+        </div>
+
+
+      </div>
+      <div class="contLeftSide l_radiusBorder">
+        <el-form  
+          :model="dataSend" 
+          :rules="rules" 
+          ref="dataSend">
+          <div style="display: flex; flex-direction: row; width: 100%; justify-content: flex-end;">
+            <div class="subtituloReserva">
+            </div>
+            <div class="radiogroupp">
+              <el-radio-group
+                fill="#fafafa"
+                text-color="#fafafa"
+                @change="switchChange" 
+                v-model="reserva_switch" 
+                size="small">
+                <el-radio
+                size="mini"
+                  fill="#fafafa"
+                  border 
+                  :label="1">Reserva Nacional
+                </el-radio>
+                <el-radio
+                  border 
+                  size="mini"
+                  :label="0">Reserva Internacional
+                </el-radio>
+              </el-radio-group>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: row; width: 100%;">
+            <div style="display: flex; flex-direction: column; width: 50%;">
+              <div class="form_line">
+                <el-form-item prop="from_a" style="width: 30%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.from_a.desc : int_label.from_a.desc">
+                    <el-select
+                      @change="dataSend.t_reserva=='nac' ? getCities(dataSend.from_a) : getCountriesA()"
+                      v-model="dataSend.from_a" 
+                      style="width:100%" 
+                      clearable 
+                      id="countryOut" 
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_a.plac : int_label.from_a.plac"
+                      >
+                      <!-- 
+                      *Opciones desplegables de items NACIONALES
+                       -->
+                      <template v-if="dataSend.t_reserva=='nac'">
+                        <el-option
+                          v-for="item in venezuela"
+                          :key="item.estado"
+                          :label="item.estado"
+                          :value="item.estado">
+                        </el-option>
+                      </template>
+                      <!-- 
+                      *Opciones desplegables de items INTERNACIONALES
+                       -->
+                      <template v-else>
+                        <el-option
+                          v-for="item in countries"
+                          :key="item.countryName"
+                          :label="item.countryName"
+                          :value="item.countryName">
+                        </el-option>
+                      </template>
+                    </el-select>
+                  </el-tooltip>
+                </el-form-item>
+                <el-form-item prop="from_b" style="width: 30%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.from_b.desc : int_label.from_b.desc">
+                    <el-select
+                      :disabled="dataSend.from_a ? false : true"
+                      v-model="dataSend.from_b" 
+                      style="width:100%" 
+                      clearable 
+                      id="ciudadOut" 
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_b.plac : int_label.from_b.plac"
+                      >
+                      <!-- 
+                      *Opciones desplegables de items NACIONALES
+                       -->
+                      <template v-if="dataSend.t_reserva=='int'">
+                        <el-option
+                          v-for="item in temp_states"
+                          :key="item.name"
+                          :label="item.name"
+                          :value="item.name">
+                        </el-option>
+                      </template>
+                      <!-- 
+                      *Opciones desplegables de items INTERNACIONALES
+                       -->
+                      <template v-else>
+                        <el-option
+                          v-for="item in citiesOptions.ciudades"
+                          :key="item"
+                          :label="item"
+                          :value="item">
+                        </el-option>
+                      </template>
+                    </el-select>
+                  </el-tooltip>
+                </el-form-item>
+                <el-form-item prop="description" style="width: 40%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.from_b.tit : int_label.from_b.tit }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.date_a.desc : int_label.date_a.desc">
+                    <el-date-picker
+                      style="width:100%" 
+                      id="fecha_arribo"
+                      v-model="dataSend.date_a"
+                      type="date"
+                      value-format="yyyy-MM-dd"
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_a.plac : int_label.date_a.plac">
+                    </el-date-picker>
+                  </el-tooltip>
+                </el-form-item>
               </div>
-              <div style="text-align:left;">
-                <template v-if="dataSend.t_reserva">
-                  <h1 v-if="dataSend.t_reserva=='nac'" class="texttitle">Reservas Nacionales</h1>
-                  <h1 v-else class="texttitle">Reservas Internacionales</h1>
-                </template>
+              <div class="form_line">
+                <el-form-item prop="adress_a" style="width: 100%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.adress_a.tit : int_label.adress_a.tit }}
+                  </div>
+                    <el-tooltip 
+                      popper-class="tool_item" 
+                      effect="dark"
+                      placement="bottom-start"
+                      :content="dataSend.t_reserva=='nac' ? nac_label.adress_a.desc : int_label.adress_a.desc">
+                      <el-input 
+                        type="textarea" 
+                        v-model="dataSend.adress_a"
+                        id="detailAdress"
+                      ></el-input>
+                  </el-tooltip>
+                </el-form-item>
+              </div>            
+            </div>
+            <div style="display: flex; flex-direction: column; width: 50%;">
+              <div class="form_line">
+                <el-form-item prop="to_a" style="width: 30%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc">
+                    <el-select
+                      @change="dataSend.t_reserva=='nac' ? getCities2(dataSend.to_a) : getCountriesB()"
+                      v-model="dataSend.to_a" 
+                      style="width:100%" 
+                      clearable 
+                      id="countryOut" 
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
+                      >
+                      <!-- 
+                      *Opciones desplegables de items NACIONALES
+                       -->
+                      <template v-if="dataSend.t_reserva=='nac'">
+
+                          <el-option
+                            v-for="item in venezuela"
+                            :key="item.estado"
+                            :label="item.estado"
+                            :value="item.estado">
+                          </el-option>
+                        </el-option>
+                      </template>
+                      <!-- 
+                      *Opciones desplegables de items INTERNACIONALES
+                       -->
+                      <template v-else>
+                        <el-option
+                          v-for="item in countries"
+                          :key="item.countryName"
+                          :label="item.countryName"
+                          :value="item.countryName">
+                        </el-option>
+                      </template>
+                    </el-select>
+                  </el-tooltip>
+                </el-form-item>
+                <el-form-item prop="to_b" style="width: 30%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.to_b.tit : int_label.to_b.tit }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc">
+                    <el-select
+                      :disabled="dataSend.to_a ? false : true"
+                      v-model="dataSend.to_b" 
+                      style="width:100%" 
+                      clearable 
+                      id="ciudadOut" 
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
+                      >
+                      <template v-if="dataSend.t_reserva=='int'">
+                        <el-option
+                          v-for="item in temp_states"
+                          :key="item.name"
+                          :label="item.name"
+                          :value="item.name">
+                        </el-option>
+                      </template>
+                      <template v-else>
+                        <el-option
+                          v-for="item in city_temp_2.ciudades"
+                          :key="item"
+                          :label="item"
+                          :value="item">
+                        </el-option>
+                      </template>
+                    </el-select>
+                  </el-tooltip>
+                </el-form-item>
+                <el-form-item prop="date_b" style="width: 40%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc">
+                    <el-date-picker
+                      value-format="yyyy-MM-dd"
+                      style="width:100%" 
+                      id="fecha_arribo"
+                      v-model="dataSend.date_b"
+                      type="date"
+                      :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
+                      >
+                    </el-date-picker>
+                  </el-tooltip>
+                </el-form-item>
+              </div>
+              <div class="form_line">
+                <el-form-item prop="adress_b" style="width: 100%;">
+                  <div class="el_label">
+                    {{ dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc }}
+                  </div>
+                  <el-tooltip 
+                    popper-class="tool_item" 
+                    effect="dark"
+                    placement="bottom-start"
+                    :content="dataSend.t_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc">
+                    <el-input 
+                      type="textarea" 
+                      v-model="dataSend.adress_b"
+                      id="detailAdress"
+                    ></el-input>
+                  </el-tooltip>
+                </el-form-item>
               </div>
             </div>
-          </b-col>
-          <b-col lg="5" md="5" style="text-align: right;">
-            <el-radio-group
-              class="radiogroupp"
-              fill="#fafafa"
-              text-color="#fafafa"
-              @change="switchChange" 
-              v-model="reserva_switch" 
-              size="small">
-              <el-radio
-                fill="#fafafa"
-               class="buttonradio" border :label="1">Reserva Nacional</el-radio>
-              <el-radio class="buttonradio" border :label="0">Reserva Internacional</el-radio>
-            </el-radio-group>
-          </b-col>
-        </b-row>
-
-       
-        <!-- 
-        * Formulario para reservas NACIONALES E INTERNACIONALES
-         -->
-        <template v-if="dataSend.t_reserva">
-          <el-form  
-            :model="dataSend" 
-            :rules="rules" 
-            ref="dataSend">
-
-                <div style="display:flex; width:100%">
-                  
-                  <el-col class="boxshadow" :span="12" style="margin-bottom:0px; margin-left:2.5px;">
-                    <el-col :span="7">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit }}
-                      </div>
-                      <el-form-item prop="from_a">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.from_a.desc : int_label.from_a.desc">
-                          <el-select
-                            @change="dataSend.t_reserva=='nac' ? getCities(dataSend.from_a) : getCountriesA()"
-                            v-model="dataSend.from_a" 
-                            style="width:100%" 
-                            clearable 
-                            id="countryOut" 
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_a.plac : int_label.from_a.plac"
-                            >
-                            <!-- 
-                            *Opciones desplegables de items NACIONALES
-                             -->
-                            <template v-if="dataSend.t_reserva=='nac'">
-                              <el-option
-                                v-for="item in venezuela"
-                                :key="item.estado"
-                                :label="item.estado"
-                                :value="item.estado">
-                              </el-option>
-                            </template>
-                            <!-- 
-                            *Opciones desplegables de items INTERNACIONALES
-                             -->
-                            <template v-else>
-                              <el-option
-                                v-for="item in countries"
-                                :key="item.countryName"
-                                :label="item.countryName"
-                                :value="item.countryName">
-                              </el-option>
-                            </template>
-                          </el-select>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-
-                    <el-col :span="7">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.from_a.tit : int_label.from_a.tit }}
-                      </div>
-                      <el-form-item prop="from_b">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.from_b.desc : int_label.from_b.desc">
-                          <el-select
-                            :disabled="dataSend.from_a ? false : true"
-                            v-model="dataSend.from_b" 
-                            style="width:100%" 
-                            clearable 
-                            id="ciudadOut" 
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.from_b.plac : int_label.from_b.plac"
-                            >
-                            <!-- 
-                            *Opciones desplegables de items NACIONALES
-                             -->
-                            <template v-if="dataSend.t_reserva=='int'">
-                              <el-option
-                                v-for="item in temp_states"
-                                :key="item.name"
-                                :label="item.name"
-                                :value="item.name">
-                              </el-option>
-                            </template>
-                            <!-- 
-                            *Opciones desplegables de items INTERNACIONALES
-                             -->
-                            <template v-else>
-                              <el-option
-                                v-for="item in citiesOptions.ciudades"
-                                :key="item"
-                                :label="item"
-                                :value="item">
-                              </el-option>
-                            </template>
-                          </el-select>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-
-                    <el-col :span="10">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.from_b.tit : int_label.from_b.tit }}
-                      </div>
-                      <el-form-item prop="description">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.date_a.desc : int_label.date_a.desc">
-                          <el-date-picker
-                            style="width:100%" 
-                            id="fecha_arribo"
-                            v-model="dataSend.date_a"
-                            type="date"
-                            value-format="yyyy-MM-dd"
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_a.plac : int_label.date_a.plac">
-                          </el-date-picker>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-
-                    <el-col :span="24">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.adress_a.tit : int_label.adress_a.tit }}
-                      </div>
-                      <el-form-item prop="adress_a">
-                          <el-tooltip 
-                            popper-class="tool_item" 
-                            effect="dark"
-                            placement="bottom-start"
-                            :content="dataSend.t_reserva=='nac' ? nac_label.adress_a.desc : int_label.adress_a.desc">
-                            <el-input 
-                              type="textarea" 
-                              v-model="dataSend.adress_a"
-                              id="detailAdress"
-                            ></el-input>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-                  </el-col>
-
-                  <el-col class="boxshadow" :span="12" style="margin-bottom:0px; margin-right:0px;">
-                    <el-col :span="7">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.to_a.tit : int_label.to_a.tit }}
-                      </div>
-                      <el-form-item prop="to_a">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc">
-                          <el-select
-                            @change="dataSend.t_reserva=='nac' ? getCities2(dataSend.to_a) : getCountriesB()"
-                            v-model="dataSend.to_a" 
-                            style="width:100%" 
-                            clearable 
-                            id="countryOut" 
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
-                            >
-                            <!-- 
-                            *Opciones desplegables de items NACIONALES
-                             -->
-                            <template v-if="dataSend.t_reserva=='nac'">
-
-                                <el-option
-                                  v-for="item in venezuela"
-                                  :key="item.estado"
-                                  :label="item.estado"
-                                  :value="item.estado">
-                                </el-option>
-                              </el-option>
-                            </template>
-                            <!-- 
-                            *Opciones desplegables de items INTERNACIONALES
-                             -->
-                            <template v-else>
-                              <el-option
-                                v-for="item in countries"
-                                :key="item.countryName"
-                                :label="item.countryName"
-                                :value="item.countryName">
-                              </el-option>
-                            </template>
-                          </el-select>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="7">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.to_b.tit : int_label.to_b.tit }}
-                      </div>
-                      <el-form-item prop="to_b">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.to_a.desc : int_label.to_a.desc">
-                          <el-select
-                            :disabled="dataSend.to_a ? false : true"
-                            v-model="dataSend.to_b" 
-                            style="width:100%" 
-                            clearable 
-                            id="ciudadOut" 
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.to_a.plac : int_label.to_a.plac"
-                            >
-                            <template v-if="dataSend.t_reserva=='int'">
-                              <el-option
-                                v-for="item in temp_states"
-                                :key="item.name"
-                                :label="item.name"
-                                :value="item.name">
-                              </el-option>
-                            </template>
-                            <template v-else>
-                              <el-option
-                                v-for="item in city_temp_2.ciudades"
-                                :key="item"
-                                :label="item"
-                                :value="item">
-                              </el-option>
-                            </template>
-                          </el-select>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="10">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc }}
-                      </div>
-                      <el-form-item prop="date_b">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc">
-                          <el-date-picker
-                            value-format="yyyy-MM-dd"
-                            style="width:100%" 
-                            id="fecha_arribo"
-                            v-model="dataSend.date_b"
-                            type="date"
-                            :placeholder=" dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc"
-                            >
-                          </el-date-picker>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="24">
-                      <div class="l_label labelm">
-                        {{ dataSend.t_reserva=='nac' ? nac_label.date_b.desc : int_label.date_b.desc }}
-                      </div>
-                      <el-form-item prop="adress_b">
-                        <el-tooltip 
-                          popper-class="tool_item" 
-                          effect="dark"
-                          placement="bottom-start"
-                          :content="dataSend.t_reserva=='nac' ? nac_label.adress_b.desc : int_label.adress_b.desc">
-                          <el-input 
-                            type="textarea" 
-                            v-model="dataSend.adress_b"
-                            id="detailAdress"
-                          ></el-input>
-                        </el-tooltip>
-                      </el-form-item>
-                    </el-col>
-                  </el-col>
-
-                </div>
-
-                <div class="boxshadow" style="display:table; width:100%">
-                  <el-col :span="12">
-                    <div class="l_label labelm">
-                      {{ dataSend.t_reserva=='nac' ? nac_label.motivo.tit : int_label.motivo.tit }}
-                    </div>
-                    <el-form-item prop="motivo">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        :content="dataSend.t_reserva=='nac' ? nac_label.motivo.desc : int_label.motivo.desc">
-                        <el-input 
-                          type="textarea" 
-                          v-model="dataSend.motivo"
-                          id="detailAdress"
-                        ></el-input>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="12">
-                    <div class="l_label labelm">
-                      {{ dataSend.t_reserva=='nac' ? nac_label.agenda.tit : int_label.agenda.tit }}
-                    </div>
-                    <el-form-item prop="agenda">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        :content="dataSend.t_reserva=='nac' ? nac_label.agenda.desc : int_label.agenda.desc">
-                        <el-input 
-                          type="textarea" 
-                          v-model="dataSend.agenda"
-                          id="detailAdress"
-                        ></el-input>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                </div>
-
-                <div class="boxshadow" style="display:table; width:100%">
-                  <el-col :span="8" v-if="switch_flag">
-                    <div class="l_label labelm">
-                      Nombre
-                    </div>
-                    <el-form-item prop="">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        content="Nombre del rubro">
-                        <el-input 
-                          style="width:100%;"
-                          v-model="viatico_temp.rubro"
-                          size="small"
-                          type="text">                    
-                        </el-input>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="8" v-else>
-                    <div class="l_label labelm">
-                      Viatico
-                    </div>
-                    <el-form-item prop="">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        content="Seleccione viatico">
-                        <el-select v-model="selection" clearable placeholder="Select" size="small" @change="itemChange" style="width:100%;">
-                          <el-option
-                            v-for="item in rubros"
-                            :key="item.value"
-                            :label="item.label"
-                            :value="item">
-                          </el-option>
-                        </el-select>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="8">
-                    <div class="l_label labelm">
-                      Dias
-                    </div>
-                    <el-form-item prop="">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        content="Dias de consumo">
-                        <el-input-number 
-                          id="diasInput"
-                          style="width:100%;"
-                          size="small" 
-                          v-model="viatico_temp.dias" 
-                          :min="0" 
-                          :max="100">
-                        </el-input-number>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="6">
-                    <div class="l_label labelm">
-                      Monto unitario
-                    </div>
-                    <el-form-item prop="">
-                      <el-tooltip 
-                        popper-class="tool_item" 
-                        effect="dark"
-                        placement="bottom-start"
-                        content="Monto por unidad">
-                        <el-input 
-                          style="width:100%;"
-                          v-model="viatico_temp.unit"
-                          size="small"
-                          type="text">                    
-                        </el-input>
-                      </el-tooltip>
-                    </el-form-item>
-                  </el-col>
-                  <el-col 
-                    :span="2" 
-                    style="height: 7vh;display: flex;justify-content: center;">
-                    <el-button 
-                      @click="addViat"
-                      type="info" 
-                      icon="el-icon-plus" 
-                      size="mini" 
-                      circle 
-                      style="margin: auto;">
-                    </el-button>
-                  </el-col>
-                </div>
-
-                <div class="boxshadow" style="display:table; width:100%" v-if="this.dataSend.viaticos != 0">
-                  <el-col :span="24">
-                    <el-table
-                    show-summary
-                    sum-text="Total viaticos"
-                      :data="dataSend.viaticos"
-                      style="width: 100%">
-                      <el-table-column
-                      sortable
-                        prop="rubro"
-                        label="Rubro"
-                        width="180">
-                      </el-table-column>
-                      <el-table-column
-                      sortable
-                        prop="val_unit"
-                        label="Valor/unidad">
-                      </el-table-column>
-                      <el-table-column
-                      sortable
-                        prop="total"
-                        label="Total">
-                      </el-table-column>
-                      <el-table-column
-                        label="Acciones">
-                        <template slot-scope="scope">
-                          <el-button
-                            @click.native.prevent="deleteRow(scope.$index, dataSend.viaticos)"
-                            type="text"
-                            size="small">
-                            Eliminar
-                          </el-button>
-                        </template>
-                      </el-table-column>
-                    </el-table>
-                  </el-col>
-                </div>
-
-                <div class="boxshadow" style="display:table; width:100%">
-                  <el-button 
-                  class="buttoncontrolsend"
-                    @click.prevent="validate_send('dataSend')"
-                    size="small" 
-                    type="primary" 
-                    round>Enviar</el-button>
-                  <el-button 
-                  class="buttoncontrolcancel"
-                    type="warning" 
-                    size="small" 
-                    round>Cancelar</el-button>
-                </div>  
-            </el-form>
-
-        </template>
-
-      </b-card-body>
-    </b-card>
-</div>
+          </div>
+          <div class="form_line">
+            <el-form-item prop="motivo" style="width: 50%;">
+              <div class="el_label">
+                {{ dataSend.t_reserva=='nac' ? nac_label.motivo.tit : int_label.motivo.tit }}
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                :content="dataSend.t_reserva=='nac' ? nac_label.motivo.desc : int_label.motivo.desc">
+                <el-input 
+                  type="textarea" 
+                  v-model="dataSend.motivo"
+                  id="detailAdress"
+                ></el-input>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item prop="agenda" style="width: 50%;">
+              <div class="el_label">
+                {{ dataSend.t_reserva=='nac' ? nac_label.agenda.tit : int_label.agenda.tit }}
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                :content="dataSend.t_reserva=='nac' ? nac_label.agenda.desc : int_label.agenda.desc">
+                <el-input 
+                  type="textarea" 
+                  v-model="dataSend.agenda"
+                  id="detailAdress"
+                ></el-input>
+              </el-tooltip>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item style="width: 30%;" prop="" v-if="switch_flag">
+              <div class="el_label">
+                Nombre
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                content="Nombre del rubro">
+                <el-input 
+                  style="width:100%;"
+                  v-model="viatico_temp.rubro"
+                  size="small"
+                  type="text">                    
+                </el-input>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item style="width: 30%;" prop="" v-else>
+              <div class="el_label">
+                Viatico
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                content="Seleccione viatico">
+                <el-select v-model="selection" clearable placeholder="Select" size="small" @change="itemChange" style="width:100%;">
+                  <el-option
+                    v-for="item in rubros"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item">
+                  </el-option>
+                </el-select>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item style="width: 30%;" prop="">
+              <div class="el_label">
+                Dias
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                content="Dias de consumo">
+                <el-input-number 
+                  id="diasInput"
+                  style="width:100%;"
+                  size="small" 
+                  v-model="viatico_temp.dias" 
+                  :min="0" 
+                  :max="100">
+                </el-input-number>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item style="width: 30%;" prop="">
+              <div class="el_label">
+                Monto unitario
+              </div>
+              <el-tooltip 
+                popper-class="tool_item" 
+                effect="dark"
+                placement="bottom-start"
+                content="Monto por unidad">
+                <el-input 
+                  style="width:100%;"
+                  v-model="viatico_temp.unit"
+                  size="small"
+                  type="text">                    
+                </el-input>
+              </el-tooltip>
+            </el-form-item>
+            <el-form-item style="width: 10%;" prop="">
+              <el-button 
+                @click="addViat"
+                type="info" 
+                icon="el-icon-plus" 
+                size="mini" 
+                circle 
+                style="margin: auto;">
+              </el-button>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-button 
+            class="buttoncontrolsend"
+              @click.prevent="validate_send('dataSend')"
+              size="small" 
+              type="primary" 
+              round>Enviar</el-button>
+            <el-button 
+            class="buttoncontrolcancel"
+              type="warning" 
+              size="small" 
+              round>Cancelar</el-button>
+          </div>
+        </el-form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -943,141 +868,32 @@ export default {
 }
 </script>
 <style lang="scss" >
-$colorpantonered: #EF4034;
-$colorpantone254: #91268F;
-$colorpantone285: #007CC2;
-$colorpantone368: #7AC142;
-$colorpantone143: #FBAF3F;
-$colorblanco: #fafafa;
-$pantonetext: #6D6E70;
-.radiogroupp{
-  .el-radio__label{
-   color: #231F20 !important;
+.reservasView{
+  .titleForm{
+      font-size: 2.8vw !important;
+      padding-top: 4px;
+      display: flex;
+      justify-content: flex-start;
+      color: #BBBDC0;
+      font-family: 'Eurostile LTS Demi';
+      text-transform: uppercase;
+    }
+  .topSideForm{
+    flex-direction: row !important;
+    justify-content: space-between !important;
   }
-  label{
-    border : 1px solid $pantonetext !important;
-    background-color: rgba(251, 175, 63, 0.6);
-  }
-  label.is-checked{
-    border : 1px solid $pantonetext !important;
-    background-color: rgba(251, 175, 63, 0.75);
-  }
-}
-.is-checked{
-  .el-radio__inner{
-    background-color: $pantonetext !important;      
-    border-color: $pantonetext !important;    
-  }
-  .el-radio__label{
-    color: $colorblanco !important;    
-  }
-}
-
-
-.buttonradio{
-  // color:#FBAF3F;
-}
-.titulo-formulario-reservas{
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 15px;
-  .space{
-    text-align: right;
-  }
-  // justify-content: center;
-  div{
-    margin-left: 5px;
+  .logoGroup{
     img{
-      width: 5em;
+      height: 85%;
     }
   }
-}
-.buttoncontrolcancel{
-  font-family: 'Eurostile LTS Demi';
-  background-color: rgba(109, 110, 113, 1);
-  border: white;
-  &:hover {
-      background-color: #FBAF3F;
-      color:#241C14;
-  }    
-}
-.buttoncontrolsend{
-  &:hover {
-      background-color: #FBAF3F;
-      color:#241C14;
-  }                     
-  font-family: 'Eurostile LTS Demi';
-  background-color: rgba(35, 31, 32, 1);
-  border: white;
-}
-label{
-  font-family: 'Eurostile LTS';
-  // text-shadow: 3px 3px 4px rgba(145,38,143, 0.7);
-  color:rgba(109, 110, 113, 1);
-  &:hover {
-      font-weight: bold;
-      color:rgba(36, 28, 20, 1);
-  }
-}
+  .titleForm{
 
-.text-muted{
-  color:red;
-}
-.texttitle{
-  padding: 0px;
-  &:hover {
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 1);
-  } 
-  display: flex;
-  color: #BBBDC0;
-  font-family: 'Eurostile LTS Demi';
-  // text-shadow: 2px 2px 4px rgba(187, 189, 192, 0.7);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  text-transform: uppercase;
-}
-.img_logo{
-  img{
-    width: 5em;
   }
-}
-.info{
-  margin: 10px;
-  border: 1px solid rgba(220, 223, 230, 1);
-  margin-top: 0px;
-  border-radius: 3px;
-  align-items: center;
-  padding: 5px;
-}
-.section_viat{
-  margin: 10px;
-}
-.item_viat{
-  text-align: center;
-}
-.el-select{
-  display: block !important;
-  width: 100%;
-}
-.formsection{
-  // border: 1px solid black;
-  margin: 8px;
-  border-radius: 5px;
-  padding: 5px;
-  box-shadow: 2px 2px 5px 3px rgba(136, 136, 136, 0.6);
-}
-.box_dias{
-  border: 1px solid #dcdfe6;
-  border-radius: 5px;
-  // width: 100%;
-  text-align: center;
-  margin: auto;
-}
-.viaticos_det{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.tool_item{
-  background-color: red;
+  .radiogroupp{
+    .el-radio-group {
+      padding-top: 4px;
+    }
+  }
 }
 </style>

@@ -103,40 +103,21 @@ export default {
           style="width: 100%">
           <el-table-column type="expand">
             <template slot-scope="props">
-              <el-row>
-                <el-col>
-                  <div class="grid_8content">
-                    Roles:
-                    <div class="roles_box">
-                      <el-tag size="mini" type="info" v-for="item in props.row.roles" :key="item.id">
-                        {{item.display_name}} 
-                      </el-tag>
-                    </div>
-                  </div>
-                </el-col>
-                <el-col>
-                  <div class="grid_8content">
-                    Canal regular
-                    {{props.row}}
-                    <p>Coordinador: {{props.row.departamento.coordinador.name}} {{props.row.departamento.coordinador.last_name}}</p>
-                    <!-- <p>Gerente : {{props.row.departamento.gerente.name}} {{props.row.departamento.gerente.last_name}}</p> -->
-                  </div>
-                </el-col>
-                <el-col>
-                  <div class="grid_8content">
-                    Canales de contacto:
-                    <div class="main_canal_contacto">
-                      Correo: eleazaro@spservicesltd.uk
-                    </div>
-                  </div>
-                </el-col>
-              </el-row>
+              <div 
+                style="display: flex; flex-direction: row;" 
+                v-if="props.row.roles">
+                <el-button 
+                  size="mini"  
+                  round>{{ props.row.roles[0] }}
+                </el-button>
+              </div>
             </template>
           </el-table-column>
           <el-table-column
             label="Nombre"
             :show-overflow-tooltip="true"
-            prop="user">
+            sortable
+            prop="name">
             <template slot-scope="scope">
               {{scope.row.name}} {{scope.row.last_name}}
             </template>
@@ -145,6 +126,8 @@ export default {
             :show-overflow-tooltip="true"
             :filters="filters.cargo"
             :filter-method="filterCargo"
+            filter-placement="bottom-end"
+            sortable
             label="Cargo"
             prop="cargo">
           </el-table-column>
@@ -154,23 +137,18 @@ export default {
             prop="sede">
           </el-table-column>
           <el-table-column
+            sortable
             label="Departamento"
             :show-overflow-tooltip="true"
             :filters="filters.departamento"
             :filter-method="filterDepto"
+            filter-placement="bottom-end"
             prop="departamento.disp_name">
           </el-table-column>
           <template slot="empty">
             <VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="5" :rows="25">
             </VclTable>
           </template>
-<!--           <el-table-column
-            label="Rol"
-            prop="roles">
-            <template slot-scope="scope">
-              {{scope.row.roles}}
-            </template>
-          </el-table-column> -->
         </el-table>
       </div>
     </div>
@@ -181,16 +159,18 @@ export default {
   display        : flex;
   flex-direction : row;
   .topSideForm{
-    width            : 100%;
-    height           : 40px;
-    background-color : #EBEAEA;
-    font-size        : 1.9vw;
-    color            : #231F20;
-    font-family      : 'Roboto';
-    display          : flex;
-    flex-direction   : column;
-    justify-content  : center;
-    font-style       : bold;
+    width: 100%;
+    height: 40px;
+    background-color: #002E47;
+    font-size: 2vw;
+    color: white;
+    text-shadow: 1px 1px 3px #231F20;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-style: bold;
   }
   .contRightSide{
     display          : flex;

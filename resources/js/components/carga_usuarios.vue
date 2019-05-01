@@ -1,6 +1,10 @@
 <script>
 	import {VueContentLoading,VclTable} from         'vue-content-loading';
-
+	import {
+		getRoles,
+		getUsuarios,
+		getDepartamentos,
+	} from '../apiCalls.js'
 
 
 	export default {
@@ -10,61 +14,82 @@
 	  */
 	  data () {
 	  	return {
-	  		dominio_temp   : null,
-	  		editable   : false,
-	  		temp_roles     : [],
-	  		disabled_flag  : false,
-	  		lista_roles    : [],
-	  		lista_usuarios : [],
-	  		lista_gerencias: [],
-	  		user_form:{
-	  			name            : null,
-	  			last_name       : null,
-	  			cargo           : null,
-	  			departamento    : null,
-	  			roles           : [],
-	  			codigo_empleado : null,
-	  			email           : null,
-	  			sede            : null,
-	  			ci_usuario      : null,
-	  			status          : "activo",
-	  		},
-	  		rules_: {
-				name: [
-						{ required: true, message: 'Por favor ingrese un nombre valido', trigger: 'blur' },
+			dominio_temp    : null,
+			editable        : false,
+			temp_roles      : [],
+			disabled_flag   : false,
+			lista_roles     : [],
+			lista_usuarios  : [],
+			lista_gerencias : [],
+			filters         : {},
+			searchbox          : null,
+			user_form       : {
+				name            : null,
+				last_name       : null,
+				cargo           : null,
+				departamento    : null,
+				roles           : [],
+				codigo_empleado : null,
+				email           : null,
+				sede            : null,
+				ci_usuario      : null,
+				status          : "activo",
+  			},
+			rules_          : {
+				name            : [
+				{ required      : true, message: 'Por favor ingrese un nombre valido', trigger: 'blur' },
 					],
-				last_name: [
-						{ required: true, message: 'Por favor ingrese un apellido valido', trigger: 'blur' },
+				last_name       : [
+				{ required      : true, message: 'Por favor ingrese un apellido valido', trigger: 'blur' },
 					],
-				codigo_empleado: [
-						{ required: true, message: 'El codigo de empleado es obligatorio', trigger: 'blur' },
+				codigo_empleado : [
+				{ required      : true, message: 'El codigo de empleado es obligatorio', trigger: 'blur' },
 					],	
-				sede: [
-						{ required: true, message: 'La sede del empleado es un campo obligatorio', trigger: 'blur' },
+				sede            : [
+				{ required      : true, message: 'La sede del empleado es un campo obligatorio', trigger: 'blur' },
 					],
-				departamento: [
-						{ required: true, message: 'Por favor seleccione un departamento de la lista desplegable', trigger: 'blur' },
+				departamento    : [
+				{ required      : true, message: 'Por favor seleccione un departamento de la lista desplegable', trigger: 'blur' },
 					],	
-				cargo: [
-						{ required: true, message: 'El cargo del empleado es obligatorio', trigger: 'blur' },
+				cargo           : [
+				{ required      : true, message: 'El cargo del empleado es obligatorio', trigger: 'blur' },
 					],	
-				ci_usuario: [
-						{ required: true, message: 'La cedula de identidad del empleado es un campo obli', trigger: 'blur' },
+				ci_usuario      : [
+				{ required      : true, message: 'La cedula de identidad del empleado es un campo obli', trigger: 'blur' },
 					],
-				email: [
-						{ required: true, message: 'El apellido es obligatorio', trigger: 'blur' },
+				email           : [
+				{ required      : true, message: 'El apellido es obligatorio', trigger: 'blur' },
 					],		
-	  		},
+  			},
 	  	}
 	  },
 	  computed: {
 
 	  },
+		watch:{
+			lista_usuarios(){
+			  this.filters.departamento = []
+			    this.lista_usuarios.forEach((each)=>{
+					if (each.departamento != null) {
+					 if (!this.filters.departamento.some(departamento => departamento.value === each.departamento.ceco)) {
+					  this.filters.departamento.push({ text : each.departamento.disp_name , value : each.departamento.ceco})
+					 } 
+					}
+			    })
+			}
+		},
 	  components: {
 	      VueContentLoading,
 	      VclTable,
 	  },
 	  methods: {
+	  	filterDepto(value, row, column){
+			if (row.departamento != null) {
+			return row.departamento.ceco === value;
+			} else {
+			return false
+			}
+	  	},
 	  	callImage(){
 	  		axios.post(route('textOnImage',this.user_form)) 
 	  		    .then(response => {
@@ -154,45 +179,43 @@
 		}
 	  },
 	  beforeMount(){
-			axios.get(route('roles.index')) 
-			    .then(response => {
-			        response.data.forEach((x,y)=>{
-			        	this.lista_roles.push({
-			            key: x.id,
-			            label: x.display_name,
-			            disabled: false
-			          })
-			        })
-			      })
-			    .catch(error => {
-			      this.$notify.error({
-			        title: 'Error '+error.response.status,
-			        message: error.response.data.message
-			      });
-			    })
-			axios.get(route('usuarios.index')) 
-			    .then(response => {
-			    	console.log('Recibiendo montado:=======')
-			    	console.log(response)
-			  		// this.lista_usuarios = response.data.data
-			  		this.lista_usuarios = response.data
-			      })
-			    .catch(error => {
-			      this.$notify.error({
-			        title: 'Error '+error.response.status,
-			        message: error.response.data.message
-			      });
-			    })
-			axios.get(route('gerencias.index')) 
-			    .then(response => {
-			    	this.lista_gerencias=response.data
-			      })
-			    .catch(error => {
-			      this.$notify.error({
-			        title: 'Error '+error.response.status,
-			        message: error.response.data.message
-			      });
-			    })
+	  	
+	  	getRoles()
+		    .then(response => {
+		        response.forEach((x,y)=>{
+		        	this.lista_roles.push({
+		            key: x.id,
+		            label: x.display_name,
+		            disabled: false
+		          })
+		        })
+		      })
+		    .catch(error => {
+		      this.$notify.error({
+		        title: 'Error '+error.response.status,
+		        message: error.response.data.message
+		      });
+		    })
+		getUsuarios()
+		    .then(response => {
+		  		this.lista_usuarios = response
+		      })
+		    .catch(error => {
+		      this.$notify.error({
+		        title: 'Error '+error.response.status,
+		        message: error.response.data.message
+		      });
+		    })
+	  	getDepartamentos()
+			.then(response => {
+				this.lista_gerencias=response
+			  })
+			.catch(error => {
+			  this.$notify.error({
+			    title: 'Error '+error.response.status,
+			    message: error.response.data.message
+			  });
+			})
 	  },
 	  created(){
 	  },
@@ -203,30 +226,47 @@
 	}
 </script>
 <template>
-	<div class="usersView">
+	<div class="usersView ele_modelview_A">
 		<div class="contRightSide l_radiusBorder">
+			<div class="searchBox">
+				<el-input 
+					size="mini"
+					placeholder="Buscar nombre"
+					clearable 
+					v-model="searchbox">
+					<el-button 
+						slot="prepend" 
+						icon="el-icon-search">
+					</el-button>
+				</el-input>
+			</div>
 			<el-table
-			  :data="lista_usuarios"
-			  @row-click="row_click"
-			  style="width: 100%">
-			  <el-table-column
-			    label="Nombre"
-			    prop="user">
-			    <template slot-scope="scope">
-			      {{short_name(scope.row.name)}} {{short_lastname(scope.row.last_name)}}
-			    </template>
-			  </el-table-column>
-			  <el-table-column
-			    label="Sede"
-			    prop="sede">
-			    <template slot-scope="scope">
-			      {{deptos_(scope.row)}}
-			    </template>
-			  </el-table-column>
-			    <template slot="empty">
-			    	<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
-			    	</VclTable>
-			    </template>
+				:data="lista_usuarios.filter(data => !searchbox || data.name.toLowerCase().includes(searchbox.toLowerCase()) || data.last_name.toLowerCase().includes(searchbox.toLowerCase()))"
+				@row-click="row_click"
+				max-height="600"
+				:default-sort = "{prop: 'name', order: 'ascending'}"
+				style="width: 100%">
+				<el-table-column
+					label="Nombre"
+					sortable
+	            	:show-overflow-tooltip="true"
+					prop="name">
+					<template slot-scope="scope">
+					{{short_name(scope.row.name)}} {{short_lastname(scope.row.last_name)}}
+					</template>
+				</el-table-column>
+				<el-table-column
+					:filters="filters.departamento"
+					:filter-method="filterDepto"
+					sortable
+					label="Gerencia"
+	            	:show-overflow-tooltip="true"
+					prop="departamento.disp_name">
+				</el-table-column>
+				<template slot="empty">
+					<VclTable height="90%" width="100%" class="LoadingAnimation"  :columns="2" :rows="20">
+					</VclTable>
+				</template>
 			</el-table>
 		</div>
 		<div style="display: flex; flex-direction: column; width: 65%;">
@@ -326,56 +366,19 @@
 </template>
 <style lang="scss">
 .usersView{
-	display: flex;
-	flex-direction:row;
-	width: 100%;
-	.form_line_main{
-		width: 100%;
-	    margin: 0 20px;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-	}
-	.topSideForm{
-		width: 100%;
-		height: 40px;
-		background-color: #EBEAEA;
-		font-size: 1.9vw;
-		color: #231F20;
-		font-family: 'Roboto';
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		font-style: bold;
-	}
-	.contRightSide{
-		width: 35%;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		background-color: #EBEAEA;
-		.el-table{
-			border-radius: 5px !important;
-			margin-top: 5px;
-		}
-		.el-table td, .el-table th {
-			font-size: 12px !important;
-		    padding: 0px 0 !important;
-		    min-width: 0;
-		    -webkit-box-sizing: border-box;
-		    box-sizing: border-box;
-		    text-overflow: ellipsis;
-		    vertical-align: middle;
-		    position: relative;
-		    text-align: left;
-		}
-	}
 	.contLeftSide{
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		background-color: #EBEAEA;
-		padding: 10px 15px;
+		width            : 100% !important;
+		display          : flex !important;
+		flex-direction   : row !important;
+		background-color : #EBEAEA !important;
+		padding          : 10px 15px !important;
+	}
+	.form_line_main{
+		width            : 100% !important;
+		margin           : 0 20px !important;
+		display          : flex !important;
+		flex-direction   : column !important;
+		justify-content  : center !important;
 	}
 }
 </style>
