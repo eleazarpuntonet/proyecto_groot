@@ -165,7 +165,7 @@
 	<div class="proveedoresView ele_modelview_A">
 		<div class="contRightSide l_radiusBorder">
 			<el-table
-				max-height="600"
+				max-height="800"
 			  :data="lista_proveedores"
 			  style="width: 100%">
 			  <el-table-column
@@ -188,7 +188,18 @@
 		</div>
 		<div style="display: flex; flex-direction: column; width: 65%;">
 			<div class="topSideForm l_radiusBorder">
-				Proveedores
+				<div class="titleForm">
+				  <div class="logoGroup">
+				    <img
+				      src="../../../public/img/sps_logoborderline.png"
+				      alt="Logo SPS"/>
+				  </div>
+				  <div class="textContainer">
+				    <div style="display:table-cell;vertical-align:middle;">
+				      <div class="texttitle">gestion de proveedores</div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 			<div class="contLeftSide l_radiusBorder">
 				<el-form :rules="rules_proveedores" ref="proveedores_form" :model="proveedores_form_"  size="mini" style="width: 100%">

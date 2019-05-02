@@ -70,14 +70,62 @@ $backgroundimage0: '/img/Background0.jpg';
 $backgroundimage1: '/img/Background_16-9_1.jpg';
 $backgroundimage2: '/img/Background_16-9_2.jpg';
 $backgroundimage3: '/img/Background_16-9_3.jpg';
+.el-button {
+  display            : inline-block;
+  line-height        : 1;
+  white-space        : nowrap;
+  cursor             : pointer;
+  background         : #fff;
+  border             : 1px solid #dcdfe6;
+  color              : #606266;
+  -webkit-appearance : none;
+  text-align         : center;
+  -webkit-box-sizing : border-box;
+  box-sizing         : border-box;
+  outline            : 0;
+  margin             : 0;
+  -webkit-transition : .1s;
+  transition         : .1s;
+  font-weight        : 500;
+  font-size          : 14px;
+  border-radius      : 4px;
+  font-family        : 'Eurostile LTS Demi';
+}
+.el-button--mini, .el-button--mini.is-round {
+    padding: 4px 8px !important;
+}
+.el-button--mini, .el-button--small {
+    font-size: 11px !important;
+    border-radius: 3px !important;
+}
+.el-button--small, .el-button--small.is-round {
+    padding: 9px 15px;
+    font-size: 14px !important;
+    border-radius: 3px !important;
+}
+.send {
+  color            : #fff !important;
+  margin-right     : 10px;
+  background-color : #231F20 !important;
+  border-color     : #6D6E71 !important;
+}
+.pause {
+  color            : #231F20 !important;
+  margin-right     : 10px;
+  background-color : #FBAF3F !important;
+  border-color     : #6D6E71 !important;
+}
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Oswald|Playfair+Display|Poppins|Raleway|Roboto');
 // Variables
 @import 'variables';
-:root {
-  --farmbackregular: #EBEAEA;
-  --farmbackdark: #BCBEC0;
+.sidebar .nav-link {
+    display: block;
+    padding: 0.35rem 1rem !important;
+    color: #fff;
+    text-decoration: none;
+    background: transparent;
 }
 .l_radiusBorder{
     border-radius: 5px;
@@ -103,17 +151,40 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
   flex-direction : row;
   .topSideForm{
     width: 100%;
-    height: 40px;
-    background-color: #002E47;
-    font-size: 2vw;
-    color: white;
+    height: 7vw;
+    background-color: #231F20;
     text-shadow: 1px 1px 3px #231F20;
-    font-family: 'PT Sans', sans-serif;
     font-weight: 700;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-style: bold;
+    font-size: 2.8vw !important;
+    color: #BBBDC0;
+    font-family: 'Eurostile LTS Demi';
+    text-transform: uppercase;
+    .logoGroup {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        img{
+          height: 6vw;
+        }
+    }
+    .textContainer{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .titleForm{
+        font-size: 2.8vw !important;
+        padding-top: 4px;
+        display: flex;
+        justify-content: flex-start;
+        color: #BBBDC0;
+        font-family: 'Eurostile LTS Demi';
+        text-transform: uppercase;
+      }
   }
   .contRightSide{
     display          : flex;
@@ -130,7 +201,7 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
     }
     .el-table td, .el-table th {
       font-size          : 12px !important;
-      padding            : 0px 0 !important;
+      padding            : 5px 0 !important;
       min-width          : 0;
       -webkit-box-sizing : border-box;
       box-sizing         : border-box;
@@ -154,13 +225,7 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // ESTILO DE BOTONES MINI
-.el-button--mini, .el-button--mini.is-round {
-    padding: 4px 8px !important;
-}
-.el-button--mini, .el-button--small {
-    font-size: 11px !important;
-    border-radius: 3px !important;
-}
+
 
 // MODIFICACIONES DE TAMAÑO DEL ASIDE
 .aside-menu {

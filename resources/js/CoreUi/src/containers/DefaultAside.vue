@@ -82,62 +82,62 @@
   }
 </script>
 <template>
-  <b-tabs>
-      <b-tab>
-        <template slot="title">
-          <i class='icon-settings'></i>
-        </template>
-        <div class="headerCheckbox">
-          <div class="item">
-            {{getRoleSelected}}
+  <div class="asideContainer">
+    <b-tabs>
+        <b-tab>
+          <template slot="title">
+            <i class='icon-settings'></i>
+          </template>
+          <div class="headerCheckbox">
+            <div class="item">
+              {{getRoleSelected}}
+            </div>
+            <div v-if="visibleTab" class="crud">
+              <div class="crudItem">C</div>
+              <div class="crudItem">R</div>
+              <div class="crudItem">U</div>
+              <div class="crudItem">D</div>
+            </div>
           </div>
-          <div v-if="visibleTab" class="crud">
-            <div class="crudItem">C</div>
-            <div class="crudItem">R</div>
-            <div class="crudItem">U</div>
-            <div class="crudItem">D</div>
+          <div v-if="visibleTab" class="checkBoxBody" v-for="permiso in getPermisos">
+            <div class="checkBoxLabel">
+              {{permiso.action_name}}
+            </div>
+            <div class="checkBoxes">
+              <el-checkbox :disabled="disableCheck" v-model="permiso.lee"></el-checkbox>
+              <el-checkbox :disabled="disableCheck" v-model="permiso.escribe"></el-checkbox>
+              <el-checkbox :disabled="disableCheck" v-model="permiso.modifica"></el-checkbox>
+              <el-checkbox :disabled="disableCheck" v-model="permiso.borra"></el-checkbox>
+            </div>
           </div>
-        </div>
-        <div v-if="visibleTab" class="checkBoxBody" v-for="permiso in getPermisos">
-          <div class="checkBoxLabel">
-            {{permiso.action_name}}
+          <div class="buttonLine">
+            <el-button
+            @click="CrudClick()"
+              type="primary"
+              icon="el-icon-edit"
+              size="mini">
+              Editar permisos
+            </el-button>
+            <el-button
+            @click="sendChanges()"
+            icon="el-icon-refresh"
+              type="primary"
+              size="mini">
+              Actualizar permisos
+            </el-button>
           </div>
-          <div class="checkBoxes">
-            <el-checkbox :disabled="disableCheck" v-model="permiso.lee"></el-checkbox>
-            <el-checkbox :disabled="disableCheck" v-model="permiso.escribe"></el-checkbox>
-            <el-checkbox :disabled="disableCheck" v-model="permiso.modifica"></el-checkbox>
-            <el-checkbox :disabled="disableCheck" v-model="permiso.borra"></el-checkbox>
-          </div>
-        </div>
-        <div class="buttonLine">
-          <el-button
-          @click="CrudClick()"
-            type="primary"
-            icon="el-icon-edit"
-            size="mini">
-            Editar permisos
-          </el-button>
-          <el-button
-          @click="sendChanges()"
-          icon="el-icon-refresh"
-            type="primary"
-            size="mini">
-            Actualizar permisos
-          </el-button>
-        </div>
-      </b-tab>      
-  </b-tabs>
+        </b-tab>      
+    </b-tabs>
+  </div>
+
 </template>
 <style lang="scss">
-
+.asideContainer{
   .buttonLine{
     margin: 10px 5px;
     display: flex;
     flex-direction: row;  
     justify-content: space-evenly;    
-  }
-  .nav-link {
-      padding: 0.15rem 0.4rem !important;
   }
   .aside-menu .nav-tabs .nav-link {
       padding: 0.15rem 0.4rem !important;
@@ -191,5 +191,7 @@
       }
     }
   }
+}
+
 </style>
 

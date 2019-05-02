@@ -112,11 +112,16 @@ const store = new Vuex.Store({
           customers        : [],
           roles            : [],
           path_Auth        : [],
+          acciones_        : [],
 
     },
       //Getters guarda los metodos para obtener
       //los datos de State
       getters: {
+          findActions (state) {
+              console.log('retornando acciones')
+              return state.acciones_
+          },
           getPermisosRoles (state) {
               return state.permisos_roles
           },
@@ -162,8 +167,6 @@ const store = new Vuex.Store({
     //de forma SINCRONA
     mutations: {
           isAuthenticated (state, payload) {
-              // console.log('Recibiendo en autenticated')
-              // console.log(payload)
               console.log(payload)
               state.isAuthenticated = true
               state.isLoggedIn  = true
@@ -175,10 +178,8 @@ const store = new Vuex.Store({
               payload.notifications.forEach((item,index)=>{
                 state.notifications.push(JSON.parse(item.data))
               })
-                  // console.log(state.notifications)
               localStorage.setItem("user", JSON.stringify(state.currentUser))
               localStorage.setItem("jwtToken", state.currentUser.token)
-              // console.log(JSON.parse(localStorage.getItem('user')))
               if (!window.Echo.auth) {
                   window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
               }

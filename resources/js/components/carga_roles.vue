@@ -214,7 +214,7 @@
 			</div>
 			<el-table
           	tooltip-effect="light"
-			  max-height="600"
+			  max-height="800"
 			  :data="lista_roles.filter(data => !searchbox || data.display_name.toLowerCase().includes(searchbox.toLowerCase()))"
 			  :default-sort = "{prop: 'display_name', order: 'ascending'}"
 			  @row-click = "role_click"
@@ -238,7 +238,18 @@
 		</div>
 		<div style="display: flex; flex-direction: column; width: 100%;">
 			<div class="topSideForm l_radiusBorder">
-				Carga de roles
+				<div class="titleForm">
+				  <div class="logoGroup">
+				    <img
+				      src="../../../public/img/sps_logoborderline.png"
+				      alt="Logo SPS"/>
+				  </div>
+				  <div class="textContainer">
+				    <div style="display:table-cell;vertical-align:middle;">
+				      <div class="texttitle">Carga de roles</div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 			<div class="contLeftSide l_radiusBorder">
 				<el-form 

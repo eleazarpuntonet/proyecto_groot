@@ -26,31 +26,6 @@
 
 	  		},
 	  		lista_gerencias: [],
-
-
-
-
-	  		options4: [],
-	  		  value9: [],
-	  		  list: [],
-	  		  loading: false,
-	  		  states: ["Alabama", "Alaska", "Arizona",
-	  		  "Arkansas", "California", "Colorado",
-	  		  "Connecticut", "Delaware", "Florida",
-	  		  "Georgia", "Hawaii", "Idaho", "Illinois",
-	  		  "Indiana", "Iowa", "Kansas", "Kentucky",
-	  		  "Louisiana", "Maine", "Maryland",
-	  		  "Massachusetts", "Michigan", "Minnesota",
-	  		  "Mississippi", "Missouri", "Montana",
-	  		  "Nebraska", "Nevada", "New Hampshire",
-	  		  "New Jersey", "New Mexico", "New York",
-	  		  "North Carolina", "North Dakota", "Ohio",
-	  		  "Oklahoma", "Oregon", "Pennsylvania",
-	  		  "Rhode Island", "South Carolina",
-	  		  "South Dakota", "Tennessee", "Texas",
-	  		  "Utah", "Vermont", "Virginia",
-	  		  "Washington", "West Virginia", "Wisconsin",
-	  		  "Wyoming"]
 	  	}
 	  },
 	  components: {
@@ -70,10 +45,7 @@
 			        	resetForm(formName)
 			          })
 			        .catch(error => {
-			          // this.$notify.error({
-			          //   title: 'Error '+error.response.status,
-			          //   message: error.response.data.message
-			          // });
+		        		console.log(error)
 			        })
 			  } else {
 			    console.log('error submit!!');
@@ -90,61 +62,47 @@
 		     this.loading = true;
 
 		     
-		     axios.get(route('usuarios.search',query)) 
-		         .then(response => {
-		         	console.log(response)
-		         	this.options4=response.data
-		         	this.loading = false;
-		         	console.log(this.options4)
-		           })
-		         .catch(error => {
-		           // this.$notify.error({
-		           //   title: 'Error '+error.response.status,
-		           //   message: error.response.data.message
-		           // });
-		         })
-
-		     // setTimeout(() => {
-		     //   this.loading = false;
-		     //   this.options4 = this.list.filter(item => {
-		     //     return item.label.toLowerCase()
-		     //       .indexOf(query.toLowerCase()) > -1;
-		     //   });
-		     // }, 200);
+			axios.get(route('usuarios.search',query)) 
+				.then(response => {
+					console.log(response)
+					this.options4=response.data
+					this.loading = false;
+					console.log(this.options4)
+				})
+				.catch(error => {
+				// this.$notify.error({
+				//   title: 'Error '+error.response.status,
+				//   message: error.response.data.message
+				// });
+				})
 		   } else {
 		     this.options4 = [];
 		   }
 		 },
 	  },
 	  beforeMount(){
-	  		  	getDepartamentos() 
-	  		  	    .then(response => {
-	  		  	    	this.lista_gerencias=response
-	  		  	    	ceco: "asdf"
-	  		  	    	coordinador: null
-	  		  	    	coordinador_id: null
-	  		  	    	created_at: "2019-02-21 14:41:23"
-	  		  	    	dependencia: "asdf"
-	  		  	    	disp_name: "fasdf"
-	  		  	    	gerente: null
-	  		  	    	gerente_id: null
-	  		  	    	id: 1
-	  		  	    	ref: "asdf"
+		getDepartamentos() 
+		    .then(response => {
+		    	this.lista_gerencias=response
+		    	ceco: "asdf"
+		    	coordinador: null
+		    	coordinador_id: null
+		    	created_at: "2019-02-21 14:41:23"
+		    	dependencia: "asdf"
+		    	disp_name: "fasdf"
+		    	gerente: null
+		    	gerente_id: null
+		    	id: 1
+		    	ref: "asdf"
 
-	  		  	      })
-	  		  	    .catch(error => {
-	  		  	      // this.$notify.error({
-	  		  	      //   title: 'Error '+error.response.status,
-	  		  	      //   message: error.response.data.message
-	  		  	      // });
-	  		  	    })
+		      })
+		    .catch(error => {
+		    	console.log(error)
+		    })
 	  },
 	  created(){
 	  },
 	  mounted(){
-	  	this.list = this.states.map(item => {
-	  	  return { value: item, label: item };
-	  	});
 	  },
 	  destroyed () {
 	  },
@@ -157,7 +115,7 @@
 			  :data="lista_gerencias"
 			  style="width:100%"
 			  :default-sort = "{prop: 'disp_name', order: 'ascending'}"
-			  max-height="600"
+			  max-height="800"
 			  >
 			  <el-table-column
 			  :show-overflow-tooltip="true"
@@ -184,7 +142,18 @@
 		</div>
 		<div style="display: flex; flex-direction: column; width: 65%;">
 			<div class="topSideForm l_radiusBorder">
-				Gerencias
+				<div class="titleForm">
+				  <div class="logoGroup">
+				    <img
+				      src="../../../public/img/sps_logoborderline.png"
+				      alt="Logo SPS"/>
+				  </div>
+				  <div class="textContainer">
+				    <div style="display:table-cell;vertical-align:middle;">
+				      <div class="texttitle">Gestion de Gerencias</div>
+				    </div>
+				  </div>
+				</div>
 			</div>
 			<div class="contLeftSide l_radiusBorder">
 				<el-form :rules="rules_" ref="gerencia_form_" :model="gerencia_form"  size="mini" style="width: 100%">

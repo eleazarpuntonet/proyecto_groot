@@ -63,6 +63,7 @@ Route::resource('files', 'FilesController');
 
 Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
 Route::post('roles/permisos/{data}', 'RolesController@permisos')->name('roles.permisos');
+Route::post('roles/accesos/{data}', 'RolesController@accesos')->name('roles.accesos');
 Route::post('roles/savepath/{data}', 'RolesController@savepath')->name('roles.savepath');
 Route::post('roles/savepermisos/{data}', 'RolesController@savepermisos')->name('roles.savepermisos');
 

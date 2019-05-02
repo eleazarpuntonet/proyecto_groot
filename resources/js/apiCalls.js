@@ -162,6 +162,7 @@ export function getDepartamentos(){
     })
   })
 }
+
 export function getUsuarios(){
   return new Promise((res,rej)=>{
     axios.get(route('usuarios.index')) 
@@ -171,5 +172,19 @@ export function getUsuarios(){
         .catch(error => {
           rej(error)
         })
+  })
+}
+
+export function getAccesos(val){
+  return new Promise((res,rej)=>{
+    let x = {}
+    x.data = JSON.stringify(val);
+    axios.post(route('roles.accesos',x))
+    .then(response => {
+      console.log(response)
+      res(response)
+    }).catch( error => {
+      rej(error)
+    })
   })
 }

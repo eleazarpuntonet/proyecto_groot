@@ -87,13 +87,24 @@ export default {
 }
 </script>
 <template>
-  <div class="indexEmpleados">
+  <div class="indexEmpleados ele_modelview_A">
 <!--     <div class="contRightSide l_radiusBorder">
 
     </div> -->
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div class="topSideForm l_radiusBorder">
-        Fuerza Laboral
+        <div class="titleForm">
+          <div class="logoGroup">
+            <img
+              src="../../../public/img/sps_logoborderline.png"
+              alt="Logo SPS"/>
+          </div>
+          <div class="textContainer">
+            <div style="display:table-cell;vertical-align:middle;">
+              <div class="texttitle">Fuerza laboral</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="contLeftSide l_radiusBorder">
         <el-table
@@ -156,22 +167,8 @@ export default {
 </template>
 <style lang="scss">
 .indexEmpleados{
-  display        : flex;
-  flex-direction : row;
-  .topSideForm{
-    width: 100%;
-    height: 40px;
-    background-color: #002E47;
-    font-size: 2vw;
-    color: white;
-    text-shadow: 1px 1px 3px #231F20;
-    font-family: 'PT Sans', sans-serif;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-style: bold;
-  }
+
+
   .contRightSide{
     display          : flex;
     width            : 35%;
@@ -180,26 +177,8 @@ export default {
     background-color : #EBEAEA;
   }
   .contLeftSide{
-    display          : flex;
-    width            : 100%;
-    width            : 100%;
-    display          : flex;
-    flex-direction   : row;
-    background-color : #EBEAEA;
-    .el-table{
-      border-radius      : 5px !important;
-      margin-top         : 5px;
-    }
     .el-table td, .el-table th {
-      font-size          : 12px !important;
-      padding            : 0px 0 !important;
-      min-width          : 0;
-      -webkit-box-sizing : border-box;
-      box-sizing         : border-box;
-      text-overflow      : ellipsis;
-      vertical-align     : middle;
-      position           : relative;
-      text-align         : left;
+      padding            : 5px 5px !important;
     }
 
   }

@@ -115,6 +115,17 @@ class RolesController extends Controller
 
     }
 
+    public function accesos($data)
+    {
+        $objeto = json_decode($data);
+        return Permisos::with('actions')
+            ->whereIn('ruta_id', $objeto->ruta_id)
+            ->whereIn('role_id', $objeto->roles_id)
+            ->get();
+        // return $objeto->ruta_id;
+
+    }
+
     public function savepath($data)
     {
         $objeto = json_decode($data);
