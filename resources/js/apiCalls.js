@@ -181,8 +181,19 @@ export function getAccesos(val){
     x.data = JSON.stringify(val);
     axios.post(route('roles.accesos',x))
     .then(response => {
-      console.log(response)
-      res(response)
+      let permisos = []
+      response.data.forEach((each)=>{
+        if (!permisos.some(item => item.action_id == each.action_id)) {
+          permisos.push(each)
+        } else {
+          let index = permisos.findIndex(item => item.action_id == each.action_id)
+          permisos[index].borra    == each.borra ? null : permisos[index].borra = true
+          permisos[index].lee      == each.lee ? null : permisos[index].lee = true
+          permisos[index].escribe  == each.escribe ? null : permisos[index].escribe = true
+          permisos[index].modifica == each.modifica ? null : permisos[index].modifica = true
+        }
+      })
+      res(permisos)
     }).catch( error => {
       rej(error)
     })

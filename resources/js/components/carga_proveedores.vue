@@ -7,32 +7,28 @@
 	  }
 	}
 	export default {
-	  /*
-	  *
-	  * Variables del componente
-	  */
-	  data () {
+		data () {
 
-	  	return {
-	  		editable: false,
-	  		tmp_contact: false,
-	  		tmp_extra: false,
-	  		arr_temp:[],
-	  		proveedores_form_:{
-	  			extras: [],
-	  			contacto: [],
-	  		},
-	  		contactos_form_:{
-	  			descripcion : null,
-	  			medio       : null,
-	  			nombre      : null,
-	  			value       : null
-	  		},
-	  		extra_form:{
-	  			data:null,
-	  			key:null
-	  		},
-	  		rules_proveedores: {
+			return {
+				editable: false,
+				tmp_contact: false,
+				tmp_extra: false,
+				arr_temp:[],
+				proveedores_form_:{
+					extras: [],
+					contacto: [],
+				},
+				contactos_form_:{
+					descripcion : null,
+					medio       : null,
+					nombre      : null,
+					value       : null
+				},
+				extra_form:{
+					data:null,
+					key:null
+				},
+				rules_proveedores: {
 				rif: [
 						{ required: true, message: 'Campo obligatorio', trigger: 'blur' },
 					],
@@ -48,56 +44,56 @@
 				data: [
 						{ required: true, message: 'Campo obligatorio', trigger: 'blur' },
 					],
-	  		},
-	  		lista_proveedores: [],
-	  		options4: [],
-	  		  value9: [],
-	  		  list: [],
-	  		  loading: false,
+				},
+				lista_proveedores: [],
+				options4: [],
+				  value9: [],
+				  list: [],
+				  loading: false,
 
-	  	}
-	  },
-	  components: {
-	      VueContentLoading,
-	      VclTable,
-	  },
-	  computed: {
+			}
+		},
+		components: {
+		  VueContentLoading,
+		  VclTable,
+		},
+		computed: {
 
-	  },
-	  methods: {
-	  	add_extra(){
-	  		this.tmp_extra= false
-	  		if (this.extra_form.key) {
-	  			this.proveedores_form_.extras.push({ 
-	  				data: this.extra_form.data,
-	  				key: this.extra_form.key
-	  			})
-	  		} 
-	  	},
-	  	add_contact(){
-	  		this.tmp_contact= false
-	  		if (this.contactos_form_.value) {
-	  			this.proveedores_form_.contacto.push({
-	  				medio       : this.contactos_form_.medio,
-	  				nombre      : this.contactos_form_.nombre,
-	  				value       : this.contactos_form_.value,
-	  				descripcion : this.contactos_form_.descripcion,
-	  			})
-	  		} 
-	  	},
-	  	_contact(val){
-	  		this.tmp_contact=val
-	  		this.contactos_form_.medio       = null
-	  		this.contactos_form_.nombre      = null
-	  		this.contactos_form_.value       = null
-	  		this.contactos_form_.descripcion = null
-	  	},
-	  	_extra(val){
-	  		this.tmp_extra=val
-	  		this.extra_form.key       = null
-	  		this.extra_form.data      = null
-	  	},
-	  	submitForm(formName) {
+		},
+		methods: {
+			add_extra(){
+				this.tmp_extra= false
+				if (this.extra_form.key) {
+					this.proveedores_form_.extras.push({ 
+						data: this.extra_form.data,
+						key: this.extra_form.key
+					})
+				} 
+			},
+			add_contact(){
+				this.tmp_contact= false
+				if (this.contactos_form_.value) {
+					this.proveedores_form_.contacto.push({
+						medio       : this.contactos_form_.medio,
+						nombre      : this.contactos_form_.nombre,
+						value       : this.contactos_form_.value,
+						descripcion : this.contactos_form_.descripcion,
+					})
+				} 
+			},
+			_contact(val){
+				this.tmp_contact=val
+				this.contactos_form_.medio       = null
+				this.contactos_form_.nombre      = null
+				this.contactos_form_.value       = null
+				this.contactos_form_.descripcion = null
+			},
+			_extra(val){
+				this.tmp_extra=val
+				this.extra_form.key       = null
+				this.extra_form.data      = null
+			},
+			submitForm(formName) {
 			this.$refs[formName].validate((valid) => {
 			  if (valid) {
 
@@ -139,26 +135,26 @@
 		     this.options4 = [];
 		   }
 		 },
-	  },
-	  beforeMount(){
-	  		axios.get(route('proveedores.index')) 
-	  		    .then(response => {
-	  	        	this.lista_proveedores=response.data
-	  		      })
-	  		    .catch(error => {
-	  		    	console.log(error)
-	  		      this.$notify.error({
-	  		        title: 'Error '+error.response,
-	  		        message: error.response
-	  		      });
-	  		    })
-	  },
-	  created(){
-	  },
-	  mounted(){
-	  },
-	  destroyed () {
-	  },
+		},
+		beforeMount(){
+			axios.get(route('proveedores.index')) 
+			    .then(response => {
+			    	this.lista_proveedores=response.data
+			      })
+			    .catch(error => {
+			    	console.log(error)
+			      this.$notify.error({
+			        title: 'Error '+error.response,
+			        message: error.response
+			      });
+			    })
+		},
+		created(){
+		},
+		mounted(){
+		},
+		destroyed () {
+		},
 	}
 </script>
 <template>
@@ -330,7 +326,6 @@
 				</el-form>	
 			</div>
 		</div>
-
 	</div>
 </template>
 <style lang="scss">

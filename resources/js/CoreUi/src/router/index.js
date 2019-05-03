@@ -64,7 +64,6 @@ import gestion_usuarios  from '../../../components/gestion_usuarios'
 import detalle_Reserva   from '../../../components/detalleReservas'
 import perfilDeUsuario   from '../../../components/userProfile'
 import traslados_reserva from '../../../components/trasladosForm'
-import autReservas       from '../../../components/autorizacionesForm'
 import cargaProveedores  from '../../../components/carga_proveedores'
 import cargaUsuarios     from '../../../components/carga_usuarios'
 import cargaRoles        from '../../../components/carga_roles'
@@ -73,34 +72,23 @@ import permisos    from '../../../components/panelPermisos'
 import rfq from '../../../components/procuraRfq'
 
 Vue.use(Router)
-// var user = JSON.parse(window.localStorage.getItem('user'))
-console.log("Entro en rutas")
-
 class Route_item{
   constructor(item,children){
-
-    switch(arguments.length){
-      case 1:
-        this.path = item.path
-        this.name = item.name
-        this.component = item.comp
-      break
-      case 2:
-        this.path = item.path
-        this.name = item.name
-        this.component = item.comp
-        this.children = children
-        this.redirect = item.redir
-        this.component = {
-            render (c) { return c('router-view') }
-          }
-      break
-    }
-
+    this.path = item.path
+    this.name = item.name
+    this.component = item.comp
     this.meta = {
       requiresAuth: false,
       roles: []
     }
+    item.router_id ? this.meta.router_id=item.router_id : this.meta.router_id='n/a' 
+    if (arguments.length == 2) {
+      this.children = children
+      this.redirect = item.redir
+      this.component = {
+          render (c) { return c('router-view') }
+        }
+    }     
   }
 
   addRole(rol){
@@ -147,31 +135,29 @@ var panelHome = new Route_item({
 panelHome.changeAuth(true,['public'])
 
 var rolesreservas = ['public']
-var indreservas = new Route_item({
-  path:'indice_reservas',
-  name:'Indice',
-  comp: autReservas,
-  })
-indreservas.changeAuth(true,rolesreservas)
 var traslados = new Route_item({
+  router_id : 'reserv004i',
   path:'traslados',
   name:'Traslados',
   comp: traslados_reserva,
   })
 traslados.changeAuth(true,rolesreservas)
 var nreserva = new Route_item({
-  path:'nueva_reserva',
-  name:'Nueva Reserva',
-  comp: nueva_reserva,
+  router_id : 'reserv002i',
+  path      : 'nueva_reserva',
+  name      : 'Nueva Reserva',
+  comp      : nueva_reserva,
   })  
 nreserva.changeAuth(true,rolesreservas)
 var inreserva = new Route_item({
+  router_id : 'reserv003i',
   path:'listado_reservas',
   name:'Indice de Reservas',
   comp: index_Reservas,
   })  
 inreserva.changeAuth(true,rolesreservas)
 var detreserva = new Route_item({
+  router_id : 'reserv005i',
   path:':id_reserva',
   name:'Detalle de Reserva',
   comp: detalle_Reserva,
@@ -180,20 +166,21 @@ detreserva.changeAuth(true,rolesreservas)
 
 
 var MenuReservas = new Route_item({
+    router_id : 'reserv001m',
     path:'reservas',
     name:'Reservas',
     redir: '/reservas/listado_reservas'
   },[
-    indreservas,
-    traslados,
-    nreserva,
-    inreserva,
-    detreserva,
+      traslados,
+      nreserva,
+      inreserva,
+      detreserva,
     ])
 
 var rolesusuarios = ['public']
 
 var i_empleados = new Route_item({
+  router_id : 'rrhh001m',
   path:'i_empleados',
   name:'Indice de Empleados',
   comp: indexEmpleados,
@@ -201,6 +188,7 @@ var i_empleados = new Route_item({
 i_empleados.changeAuth(true,rolesusuarios)
 
 var MenuRRHH = new Route_item({
+    router_id : 'rrhh002i',
     path:'usuarios',
     name:'GestionUsuario',
     redir: '/usuarios/g_usuario'
@@ -211,6 +199,7 @@ var MenuRRHH = new Route_item({
 //Marcador
 var rolescargaDatos = ['public']
 var cargaDeUsuarios = new Route_item({
+  router_id : 'dataload002i',
   path:'usuarios',
   name:'Carga de Empleados',
   comp: cargaUsuarios,
@@ -218,6 +207,7 @@ var cargaDeUsuarios = new Route_item({
 cargaDeUsuarios.changeAuth(true,rolescargaDatos)
 
 var cargaDeProveedores = new Route_item({
+  router_id : 'dataload004i',
   path:'proveedores',
   name:'Carga de Proveedores',
   comp: cargaProveedores,
@@ -225,6 +215,7 @@ var cargaDeProveedores = new Route_item({
 cargaDeProveedores.changeAuth(true,rolescargaDatos)
 
 var cargaDeGerencias = new Route_item({
+  router_id : 'dataload005i',
   path:'gerencias',
   name:'Carga de Gerencias',
   comp: cargaGerencias,
@@ -232,6 +223,7 @@ var cargaDeGerencias = new Route_item({
 cargaDeGerencias.changeAuth(true,rolescargaDatos)
 
 var cargaDeRoles = new Route_item({
+  router_id : 'dataload003i',
   path:'roles',
   name:'Carga de Roles',
   comp: cargaRoles,
@@ -239,6 +231,7 @@ var cargaDeRoles = new Route_item({
 cargaDeRoles.changeAuth(true,rolescargaDatos)
 
 var Permisologia = new Route_item({
+  router_id : 'dataload006i',
   path:'permisos',
   name:'Permisos',
   comp: permisos,
@@ -246,6 +239,7 @@ var Permisologia = new Route_item({
 Permisologia.changeAuth(true,rolescargaDatos)
 
 var cargaDeDatos = new Route_item({
+    router_id : 'dataload001m',
     path:'c_datos',
     name:'Carga de Datos',
     redir: '/c_datos/usuarios'
@@ -258,12 +252,14 @@ var cargaDeDatos = new Route_item({
     ])
 
 var rfqForm = new Route_item({
+  router_id : 'procura002i',
   path:'rfq',
   name:'rfq',
   comp: rfq,
   })  
 rfqForm.changeAuth(true,rolescargaDatos)
 var procura = new Route_item({
+    router_id : 'procura001m',
     path:'procura',
     name:'Procura',
     redir: '/procura/rfq'

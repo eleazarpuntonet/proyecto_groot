@@ -87,6 +87,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token'  => $token,
             'roles'         => $this->guard()->user()->roles,
+            'permisos'         => $this->guard()->user()->permisos,
             'gerencia'      => $this->guard()->user()->departamento,
             'notifications' => $user_notif,
             'user'          => $this->guard()->user(),

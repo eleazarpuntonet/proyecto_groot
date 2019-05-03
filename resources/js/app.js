@@ -112,15 +112,15 @@ const store = new Vuex.Store({
           customers        : [],
           roles            : [],
           path_Auth        : [],
-          acciones_        : [],
+          userPermisos        : [],
 
     },
       //Getters guarda los metodos para obtener
       //los datos de State
       getters: {
-          findActions (state) {
+          getUserPermisos (state,ruta_id) {
               console.log('retornando acciones')
-              return state.acciones_
+              return state.userPermisos
           },
           getPermisosRoles (state) {
               return state.permisos_roles
@@ -184,6 +184,18 @@ const store = new Vuex.Store({
                   window.Echo.auth= {headers: {Authorization: "Bearer " + state.currentUser.token}}
               }
               axios.defaults.headers.common['Authorization'] = 'Bearer '+state.currentUser.token
+
+              payload.permisos.forEach((each)=>{
+                if (!state.userPermisos.some(item => item.action_id == each.action_id)) {
+                  state.userPermisos.push(each)
+                } else {
+                  let index = state.userPermisos.findIndex(item => item.action_id == each.action_id)
+                  state.userPermisos[index].borra    == each.borra ? null : state.userPermisos[index].borra = true
+                  state.userPermisos[index].lee      == each.lee ? null : state.userPermisos[index].lee = true
+                  state.userPermisos[index].escribe  == each.escribe ? null : state.userPermisos[index].escribe = true
+                  state.userPermisos[index].modifica == each.modifica ? null : state.userPermisos[index].modifica = true
+                }
+              })
           },
           addHost(state,value){
               state.host = value
@@ -201,7 +213,6 @@ const store = new Vuex.Store({
           },
           logout(state){
               state.isAuthenticated = false
-              // alert('Se elimina el user')
               localStorage.removeItem("user")
               localStorage.removeItem("jwtToken")
               state.loading     = false
@@ -222,10 +233,7 @@ const store = new Vuex.Store({
               state.permisos_roles = val
           },
     },
-    //Actions guarda los metodos para modificar los state
-    //de forma ASINCRONA
     actions: {
-          // Perform VueAuthenticate login using Vuex actions
       login (context, payload) {
           context.commit('isAuthenticated', {
               user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),

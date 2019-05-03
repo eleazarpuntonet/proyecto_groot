@@ -80,7 +80,8 @@ Route::get('testing',function(){
 	$id = 1;
 
 	return response()->json([
-		'Permisos'      => Permisos::whereIn('ruta_id',$objetos)->where('role_id','=',$id)->get(),
+		'User'      => User::with('permisos')->find(1),
+		'Permisos'      => Permisos::with('user')->find(1),
 
 	], 200);
 

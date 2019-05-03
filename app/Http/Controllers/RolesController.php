@@ -118,12 +118,7 @@ class RolesController extends Controller
     public function accesos($data)
     {
         $objeto = json_decode($data);
-        return Permisos::with('actions')
-            ->whereIn('ruta_id', $objeto->ruta_id)
-            ->whereIn('role_id', $objeto->roles_id)
-            ->get();
-        // return $objeto->ruta_id;
-
+        return User::with('permisos')->find($objeto->user_id)->permisos;
     }
 
     public function savepath($data)
@@ -146,21 +141,18 @@ class RolesController extends Controller
     public function savepermisos($data)
     {
         $objeto = json_decode($data);
-
         if (!empty($objeto->permisos)) {
             foreach ($objeto->permisos as $val) {
                 $valor = Permisos::where('role_id', '=', $objeto->role)
                 ->where('action_id', '=', $val->action_id)
                 ->update([
-                    'lee'      => $val->lee === 'true' ? 'true' : 'false',
-                    'escribe'  => $val->escribe === 'true' ? 'true' : 'false',
-                    'modifica' => $val->modifica === 'true' ? 'true' : 'false',
-                    'borra'    => $val->borra === 'true' ? 'true' : 'false'
+                    'lee'      => $val->lee === 'true' || $val->lee === true? 'true' : 'false',
+                    'escribe'  => $val->escribe === 'true' || $val->escribe === true? 'true' : 'false',
+                    'modifica' => $val->modifica === 'true' || $val->modifica === true? 'true' : 'false',
+                    'borra'    => $val->borra === 'true' || $val->borra === true? 'true' : 'false'
                 ]);
-                dd($val->lee);
             }
         }
-
         return $objeto->permisos;
     }
 

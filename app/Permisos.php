@@ -17,4 +17,9 @@ class Permisos extends Model
 	{
 		return $this->belongsTo(ActionsAuth::class, 'action_id','action_id');
 	}
+
+	public function user()
+	{
+		return $this->belongsTo(User::class, 'role_id','id');
+	}
 }

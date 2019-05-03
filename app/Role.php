@@ -21,13 +21,11 @@ class Role extends Model
 
     public function auth_actions()
     {
-        // $role->auth_actions()->attach('dataload003i2');
         return $this->belongsToMany(ActionsAuth::class,'authactions_roles','role_id','action_id');
     }
 
     public function role_permisos()
     {
-        // $role->auth_actions()->attach('dataload003i2');
         return $this->hasMany(Permisos::class, 'role_id', 'id');
     }
 }

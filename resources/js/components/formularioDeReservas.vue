@@ -20,8 +20,8 @@
     */
     data () {
       return {
-        acciones_: ['reserv002i'],
         venezuela: venezuela,
+        permisos: [],
         tableData: [],
         user: null,
         switch_flag: false,
@@ -296,6 +296,19 @@
         }
     },
     methods: {
+      checkPermisos(accion_id, accion) {
+        if (this.permisos.some(item => item.action_id == accion_id)) {
+          let index = this.permisos.findIndex(item => item.action_id == accion_id)
+          console.log(this.permisos[index][accion])
+          if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return false
+        }
+      },
       deleteRow(index, rows) {
         rows.splice(index, 1);
       },
@@ -428,17 +441,18 @@
         });
       },
     },
-    beforeMount(){
-      var value = {}
-      value.ruta_id = this.acciones_
-      value.roles_id      = []
-      this.$store.getters.currentUser.roles.forEach(each => value.roles_id.push(each.id))
+    beforeCreate(){
+      var value      = {}
+      value.ruta_id  = this.$router.app._route.meta.router_id
+      value.user_id = this.$store.getters.currentUser.id
+      
       getAccesos(value)
-      .then(response => {
-        console.log(response)
-      }).catch( error => {
-        console.log(error)
-      })
+        .then(response => {
+          this.permisos = response
+        }).catch( error => {
+          console.log(error)
+        })
+
     },
     created() {
     },
@@ -448,6 +462,7 @@
 </script>
 <template>
   <div class="reservasView ele_modelview_A">
+    {{checkPermisos('reserv002i1','lee')}}
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div class="topSideForm l_radiusBorder">
         <div class="titleForm" v-if="dataSend.t_reserva">
@@ -910,12 +925,42 @@
               @click.prevent="validate_send('dataSend')"
               size="small" 
               type="sps1" 
-              round>Enviar</el-button>
+              round>Enviar
+            </el-button>
             <el-button 
               class="pause"
               type="warning" 
               size="small" 
-              round>Cancelar</el-button>
+              round>Cancelar
+            </el-button>
+            <el-button 
+            v-if="checkPermisos('reserv002i1','lee')"
+              class="pause"
+              type="warning" 
+              size="small" 
+              round>Lee
+            </el-button>
+            <el-button 
+            v-if="checkPermisos('reserv002i1','escribe')"
+              class="pause"
+              type="warning" 
+              size="small" 
+              round>Escribe
+            </el-button>
+            <el-button 
+            v-if="checkPermisos('reserv002i1','borra')"
+              class="pause"
+              type="warning" 
+              size="small" 
+              round>Borra
+            </el-button>
+            <el-button 
+            v-if="checkPermisos('reserv002i1','modifica')"
+              class="pause"
+              type="warning" 
+              size="small" 
+              round>Modifica
+            </el-button>
           </div>
         </el-form>
       </div>

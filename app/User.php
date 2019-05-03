@@ -51,11 +51,20 @@ class User extends Authenticatable implements JWTSubject
         'roles',
         'status',
         'getJWTIdentifier',
+        'permisos',
         'getJWTCustomClaims',
     ];
-    // protected $with = [
-    //     'getFullNameAttribute',
-    // ];
+    public function permisos()
+    {
+        return $this->hasManyThrough( 
+                                 Permisos::class, //tabla destino
+                                 AssignedTableRoles::class,//tabla intermedia
+                                 'user_id', //Llave que relaciona la TABLA INTERMEDIA -> TABLA ORIGEN
+                                 'role_id', //Llave que relaciona la TABLA DESTINO -> TABLA INTERMEDIA
+                                 'id', //Llave que relaciona la TABLA ORIGEN -> TABLA INTERMEDIA
+                                 'role_id'//Llave que relaciona la TABLA INTERMEDIA -> TABLA DESTINO
+                                 );
+    }
 
     public function reservas()
     {
@@ -66,7 +75,6 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasOne(Departamentos::class,'ceco','gerencia');
     }
-
 
     public function roles()
     {
