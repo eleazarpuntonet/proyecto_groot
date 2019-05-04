@@ -14,6 +14,7 @@ import 'core-js/es6/string'
 import 'core-js/es7/array'
 import {
   getPermisosRutasRoles,
+  getAccesos
 } from './apiCalls.js'
 import jsPDF             from         'jspdf'
 import Vuex              from         'vuex'
@@ -40,7 +41,7 @@ import cssVars           from         'css-vars-ponyfill'
 import BootstrapVue      from         'bootstrap-vue'
 import App               from         './App.vue'
 import router            from         './CoreUi/src/router/index.js'
-import {getLocalUser}    from         './auth.js'
+import {getLocalUser,getLocalUserPermisos}    from         './auth.js'
 import VueContentLoading from         'vue-content-loading';
 import {                 VclFacebook, VclInstagram                             }    from         'vue-content-loading'
 import {                 Notification }                                        from 'element-ui'
@@ -99,11 +100,11 @@ const store = new Vuex.Store({
     //State guarda las variables
     state: {
           isAuthenticated  : false,
-          permisos_roles         : null,
+          permisos_roles   : null,
           host             : '',
           sites            : '',
           currentUser      : user,
-          roles_auth      : [],
+          roles_auth       : [],
           notifications    : [],
           socket_connected : null,
           isLoggedIn       : !!user,
@@ -112,15 +113,18 @@ const store = new Vuex.Store({
           customers        : [],
           roles            : [],
           path_Auth        : [],
-          userPermisos        : [],
+          userPermisos     : getLocalUserPermisos(),
 
     },
       //Getters guarda los metodos para obtener
       //los datos de State
       getters: {
-          getUserPermisos (state,ruta_id) {
-              console.log('retornando acciones')
-              return state.userPermisos
+          getUserPermisos (state) {
+              if (state.userPermisos) {
+                return state.userPermisos
+              } else {
+                return null
+              }
           },
           getPermisosRoles (state) {
               return state.permisos_roles
@@ -196,6 +200,7 @@ const store = new Vuex.Store({
                   state.userPermisos[index].modifica == each.modifica ? null : state.userPermisos[index].modifica = true
                 }
               })
+              localStorage.setItem("userPermisos", JSON.stringify(state.userPermisos))
           },
           addHost(state,value){
               state.host = value
@@ -214,6 +219,7 @@ const store = new Vuex.Store({
           logout(state){
               state.isAuthenticated = false
               localStorage.removeItem("user")
+              localStorage.removeItem("userPermisos")
               localStorage.removeItem("jwtToken")
               state.loading     = false
               state.currentUser = null
@@ -232,8 +238,15 @@ const store = new Vuex.Store({
           SETPERMISOS_ROLES(state,val){
               state.permisos_roles = val
           },
+          SET_ACCESOS(state,val){
+            state.userPermisos = val
+          },
     },
     actions: {
+      setAccesos(state, payload){
+        console.log(payload)
+        store.commit('SET_ACCESOS',payload)
+      },
       login (context, payload) {
           context.commit('isAuthenticated', {
               user : Object.assign({}, payload.data.user, {token: payload.data.access_token}),

@@ -43,7 +43,7 @@
           console.log(this.permisos)
           return this.permisos
         } else {
-          return 'Aun no hay nada para mostrar'
+          return []
         }
       },
       getRoleSelected(){
@@ -82,58 +82,97 @@
   }
 </script>
 <template>
-  <div class="asideContainer">
-    <b-tabs>
-        <b-tab>
-          <template slot="title">
-            <i class='icon-settings'></i>
-          </template>
-          <div class="headerCheckbox">
-            <div class="item">
-              {{getRoleSelected}}
-            </div>
-            <div v-if="visibleTab" class="crud">
-              <div class="crudItem">C</div>
-              <div class="crudItem">R</div>
-              <div class="crudItem">U</div>
-              <div class="crudItem">D</div>
-            </div>
-          </div>
-          <div v-if="visibleTab" class="checkBoxBody" v-for="permiso in getPermisos">
-            <div class="checkBoxLabel">
-              {{permiso.action_name}}
-            </div>
-            <div class="checkBoxes">
-              <el-checkbox :disabled="disableCheck" v-model="permiso.lee"></el-checkbox>
-              <el-checkbox :disabled="disableCheck" v-model="permiso.escribe"></el-checkbox>
-              <el-checkbox :disabled="disableCheck" v-model="permiso.modifica"></el-checkbox>
-              <el-checkbox :disabled="disableCheck" v-model="permiso.borra"></el-checkbox>
-            </div>
-          </div>
-          <div class="buttonLine">
-            <el-button
-            @click="CrudClick()"
-              type="primary"
-              icon="el-icon-edit"
-              size="mini">
-              Editar permisos
-            </el-button>
-            <el-button
-            @click="sendChanges()"
-            icon="el-icon-refresh"
-              type="primary"
-              size="mini">
-              Actualizar permisos
-            </el-button>
-          </div>
-        </b-tab>      
-    </b-tabs>
-  </div>
+    <div class="asideContainer ele_modelview_A wall">
+      <div class="tablePermisos l_radiusBorder">
+        <el-table
+        fit
+          class="l_radiusBorder"
+          :data="getPermisos"
+          tooltip-effect="light"
+          style="width: 100%">
+          <el-table-column
+            align     = "left"
+            :label     = "getRoleSelected"
+            min-width = "50">
+            <template slot-scope="props">
+              {{ props.row.action_name }}
+            </template>
+          </el-table-column>
+          <el-table-column
+            align     = "left"
+            label     = "C"
+            min-width = "10">
+            <template slot-scope="props">
+              <el-checkbox :disabled="disableCheck" v-model="props.row.escribe"></el-checkbox>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align     = "left"
+            label     = "R"
+            min-width = "10">
+            <template slot-scope="props">
+              <el-checkbox :disabled="disableCheck" v-model="props.row.lee"></el-checkbox>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align     = "left"
+            label     = "U"
+            min-width = "10">
+            <template slot-scope="props">
+              <el-checkbox :disabled="disableCheck" v-model="props.row.modifica"></el-checkbox>
+            </template>
+          </el-table-column>
+          <el-table-column
+            align     = "left"
+            label     = "D"
+            min-width = "10">
+            <template slot-scope="props">
+              <el-checkbox :disabled="disableCheck" v-model="props.row.borra"></el-checkbox>
+            </template>
+          </el-table-column>
+        </el-table>
+      </div>
 
+
+      <div class="buttonLine l_radiusBorder">
+        <el-button
+        @click="CrudClick()"
+          type="primary"
+          icon="el-icon-edit"
+          size="mini">
+          Editar permisos
+        </el-button>
+        <el-button
+        @click="sendChanges()"
+        icon="el-icon-refresh"
+          type="primary"
+          size="mini">
+          Actualizar permisos
+        </el-button>
+      </div>
+    </div>
 </template>
 <style lang="scss">
+
 .asideContainer{
-  .buttonLine{
+  padding: 3px !important;
+  display: flex;
+   flex-direction: column;
+   border-left: 5px solid #fff;
+   .l_radiusBorder{
+     padding: 0 0 !important;
+     margin: 2px !important;
+   }
+  .tablePermisos{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    .el-table td, .el-table th {
+        padding: 2px 0 !important;
+
+    }
+  } 
+ .buttonLine{
     margin: 10px 5px;
     display: flex;
     flex-direction: row;  
@@ -167,30 +206,35 @@
       }
     }
   }
-  .checkBoxBody{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-family: "Roboto";
-    font-style: normal;
-    padding: 2px 3px;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    font-size: 15px;
-    color: #6D6E70;
-    .checkBoxLabel{
-      width: 50%;
-    }
-    .checkBoxes{
-      width: 50%;
+  .selectable{
+    display : flex;
+    flex-direction: column;
+    .checkBoxBody{
+      width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
-      .el-checkbox {
-        margin-left: 10px !important;
+      font-family: "Roboto";
+      font-style: normal;
+      padding: 2px 3px;
+      border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+      font-size: 15px;
+      color: #6D6E70;
+      .checkBoxLabel{
+        width: 50%;
       }
-    }
+      .checkBoxes{
+        width: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        .el-checkbox {
+          margin-left: 10px !important;
+        }
+      }
+    }    
   }
+
 }
 
 </style>

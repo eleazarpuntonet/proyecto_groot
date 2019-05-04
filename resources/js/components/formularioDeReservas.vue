@@ -21,7 +21,7 @@
     data () {
       return {
         venezuela: venezuela,
-        permisos: [],
+        permisos: this.$store.getters.getUserPermisos,
         tableData: [],
         user: null,
         switch_flag: false,
@@ -179,38 +179,38 @@
           },
         },
 
-        // dataSend : {
-         //   alcance: null,
-        //   t_reserva: null,
-        //   from_a   : null,
-        //   from_b   : null,
-        //   adress_a : null,
-        //   date_a   : null,
-        //   to_a     : null,
-        //   to_b     : null,
-        //   adress_b : null,
-        //   date_b   : null,
-        //   motivo   : null,
-        //   agenda   : null,
-            //viaticos : [],
-        // },
-        
         dataSend : {
-          alcance   : null,
-          id_user   : this.$store.getters.currentUser.id,
-          t_reserva : null,
-          from_a    : 'Caracas',
-          from_b    : 'Catia',
-          adress_a  : 'Catia nro 58 496',
-          date_a    : '2017-11-14',
-          to_a      : 'Paris',
-          to_b      : 'Francia',
-          adress_b  : 'Bla bla bla',
-          date_b    : '2017-11-20',
-          motivo    : 'Viajes',
-          agenda    : 'Viajar',
-          viaticos  : [],
+           alcance: null,
+          t_reserva: null,
+          from_a   : null,
+          from_b   : null,
+          adress_a : null,
+          date_a   : null,
+          to_a     : null,
+          to_b     : null,
+          adress_b : null,
+          date_b   : null,
+          motivo   : null,
+          agenda   : null,
+            viaticos : [],
         },
+        
+        // dataSend : {
+        //   alcance   : null,
+        //   id_user   : this.$store.getters.currentUser.id,
+        //   t_reserva : null,
+        //   from_a    : 'Caracas',
+        //   from_b    : 'Catia',
+        //   adress_a  : 'Catia nro 58 496',
+        //   date_a    : '2017-11-14',
+        //   to_a      : 'Paris',
+        //   to_b      : 'Francia',
+        //   adress_b  : 'Bla bla bla',
+        //   date_b    : '2017-11-20',
+        //   motivo    : 'Viajes',
+        //   agenda    : 'Viajar',
+        //   viaticos  : [],
+        // },
         t_reserva    : [
           {value : null, text: 'Seleccione un tipo de reserva'},
           {value : 'nac', text: 'Reserva Nacional'},
@@ -295,11 +295,15 @@
           return this.citiesOptions
         }
     },
+    watch:{
+      permisos(){
+        console.log('Permisos ah cambiado')
+      }
+    },
     methods: {
       checkPermisos(accion_id, accion) {
         if (this.permisos.some(item => item.action_id == accion_id)) {
           let index = this.permisos.findIndex(item => item.action_id == accion_id)
-          console.log(this.permisos[index][accion])
           if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
             return true
           } else {
@@ -313,7 +317,6 @@
         rows.splice(index, 1);
       },
       itemChange(item){
-        // console.log(item)
         this.viatico_temp.rubro = item.value
         if (item.value != 'otros') {
           this.rubros.forEach((val,i)=>{
@@ -341,7 +344,6 @@
         this.viatico_temp.rubro= null
       },
       switchChange(){
-        console.log('Ejecuto')
         if (this.reserva_switch == true) {
           this.dataSend.alcance = 'Nacional'
           this.dataSend.t_reserva = 'nac'
@@ -374,8 +376,6 @@
         this.venezuela.forEach((val)=>{
           if (this.dataSend.to_a==val.estado) {
             this.city_temp_2=val
-            console.log(val)
-            // this.citiesOptions=val.ciudades
           }
         })
       },
@@ -400,7 +400,6 @@
           })
         } else {
           this.int_label.forEach((val)=>{
-            console.log(val)
           })
         }
       },
@@ -413,8 +412,6 @@
                   message: 'Registro creado!',
                   type: 'success'
                 })
-                console.log(response)
-                console.log(response.data)
                 // this.$router.push({
                 //   path: `/reservas/${response.data.id}` 
                 // })
@@ -448,11 +445,10 @@
       
       getAccesos(value)
         .then(response => {
-          this.permisos = response
+          this.$store.dispatch('setAccesos', response)
         }).catch( error => {
           console.log(error)
         })
-
     },
     created() {
     },
@@ -462,7 +458,6 @@
 </script>
 <template>
   <div class="reservasView ele_modelview_A">
-    {{checkPermisos('reserv002i1','lee')}}
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div class="topSideForm l_radiusBorder">
         <div class="titleForm" v-if="dataSend.t_reserva">
@@ -760,7 +755,7 @@
             </div>
           </div>
           <div class="form_line">
-            <el-form-item prop="motivo" style="width: 50%;">
+            <el-form-item prop="motivo" style="width: 50%; ">
               <div class="el_label">
                 {{ dataSend.t_reserva=='nac' ? nac_label.motivo.tit : int_label.motivo.tit }}
               </div>
@@ -776,7 +771,7 @@
                 ></el-input>
               </el-tooltip>
             </el-form-item>
-            <el-form-item prop="agenda" style="width: 50%;">
+            <el-form-item prop="agenda" style="width: 50%; margin-left: 5px;">
               <div class="el_label">
                 {{ dataSend.t_reserva=='nac' ? nac_label.agenda.tit : int_label.agenda.tit }}
               </div>
@@ -921,45 +916,18 @@
           </div>
           <div class="form_line buttonsLine">
             <el-button 
+              v-if="checkPermisos('reserv002i1','escribe')"
               class="send"
               @click.prevent="validate_send('dataSend')"
               size="small" 
               type="sps1" 
-              round>Enviar
+              round>Crear solicitud
             </el-button>
             <el-button 
               class="pause"
               type="warning" 
               size="small" 
               round>Cancelar
-            </el-button>
-            <el-button 
-            v-if="checkPermisos('reserv002i1','lee')"
-              class="pause"
-              type="warning" 
-              size="small" 
-              round>Lee
-            </el-button>
-            <el-button 
-            v-if="checkPermisos('reserv002i1','escribe')"
-              class="pause"
-              type="warning" 
-              size="small" 
-              round>Escribe
-            </el-button>
-            <el-button 
-            v-if="checkPermisos('reserv002i1','borra')"
-              class="pause"
-              type="warning" 
-              size="small" 
-              round>Borra
-            </el-button>
-            <el-button 
-            v-if="checkPermisos('reserv002i1','modifica')"
-              class="pause"
-              type="warning" 
-              size="small" 
-              round>Modifica
             </el-button>
           </div>
         </el-form>
