@@ -439,16 +439,7 @@
       },
     },
     beforeCreate(){
-      var value      = {}
-      value.ruta_id  = this.$router.app._route.meta.router_id
-      value.user_id = this.$store.getters.currentUser.id
-      
-      getAccesos(value)
-        .then(response => {
-          this.$store.dispatch('setAccesos', response)
-        }).catch( error => {
-          console.log(error)
-        })
+      this.$store.dispatch('setAccesos', this.$router.app._route.meta.router_id)
     },
     created() {
     },

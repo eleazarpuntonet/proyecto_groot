@@ -201,6 +201,7 @@ const store = new Vuex.Store({
                 }
               })
               localStorage.setItem("userPermisos", JSON.stringify(state.userPermisos))
+              console.log(JSON.stringify(state.userPermisos))
           },
           addHost(state,value){
               state.host = value
@@ -230,7 +231,6 @@ const store = new Vuex.Store({
               state.notifications.push(value)
           },
           ADD_PATHSARR(state,value){
-              console.log('Estohy en el store')
               value.forEach((v,i)=>{
                   state.path_Auth.push(v)
               })
@@ -244,8 +244,16 @@ const store = new Vuex.Store({
     },
     actions: {
       setAccesos(state, payload){
-        console.log(payload)
-        store.commit('SET_ACCESOS',payload)
+        let value      = {}
+        value.ruta_id  = payload
+        value.user_id = this.state.currentUser.id
+        getAccesos(value)
+          .then(response => {
+            store.commit('SET_ACCESOS',response)
+            localStorage.setItem("userPermisos", JSON.stringify(this.state.userPermisos))
+          }).catch( error => {
+            console.log(error)
+          })
       },
       login (context, payload) {
           context.commit('isAuthenticated', {

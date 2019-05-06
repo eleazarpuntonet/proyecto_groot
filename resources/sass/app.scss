@@ -91,18 +91,7 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
   border-radius      : 4px;
   font-family        : 'Eurostile LTS Demi';
 }
-.el-button--mini, .el-button--mini.is-round {
-    padding: 4px 8px !important;
-}
-.el-button--mini, .el-button--small {
-    font-size: 11px !important;
-    border-radius: 3px !important;
-}
-.el-button--small, .el-button--small.is-round {
-    padding: 9px 15px;
-    font-size: 14px !important;
-    border-radius: 3px !important;
-}
+
 .send {
   color            : #fff !important;
   margin-right     : 10px;
@@ -219,6 +208,57 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
     flex-direction   : row;
     background-color : #EBEAEA;
 
+  }
+  .el-button--mini, .el-button--mini.is-round {
+      padding: 4px 8px !important;
+  }
+  .el-button--mini, .el-button--small {
+      font-size: 11px !important;
+      border-radius: 3px !important;
+  }
+  .el-button--small, .el-button--small.is-round {
+      padding: 9px 15px;
+      font-size: 14px !important;
+      border-radius: 3px !important;
+  }
+  $colorPrimary: #231F20;
+  $colorPrimaryText: #BCBEC0;
+  $colorPrimaryBorder: #6D6E71;
+  $colorDisabled: #5F5C5C;
+  $colorDisabledText: #BCBEC0;
+  $colorDisabledBorder: #AFAFB1;
+  .el-button--primary {
+      color: colorPrimaryText;
+      background-color: $colorPrimary;
+      border-color: $colorPrimaryBorder;
+  }
+  .el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover {
+      color: $colorDisabledText;
+      background-color: $colorDisabled;
+      border-color: $colorDisabledBorder;
+  }
+  .el-button--primary:focus, .el-button--primary:hover {
+      background: #6D6E71;
+      border-color: #D9DBDC;
+      color: #D9DBDC;
+  }
+  $colorInfo: #007CC2;
+  $colorInfoText: #fff;
+  $colorInfoBorder: #fff;
+  .el-button--info {
+      color: $colorInfoText;
+      background-color: $colorInfo;
+      border-color: $colorInfoBorder;
+  }
+  .el-button--info.is-disabled, .el-button--info.is-disabled:active, .el-button--info.is-disabled:focus, .el-button--info.is-disabled:hover {
+      color: $colorDisabledText;
+      background-color: $colorDisabled;
+      border-color: $colorDisabledBorder;
+  }
+  .el-button--info:focus, .el-button--info:hover {
+      background: #73B7DD;
+      border-color: $colorInfoText;
+      color: $colorInfoBorder;
   }
 }
 

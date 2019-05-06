@@ -14,6 +14,7 @@
 	  */
 	  data () {
 	  	return {
+	  		permisos: this.$store.getters.getUserPermisos,
 			dominio_temp    : null,
 			editable        : false,
 			temp_roles      : [],
@@ -83,6 +84,18 @@
 	      VclTable,
 	  },
 	  methods: {
+	  	checkPermisos(accion_id, accion) {
+	  	  if (this.permisos.some(item => item.action_id == accion_id)) {
+	  	    let index = this.permisos.findIndex(item => item.action_id == accion_id)
+	  	    if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
+	  	      return true
+	  	    } else {
+	  	      return false
+	  	    }
+	  	  } else {
+	  	    return false
+	  	  }
+	  	},
 	  	filterDepto(value, row, column){
 			if (row.departamento != null) {
 			return row.departamento.ceco === value;
@@ -179,7 +192,7 @@
 		}
 	  },
 	  beforeMount(){
-	  	
+	  	this.$store.dispatch('setAccesos', this.$router.app._route.meta.router_id)
 	  	getRoles()
 		    .then(response => {
 		        response.forEach((x,y)=>{
@@ -366,9 +379,18 @@
 						</el-form-item>
 					</div>
 
-					<el-form-item v-if="editable">
-						<el-button type="primary" @click="submitForm('user_form_')">Enviar</el-button>
-						<el-button @click="resetForm('user_form_')">Reset</el-button>
+					<el-form-item>
+						<el-button 
+							v-if="checkPermisos('dataload003i3','escribe')"
+							type="info" 
+							icon="el-icon-success"
+							@click="submitForm('user_form_')">Enviar
+						</el-button>
+						<el-button 
+							v-if="checkPermisos('dataload003i3','escribe')"
+							icon="el-icon-error"
+							@click="resetForm('user_form_')">Reset
+						</el-button>
 					</el-form-item>
 				</el-form>
 			</div>

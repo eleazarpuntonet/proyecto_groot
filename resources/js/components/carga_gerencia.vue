@@ -11,6 +11,9 @@
 	  data () {
 
 	  	return {
+	  		permisos: this.$store.getters.getUserPermisos,
+	  		options4: [],
+	  		loading: false,
 	  		editable: false,
 	  		gerencia_form:{},
 	  		rules_: {
@@ -36,6 +39,18 @@
 
 	  },
 	  methods: {
+	  	checkPermisos(accion_id, accion) {
+	  	  if (this.permisos.some(item => item.action_id == accion_id)) {
+	  	    let index = this.permisos.findIndex(item => item.action_id == accion_id)
+	  	    if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
+	  	      return true
+	  	    } else {
+	  	      return false
+	  	    }
+	  	  } else {
+	  	    return false
+	  	  }
+	  	},
 	  	submitForm(formName) {
 			this.$refs[formName].validate((valid) => {
 			  if (valid) {
@@ -81,6 +96,7 @@
 		 },
 	  },
 	  beforeMount(){
+	  	this.$store.dispatch('setAccesos', this.$router.app._route.meta.router_id)
 		getDepartamentos() 
 		    .then(response => {
 		    	this.lista_gerencias=response
@@ -235,8 +251,17 @@
 
 
 					<el-form-item v-if="true">
-						<el-button type="primary" @click="submitForm('gerencia_form_')">Enviar</el-button>
-						<el-button @click="resetForm('gerencia_form_')">Reset</el-button>
+						<el-button 
+						v-if="checkPermisos('dataload003i4','escribe')"
+							type="info" 
+							icon="el-icon-success"
+							@click="submitForm('gerencia_form_')">Enviar
+						</el-button>
+						<el-button 
+						v-if="checkPermisos('dataload003i4','escribe')"
+							icon="el-icon-error"
+							@click="resetForm('gerencia_form_')">Reset
+						</el-button>
 					</el-form-item>
 
 				</el-form>

@@ -134,7 +134,7 @@
       </div>
 
 
-      <div class="buttonLine l_radiusBorder">
+      <div class="buttonLine">
         <el-button
         @click="CrudClick()"
           type="primary"
@@ -144,8 +144,8 @@
         </el-button>
         <el-button
         @click="sendChanges()"
-        icon="el-icon-refresh"
-          type="primary"
+          icon="el-icon-success"
+          type="info"
           size="mini">
           Actualizar permisos
         </el-button>

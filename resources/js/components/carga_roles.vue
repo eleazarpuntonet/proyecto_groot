@@ -9,7 +9,7 @@
 	  */
 	  data () {
 	  	return {
-	  		value3 : null,
+	  		permisos: this.$store.getters.getUserPermisos,
 	  		checkboxGroup6: [],
 	  		editable    : false,
 	  		searchbox: null,
@@ -55,6 +55,18 @@
 	    VclTable,
 	},
 	methods: {
+		checkPermisos(accion_id, accion) {
+		  if (this.permisos.some(item => item.action_id == accion_id)) {
+		    let index = this.permisos.findIndex(item => item.action_id == accion_id)
+		    if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
+		      return true
+		    } else {
+		      return false
+		    }
+		  } else {
+		    return false
+		  }
+		},
 		checkChange(item,index,action){
 			item.allowed.push(action)
 			console.log(index)
@@ -179,6 +191,8 @@
 		},
 	},
 	beforeMount(){
+		this.$store.dispatch('setAccesos', this.$router.app._route.meta.router_id)
+
 		axios.get(route('roles.index')) 
 		.then(response => {
 	  		this.lista_roles=response.data
@@ -263,7 +277,7 @@
 							<div class="el_label">Referencia</div>
 							<el-input 
 								v-model   = "roles_form_.name"
-								:disabled = "!auth.roleform.crea">
+								:disabled = "!checkPermisos('dataload003i1','escribe')">
 								</el-input>
 						</el-form-item>
 
@@ -274,7 +288,7 @@
 							</div>
 							<el-input 
 								v-model   = "roles_form_.display_name"
-								:disabled = "!auth.roleform.crea">
+								:disabled = "!checkPermisos('dataload003i1','escribe')">
 							</el-input>
 						</el-form-item>
 
@@ -282,22 +296,27 @@
 							<div class="el_label">Descripcion</div>
 							<el-input 
 								v-model   = "roles_form_.description"
-								:disabled = "!auth.roleform.crea">
+								:disabled = "!checkPermisos('dataload003i1','escribe')">
 								</el-input>
 						</el-form-item>
 					</div>
 
-					<el-form-item v-if="auth.roleform.crea || auth.roleform.borra">
-						<el-button v-if="auth.roleform.crea"
+					<el-form-item v-if="checkPermisos('dataload003i1','escribe') || checkPermisos('dataload003i1','borra')">
+						<el-button 
+							v-if="checkPermisos('dataload003i1','escribe')"
+							icon="el-icon-success"
 							type   = "primary"
 							@click = "submitForm('roles_form')">Enviar
 						</el-button>
 						<el-button
-							v-if="auth.roleform.crea" 
+							v-if="checkPermisos('dataload003i1','escribe')"
+							icon="el-icon-error"
 							@click="resetForm('roles_form')">Reset
 						</el-button>
 						<el-button 
-							v-if="auth.roleform.borra"
+							type="info"
+							icon="el-icon-remove"
+							v-if="checkPermisos('dataload003i1','borra')"
 							@click="console.log('Ejecuto boton de eliminar')">Eliminar
 						</el-button>
 					</el-form-item>

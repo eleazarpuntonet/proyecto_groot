@@ -10,6 +10,7 @@
 		data () {
 
 			return {
+				permisos: [],
 				editable: false,
 				tmp_contact: false,
 				tmp_extra: false,
@@ -60,7 +61,24 @@
 		computed: {
 
 		},
+		watch:{
+			permisos(){
+	  			this.$store.dispatch('setAccesos', this.$router.app._route.meta.router_id)
+			}
+		},
 		methods: {
+			checkPermisos(accion_id, accion) {
+			  if (this.permisos.some(item => item.action_id == accion_id)) {
+			    let index = this.permisos.findIndex(item => item.action_id == accion_id)
+			    if (this.permisos[index][accion] == 'true' || this.permisos[index][accion] == true) {
+			      return true
+			    } else {
+			      return false
+			    }
+			  } else {
+			    return false
+			  }
+			},
 			add_extra(){
 				this.tmp_extra= false
 				if (this.extra_form.key) {
@@ -97,7 +115,6 @@
 			this.$refs[formName].validate((valid) => {
 			  if (valid) {
 
-			  	console.log()
 			  	this.proveedores_form_.extras = JSON.stringify(this.proveedores_form_.extras)
 			  	this.proveedores_form_.contacto = JSON.stringify(this.proveedores_form_.contacto)
 			    	axios.post(route('proveedores.store',this.proveedores_form_)) 
@@ -137,6 +154,7 @@
 		 },
 		},
 		beforeMount(){
+	  		this.permisos = this.$store.getters.getUserPermisos
 			axios.get(route('proveedores.index')) 
 			    .then(response => {
 			    	this.lista_proveedores=response.data
@@ -200,6 +218,29 @@
 			<div class="contLeftSide l_radiusBorder">
 				<el-form :rules="rules_proveedores" ref="proveedores_form" :model="proveedores_form_"  size="mini" style="width: 100%">
 					<div class="form_line">
+						<div style="display: flex; flex-direction: row; width: 100%; justify-content: flex-end; margin-top: 5px;">
+						  <div class="subtituloReserva">
+						  </div>
+						  <div class="radiogroupp">
+						  	<el-button 
+						  		:class="(tmp_contact || tmp_extra)?'no_visible':'nada'"
+						  		@click="_contact(true)"
+						  		size="mini" 
+						  		type="primary" 
+						  		icon="el-icon-circle-plus">Agregar contacto
+						  	</el-button>
+
+						  	<el-button 
+						  		:class="(tmp_extra || tmp_contact)?'no_visible':'nada'"
+						  		@click="_extra(true)"
+						  		size="mini" 
+						  		type="primary" 
+						  		icon="el-icon-circle-plus">Agregar informacion extra
+						  	</el-button>
+						  </div>
+						</div>
+					</div>
+					<div class="form_line">
 						<el-form-item prop="nombre" style="width:35%;">
 							<div class="el_label">Nombre</div>
 							<el-input v-model="proveedores_form_.nombre" ></el-input>
@@ -245,24 +286,6 @@
 							</el-input>
 						</el-form-item>
 					</div>
-
-
-					<el-button 
-						:class="(tmp_contact || tmp_extra)?'no_visible':'nada'"
-						@click="_contact(true)"
-						size="mini" 
-						type="primary" 
-						icon="el-icon-circle-plus">Agregar contacto
-					</el-button>
-
-					<el-button 
-						:class="(tmp_extra || tmp_contact)?'no_visible':'nada'"
-						@click="_extra(true)"
-						size="mini" 
-						type="primary" 
-						icon="el-icon-circle-plus">Agregar informacion extra
-					</el-button>
-
 
 				<template v-if="tmp_contact">
 						<div class="form_line">
@@ -319,9 +342,26 @@
 						</div>
 				</template>
 
-				<el-form-item v-if="true">
-					<el-button size="mini" type="primary" @click="submitForm('proveedores_form')">Enviar</el-button>
-					<el-button size="mini" @click="resetForm('proveedores_form')">Reset</el-button>
+				<el-form-item v-if="checkPermisos('dataload003i5','escribe')">
+					<el-button 
+						v-if="checkPermisos('dataload003i5','escribe')"
+						size="mini" 
+						icon="el-icon-success"
+						type="info" 
+						@click="submitForm('proveedores_form')">Enviar
+					</el-button>
+					<el-button 
+						v-if="checkPermisos('dataload003i5','modifica')"
+						size="mini" 
+						type="info" 
+						icon="el-icon-edit"">Editar
+					</el-button>
+					<el-button 
+						v-if="checkPermisos('dataload003i5','escribe')"
+						icon="el-icon-error"
+						size="mini" 
+						@click="resetForm('proveedores_form')">Reset
+					</el-button>
 				</el-form-item>
 				</el-form>	
 			</div>

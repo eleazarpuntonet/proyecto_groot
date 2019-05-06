@@ -169,6 +169,9 @@
 		mounted(){
 		},
 		destroyed () {
+			if ($("body").hasClass("aside-menu-lg-show")) {
+			  $("body").toggleClass("aside-menu-lg-show")
+			}
 		},
 	}
 </script>
