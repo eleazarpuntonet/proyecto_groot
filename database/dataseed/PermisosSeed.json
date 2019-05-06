@@ -2,117 +2,109 @@
     {
         "id": 1,
         "role_id": "1",
-        "action_id": "dataload003i1",
         "ruta_id": "dataload003i",
+        "action_id": "dataload003i1",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
         "borra": "true",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2019-04-21 18:22:49",
+        "updated_at": "2019-05-06 01:10:05"
     },
     {
         "id": 2,
         "role_id": "1",
-        "action_id": "dataload003i2",
         "ruta_id": "dataload003i",
-
+        "action_id": "dataload003i2",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
         "borra": "true",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2019-04-21 18:22:49",
+        "updated_at": "2019-05-06 01:10:05"
     },
     {
         "id": 3,
-        "role_id": "1",
-        "action_id": "reserv002i1",
-        "ruta_id": "reserv002i",
-
+        "role_id": "2",
+        "ruta_id": "dataload003i",
+        "action_id": "dataload003i1",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
         "borra": "true",
-        "created_at": null,
-        "updated_at": null
+        "created_at": "2019-04-21 18:22:49",
+        "updated_at": "2019-05-04 20:46:34"
     },
     {
         "id": 4,
         "role_id": "2",
-        "action_id": "dataload003i1",
         "ruta_id": "dataload003i",
-
+        "action_id": "dataload003i2",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
-        "borra": "false",
-        "created_at": null,
-        "updated_at": null
+        "borra": "true",
+        "created_at": "2019-04-21 18:22:49",
+        "updated_at": "2019-05-04 20:46:34"
     },
     {
         "id": 5,
-        "role_id": "2",
-        "action_id": "dataload003i2",
-        "ruta_id": "dataload003i",
-
+        "role_id": "1",
+        "ruta_id": "reserv002i",
+        "action_id": "reserv002i1",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
-        "borra": "false",
+        "borra": "true",
         "created_at": null,
-        "updated_at": null
+        "updated_at": "2019-05-06 01:10:05"
     },
     {
         "id": 6,
         "role_id": "2",
-        "action_id": "reserv002i1",
         "ruta_id": "reserv002i",
-
+        "action_id": "reserv002i1",
         "lee": "true",
         "escribe": "true",
         "modifica": "true",
-        "borra": "false",
+        "borra": "true",
         "created_at": null,
-        "updated_at": null
+        "updated_at": "2019-05-04 20:46:34"
     },
     {
         "id": 7,
-        "role_id": "3",
-        "action_id": "dataload003i1",
+        "role_id": "1",
         "ruta_id": "dataload003i",
-
+        "action_id": "dataload003i3",
         "lee": "true",
-        "escribe": "false",
-        "modifica": "false",
-        "borra": "false",
+        "escribe": "true",
+        "modifica": "true",
+        "borra": "true",
         "created_at": null,
-        "updated_at": null
+        "updated_at": "2019-05-06 01:10:05"
     },
     {
         "id": 8,
-        "role_id": "3",
-        "action_id": "dataload003i2",
+        "role_id": "1",
         "ruta_id": "dataload003i",
-
+        "action_id": "dataload003i4",
         "lee": "true",
-        "escribe": "false",
-        "modifica": "false",
-        "borra": "false",
+        "escribe": "true",
+        "modifica": "true",
+        "borra": "true",
         "created_at": null,
-        "updated_at": null
+        "updated_at": "2019-05-06 01:10:05"
     },
     {
         "id": 9,
-        "role_id": "3",
-        "action_id": "reserv002i1",
-        "ruta_id": "reserv002i",
-        
+        "role_id": "1",
+        "ruta_id": "dataload003i",
+        "action_id": "dataload003i5",
         "lee": "true",
         "escribe": "true",
-        "modifica": "false",
-        "borra": "false",
+        "modifica": "true",
+        "borra": "true",
         "created_at": null,
-        "updated_at": null
+        "updated_at": "2019-05-06 01:10:05"
     }
 ]

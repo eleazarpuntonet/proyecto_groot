@@ -92,7 +92,7 @@ class AuthController extends Controller
             'notifications' => $user_notif,
             'user'          => $this->guard()->user(),
             'token_type'    => 'bearer',
-            'expires_in'    => $this->guard()->factory()->getTTL() * 60
+            'expires_in'    => $this->guard()->factory()->getTTL() * (60 * 4)
         ]);
     }
 

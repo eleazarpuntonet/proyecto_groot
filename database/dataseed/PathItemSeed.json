@@ -90,8 +90,24 @@
     {
         "id": 12,
         "pathitem_id": "dataload006i",
-        "pathitem_name": "Permisologia",
-        "pathitem_desc": "Pertau00f1a de configuracion de permisos",
+        "pathitem_name": "Permisos",
+        "pathitem_desc": "Panel de control de permisologia",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 13,
+        "pathitem_id": "procura001m",
+        "pathitem_name": "Procura",
+        "pathitem_desc": "Menu de gestion de procura",
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 14,
+        "pathitem_id": "procura002i",
+        "pathitem_name": "RFQ",
+        "pathitem_desc": "Formularios RFW",
         "created_at": null,
         "updated_at": null
     }
