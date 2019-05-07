@@ -38,7 +38,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('logout',  'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('register', 'AuthController@register')->name('auth.register');
-    Route::post('verify', 'AuthController@verify');
+    Route::post('verify', 'AuthController@verifyUser')->name('auth.verify');
     Route::post('me',      'AuthController@me');
 
 });
@@ -78,14 +78,18 @@ Route::resource('proveedores', 'ProveedoresController');
 Route::post('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
-	$objetos = ["reserv001m", "reserv002i", "reserv003i", "reserv004i", "rrhh001m", "rrhh002i", "dataload001m", "dataload005i", "dataload004i", "dataload003i", "dataload002i", "dataload006i"];
-	$id = 1;
+	Mail::send('email', ['name' => 'Eleazar', 'verification_code' => '351351351'],
+	    function($mail){
+	        $mail->from('eleazar.sb18@gmail.com', "From");
+	        $mail->to('eleazaro@spservicesltd.uk', 'Eleazar');
+	        $mail->subject('testmail');
+	    });
+	return "Mail supuestamente enviado";
+	// return response()->json([
+	// 	'User'      => User::with('permisos')->find(1),
+	// 	'Permisos'      => Permisos::with('user')->find(1),
 
-	return response()->json([
-		'User'      => User::with('permisos')->find(1),
-		'Permisos'      => Permisos::with('user')->find(1),
-
-	], 200);
+	// ], 200);
 
 });
 

@@ -70,24 +70,6 @@
   font-family: 'Eurostile LTS Demi';
 }
 
-.el-button--mini,
-.el-button--mini.is-round {
-  padding: 4px 8px !important;
-}
-
-.el-button--mini,
-.el-button--small {
-  font-size: 11px !important;
-  border-radius: 3px !important;
-}
-
-.el-button--small,
-.el-button--small.is-round {
-  padding: 9px 15px;
-  font-size: 14px !important;
-  border-radius: 3px !important;
-}
-
 .send {
   color: #fff !important;
   margin-right: 10px;
@@ -265,6 +247,68 @@
       -ms-flex-direction: row;
           flex-direction: row;
   background-color: #EBEAEA;
+}
+
+.ele_modelview_A .el-button--mini,
+.ele_modelview_A .el-button--mini.is-round {
+  padding: 4px 8px !important;
+}
+
+.ele_modelview_A .el-button--mini,
+.ele_modelview_A .el-button--small {
+  font-size: 11px !important;
+  border-radius: 3px !important;
+}
+
+.ele_modelview_A .el-button--small,
+.ele_modelview_A .el-button--small.is-round {
+  padding: 9px 15px;
+  font-size: 14px !important;
+  border-radius: 3px !important;
+}
+
+.ele_modelview_A .el-button--primary {
+  color: colorPrimaryText;
+  background-color: #231F20;
+  border-color: #6D6E71;
+}
+
+.ele_modelview_A .el-button--primary.is-disabled,
+.ele_modelview_A .el-button--primary.is-disabled:active,
+.ele_modelview_A .el-button--primary.is-disabled:focus,
+.ele_modelview_A .el-button--primary.is-disabled:hover {
+  color: #BCBEC0;
+  background-color: #5F5C5C;
+  border-color: #AFAFB1;
+}
+
+.ele_modelview_A .el-button--primary:focus,
+.ele_modelview_A .el-button--primary:hover {
+  background: #6D6E71;
+  border-color: #D9DBDC;
+  color: #D9DBDC;
+}
+
+.ele_modelview_A .el-button--info {
+  color: #fff;
+  background-color: #007CC2;
+  border-color: #fff;
+}
+
+.ele_modelview_A .el-button--info.is-disabled,
+.ele_modelview_A .el-button--info.is-disabled:active,
+.ele_modelview_A .el-button--info.is-disabled:focus,
+.ele_modelview_A .el-button--info.is-disabled:hover {
+  color: #BCBEC0;
+  background-color: #5F5C5C;
+  border-color: #AFAFB1;
+}
+
+.ele_modelview_A .el-button--info:focus,
+.ele_modelview_A .el-button--info:hover {
+  background: #73B7DD;
+  border-color: #fff;
+  color: #fff;
 }
 
 /*!

@@ -96,6 +96,7 @@ import state from './cleaninglady/State';
 import actions from './cleaninglady/Actions';
 import getters from './cleaninglady/Getters';
 import mutations from './cleaninglady/Mutations';
+
 const store = new Vuex.Store({
     //State guarda las variables
     state: {
@@ -301,7 +302,7 @@ axios.interceptors.request.use((config)=>{
             // console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
           }
         } else {
-          if (!router.app._route.name === "Register") {
+          if (!router.app._route.name === "Register" || !router.app._route.name === "Verify") {
             store.commit('logout')
             router.push('/login')
             delete axios.defaults.headers.common['Authorization']

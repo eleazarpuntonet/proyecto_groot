@@ -53,6 +53,8 @@ import Page404          from '../views/pages/Page404'
 import Page500          from '../views/pages/Page500'
 import Login            from '../views/pages/Login'
 import Register         from '../views/pages/Register'
+import Verify         from '../views/pages/Verify'
+
 
 //    Users
 import Users             from '../views/users/Users'
@@ -70,6 +72,7 @@ import cargaRoles        from '../../../components/carga_roles'
 import cargaGerencias    from '../../../components/carga_gerencia'
 import permisos    from '../../../components/panelPermisos'
 import rfq from '../../../components/procuraRfq'
+
 
 Vue.use(Router)
 class Route_item{
@@ -119,6 +122,12 @@ var register = new Route_item({
     path:'/register',
     name:'Register',
     comp: Register,
+  })
+
+var verifyc = new Route_item({
+    path:'/verify',
+    name:'Verify',
+    comp: Verify,
   })
 
 var login = new Route_item({
@@ -258,6 +267,7 @@ var rfqForm = new Route_item({
   comp: rfq,
   })  
 rfqForm.changeAuth(true,rolescargaDatos)
+
 var procura = new Route_item({
     router_id : 'procura001m',
     path:'procura',
@@ -274,6 +284,7 @@ export default new Router({
   routes: [
     login,
     register,
+    verifyc,
     {
       path: '/',
       redirect: '/dashboard',

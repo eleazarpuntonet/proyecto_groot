@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
-use App\Notificationtests;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Notificationtests;
 use App\Http\Controllers\Controller;
 use App\User;
+use DB;
+use Mail;
 
 class AuthController extends Controller
 {
@@ -15,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login','register','verifyUser']]);
         // $this->middleware('auth:api');
     }
 
@@ -71,42 +73,41 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $fromail = 'eleazar.sb18@gmail.com';
+        $fromname = 'Southern Procurement Services, LTD test mail';
+        $subject = "Confirmacion de correo electronico";
         $credentials = $request->only('nombre','snombre','pass1', 'email');
-        
-        $rules = [
-            'nombre' => 'required|max:255',
-            'snombre' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users'
-        ];
-
         $nombre   = $request->nombre;
         $snombre  = $request->snombre;
         $email    = $request->email;
         $password = $request->pass1;
+        $fullname = $nombre.' '.$snombre;
         $usuario  = User::where([ 'email'=>$email , 'is_verified'=>0])->get();
         if (is_null($usuario->first())) {
-            $user                  = new App\User;
+            $user                  = new User;
             $user->name            = ucwords(strtolower($nombre));
             $user->last_name       = ucwords(strtolower($snombre));
             $user->codigo_empleado = 'n/a';
             $user->ci_usuario      = 'n/a';
             $user->cargo           = 'n/a';
             $user->gerencia        = 'n/a';
-            $user->fecha_ing       = 'n/a';
-                $user->sexo        = 'n/a';
-                $user->sede            = 'n/a';
-                $user->avatar          = 'n/a';
-                $user->email           = $email;
+            $user->fecha_ing       = now();
+            $user->sexo            = 'n/a';
+            $user->sede            = 'n/a';
+            $user->avatar          = 'n/a';
+            $user->email           = $email;
             $user->status          = 'NEW';
             $user->password        = bcrypt($password);
-            $user->save();
-
+            // $user->save();
             $verification_code = str_random(30); //Generate verification code
             DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
-            $subject = "Confirmacion de correo electronico";
 
-            // Se envia correo con el CODIGO DE CONFIRMACION
-
+            Mail::send('email', ['name' => $fullname, 'verification_code' => $verification_code],
+                function($mail) use ($email, $fullname, $subject, $fromail,$fromname){
+                    $mail->from($fromail, $fromname);
+                    $mail->to($email, $fullname);
+                    $mail->subject($subject);
+                });
             return response()->json([
                 'success'=> true, 
                 'message'=> 'Usuario creado exitosamente',
@@ -118,17 +119,19 @@ class AuthController extends Controller
                     'success'=> false, 
                     'message'=> 'El correo que ingreso ya existe en nuestros registros'],201);
             } else {
-                $nuser->update([
-                    'name'      => $nombre,
-                    'last_name'  => $snombre,
-                    'password' => bcrypt($password)
-                ]);    
+                // $nuser->update([
+                //     'name'      => $nombre,
+                //     'last_name'  => $snombre,
+                //     'password' => bcrypt($password)
+                // ]);    
                 $verification_code = str_random(30); //Generate verification code
                 DB::table('user_verifications')->insert(['user_id'=>$nuser->id,'token'=>$verification_code]);
-                $subject = "Confirmacion de correo electronico";
-
-            // Se envia correo con el CODIGO DE CONFIRMACION
-
+                Mail::send('email', ['name' => $fullname, 'verification_code' => $verification_code],
+                    function($mail) use ($email, $fullname, $subject, $fromail,$fromname){
+                        $mail->from($fromail, $fromname);
+                        $mail->to($email, $fullname);
+                        $mail->subject($subject);
+                    });
                 return response()->json([
                     'success'=> true, 
                     'message'=> 'Usuario actualizado exitosamente',
@@ -137,10 +140,26 @@ class AuthController extends Controller
         }
     }
 
-    public function verify(Request $request)
+    public function verifyUser(Request $request)
     {
-        // $credentials = $request->only('email', 'nombre', 'snombre', 'pass1');
-        // return $this->respondWithToken($this->guard()->refresh());
+        $verification_code = $request->codigo_verificacion;
+        $check = DB::table('user_verifications')->where('token',$verification_code)->first();
+        if(!is_null($check)){
+            $user = User::find($check->user_id);
+            if($user->is_verified == 1){
+                return response()->json([
+                    'success'=> true,
+                    'message'=> 'Account already verified..'
+                ]);
+            }
+            $user->update(['is_verified' => 1]);
+            DB::table('user_verifications')->where('token',$verification_code)->delete();
+            return response()->json([
+                'success'=> true,
+                'message'=> 'You have successfully verified your email address.'
+            ]);
+        }
+        return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
     }
     /**
      * Get the token array structure.
