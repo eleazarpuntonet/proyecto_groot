@@ -28,8 +28,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar')->default('/avats/user-default.png');
             $table->string('status')->nullable();
+            $table->boolean('is_verified')->default(0);
             $table->rememberToken()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
 

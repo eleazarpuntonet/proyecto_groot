@@ -199,3 +199,18 @@ export function getAccesos(val){
     })
   })
 }
+
+export function sendNewUser(credentials){
+  console.log('enviando registro')
+  console.log(credentials)
+  return new Promise((res,rej)=>{
+    axios.post(route('auth.register',credentials)) 
+        .then(response => {
+          console.log(response)
+          // res(response.data)
+          })
+        .catch(error => {
+          rej(error)
+        })
+  })
+}

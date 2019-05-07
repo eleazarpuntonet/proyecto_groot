@@ -20,7 +20,7 @@ class User extends Authenticatable implements JWTSubject
     protected $table = 'users';
     
     protected $fillable = [
-        'name', 'email', 'password','last_name','username'
+        'name', 'email', 'password','last_name','username','is_verified'
     ];
 
     /**
@@ -52,6 +52,7 @@ class User extends Authenticatable implements JWTSubject
         'status',
         'getJWTIdentifier',
         'permisos',
+        'is_verified',
         'getJWTCustomClaims',
     ];
     public function permisos()

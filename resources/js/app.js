@@ -301,10 +301,11 @@ axios.interceptors.request.use((config)=>{
             // console.log('La variable no existe, pero fue creada: '+config.headers.Authorization)
           }
         } else {
-          // console.log('No Autenticado')
-          store.commit('logout')
-          router.push('/login')
-          delete axios.defaults.headers.common['Authorization']
+          if (!router.app._route.name === "Register") {
+            store.commit('logout')
+            router.push('/login')
+            delete axios.defaults.headers.common['Authorization']
+          }
         }
 
     return config

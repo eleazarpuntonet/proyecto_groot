@@ -29,5 +29,5 @@ mix.webpackConfig({
 	    fs: "empty",
 	    // noParse: /ws/,
 	    externals: "empty",
-	}
+	},
 })
