@@ -28,6 +28,7 @@
       verifyMail(this.$router.app._route.params.verifycode)
       .then(res=>{
         this.estado = res.status
+        console.log(res)
         if (res.status == 200 || res.status == 299) {
           setTimeout(()=>{
             this.$router.push({path:'/login'})
@@ -60,18 +61,11 @@
                 <div v-if="estado==299" class="text">
                   <h1>Este correo ya fue confirmado anteriormente</h1>
                 </div>
-                <div v-if="estado==499" class="text">
+                <div style="    text-align: center;" v-if="estado==203" class="text">
                   <h1>El codigo enviado es invalido</h1>
                   <h3>Por favor contacte al departamento de IT</h3>
                 </div>
               </el-form-item>
-            </div>
-            <div class="form_line" style="margin-top: 15px;">
-              <el-button 
-                type="info"
-                size="mini"
-                @click.prevent="sendVerify"><iconsend class="iconregister"/>Validar correo
-              </el-button>
             </div>
           </el-form>
         </div>

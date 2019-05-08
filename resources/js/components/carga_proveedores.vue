@@ -354,7 +354,7 @@
 						v-if="checkPermisos('dataload003i5','modifica')"
 						size="mini" 
 						type="info" 
-						icon="el-icon-edit"">Editar
+						icon="el-icon-edit">Editar
 					</el-button>
 					<el-button 
 						v-if="checkPermisos('dataload003i5','escribe')"

@@ -98,18 +98,18 @@ class AuthController extends Controller
             $user->email           = $email;
             $user->status          = 'NEW';
             $user->password        = bcrypt($password);
-            // $user->save();
+            $user->save();
             $verification_code = str_random(30); //Generate verification code
-            DB::table('user_verifications')->insert(['user_id'=>1,'token'=>$verification_code]);
-            // DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
+            // DB::table('user_verifications')->insert(['user_id'=>1,'token'=>$verification_code]);
+            DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
 
             Mail::send('email', [
                 'name' => $fullname, 
                 'verification_code' => $verification_code],
                 function($mail) use ($email, $fullname, $subject, $fromail,$fromname){
                     $mail->from($fromail, $fromname);
-                    // $mail->to($email, $fullname);
-                    $mail->to('it@spservicesltd.uk', $fullname);
+                    $mail->to($email, $fullname);
+                    // $mail->to('it@spservicesltd.uk', $fullname);
                     $mail->subject($subject);
                 });
             return response()->json([
@@ -123,11 +123,11 @@ class AuthController extends Controller
                     'success'=> false, 
                     'message'=> 'El correo que ingreso ya existe en nuestros registros'],498);
             } else {
-                // $nuser->update([
-                //     'name'      => $nombre,
-                //     'last_name'  => $snombre,
-                //     'password' => bcrypt($password)
-                // ]);    
+                $nuser->update([
+                    'name'      => $nombre,
+                    'last_name'  => $snombre,
+                    'password' => bcrypt($password)
+                ]);    
                 $verification_code = str_random(30); //Generate verification code
                 DB::table('user_verifications')->insert(['user_id'=>$nuser->id,'token'=>$verification_code]);
                 Mail::send('email', ['name' => $fullname, 'verification_code' => $verification_code],
@@ -153,7 +153,7 @@ class AuthController extends Controller
                 return response()->json([
                     'success'=> true,
                     'message'=> 'Account already verified..'
-                ],299);
+                ],204);
             }
             $user->update(['is_verified' => 1]);
             DB::table('user_verifications')->where('token',$verification_code)->delete();
@@ -163,7 +163,7 @@ class AuthController extends Controller
         }
         return response()->json([
             'error'=> "Verification code is invalid."
-        ],499);
+        ],203);
     }
     /**
      * Get the token array structure.

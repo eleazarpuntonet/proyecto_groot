@@ -216,6 +216,7 @@ export function verifyMail(verification_code){
   return new Promise((res,rej)=>{
     axios.get(route('auth.verify',verification_code)) 
         .then(response => {
+                             console.log(response)
           res(response)
           })
         .catch(error => {

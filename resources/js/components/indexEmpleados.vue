@@ -29,23 +29,16 @@ export default {
       this.filters.cargo = []
       this.filters.departamento = []
         this.lista_usuarios.forEach((each)=>{
-           if (!this.filters.cargo.some(cargo => cargo.text === each.cargo)) {
+          if (!this.filters.cargo.some(cargo => cargo.text === each.cargo)) {
             this.filters.cargo.push({ text : each.cargo , value : each.cargo})
-           }
+          }
 
-        if (each.departamento != null) {
-         if (!this.filters.departamento.some(departamento => departamento.value === each.departamento.ceco)) {
-          this.filters.departamento.push({ text : each.departamento.disp_name , value : each.departamento.ceco})
-         } 
-        }
-
-          // console.log(each.cargo)
-          // console.log(each.gerencia)
-          // console.log(each.sede)
-          // console.log(each.sexo)
-          // console.log(each.status)
+          if (each.departamento != null) {
+           if (!this.filters.departamento.some(departamento => departamento.value === each.departamento.ceco)) {
+            this.filters.departamento.push({ text : each.departamento.disp_name , value : each.departamento.ceco})
+           } 
+          }
         })
-      // }
     }
   },
   methods: {

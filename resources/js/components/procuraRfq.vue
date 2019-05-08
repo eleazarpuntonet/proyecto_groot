@@ -502,7 +502,7 @@
 		.leftSideForm{
 			width: 40%;
 			padding: 0 5px;
-			background-color: #BCBEC0;
+			background-color: #D0E7F3;
 			.el-table{
 				border-radius: 5px !important;
 			}

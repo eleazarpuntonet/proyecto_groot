@@ -222,6 +222,14 @@ var rfq = new menuItem({
       class: 'nav-item',
       authRol: ['superadmin','public'],
     })
+var proProveedores = new menuItem({
+      id_path: 'procura003i',
+      name: 'Proveedores',
+      url: '/procura/proveedores',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
 var procura = new menuItem({
       id_path: 'procura001m',
       name: 'Procura',
@@ -230,7 +238,8 @@ var procura = new menuItem({
       class: 'nav-item',
       authRol: []
     },[
-        rfq
+        rfq,
+        proProveedores
       ])
 export default {
   items: [

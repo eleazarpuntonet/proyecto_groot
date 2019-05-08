@@ -131,6 +131,10 @@
           flex-direction: row;
 }
 
+.ele_modelview_A .el-form-item + .el-form-item {
+  margin-left: 5px;
+}
+
 .ele_modelview_A .topSideForm {
   width: 100%;
   height: 7vw;
@@ -151,7 +155,6 @@
   font-size: 2.8vw !important;
   color: #BBBDC0;
   font-family: 'Eurostile LTS Demi';
-  text-transform: uppercase;
 }
 
 .ele_modelview_A .topSideForm .logoGroup {
@@ -195,7 +198,6 @@
           justify-content: flex-start;
   color: #BBBDC0;
   font-family: 'Eurostile LTS Demi';
-  text-transform: uppercase;
 }
 
 .ele_modelview_A .contRightSide {

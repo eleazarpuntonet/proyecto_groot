@@ -72,6 +72,7 @@ import cargaRoles        from '../../../components/carga_roles'
 import cargaGerencias    from '../../../components/carga_gerencia'
 import permisos    from '../../../components/panelPermisos'
 import rfq from '../../../components/procuraRfq'
+import proProveedores from '../../../components/procuraProveedores'
 
 
 Vue.use(Router)
@@ -269,6 +270,14 @@ var rfqForm = new Route_item({
   })  
 rfqForm.changeAuth(true,rolescargaDatos)
 
+var procProveedores = new Route_item({
+  router_id : 'procura003i',
+  path:'proveedores',
+  name:'Proveedores',
+  comp: proProveedores,
+  })  
+procProveedores.changeAuth(true,rolescargaDatos)
+
 var procura = new Route_item({
     router_id : 'procura001m',
     path:'procura',
@@ -276,6 +285,7 @@ var procura = new Route_item({
     redir: '/procura/rfq'
   },[
      rfqForm,
+     procProveedores
     ])
 
 export default new Router({
