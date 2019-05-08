@@ -204,8 +204,7 @@ export function sendNewUser(credentials){
   return new Promise((res,rej)=>{
     axios.post(route('auth.register',credentials)) 
         .then(response => {
-          console.log(response)
-          // res(response.data)
+          res(response)
           })
         .catch(error => {
           rej(error)
@@ -215,10 +214,9 @@ export function sendNewUser(credentials){
 
 export function verifyMail(verification_code){
   return new Promise((res,rej)=>{
-    axios.post(route('auth.verify',verification_code)) 
+    axios.get(route('auth.verify',verification_code)) 
         .then(response => {
-          console.log(response)
-          // res(response.data)
+          res(response)
           })
         .catch(error => {
           rej(error)

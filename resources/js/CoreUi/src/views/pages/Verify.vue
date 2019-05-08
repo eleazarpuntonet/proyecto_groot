@@ -1,3 +1,45 @@
+<script>
+  import {
+    verifyMail
+  } from '../../../../apiCalls.js'
+  import {registerNewUser} from '../../../../auth.js'
+  import iconmail from "vue-material-design-icons/at.vue"
+  import iconaccount from "vue-material-design-icons/account.vue"
+  import iconlock from "vue-material-design-icons/lock.vue"
+  import iconsend from "vue-material-design-icons/send.vue"
+  export default {
+    name: 'Registro',
+    data(){
+      return {
+        form : {},
+        error : null,
+        estado : null,
+      };
+    },
+    methods:{
+    },
+    components: {
+      iconmail,
+      iconaccount,
+      iconlock,
+      iconsend
+    },
+    created(){
+      verifyMail(this.$router.app._route.params.verifycode)
+      .then(res=>{
+        this.estado = res.status
+        if (res.status == 200 || res.status == 299) {
+          setTimeout(()=>{
+            this.$router.push({path:'/login'})
+          }, 5000);
+        }
+      })
+      .catch(error=>{
+        console.log(error)
+      })
+    }
+  }
+</script>
 <template>
   <div class="app mainApp">
     <div class="registerBox boxshadow">
@@ -11,18 +53,17 @@
             size="mini">
             <div class="form_line">
               <el-form-item style="width:100%;">
-                <div class="text">
-                  <h1>Confirmacion de correo</h1>
+                <div v-if="estado==200" class="text">
+                  <h1>Correo confirmado</h1>
+                  <h3>Ya puede iniciar sesion en la aplicacion</h3>
                 </div>
-              </el-form-item>
-            </div>
-            <div class="form_line">
-              <el-form-item prop="codigo_verificacion" style="width:100%;">
-                <el-input 
-                  v-model="form.codigo_verificacion"
-                  placeholder="Ingrese el codigo recibido en su correo">
-                    <template slot="prepend"><iconmail class="iconregister"/></template>
-                  </el-input>
+                <div v-if="estado==299" class="text">
+                  <h1>Este correo ya fue confirmado anteriormente</h1>
+                </div>
+                <div v-if="estado==499" class="text">
+                  <h1>El codigo enviado es invalido</h1>
+                  <h3>Por favor contacte al departamento de IT</h3>
+                </div>
               </el-form-item>
             </div>
             <div class="form_line" style="margin-top: 15px;">
@@ -37,48 +78,6 @@
     </div>
   </div>
 </template>
-
-<script>
-  import {
-    verifyMail
-  } from '../../../../apiCalls.js'
-import {registerNewUser} from '../../../../auth.js'
-import iconmail from "vue-material-design-icons/at.vue"
-import iconaccount from "vue-material-design-icons/account.vue"
-import iconlock from "vue-material-design-icons/lock.vue"
-import iconsend from "vue-material-design-icons/send.vue"
-export default {
-  name: 'Registro',
-  data(){
-    return {
-      form : {},
-      error : null
-    };
-  },
-  methods:{
-    sendVerify(){
-      verifyMail(this.form)
-      .then(res=>{
-        console.log()
-        // this.$store.commit('isAuthenticated',res)
-        // this.$router.push({path:'/'})
-      })
-      .catch(error=>{
-        // this.$store.commit('loginFailed', {error})
-      })
-    },
-    handleSelect(item){
-      console.log(item)
-    }
-  },
-  components: {
-    iconmail,
-    iconaccount,
-    iconlock,
-    iconsend
-  }
-}
-</script>
 <style lang="scss">
 .mainApp{
   display: flex !important;

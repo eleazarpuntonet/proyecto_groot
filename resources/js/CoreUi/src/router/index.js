@@ -125,9 +125,10 @@ var register = new Route_item({
   })
 
 var verifyc = new Route_item({
-    path:'/verify',
+    path:'/verify/:verifycode',
     name:'Verify',
     comp: Verify,
+    props: true,
   })
 
 var login = new Route_item({

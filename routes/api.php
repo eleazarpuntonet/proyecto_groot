@@ -38,7 +38,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('logout',  'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('register', 'AuthController@register')->name('auth.register');
-    Route::post('verify', 'AuthController@verifyUser')->name('auth.verify');
+    Route::get('verify/{verification_code}', 'AuthController@verifyUser')->name('auth.verify');
     Route::post('me',      'AuthController@me');
 
 });
