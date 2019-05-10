@@ -230,6 +230,14 @@ var proProveedores = new menuItem({
       class: 'nav-item',
       authRol: ['superadmin','public'],
     })
+var proClientes = new menuItem({
+      id_path: 'procura004i',
+      name: 'Clientes',
+      url: '/procura/clientes',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
 var procura = new menuItem({
       id_path: 'procura001m',
       name: 'Procura',
@@ -239,7 +247,8 @@ var procura = new menuItem({
       authRol: []
     },[
         rfq,
-        proProveedores
+        proProveedores,
+        proClientes
       ])
 export default {
   items: [
