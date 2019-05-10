@@ -125,7 +125,6 @@
 					  	  this.deleted.length>0 ? obj.deleted = this.deleted : obj.deleted = null
 					  	  sendRutasActualizadas(obj)
 					  	  .then((res)=>{
-					  	  	console.log(res)
 					  	  	this.added                    = []
 					  	  	this.deleted                  = []
 					  	  	instance.confirmButtonLoading = false;
@@ -140,7 +139,7 @@
 					}).then(action => {
 						this.$message({
 						type: 'info',
-						message: 'action: ' + action
+						message: 'Los permisos fueron actualizados correctamente'
 						});
 					});
 				}

@@ -32,7 +32,7 @@ export default {
 }
 </script>
 <template>
-  <div class="indexEmpleados ele_modelview_A">
+  <div class="indexClientes ele_modelview_A">
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div class="topSideForm l_radiusBorder">
         <div class="titleForm">
@@ -87,7 +87,6 @@ export default {
                   </el-select>
                 </el-input>
               </el-form-item>
-
             </div>
 
             <div class="form_line">
@@ -144,7 +143,6 @@ export default {
                   multiple>
                   <i class="el-icon-upload"></i>
                   <div class="el-upload__text">Arrastre los documentos aqui o <em>haz clic para cargar</em></div>
-                  <!-- <div slot="tip" class="el-upload__tip">Solo archivos PDF con un tamaño menor de 500kb</div> -->
                 </el-upload>
               </el-form-item>
             </div>
@@ -164,10 +162,7 @@ export default {
             </div>
           </el-form>
         </div>
-<!--         <div class="rightSideForm l_radiusBorder">
-        </div> -->
       </div>
-
     </div>
   </div>
 </template>
@@ -175,6 +170,12 @@ export default {
 .el-switch__label{
   font-family: 'Eurostile LTS Demi';
 }
+.indexClientes{
+  .el-form-item__content{
+    // text-align: center !important;
+  }
+}
+
 .rightSideForm{
   background-color: #D0E7F3;
   width: 50% !important;
