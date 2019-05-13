@@ -24906,7 +24906,7 @@ var debug = __webpack_require__(15)('engine.io-client:socket');
 var index = __webpack_require__(91);
 var parser = __webpack_require__(27);
 var parseuri = __webpack_require__(84);
-var parseqs = __webpack_require__(35);
+var parseqs = __webpack_require__(36);
 
 /**
  * Module exports.
@@ -25682,7 +25682,7 @@ try {
 var XMLHttpRequest = __webpack_require__(57);
 var Polling = __webpack_require__(88);
 var Emitter = __webpack_require__(26);
-var inherit = __webpack_require__(36);
+var inherit = __webpack_require__(37);
 var debug = __webpack_require__(15)('engine.io-client:polling-xhr');
 
 /**
@@ -26595,7 +26595,7 @@ module.exports = (function() {
  */
 
 var Polling = __webpack_require__(88);
-var inherit = __webpack_require__(36);
+var inherit = __webpack_require__(37);
 
 /**
  * Module exports.
@@ -26843,8 +26843,8 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
 
 var Transport = __webpack_require__(58);
 var parser = __webpack_require__(27);
-var parseqs = __webpack_require__(35);
-var inherit = __webpack_require__(36);
+var parseqs = __webpack_require__(36);
+var inherit = __webpack_require__(37);
 var yeast = __webpack_require__(90);
 var debug = __webpack_require__(15)('engine.io-client:websocket');
 
@@ -28064,7 +28064,7 @@ exports.decodePayloadAsBinary = function (data, binaryType, callback) {
 
 /***/ }),
 
-/***/ 35:
+/***/ 36:
 /***/ (function(module, exports) {
 
 /**
@@ -28108,7 +28108,7 @@ exports.decode = function(qs){
 
 /***/ }),
 
-/***/ 36:
+/***/ 37:
 /***/ (function(module, exports) {
 
 
@@ -45012,9 +45012,9 @@ function polling (opts) {
  */
 
 var Transport = __webpack_require__(58);
-var parseqs = __webpack_require__(35);
+var parseqs = __webpack_require__(36);
 var parser = __webpack_require__(27);
-var inherit = __webpack_require__(36);
+var inherit = __webpack_require__(37);
 var yeast = __webpack_require__(90);
 var debug = __webpack_require__(15)('engine.io-client:polling');
 
@@ -45434,7 +45434,7 @@ var toArray = __webpack_require__(185);
 var on = __webpack_require__(93);
 var bind = __webpack_require__(94);
 var debug = __webpack_require__(15)('socket.io-client:socket');
-var parseqs = __webpack_require__(35);
+var parseqs = __webpack_require__(36);
 var hasBin = __webpack_require__(89);
 
 /**
