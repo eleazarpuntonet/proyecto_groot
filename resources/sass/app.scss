@@ -238,7 +238,7 @@ $backgroundimage3: '/img/Background_16-9_3.jpg';
   $colorDisabledText: #BCBEC0;
   $colorDisabledBorder: #AFAFB1;
   .el-button--primary {
-      color: colorPrimaryText;
+      color: $colorPrimaryText;
       background-color: $colorPrimary;
       border-color: $colorPrimaryBorder;
   }

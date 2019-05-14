@@ -1,5 +1,12 @@
 <script>
-  import {VueContentLoading,VclTable} from         'vue-content-loading';
+  import iconmail from "vue-material-design-icons/at.vue"
+  import skype from 'vue-material-design-icons/SkypeBusiness.vue'
+  import Whatsapp from 'vue-material-design-icons/Whatsapp.vue'
+  import phone from "vue-material-design-icons/phone.vue"
+  import email from "vue-material-design-icons/EmailCheckOutline.vue"
+  import cellphone from "vue-material-design-icons/cellphone.vue"
+  import ext from "vue-material-design-icons/PhoneClassic.vue"
+
   import {
     getDepartamentos,
     getUsuarios,
@@ -37,8 +44,13 @@ export default {
     }
   },
   components :{
-    VueContentLoading,
-    VclTable
+    iconmail,
+    skype,
+    Whatsapp,
+    phone,
+    email,
+    cellphone,
+    ext
   },
   computed: {
   },
@@ -177,7 +189,7 @@ export default {
 
               <el-tab-pane label="Contacto">
                 <div class="form_line">
-                  <el-form-item style="width:20%;">
+<!--                   <el-form-item style="width:20%;">
                     <div class="el_label">Canal de contacto</div>
                     <el-select
                       style="width: 100%;"
@@ -191,9 +203,9 @@ export default {
                         :value="item.value">
                       </el-option>
                     </el-select>
-                  </el-form-item>
+                  </el-form-item> -->
 
-                  <el-form-item  style="width:30%;">
+<!--                   <el-form-item  style="width:30%;">
                     <div class="el_label">{{temp_contact.type?temp_contact.type:'Contacto'}}</div>
                     <el-input 
                       size="small"
@@ -201,15 +213,14 @@ export default {
                       v-model="temp_contact.value" 
                       :disabled="temp_contact.type?false:true">
                     </el-input>
-                  </el-form-item>
+                  </el-form-item> -->
 
-                  <el-form-item  style="width:20%; margin-left:5px;">
+                  <el-form-item  style="width:30%; margin-left:5px;">
                     <div class="el_label">Nombre</div>
                     <el-input 
                       size="small"
                       placeholder="Nombre"
-                      v-model="temp_contact.nombre" 
-                      :disabled="temp_contact.type?false:true">
+                      v-model="temp_contact.nombre">
                     </el-input>
                   </el-form-item>
 
@@ -218,8 +229,25 @@ export default {
                     <el-input 
                       size="small"
                       placeholder="Cargo"
-                      v-model="temp_contact.cargo" 
-                      :disabled="temp_contact.type?false:true">
+                      v-model="temp_contact.cargo">
+                    </el-input>
+                  </el-form-item>
+
+                  <el-form-item  style="width:20%; margin-left:5px;">
+                    <div class="el_label">Correo</div>
+                    <el-input 
+                      size="small"
+                      placeholder="Correo"
+                      v-model="temp_contact.mail">
+                    </el-input>
+                  </el-form-item>
+
+                  <el-form-item  style="width:20%; margin-left:5px;">
+                    <div class="el_label">Telefono</div>
+                    <el-input 
+                      size="small"
+                      placeholder="Telefono"
+                      v-model="temp_contact.tlf">
                     </el-input>
                   </el-form-item>
 
@@ -227,7 +255,6 @@ export default {
                     <div class="el_label">Agregar</div>
                     <el-button 
                       @click="addContact"
-                      :disabled="temp_contact.type?false:true"
                       size="small"
                       icon="el-icon-plus" 
                       circle></el-button>
@@ -239,23 +266,57 @@ export default {
                     <el-card class="box-card">
                       <div slot="header" class="clearfiss">
                         <div class="head">
-                          <span class="name">{{contacto.nombre}}</span>
-                          <span class="cargo">{{contacto.cargo}}</span>
+                          <div class="nombre">{{contacto.nombre}}</div>
+                          <div class="cargo">{{contacto.cargo}}</div>
                         </div>
                         <el-popover
-                          placement="bottom"
-                          title="Agregar canal"
+                          placement="bottom-start"
+                          popper-class="addCanal"
                           width="200"
                           trigger="click">
                           <el-button 
                             slot="reference"
-                            size="small"
+                            size="mini"
                             icon="el-icon-edit" 
                             ></el-button>
-                            Texto
+                            <div class="add">
+                            </div>
+                              <el-button 
+                                size="mini"
+                                type="primary"><skype class='iconnButton' /> Agregar Skype
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><Whatsapp class="iconnButton"/> Agregar WhatsApp
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><iconmail class="iconnButton"/> Agregar Correo
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><phone class="iconnButton"/> Agregar Telefono
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><email class="iconnButton"/> Agregar Email
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><ext class="iconnButton"/> Agregar Extension
+                              </el-button>
+                              <el-button 
+                                size="mini"
+                                type="primary"><cellphone class="iconnButton"/> Agregar Tlf Movil
+                              </el-button>
                         </el-popover>
                       </div>
-                      {{contacto.value}}
+                      <div v-if="contacto.mail" class="contactItem">
+                        <email class="iconnButton"/>{{contacto.mail}}
+                      </div>
+                      <div v-if="contacto.mail" class="contactItem">
+                        <phone class="iconnButton"/>{{contacto.tlf}}
+                      </div>
                     </el-card>
                   </template>
                 </div>
@@ -299,71 +360,77 @@ export default {
     </div>
   </div>
 </template>
-<style lang="scss">
-.clientesView{
-                .contactosBox{
-                  justify-content: flex-start;
-                }
-  .el-card {
-      width: 25%;
-      .clearfiss{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        span{
-          align-self: center !important;
-        }
-      }
-      .head{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .el-card__header{
-        padding: 5px 5px;
-      }
-  }
-
-  .l_radiusBorder{
+<style lang="sass">
+$iconnButtonSize: 1.5em
+.contactItem
+  margin-top: 0 15px
+.el-card+.el-card
+  margin-left: 5px
+.material-design-icon.iconnButton 
+  height: $iconnButtonSize
+  width:  $iconnButtonSize
+.material-design-icon.iconnButton > .material-design-icon__svg 
+  height: $iconnButtonSize
+  width: $iconnButtonSize
+.addCanal
+  width: 13vw !important
+  display: flex
+  flex-direction: column
+  padding: 0 !important
+  .el-button
+    padding: 0 5px
+    width: 100%
+    margin: 1px 0 !important
+    text-align: left
+    color: #fff
+    background-color: #007CC2
+    border-color: #007CC2
+.clientesView
+  .contactosBox
+    padding: 20px 15px
+    justify-content: flex-start
+  .el-card 
+    width: 25%
+    .clearfiss
+      font-family: 'Eurostile LTS Demi'
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      span
+        align-self: center !important  
+    .head
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      color: #007CC2
+    .el-card__header
+      padding: 5px 5px
+  .l_radiusBorder
     padding: 0px !important
-  }
-  .el-tabs--border-card {
-      height: 70vh;
-  }
-  .box-card{
-    .nombre{
-      font-size: 1.2rem;
-    }
-    .cargo{
-      font-size: 1rem;
-    }
-  }
-  .el-upload{
-    width: 100%;
-  }
-  .el-button--small.is-circle {
-      padding: 9px;
-      border-radius: 50% !important;
-  }
-  .el-button--mini.is-circle {
-      padding: 9px;
-      border-radius: 50% !important;
-  }
-  .el-tabs__item {
-      font-size: 14px;
-  }
-  .el-tabs__content{
-    padding: 5px;
-  }
-  .el-tabs__new-tab{
-    display: none !important;
-  }
-}
-.el-switch__label{
-  font-family: 'Eurostile LTS Demi';
-}
-.rightSideForm{
-  background-color: #D0E7F3;
-  width: 50% !important;
-}
+  .el-tabs--border-card 
+    height: 70vh
+  .box-card
+    .nombre
+      font-size: 1.2rem
+    .cargo
+      font-size: 0.9rem
+  .el-upload
+    width: 100%
+  .el-button--small.is-circle 
+    padding: 9px
+    border-radius: 50% !important
+  .el-button--mini.is-circle 
+    padding: 9px
+    border-radius: 50% !important
+  .el-tabs__item 
+    font-size: 14px
+  .el-tabs__content
+    padding: 5px
+  .el-tabs__new-tab
+    display: none !important
+.el-switch__label
+  font-family: 'Eurostile LTS Demi'
+.rightSideForm
+  background-color: #D0E7F3
+  width: 50% !important
 </style>
