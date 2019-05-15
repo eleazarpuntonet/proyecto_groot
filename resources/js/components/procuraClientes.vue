@@ -19,9 +19,20 @@ export default {
   */
   data () {
     return {
+      tmp_input: {
+        add: false
+      },
       formCli: {},
       contact : [],
-      temp_contact : {},
+      temp_contact : {
+        extra: [],
+        skypedit: false,
+        wssapedit: false,
+        mailedit: false,
+        tlfedit: false,
+        extedit: false,
+        moviledit: false
+      },
       editableTabsValue: '1',
       tabIndex: 1,
       contactChannel : [
@@ -40,7 +51,6 @@ export default {
           value: 'Skype',
           label: 'Skype'
         }],
-      contact: [],
     }
   },
   components :{
@@ -57,6 +67,16 @@ export default {
   watch: {
   },
   methods: {
+    add(contacto){
+      contacto.extra.push(this.tmp_input)
+      this.tmp_input = {}
+      this.tmp_input.add = false
+    },
+    addContItem(canal,item){
+      console.log('ejecuto cont')
+      this.tmp_input.add = true
+      this.tmp_input.type = canal
+    },
     handleTabsEdit(targetName, action) {
       if (action === 'remove') {
         let tabs = this.contact;
@@ -67,9 +87,6 @@ export default {
       }
     },
     addContact(){
-      this.temp_contact.id = this.contact.length
-      let newTabName = ++this.tabIndex + '';
-      this.temp_contact.tabName = newTabName
       this.contact.push(this.temp_contact)
       this.temp_contact = {}
     }
@@ -189,32 +206,6 @@ export default {
 
               <el-tab-pane label="Contacto">
                 <div class="form_line">
-<!--                   <el-form-item style="width:20%;">
-                    <div class="el_label">Canal de contacto</div>
-                    <el-select
-                      style="width: 100%;"
-                      size="small" 
-                      v-model="temp_contact.type" 
-                      placeholder="Canal de contacto">
-                      <el-option
-                        v-for="item in contactChannel"
-                        :key="item.value"
-                        :label="item.label"
-                        :value="item.value">
-                      </el-option>
-                    </el-select>
-                  </el-form-item> -->
-
-<!--                   <el-form-item  style="width:30%;">
-                    <div class="el_label">{{temp_contact.type?temp_contact.type:'Contacto'}}</div>
-                    <el-input 
-                      size="small"
-                      :placeholder="temp_contact.type"
-                      v-model="temp_contact.value" 
-                      :disabled="temp_contact.type?false:true">
-                    </el-input>
-                  </el-form-item> -->
-
                   <el-form-item  style="width:30%; margin-left:5px;">
                     <div class="el_label">Nombre</div>
                     <el-input 
@@ -277,45 +268,172 @@ export default {
                           <el-button 
                             slot="reference"
                             size="mini"
-                            icon="el-icon-edit" 
+                            icon="el-icon-plus" 
                             ></el-button>
                             <div class="add">
                             </div>
                               <el-button 
+                                @click="addContItem('Skype',contacto)"
                                 size="mini"
                                 type="primary"><skype class='iconnButton' /> Agregar Skype
                               </el-button>
                               <el-button 
+                                @click="addContItem('Whatsapp',contacto)"
                                 size="mini"
                                 type="primary"><Whatsapp class="iconnButton"/> Agregar WhatsApp
                               </el-button>
                               <el-button 
+                                @click="addContItem('Mail',contacto)"
                                 size="mini"
                                 type="primary"><iconmail class="iconnButton"/> Agregar Correo
                               </el-button>
                               <el-button 
+                                @click="addContItem('Telefono',contacto)"
                                 size="mini"
                                 type="primary"><phone class="iconnButton"/> Agregar Telefono
                               </el-button>
                               <el-button 
-                                size="mini"
-                                type="primary"><email class="iconnButton"/> Agregar Email
-                              </el-button>
-                              <el-button 
+                                @click="addContItem('Extension',contacto)"
                                 size="mini"
                                 type="primary"><ext class="iconnButton"/> Agregar Extension
                               </el-button>
                               <el-button 
+                                @click="addContItem('Telefono movil',contacto)"
                                 size="mini"
                                 type="primary"><cellphone class="iconnButton"/> Agregar Tlf Movil
                               </el-button>
                         </el-popover>
                       </div>
-                      <div v-if="contacto.mail" class="contactItem">
-                        <email class="iconnButton"/>{{contacto.mail}}
+                      <div 
+                        v-if="contacto.tlf" 
+                        class="contactItem">
+                        <div class="contactIcon">
+                          <phone class="iconnButton"/>
+                        </div>
+                        <div v-if="true" style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                          <div>
+                            {{contacto.tlf}}
+                          </div> 
+                          <el-button 
+                            slot="reference"
+                            size="mini"
+                            icon="el-icon-edit" 
+                            ></el-button>
+                        </div>
+                        <div 
+                          v-if="contacto.tlfedit"
+                          style="display: flex;
+                          flex-direction: row;">
+                          <el-input 
+                            style="margin-right: 2px;"
+                            size="small"
+                            placeholder="Telefono"
+                            v-model="contacto.tlf">
+                          </el-input>
+                          <el-button 
+                            @click="addContItem(contacto)"
+                            size="mini"
+                            icon="el-icon-check" 
+                            rounded>
+                          </el-button>
+                        </div>
                       </div>
-                      <div v-if="contacto.mail" class="contactItem">
-                        <phone class="iconnButton"/>{{contacto.tlf}}
+                      <div 
+                        v-if="contacto.mail" 
+                        class="contactItem">
+                        <div class="contactIcon">
+                          <email class="iconnButton"/>
+                        </div>
+                        <div v-if="true" style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                          <div>
+                            {{contacto.mail}}
+                          </div> 
+                          <el-button 
+                            slot="reference"
+                            size="mini"
+                            icon="el-icon-edit" 
+                            ></el-button>
+                        </div>
+                        <div 
+                          v-if="contacto.mailedit"
+                          style="display: flex;
+                          flex-direction: row;">
+                          <el-input 
+                            style="margin-right: 2px;"
+                            size="small"
+                            placeholder="Telefono"
+                            v-model="contacto.mail">
+                          </el-input>
+                          <el-button 
+                            @click="addContItem(contacto)"
+                            size="mini"
+                            icon="el-icon-check" 
+                            rounded>
+                          </el-button>
+                        </div>
+                      </div>
+                      <div v-if="contacto.extra.length>0" v-for="extra in contacto.extra" class="contactItem">
+                        <div class="contactIcon">
+                          <skype     v-if="extra.type=='Skype'" class="iconnButton"/>
+                          <Whatsapp  v-if="extra.type=='Whatsapp'" class="iconnButton"/>
+                          <iconmail  v-if="extra.type=='Mail'" class="iconnButton"/>
+                          <phone     v-if="extra.type=='Telefono'" class="iconnButton"/>
+                          <ext       v-if="extra.type=='Extension'" class="iconnButton"/>
+                          <cellphone v-if="extra.type=='Telefono movil'" class="iconnButton"/>
+                        </div>
+                        <div v-if="true" style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                          <div>
+                            {{extra.extra}}
+                          </div> 
+                          <el-button 
+                            slot="reference"
+                            size="mini"
+                            icon="el-icon-edit" 
+                            ></el-button>
+                        </div>
+                        <div 
+                          v-if="contacto.mailedit"
+                          style="display: flex;
+                          flex-direction: row;">
+                          <el-input 
+                            style="margin-right: 2px;"
+                            size="small"
+                            placeholder="Telefono"
+                            v-model="contacto.mail">
+                          </el-input>
+                          <el-button 
+                            @click="addContItem(contacto)"
+                            size="mini"
+                            icon="el-icon-check" 
+                            rounded>
+                          </el-button>
+                        </div>
+                      </div>
+                      <div v-if="tmp_input.add" class="contactItem">
+                        <div class="contactIcon">
+                          <skype     v-if="tmp_input.type=='Skype'" class="iconnButton"/>
+                          <Whatsapp  v-if="tmp_input.type=='Whatsapp'" class="iconnButton"/>
+                          <iconmail  v-if="tmp_input.type=='Mail'" class="iconnButton"/>
+                          <phone     v-if="tmp_input.type=='Telefono'" class="iconnButton"/>
+                          <ext       v-if="tmp_input.type=='Extension'" class="iconnButton"/>
+                          <cellphone v-if="tmp_input.type=='Telefono movil'" class="iconnButton"/>
+                        </div>
+                        <div 
+                          style="display: flex;
+                          flex-direction: row;">
+                          <el-input 
+                            style="margin-right: 2px;"
+                            size="small"
+                            :placeholder="tmp_input.type"
+                            v-model="tmp_input.extra">
+                          </el-input>
+                          <el-button 
+                            @click="add(contacto)"
+                            size="mini"
+                            icon="el-icon-check" 
+                            rounded>
+                          </el-button>
+                        </div>
                       </div>
                     </el-card>
                   </template>
@@ -361,76 +479,81 @@ export default {
   </div>
 </template>
 <style lang="sass">
-$iconnButtonSize: 1.5em
-.contactItem
-  margin-top: 0 15px
-.el-card+.el-card
-  margin-left: 5px
-.material-design-icon.iconnButton 
-  height: $iconnButtonSize
-  width:  $iconnButtonSize
-.material-design-icon.iconnButton > .material-design-icon__svg 
-  height: $iconnButtonSize
-  width: $iconnButtonSize
-.addCanal
-  width: 13vw !important
-  display: flex
-  flex-direction: column
-  padding: 0 !important
-  .el-button
-    padding: 0 5px
-    width: 100%
-    margin: 1px 0 !important
-    text-align: left
-    color: #fff
-    background-color: #007CC2
-    border-color: #007CC2
-.clientesView
-  .contactosBox
-    padding: 20px 15px
-    justify-content: flex-start
-  .el-card 
-    width: 25%
-    .clearfiss
-      font-family: 'Eurostile LTS Demi'
-      display: flex
-      flex-direction: row
-      justify-content: space-between
-      span
-        align-self: center !important  
-    .head
+  $iconnButtonSize: 1.5em
+  .contactItem
+    display: flex
+    .contactIcon
       display: flex
       flex-direction: column
-      align-items: flex-start
-      color: #007CC2
-    .el-card__header
-      padding: 5px 5px
-  .l_radiusBorder
-    padding: 0px !important
-  .el-tabs--border-card 
-    height: 70vh
-  .box-card
-    .nombre
-      font-size: 1.2rem
-    .cargo
-      font-size: 0.9rem
-  .el-upload
-    width: 100%
-  .el-button--small.is-circle 
-    padding: 9px
-    border-radius: 50% !important
-  .el-button--mini.is-circle 
-    padding: 9px
-    border-radius: 50% !important
-  .el-tabs__item 
-    font-size: 14px
-  .el-tabs__content
-    padding: 5px
-  .el-tabs__new-tab
-    display: none !important
-.el-switch__label
-  font-family: 'Eurostile LTS Demi'
-.rightSideForm
-  background-color: #D0E7F3
-  width: 50% !important
+      justify-content: center
+      margin-right: 5px
+  .el-card+.el-card
+    margin-left: 5px
+  .material-design-icon.iconnButton 
+    height: $iconnButtonSize
+    width:  $iconnButtonSize
+  .material-design-icon.iconnButton > .material-design-icon__svg 
+    height: $iconnButtonSize
+    width: $iconnButtonSize
+  .addCanal
+    width: 13vw !important
+    display: flex
+    flex-direction: column
+    padding: 0 !important
+    .el-button
+      padding: 0 5px
+      width: 100%
+      margin: 1px 0 !important
+      text-align: left
+      color: #fff
+      background-color: #007CC2
+      border-color: #007CC2
+  .clientesView
+    .contactosBox
+      padding: 20px 15px
+      justify-content: flex-start
+    .el-card 
+      width: 25%
+      .clearfiss
+        font-family: 'Eurostile LTS Demi'
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        span
+          align-self: center !important  
+      .head
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        color: #007CC2
+      .el-card__header
+        padding: 5px 5px
+    .l_radiusBorder
+      padding: 0px !important
+    .el-tabs--border-card 
+      height: 70vh
+    .box-card
+      .nombre
+        font-size: 1.2rem
+      .cargo
+        font-size: 0.9rem
+    .el-upload
+      width: 100%
+    .el-button--small.is-circle 
+      padding: 9px
+      border-radius: 50% !important
+    .el-button--mini.is-circle 
+      padding: 9px
+      border-radius: 50% !important
+    .el-tabs__item 
+      font-size: 14px
+    .el-tabs__content
+      padding: 5px
+    .el-tabs__new-tab
+      display: none !important
+  .el-switch__label
+    font-family: 'Eurostile LTS Demi'
+  .rightSideForm
+    background-color: #D0E7F3
+    width: 50% !important
 </style>
