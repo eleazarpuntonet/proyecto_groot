@@ -75,7 +75,7 @@ Route::resource('gerencias', 'GerenciasController');
 
 Route::resource('proveedores', 'ProveedoresController');
 
-Route::post('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
+Route::get('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
 	Mail::send('email', ['name' => 'Eleazar', 'verification_code' => '351351351'],

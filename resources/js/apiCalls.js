@@ -216,7 +216,21 @@ export function verifyMail(verification_code){
   return new Promise((res,rej)=>{
     axios.get(route('auth.verify',verification_code)) 
         .then(response => {
-                             console.log(response)
+          console.log(response)
+          res(response)
+          })
+        .catch(error => {
+          rej(error)
+        })
+  })
+}
+export function firmaSPS(user){
+  let x = {}
+  x.user = JSON.stringify(user);
+  return new Promise((res,rej)=>{
+    axios.get(route('textOnImage',x)) 
+        .then(response => {
+          console.log(response)
           res(response)
           })
         .catch(error => {

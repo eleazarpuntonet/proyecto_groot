@@ -19,19 +19,16 @@ export default {
   */
   data () {
     return {
-      tmp_input: {
-        add: false
-      },
+      input_add: false,
+      tmp_input: {},
       formCli: {},
       contact : [],
       temp_contact : {
         extra: [],
-        skypedit: false,
-        wssapedit: false,
-        mailedit: false,
-        tlfedit: false,
-        extedit: false,
-        moviledit: false
+        flag: false,
+        temp: {
+          flag:false
+        },
       },
       editableTabsValue: '1',
       tabIndex: 1,
@@ -68,14 +65,21 @@ export default {
   },
   methods: {
     add(contacto){
-      contacto.extra.push(this.tmp_input)
-      this.tmp_input = {}
-      this.tmp_input.add = false
+      contacto.extra.push(contacto.temp)
+      contacto.temp={
+        flag:false
+      }
+      contacto.flag=false
     },
     addContItem(canal,item){
-      console.log('ejecuto cont')
-      this.tmp_input.add = true
-      this.tmp_input.type = canal
+      item.flag = true
+      item.temp.type = canal
+    },
+    editContItem(contacto,index){
+      contacto.extra[index].flag=true
+    },
+    saveContItem(contacto,index){
+      contacto.extra[index].flag=false
     },
     handleTabsEdit(targetName, action) {
       if (action === 'remove') {
@@ -88,7 +92,11 @@ export default {
     },
     addContact(){
       this.contact.push(this.temp_contact)
-      this.temp_contact = {}
+      this.temp_contact = {
+        extra: [],
+        flag: false,
+        temp: {},
+      }
     }
   },
   created() {
@@ -372,7 +380,7 @@ export default {
                           </el-button>
                         </div>
                       </div>
-                      <div v-if="contacto.extra.length>0" v-for="extra in contacto.extra" class="contactItem">
+                      <div v-if="contacto.extra.length>0" v-for="(extra,index) in contacto.extra" class="contactItem">
                         <div class="contactIcon">
                           <skype     v-if="extra.type=='Skype'" class="iconnButton"/>
                           <Whatsapp  v-if="extra.type=='Whatsapp'" class="iconnButton"/>
@@ -381,42 +389,43 @@ export default {
                           <ext       v-if="extra.type=='Extension'" class="iconnButton"/>
                           <cellphone v-if="extra.type=='Telefono movil'" class="iconnButton"/>
                         </div>
-                        <div v-if="true" style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
+                        <div v-if="!extra.flag" style="display: flex;flex-direction: row;justify-content: space-between;width: 100%;">
                           <div>
                             {{extra.extra}}
                           </div> 
                           <el-button 
+                            @click="editContItem(contacto,index)"
                             slot="reference"
                             size="mini"
                             icon="el-icon-edit" 
                             ></el-button>
                         </div>
                         <div 
-                          v-if="contacto.mailedit"
+                          v-if="extra.flag"
                           style="display: flex;
                           flex-direction: row;">
                           <el-input 
                             style="margin-right: 2px;"
                             size="small"
-                            placeholder="Telefono"
-                            v-model="contacto.mail">
+                            :placeholder="extra.type"
+                            v-model="extra.extra">
                           </el-input>
                           <el-button 
-                            @click="addContItem(contacto)"
+                            @click="saveContItem(contacto,index)"
                             size="mini"
                             icon="el-icon-check" 
                             rounded>
                           </el-button>
                         </div>
                       </div>
-                      <div v-if="tmp_input.add" class="contactItem">
+                      <div v-if="contacto.flag" class="contactItem">
                         <div class="contactIcon">
-                          <skype     v-if="tmp_input.type=='Skype'" class="iconnButton"/>
-                          <Whatsapp  v-if="tmp_input.type=='Whatsapp'" class="iconnButton"/>
-                          <iconmail  v-if="tmp_input.type=='Mail'" class="iconnButton"/>
-                          <phone     v-if="tmp_input.type=='Telefono'" class="iconnButton"/>
-                          <ext       v-if="tmp_input.type=='Extension'" class="iconnButton"/>
-                          <cellphone v-if="tmp_input.type=='Telefono movil'" class="iconnButton"/>
+                          <skype     v-if="contacto.temp.type=='Skype'" class="iconnButton"/>
+                          <Whatsapp  v-if="contacto.temp.type=='Whatsapp'" class="iconnButton"/>
+                          <iconmail  v-if="contacto.temp.type=='Mail'" class="iconnButton"/>
+                          <phone     v-if="contacto.temp.type=='Telefono'" class="iconnButton"/>
+                          <ext       v-if="contacto.temp.type=='Extension'" class="iconnButton"/>
+                          <cellphone v-if="contacto.temp.type=='Telefono movil'" class="iconnButton"/>
                         </div>
                         <div 
                           style="display: flex;
@@ -424,8 +433,8 @@ export default {
                           <el-input 
                             style="margin-right: 2px;"
                             size="small"
-                            :placeholder="tmp_input.type"
-                            v-model="tmp_input.extra">
+                            :placeholder="contacto.temp.type"
+                            v-model="contacto.temp.extra">
                           </el-input>
                           <el-button 
                             @click="add(contacto)"
@@ -528,6 +537,8 @@ export default {
         color: #007CC2
       .el-card__header
         padding: 5px 5px
+      .el-card__body
+        padding: 5px
     .l_radiusBorder
       padding: 0px !important
     .el-tabs--border-card 

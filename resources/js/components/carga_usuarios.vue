@@ -4,6 +4,7 @@
 		getRoles,
 		getUsuarios,
 		getDepartamentos,
+		firmaSPS,
 	} from '../apiCalls.js'
 
 
@@ -16,7 +17,7 @@
 	  	return {
 	  		permisos: this.$store.getters.getUserPermisos,
 			dominio_temp    : null,
-			editable        : false,
+			editable        : true,
 			temp_roles      : [],
 			disabled_flag   : false,
 			lista_roles     : [],
@@ -96,6 +97,31 @@
 	  	    return false
 	  	  }
 	  	},
+	  	printFirma(user){
+	  		// console.log(user)
+	  		// console.log(this.short_name(user.name))
+	  		// console.log(this.short_lastname(user.last_name))
+	  		// console.log(user.cargo)
+	  		let obj = {}
+	  		obj.name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
+	  		obj.cargo = this.user_form.cargo
+	  		obj.id = this.user_form.id
+	  		let val = this.user_form.email
+	  		val = val.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+	  		    return letter.toUpperCase();
+	  		});
+	  		obj.email = val
+			firmaSPS(obj)
+			.then(response => {
+				console.log(response)
+			  })
+			.catch(error => {
+			  this.$notify.error({
+			    title: 'Error '+error.response.status,
+			    message: error.response.data.message
+			  });
+			})
+	  	},
 	  	filterDepto(value, row, column){
 			if (row.departamento != null) {
 			return row.departamento.ceco === value;
@@ -167,7 +193,6 @@
 		short_name(name){
 			var str = name.split(" ")
 				return str[0]
-
 		},
 		short_lastname(name){
 			var str = name.split(" ")
@@ -356,7 +381,7 @@
 					</div>	
 
 					<div class="form_line">
-						<el-form-item prop="email" style="width:100%;">
+						<el-form-item prop="email" style="width:50%;">
 							<div class="el_label">Correo de contacto</div>
 							<el-input v-model="user_form.email" class="input-with-select" size="mini" :placeholder="user_form.email" :disabled="!editable">
 							  <el-select v-model="dominio_temp"       slot="append" placeholder="Dominio" :disabled="!editable">
@@ -364,7 +389,13 @@
 								  <el-option label="@spservicesinc.uk" 	 value="@spservicesinc.uk"></el-option>
 							  </el-select>
 							</el-input>
-						</el-form-item>							
+						</el-form-item>		
+
+						<el-form-item prop="tlf" style="width:50%;">
+							<div class="el_label">Telefono</div>
+							<el-input v-model="user_form.tlf" class="input-with-select" size="mini" placeholder="Telefono" :disabled="!editable">
+							</el-input>
+						</el-form-item>						
 				</div>
 
 					<div class="form_line">
@@ -390,6 +421,11 @@
 							v-if="checkPermisos('dataload003i3','escribe')"
 							icon="el-icon-error"
 							@click="resetForm('user_form_')">Reset
+						</el-button>
+						<el-button 
+							v-if="checkPermisos('dataload003i3','escribe')"
+							icon="el-icon-error"
+							@click="printFirma(user_form)">Generar firma
 						</el-button>
 					</el-form-item>
 				</el-form>

@@ -74,6 +74,7 @@ import permisos    from '../../../components/panelPermisos'
 import rfq from '../../../components/procuraRfq'
 import proProveedores from '../../../components/procuraProveedores'
 import proClientes from '../../../components/procuraClientes'
+import proProyectos from '../../../components/procuraProyectos'
 
 
 Vue.use(Router)
@@ -287,6 +288,14 @@ var procClientes = new Route_item({
   })  
 procClientes.changeAuth(true,rolescargaDatos)
 
+var procProyectos = new Route_item({
+  router_id : 'procura004i',
+  path:'proyectos',
+  name:'Proyectos',
+  comp: proProyectos,
+  })  
+procProyectos.changeAuth(true,rolescargaDatos)
+
 var procura = new Route_item({
     router_id : 'procura001m',
     path:'procura',
@@ -295,7 +304,8 @@ var procura = new Route_item({
   },[
      rfqForm,
      procProveedores,
-     procClientes
+     procClientes,
+     procProyectos
     ])
 
 export default new Router({
@@ -336,27 +346,3 @@ export default new Router({
     },
   ]
 })
-
-/*
-* EJEMPLO DE RUTAS OBSOLETAS
-*/
-// {
-//   path: 'base',
-//   redirect: '/base/cards',
-//   name: 'Base',
-//   component: {
-//     render (c) { return c('router-view') }
-//   },
-//   children: [
-//     {
-//       path: 'cards',
-//       name: 'Cards',
-//       component: Cards
-//     },
-//     {
-//       path: 'forms',
-//       name: 'Forms',
-//       component: Forms
-//     }
-//   ]
-// },
