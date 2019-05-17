@@ -45,7 +45,21 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('file')) {
+            $md5Name = md5_file($request->file('file')->getRealPath());
+            $guessExtension = $request->file('file')->guessExtension();
+            $file = $request->file('file')->storeAs('images', $md5Name.'.'.$guessExtension);
+
+            // $path = $request->file('file')->store('images');
+            return response()->json([
+                'message' => 'Upload success.',
+                'path' => $file,
+                'ext' => $guessExtension,
+                'status' => 200
+            ], 200);
+        } else {
+            return 'no file';
+        }
     }
 
     /**

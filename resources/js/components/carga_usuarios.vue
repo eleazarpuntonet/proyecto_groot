@@ -98,10 +98,6 @@
 	  	  }
 	  	},
 	  	printFirma(user){
-	  		// console.log(user)
-	  		// console.log(this.short_name(user.name))
-	  		// console.log(this.short_lastname(user.last_name))
-	  		// console.log(user.cargo)
 	  		let obj = {}
 	  		obj.name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
 	  		obj.cargo = this.user_form.cargo

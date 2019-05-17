@@ -73,6 +73,9 @@ class ImageController extends Controller
       });  
       $filepath = public_path($fileonsave);
       $img->save($filepath);  
-      return response()->download('/Users/ladmin/Desktop/SpsApps/proyecto_groot/public/'.$fileonsave);
+      $headers = array(
+                        'Content-Type: image/png'
+                    );
+      return response()->download('/Users/ladmin/Desktop/SpsApps/proyecto_groot/public/'.$fileonsave,'namebanner.png',$headers);
     }
 }

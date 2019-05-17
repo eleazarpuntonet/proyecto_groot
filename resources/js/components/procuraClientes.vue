@@ -8,9 +8,7 @@
   import ext from "vue-material-design-icons/PhoneClassic.vue"
 
   import {
-    getDepartamentos,
-    getUsuarios,
-    getRoles
+    fileUpload
   } from '../apiCalls.js'
 export default {
   /*
@@ -30,6 +28,7 @@ export default {
           flag:false
         },
       },
+      fileData: {data:'Texto de data'},
       editableTabsValue: '1',
       tabIndex: 1,
       contactChannel : [
@@ -64,6 +63,16 @@ export default {
   watch: {
   },
   methods: {
+    fileAction(e){
+      console.log('ejecuto file action')
+      console.log(e)
+      // fileUpload(e)
+      //   .then(res=>{
+      //     this.roles = res
+      //   }).catch(error=>{
+      //     console.log(error)
+      //   })
+    },
     add(contacto){
       contacto.extra.push(contacto.temp)
       contacto.temp={
@@ -100,6 +109,14 @@ export default {
     }
   },
   created() {
+    // axios.post(route('files.storefile','algo')) 
+    //     .then(response => {
+    //       console.log(response)
+    //       // res(response)
+    //       })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
   },
   beforeMount(){
   }
@@ -456,7 +473,8 @@ export default {
                     <el-upload
                       class="upload-demo"
                       drag
-                      action="#"
+                      :data="fileData"
+                      action="http://spsapp.sps/api/files"
                       multiple>
                       <i class="el-icon-upload"></i>
                       <div class="el-upload__text">Arrastre los documentos aqui o <em>haz clic para cargar</em></div>
@@ -469,6 +487,7 @@ export default {
               <div class="form_line" style="justify-content:flex-start;">
                 <el-form-item>
                   <el-button 
+                    @click="fileAction"
                     size="small" 
                     icon="el-icon-success"
                     type="info">Enviar

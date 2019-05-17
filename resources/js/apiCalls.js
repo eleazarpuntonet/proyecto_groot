@@ -238,3 +238,19 @@ export function firmaSPS(user){
         })
   })
 }
+
+export function fileUpload(file){
+  console.log('antes de enviar file '+file)
+  // let x = {}
+  // x.user = JSON.stringify(user);
+  return new Promise((res,rej)=>{
+    axios.post(route('files.storefile','algo')) 
+        .then(response => {
+          console.log(response)
+          res(response)
+          })
+        .catch(error => {
+          rej(error)
+        })
+  })
+}

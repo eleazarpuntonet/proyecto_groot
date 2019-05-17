@@ -33,7 +33,7 @@ export default {
 }
 </script>
 <template>
-  <div class="indexEmpleados ele_modelview_A">
+  <div class="indexProyectos ele_modelview_A">
     <div style="display: flex; flex-direction: column; width: 100%;">
       <div class="topSideForm l_radiusBorder">
         <div class="titleForm">
@@ -198,7 +198,10 @@ export default {
             <div class="form_line" style="justify-content:space-between !important;">
               <el-form-item prop="factibilidad" style="width:100%;">
                 <div class="el_label">Factibilidad</div>
-                <el-slider v-model="proyecto.factibilidad"></el-slider>
+                <el-slider 
+                  v-model="proyecto.factibilidad" 
+                  show-input>
+                </el-slider>
               </el-form-item>
             </div>
 
@@ -251,17 +254,14 @@ export default {
 
           </el-form>
         </div>
-        <div class="rightSideForm l_radiusBorder">
-
-        </div>
       </div>
-
     </div>
   </div>
 </template>
 <style lang="sass">
-.el-upload
-  width: 100%
-  
-
+.indexProyectos
+  .el-upload
+    width: 100%
+  .el-slider
+    margin: 0px 15px
 </style>

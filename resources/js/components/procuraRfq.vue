@@ -378,7 +378,7 @@
 					<el-table
 						empty-text="Aun no se ha agregado ninguna empresa"
 					  	:data="tableData"
-					  	style="width: 100%; margin: 10px;">
+					  	style="width: 100%;">
 					  	<template slot="append">
 					  		<div class="form_line">
 					  			<el-form-item prop="empresa" style="width:25%;">
@@ -420,21 +420,21 @@
 					  			</el-form-item>
 
 								
-					  				<el-form-item class="iconRow" style="width:5%;">
-					  					<el-button 
-					  						size="small"
-					  						type="primary">
-					  						<i class="el-icon-upload el-icon-right"></i>
-					  					</el-button>
-					  				</el-form-item>
+								<el-form-item class="iconRow" style="width:5%;">
+									<el-button 
+										size="small"
+										type="primary">
+										<i class="el-icon-upload el-icon-right"></i>
+									</el-button>
+								</el-form-item>
 
-					  				<el-form-item class="iconRow" style="width:5%;">
-					  					<el-button 
-					  						size="small"
-					  						type="primary">
-					  						<i class="el-icon-upload el-icon-right"></i>
-					  					</el-button>
-					  				</el-form-item>
+								<el-form-item class="iconRow" style="width:5%;">
+									<el-button 
+										size="small"
+										type="primary">
+										<i class="el-icon-upload el-icon-right"></i>
+									</el-button>
+								</el-form-item>
 
 					  			<el-form-item prop="total_venta" style="width:35%;">
 					  				<el-input 
