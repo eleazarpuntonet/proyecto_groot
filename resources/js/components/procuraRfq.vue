@@ -46,6 +46,7 @@
 			<div class="form_line">
 				<div class="contLeftSide l_radiusBorder">
 					<el-form 
+						style="width: 100%;"
 						ref="formularioProcuraRFQ" 
 						:model="formRFQ">
 						<div class="form_line">
@@ -268,6 +269,7 @@
 									:disabled="false">
 								</el-input>
 							</el-form-item>
+
 							<el-form-item prop="cotizados" style="width:33%;">
 								<div class="el_label">Cotizados</div>
 								<el-input 
@@ -277,6 +279,7 @@
 									:disabled="false">
 								</el-input>
 							</el-form-item>
+
 							<el-form-item prop="por_cotizar" style="width:33%;">
 								<div class="el_label">Por cotizar</div>
 								<el-input 
@@ -297,6 +300,7 @@
 									:disabled="false">
 								</el-input>
 							</el-form-item>
+							
 							<el-form-item prop="rfi" style="width:50%;">
 								<div class="el_label">RFI</div>
 								<el-input 
@@ -318,6 +322,7 @@
 									<template slot="prepend">Total $</template>
 								</el-input>
 							</el-form-item>
+							
 							<el-form-item prop="otros_costos" style="width:50%;">
 								<div class="el_label">Otros costos$</div>
 								<el-input 

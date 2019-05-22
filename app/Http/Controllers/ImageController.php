@@ -23,6 +23,7 @@ class ImageController extends Controller
       $departamento= $usuario->departamento->disp_name;
       $telefono = '+1 786.405.1112';
       $fileonsave = 'images/'.$usuario->name.$usuario->last_name.'.png';
+      $nameFile = $usuario->name.$usuario->last_name.'.png';
       $model1= '/images/firma1sps.png';
       $model2= '/images/firma2sps.png';
       $model3= '/images/firma3sps.png';
@@ -37,12 +38,12 @@ class ImageController extends Controller
         $font->angle(0);  
       });  
       $img->text($objeto->cargo, $vertical, $horizontal+45, function($font) {  
-         $font->file('fonts/OpenSans-Regular.ttf'); 
-         $font->size(35);  
-         $font->color('#6D6E70');  
-         $font->align('left');  
-         $font->valign('bottom');  
-         $font->angle(0);  
+        $font->file('fonts/OpenSans-Regular.ttf'); 
+        $font->size(35);  
+        $font->color('#6D6E70');  
+        $font->align('left');  
+        $font->valign('bottom');  
+        $font->angle(0);  
       });  
       if (empty($objeto->tlf)) {
          $img->text($departamento, $vertical, $horizontal+105, function($font) {  
@@ -64,18 +65,16 @@ class ImageController extends Controller
         });  
       }
       $img->text($objeto->email, $vertical, $horizontal+155, function($font) {  
-         $font->file('fonts/OpenSans-Regular.ttf'); 
-         $font->size(35);  
-         $font->color('#6D6E70');  
-         $font->align('left');  
-         $font->valign('bottom');  
-         $font->angle(0);  
-      });  
+        $font->file('fonts/OpenSans-Regular.ttf'); 
+        $font->size(35);  
+        $font->color('#6D6E70');  
+        $font->align('left');  
+        $font->valign('bottom');  
+        $font->angle(0);  
+      });
       $filepath = public_path($fileonsave);
-      $img->save($filepath);  
-      $headers = array(
-                        'Content-Type: image/png'
-                    );
+      $img->save($filepath);
+      $headers = array('Content-Type: image/png',$nameFile);
       return response()->download('/Users/ladmin/Desktop/SpsApps/proyecto_groot/public/'.$fileonsave,'namebanner.png',$headers);
     }
 }

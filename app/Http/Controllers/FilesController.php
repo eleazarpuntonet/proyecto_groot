@@ -80,6 +80,11 @@ class FilesController extends Controller
             'user.departamento',
             ])->findOrFail($id_file);
 
+        $pdf = PDF::loadView('Files.planillareserva',compact('reserva'));
+        $pdf->setPaper('a4', 'portrait');
+
+        return $pdf->stream('archivo.pdf');
+
         return view('Files.planillareserva')
         ->with(compact('reserva'));
     }

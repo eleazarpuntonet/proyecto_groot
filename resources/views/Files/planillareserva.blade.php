@@ -1,342 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>Document</title>
 </head>
 <style>
 	body{
-		width  : 216mm;
-		height : 279mm;
-		padding-left: 1.5cm;
-		padding-top: 1.5cm;
+	   	size: 7in 9.25in;
 	}
-	.bloque{
-		display : table;
-		border  : 1px solid black;
-		width   : 100%;
-
+	table, th, td {
+	  border: 1px solid black;
 	}
-	.planilla{
-		display: flex;
-		flex-direction: column;
-		justify-content: initial;
-		font-family: 'Lato', sans-serif;
+	th, td {
+	  padding: 5px;
 	}
-	.logo{
-		margin: 15px;
-		height: 60px;
-	}
-	.header{
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-	.databloq{
-		display: flex;
-		flex-direction: column;
-	}
-	.databloq{
-		font-size: 0.5rem;
-	}
-	.logocontainer{
-		display: flex;
-		flex-direction: columns;
-		justify-content: center;
-	}
-	.header .bloque{
-		height: 2.55cm;
-	}
-	.bloqrow{
-		display: flex;
-		border: 1px solid black;
-		flex-direction: column;
-		justify-content: center;
-		height: 100%;
-	}
-	.header div {
-	  display: flex;
-	  flex-direction: column;
-	  justify-content: center;
-	}
-	.campo{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		border: 1px solid black;
-		height: .7cm;
-		font-size: .65rem;
-	}
-	.campor{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		border: 1px solid black;
-		height: 1.2cm;
-		font-size: .9rem;
-	}
-	.formbloq{
+	table .centerTitle{
+		width: 50%;
 		text-align: center;
-		display: flex;
 	}
-	.titulo{
+	table .leftTitle{
+		width: 25%;
+	}
+	table .leftTitle img{
+		width: 130px;
+		height: 50px;
+	}
+	table .rightTitle{
+		width: 30%;
+	}
+	.page{
+		background-color: #D9D9DB;
+	}
+	.bodyForm{
 		width: 100%;
+		text-align: center;
+	}
+	.titleSection{
 		background-color: #BBBDC0;
-		border: 1px solid black;
-		text-align: center;
-		font-size: .75rem;
-		height: .5cm;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 	}
-	.checkox{
-		width: 10px;
-		height:10px;
-		margin: 3px;
-		border: 1px solid black;
-		align-self: flex-end;
+	td.labelSection {
+	    font-size: 12px;
+	    padding: 3px 0 !important;
 	}
-	.check{
-		display: flex;
-		flex-direction: row;
-		align-content: flex-start
-	}
-	.labelgrey{
-		text-align: center;
-	}
-	.sign{
-		border: 1px solid black;
-		height: .7cm;
-		font-size: .7rem;
-		display: flex;
-		flex-direction: row;
+	td.infoText {
+		height: 18px;
+	    font-size: 15px;
+	    padding: 3px 0 !important;
 	}
 </style>
 <body>
-	{{-- {{ $reserva }} --}}
-	<div class="planilla">
-		<div class="header">
-			<div class="bloque logocontainer" style="width: 40%;">
-				<img class="logo" src="/storage/spsapplogo2.png" alt="Logo de Southern Procurement Services">
-			</div>
-			<div class="bloque" style="text-align:center;font-size:1.3rem">
-				<strong>Solicitud de Logistica de Viajes</strong>
-			</div>
-			<div class="databloq" style="width: 40%;">
-				<div class="bloqrow">
+	<div class="page">
+		<table class="plantilla" style="width:100%">
+			<tr>
+				<td rowspan="4" class="leftTitle">
+					<img class="logo" src="./storage/spsapplogo2.png" alt="Logo de Southern Procurement Services">
+				</td>
+				<td rowspan="4" class="centerTitle">
+					<strong>Solicitud de Logistica de Viajes</strong>
+				</td> 
+				<td colspan="2" class="rightTitle">
 					Codigo: SPS-FAD-007
-				</div>
-				<div style="display: flex; flex-direction: row; height: 100%;">
-					<div class="bloqrow" style="height: auto;width: 100%;">
-						Edicion: 1
-					</div>
-					<div class="bloqrow" style="height: auto;width: 100%;">
-						Revision: 0
-					</div>
-				</div>
-				<div class="bloqrow">
+				</td> 
+			</tr>
+			<tr>
+				<td style="width:15%;">
+					Edicion: 1
+				</td> 
+				<td style="width:15%;">
+					Revision: 0
+				</td> 
+			</tr>
+			<tr>
+				<td colspan="2" style="width:30%;">
 					Pag 1 de 2
-				</div>
-				<div class="bloqrow">
+				</td> 
+			</tr>
+			<tr>
+				<td colspan="2" style="width:30%;">
 					Fecha 17/10/2018
-				</div>
-			</div>
-		</div>
-
-		<div class="titulo">
-			Datos del Solicitante
-		</div>
-
-		<div class="formbloq">
-			<div class="campo" style="width: 60%;">
-				<div class="label">Nombre y Apellido del Solicitante</div>
-				<div class="input"> <strong>{{ $reserva->user->name }} {{ $reserva->user->last_name }}</strong> </div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Cedula de Identidad</div>
-				<div class="input"> <strong>{{ $reserva->user->id }}</strong> </div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Unidad o Area</div>
-				<div class="input"> <strong>{{ $reserva->user->departamento->disp_name}}</strong> </div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Sede</div>
-				<div class="input"> <strong>{{ $reserva->user->sede}}</strong> </div>
-			</div>
-			<div class="campo" style="width: 25%;">
-				<div class="label">Fecha de Solicitud</div>
-				<div class="input"> <strong>{{ $reserva->created_at }}</strong> </div>
-			</div>
-		</div>
-
-		<div class="titulo">
-			NACIONAL (VENEZUELA)
-		</div>
-
-		<div class="formbloq">
-			<div class="campo" style="width: 50%; background-color: #BBBDC0;">
-				<div class="labelgrey"> 
-					Agenda
-				</div>
-			</div>
-			<div class="campo" style="width: 50%; background-color: #BBBDC0;">
-				<div class="labelgrey"> 
-					Motivo del Viaje
-				</div>
-			</div>
-		</div>
-
-		<div class="formbloq">
-			<div class="campo" style="width: 50%;">
-				<div class="labelgrey"> 
-					{{ $reserva->agenda }}
-				</div>
-			</div>
-			<div class="campo" style="width: 50%;">
-				<div class="labelgrey"> 
-					{{ $reserva->motivo }}
-				</div>
-			</div>
-		</div>
-
-		<div class="titulo">
-			Traslados
-		</div>
-
-		@if(count($reserva->traslados)>0)
-			<div class="formbloq">
-				<div class="campo" style="width: 10%;">
-					<div class="label">Fecha y hora</div>
-				</div> 
-				<div class="campo" style="width: 35%;">
-					<div class="label">Origen y/o Direccion</div>
-				</div>
-				<div class="campo" style="width: 35%;">
-					<div class="label">Destino y/o Direccion</div>
-				</div>
-				<div class="campo" style="width: 20%;">
-					<div class="label">Descripcion</div>
-				</div>
-				<div class="campo" style="width: 10%;">
-					<div class="label">Tipo</div>
-				</div>
-			</div>
-			@foreach ($reserva->traslados as $traslado)
-			    <div class="formbloq">
-			    	<div class="campo" style="width: 10%;">
-			    		<div class="label"><strong>{{$traslado->fecha_hora}}
-			    		</strong></div>
-			    	</div>
-			    	<div class="campo" style="width: 35%;">
-			    		<div class="label"><strong>{{$traslado->origen}}</strong></div>
-			    	</div>
-			    	<div class="campo" style="width: 35%;">
-			    		<div class="label"><strong>{{$traslado->destino}}</strong></div>
-			    	</div>
-			    	<div class="campo" style="width: 20%;">
-			    		<div class="label"><strong>{{$traslado->descripcion}}</strong></div>
-			    	</div>
-			    	<div class="campo" style="width: 10%;">
-			    		<div class="label"><strong>{{$traslado->tipo}}</strong></div>
-			    	</div>
-			    </div>
-			@endforeach
-		@else
-		    <div class="formbloq">
-		    	<div class="campo" style="width: 100%;">
-		    		<div class="label"><strong>Esta reserva no posee traslados</strong></div>
-		    	</div>
-		    </div>
-		@endif
-
-		<div class="titulo">
-			Hospedaje 
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Entrada: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Salida: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 40%;">
-				<div class="label">Lugar o Ciudad: <strong>Cabimas Hotel Europa</strong></div>
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Entrada: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Salida: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 40%;">
-				<div class="label">Lugar o Ciudad: <strong>Cabimas Hotel Europa</strong></div>
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Entrada: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 30%;">
-				<div class="label">Fecha de Salida: <strong> 01/01/2023 </strong></div>
-			</div>
-			<div class="campo" style="width: 40%;">
-				<div class="label">Lugar o Ciudad: <strong>Cabimas Hotel Europa</strong></div>
-			</div>
-		</div>
-		<div class="titulo">
-			Observaciones 
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 100%;">
-				<div class="label"></div>
-			</div>
-		</div>
-
-		<div style="display:flex">
-			<div class="titulo" style="width:50%">
-				Aprobado Por 
-			</div>
-			<div class="titulo" style="width:50%">
-				Recibido Por 
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 50%;">
-				<div class="label">Nombre y Apellido del Supervisor Inmeadiato </div>
-			</div>
-			<div class="campo" style="width: 50%;">
-				<div class="label"> Nombre y Apellido </div>
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 50%;">
-				<div class="label"></div>
-			</div>
-			<div class="campo" style="width: 50%;">
-				<div class="label"></div>
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 50%;">
-				<div class="label">Cargo</div>
-			</div>
-			<div class="campo" style="width: 50%;">
-				<div class="label">Firma</div>
-			</div>
-		</div>
-		<div class="formbloq">
-			<div class="campo" style="width: 50%;">
-				<div class="label"></div>
-			</div>
-			<div class="campo" style="width: 50%;">
-				<div class="label"></div>
-			</div>
-		</div>
-
+				</td> 
+			</tr>
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td colspan="5" class="titleSection">
+					<strong>Datos del Solicitante</strong>
+				</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Nombre y apellido del solicitante</strong><br></td>
+				<td class="labelSection"><strong>Cedula de identidad</strong></td>
+				<td class="labelSection"><strong>Unidad</strong></td>
+				<td class="labelSection"><strong>Sede</strong></td>
+				<td class="labelSection"><strong>Fecha de solicitud</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">{{ $reserva->user->name }} {{ $reserva->user->last_name }}<br></td>
+				<td class="infoText">{{ $reserva->user->id }}</td>
+				<td class="infoText">{{ $reserva->user->departamento->disp_name}}</td>
+				<td class="infoText">{{ $reserva->user->sede}}</td>
+				<td class="infoText">{{ $reserva->created_at }}</td>
+			</tr>
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td colspan="2" class="titleSection">
+					<strong>Nacional (Venezuela)</strong>
+				</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Origen</strong><br></td>
+				<td class="labelSection"><strong>Destino</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">{{ $reserva->origen_a }}<br></td>
+				<td class="infoText">{{ $reserva->destino_a }}</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Direccion (origen)</strong><br></td>
+				<td class="labelSection"><strong>Direccion (destino)</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">{{ $reserva->origen_det }}</td>
+				<td class="infoText">{{ $reserva->destino_det }}</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Agenda</strong><br></td>
+				<td class="labelSection"><strong>Motivo</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">{{ $reserva->agenda }}<br></td>
+				<td class="infoText">{{ $reserva->motivo }}</td>
+			</tr>
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td colspan="5" class="titleSection">
+					<strong>Traslados</strong>
+				</td>
+			</tr>
+			@if(count($reserva->traslados)>0)
+				<tr>
+					<td class="labelSection"><strong>Fecha y hora</strong><br></td>
+					<td class="labelSection"><strong>Origen y/o Direccion</strong></td>
+					<td class="labelSection"><strong>Destino y/o Direccion</strong></td>
+					<td class="labelSection"><strong>Descripcion</strong></td>
+					<td class="labelSection"><strong>Tipo</strong></td>
+				</tr>
+				@foreach ($reserva->traslados as $traslado)
+					<tr>
+						<td class="infoText" style="width:10%;">{{$traslado->fecha_hora}}<br></td>
+						<td class="infoText" style="width:25%;">{{$traslado->origen}}</td>
+						<td class="infoText" style="width:25%;">{{$traslado->destino}}</td>
+						<td class="infoText" style="width:20%;">{{$traslado->descripcion}}</td>
+						<td class="infoText" style="width:10%;">{{$traslado->tipo}}</td>
+					</tr>
+				@endforeach
+			@else
+				<td colspan="5" class="infoText">
+					Esta reserva no posee traslados asignados
+				</td>
+			@endif
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td colspan="3" class="titleSection">
+					<strong>Hospedaje</strong>
+				</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Fecha check-in</strong><br></td>
+				<td class="labelSection"><strong>Fecha check-out</strong></td>
+				<td class="labelSection"><strong>Lugar o ciudad</strong></td>
+			</tr>
+			@for ($i = 0; $i <= 2; $i++)
+				<tr>
+					<td class="infoText">01/01/2023<br></td>
+					<td class="infoText">02/01/2023</td>
+					<td class="infoText">Cabimas Hotel Europa</td>
+				</tr>
+			@endfor
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td class="titleSection">
+					<strong>Observaciones</strong>
+				</td>
+			</tr>
+			<tr>
+				<td class="infoText">
+					Praesent maximus arcu feugiat, finibus est vel, convallis mauris. Etiam sit amet lacinia ante, vehicula facilisis lacus. Vivamus dignissim luctus nisl eget imperdiet. Nunc non magna condimentum, pellentesque metus ut, aliquam lectus. Pellentesque ut pharetra dolor, id sagittis ipsum. Phasellus quis malesuada enim, id aliquam orci.
+				</td>
+			</tr>
+		</table>
+		<table class="bodyForm" style="width:100%">
+			<tr>
+				<td class="titleSection">
+					<strong>Aprobado por</strong>
+				</td>
+				<td class="titleSection">
+					<strong>Recibido por</strong>
+				</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Nombre y apellido del supervisor inmediato</strong><br></td>
+				<td class="labelSection"><strong>Nombre y apellido</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">
+				</td>
+				<td class="infoText">
+				</td>
+			</tr>
+			<tr>
+				<td class="labelSection"><strong>Cargo</strong><br></td>
+				<td class="labelSection"><strong>Firma</strong></td>
+			</tr>
+			<tr>
+				<td class="infoText">
+				</td>
+				<td class="infoText">
+				</td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
