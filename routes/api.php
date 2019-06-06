@@ -20,6 +20,9 @@ use App\Permisos;
 use App\Notifications\Notificaciontest;
 use App\Jobs\JobNuevaReserva;
 
+use League\Flysystem\Filesystem;
+use Spatie\Dropbox\Client;
+use Spatie\FlysystemDropbox\DropboxAdapter;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -62,6 +65,7 @@ Route::resource('reservas', 'ReservasController');
 Route::resource('autorizaciones', 'AutorizacionController');
 
 Route::resource('files', 'FilesController');
+Route::post('filecsv', 'FilesController@csvfile')->name('FilesController.filecsv');
 
 Route::post('roles/pathauth/{role}', 'RolesController@path_auth')->name('roles.Authpath');
 Route::post('roles/permisos/{data}', 'RolesController@permisos')->name('roles.permisos');
@@ -78,12 +82,21 @@ Route::resource('proveedores', 'ProveedoresController');
 Route::get('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
 Route::get('testing',function(){
-	Mail::send('email', ['name' => 'Eleazar', 'verification_code' => '351351351'],
-	    function($mail){
-	        $mail->from('eleazar.sb18@gmail.com', "From");
-	        $mail->to('eleazaro@spservicesltd.uk', 'Eleazar');
-	        $mail->subject('testmail');
-	    });
+
+	$client = new Client('XJciitEJCWAAAAAAAAActiFR1EoBjC2ndI7dzg1h60apN5EUUoMGq8Edjq-PDPch');
+
+	$adapter = new DropboxAdapter($client);
+
+	$filesystem = new Filesystem($adapter);
+	return ($filesystem->getAdapter()->listContents('/'));
+
+	// return ($filesystem->listContents('/'));//Muestra mas opciones
+	// Mail::send('email', ['name' => 'Eleazar', 'verification_code' => '351351351'],
+	//     function($mail){
+	//         $mail->from('eleazar.sb18@gmail.com', "From");
+	//         $mail->to('eleazaro@spservicesltd.uk', 'Eleazar');
+	//         $mail->subject('testmail');
+	//     });
 	return "Mail supuestamente enviado";
 	// return response()->json([
 	// 	'User'      => User::with('permisos')->find(1),

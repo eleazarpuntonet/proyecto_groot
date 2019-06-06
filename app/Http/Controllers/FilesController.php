@@ -15,6 +15,10 @@ use App\User;
 Use App\Providers\NuevaReserva;
 use App\Notifications\Notificaciontest;
 
+use League\Flysystem\Filesystem;
+use Spatie\Dropbox\Client;
+use Spatie\FlysystemDropbox\DropboxAdapter;
+
 class FilesController extends Controller
 {
     /**
@@ -45,14 +49,18 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('file')) {
-            $md5Name = md5_file($request->file('file')->getRealPath());
-            $guessExtension = $request->file('file')->guessExtension();
-            $file = $request->file('file')->storeAs('images', $md5Name.'.'.$guessExtension);
+        $client        = new Client('XJciitEJCWAAAAAAAAActiFR1EoBjC2ndI7dzg1h60apN5EUUoMGq8Edjq-PDPch');
+        $adapter       = new DropboxAdapter($client);
+        $filesystem    = new Filesystem($adapter);
 
-            // $path = $request->file('file')->store('images');
+        if ($request->hasFile('file')) {
+            $name           = $request['file']->getClientOriginalName();
+            $guessExtension = $request->file('file')->guessExtension();
+            $file           = $request->file('file')->storeAs('images', $name);
+            $client->upload('/varios/'.$name,fopen($request->file('file')->getRealPath(),'rb'));
+
             return response()->json([
-                'message' => 'Upload success.',
+                'message' => $request,
                 'path' => $file,
                 'ext' => $guessExtension,
                 'status' => 200
@@ -121,5 +129,23 @@ class FilesController extends Controller
     public function destroy(Files $files)
     {
         //
+    }
+
+    public function csvfile(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $name           = $request['file']->getClientOriginalName();
+            $guessExtension = $request->file('file')->guessExtension();
+            $file           = $request->file('file')->storeAs('images', $name);
+            // dd(file_get_contents($request['file']));
+            return response()->json([
+                'message' => $request,
+                'path' => $file,
+                'ext' => $guessExtension,
+                'status' => 200
+            ], 200);
+        } else {
+            return 'no file';
+        }
     }
 }

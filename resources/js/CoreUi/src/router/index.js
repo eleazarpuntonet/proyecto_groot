@@ -75,6 +75,7 @@ import rfq from '../../../components/procuraRfq'
 import proProveedores from '../../../components/procuraProveedores'
 import proClientes from '../../../components/procuraClientes'
 import proProyectos from '../../../components/procuraProyectos'
+import proRequisicion from '../../../components/formularioRequisicion'
 
 
 Vue.use(Router)
@@ -289,12 +290,20 @@ var procClientes = new Route_item({
 procClientes.changeAuth(true,rolescargaDatos)
 
 var procProyectos = new Route_item({
-  router_id : 'procura004i',
+  router_id : 'procura005i',
   path:'proyectos',
   name:'Proyectos',
   comp: proProyectos,
   })  
 procProyectos.changeAuth(true,rolescargaDatos)
+
+var procRequisicion = new Route_item({
+  router_id : 'procura006i',
+  path:'requisicion',
+  name:'Requisicion',
+  comp: proRequisicion,
+  })  
+procRequisicion.changeAuth(true,rolescargaDatos)
 
 var procura = new Route_item({
     router_id : 'procura001m',
@@ -305,7 +314,8 @@ var procura = new Route_item({
      rfqForm,
      procProveedores,
      procClientes,
-     procProyectos
+     procProyectos,
+     procRequisicion
     ])
 
 export default new Router({
@@ -327,21 +337,7 @@ export default new Router({
         MenuRRHH,
         perfilUser,
         panelHome,
-        // Theme_route,
         MenuReservas,
-        // {
-        //   path: 'detalle',
-        //   name: 'Homee',
-        //   redirect: '/detalle/14',
-        //   component: autReservas,
-        //   children: [
-        //     new Route_item({
-        //       path:':id_reserva',
-        //       name:'Detalle',
-        //       comp: detalle_Reserva,
-        //       }),      
-        //   ]
-        // },    
       ]
     },
   ]

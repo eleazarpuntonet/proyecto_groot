@@ -98,15 +98,16 @@
 	  	  }
 	  	},
 	  	printFirma(user){
-	  		let obj = {}
-	  		obj.name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
-	  		obj.cargo = this.user_form.cargo
-	  		obj.id = this.user_form.id
-	  		let val = this.user_form.email
-	  		val = val.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-	  		    return letter.toUpperCase();
-	  		});
-	  		obj.email = val
+			let obj   = {}
+			let s_name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
+			// obj.name  = s_name
+			obj.name  = this.user_form.display_name!=null? this.user_form.display_name : s_name
+			obj.cargo = this.user_form.display_cargo!=null? this.user_form.display_cargo : this.user_form.cargo
+			obj.id    = this.user_form.id
+			let val   = this.user_form.email
+			obj.email = val
+			console.log(obj)
+			obj.name  = obj.name.toUpperCase()
 			firmaSPS(obj)
 			.then(response => {
 				let nameFile = response.headers[1]
@@ -333,15 +334,29 @@
 							  alt="admin@bootstrapmaster.com" />
 						</div>	
 						<div class="form_line_main">
-							<el-form-item prop="name" style="width:100%;">
-								<div class="el_label">Nombres</div>
-								<el-input v-model="user_form.name" :disabled="!editable"></el-input>
-							</el-form-item>
+							<div class="form_line">
+								<el-form-item prop="name" style="width:50%;">
+									<div class="el_label">Nombres</div>
+									<el-input v-model="user_form.name" :disabled="!editable"></el-input>
+								</el-form-item>
 
-							<el-form-item prop="last_name" style="width:100%;">
-								<div class="el_label">Apellidos</div>
-								<el-input v-model="user_form.last_name" :disabled="!editable"></el-input>
-							</el-form-item>
+								<el-form-item prop="last_name" style="width:50%;">
+									<div class="el_label">Apellidos</div>
+									<el-input v-model="user_form.last_name" :disabled="!editable"></el-input>
+								</el-form-item>
+							</div>
+
+							<div class="form_line">
+								<el-form-item prop="name" style="width:50%;">
+									<div class="el_label">Nombre de pila</div>
+									<el-input v-model="user_form.display_name" :disabled="!editable"></el-input>
+								</el-form-item>
+
+								<el-form-item prop="last_name" style="width:50%;">
+									<div class="el_label">Cargo</div>
+									<el-input v-model="user_form.display_cargo" :disabled="!editable"></el-input>
+								</el-form-item>
+							</div>
 						</div>
 					</div>
 
