@@ -1,15 +1,67 @@
 <script>
-import Papa from 'papaparse'
-import {
-  formularioRequisicion,
-  formularioItemsRequisicion
-} from '../formlabels.js'
-const labels = formularioRequisicion.es
-const labelsItems = formularioItemsRequisicion.es
+	import Papa from 'papaparse'
+	import {
+	  formularioRequisicion,
+	  formularioItemsRequisicion
+	} from '../formlabels.js'
+	const labels = formularioRequisicion.es
+	const labelsItems = formularioItemsRequisicion.es
+	const parseData = (content) => {
+		let data =[];
+		return new Promise((resolve) => {
+				Papa.parse(content, {
+				escapeChar: '"',
+				dynamicTyping: true,
+				delimiter: ",",
+				complete: function(results) {
+					let headers = {}
+					let requestFiles = []
+					results.data.forEach((val,i,arr)=>{
+						let x = {}	
+						if (i!=0) {
+							val.forEach((value,index1)=>{
+								x[arr[0][index1].replace(/\s/g, '')]=value
+							})
+							requestFiles.push(x)
+						}
+					})
+					requestFiles.forEach((val,index,arr)=>{
+						data.push({
+							cantidad      : val.Quantity,
+							unidad        : val.Unit.replace(/\s/g, ''),
+							descripcion   : val.Description,
+							nro_parte     : "",
+							cod_material  : "",
+							cl_costo      : "",
+							apu           : "",
+							observaciones : val.Specifications
+						})
+					})
+					resolve(data)
+				}
+			});
+		});
+	}
+
 	export default {
 	  data () {
 	  	return {
+	  		headers: {
+				index        : true,
+				unidad        : true,
+				cantidad        : true,
+				nro_parte     : true,
+				descripcion   : true,
+				cod_material  : true,
+				cl_costo      : true,
+				apu           : true,
+				cond_material : true,
+				observaciones : true
+	  		},
+	  		searchBox: '',
+	  		showheaders: '',
 	  		switchItemForm: false,
+	  		filtros: {},
 	  		temp: {
 	  			activo: false,
 	  			consumible: false,
@@ -57,38 +109,27 @@ const labelsItems = formularioItemsRequisicion.es
 
 	  	}
 	  },
+	  watch:{
+	  	itemsReq(){
+	  		this.filtros.unidadMedidad = []
+  			this.itemsReq.forEach((each)=>{
+  				if (!this.filtros.unidadMedidad.some(unidadMedidad => unidadMedidad.text === each.unidad)) {
+  					this.filtros.unidadMedidad.push({ text : each.unidad , value : each.unidad})
+  				}
+  			})
+	  	}
+	  },
 	  computed:{},
 	  methods:{
+	  	filterUnidad(value, row, column){
+	  	  return row.unidad === value;
+	  	},
 	  	httpcsv(algo){
-	  		Papa.parse(algo.file, {
-	  			config: {
-					quotes: false, //or array of booleans
-					quoteChar: '"',
-					delimiter: ",",
-					header: true,
-					newline: "\r\n",
-					skipEmptyLines: false, //or 'greedy',
-					columns: null //or array of strings
-				},
-				escapeChar: '"',
-				header: true,
-				dynamicTyping: true,
-				delimiter: ",",
-				
-				before: function(file, inputElem)
-				{
-					// executed before parsing each file begins;
-					// what you return here controls the flow
-				},
-				error: function(err, file, inputElem, reason)
-				{
-					// executed if an error occurs while loading the file,
-					// or if before callback aborted for some reason
-				},
-	  			complete: function(results) {
-	  				console.log(results);
-	  			}
-	  		});
+			parseData(algo.file).then((results)=>{
+				results.forEach((val,index)=>{
+					this.itemsReq.push(val)
+				})
+			})
 	  	},
 	  	addToTableRequisicion(){
 	  		let temp = {}
@@ -452,147 +493,257 @@ const labelsItems = formularioItemsRequisicion.es
 			width="70%"
 			center>
 			<el-table
+				max-height="600"
 				empty-text="Aun no se ha agregado ninguna empresa"
 				:data="itemsReq"
 				style="width: 100%;">
 					<template slot="append">
-						<el-button 
-							size="small"
-							type="info" 
-							icon="el-icon-success"
-							@click="switchItemForm = true">Agregar archivo .csv
-						</el-button>
-
 						<el-upload
-						  class="upload-demo"
-						  drag
 						  :auto-upload="true"
 						  :http-request="httpcsv"
 						  action="">
-						  <i class="el-icon-upload"></i>
-						  <div class="el-upload__text">Suelta tu archivo aquí o <em>haz clic para cargar</em></div>
+						  <el-button 
+						  	size="small"
+						  	type="info" 
+						  	icon="el-icon-success"
+						  	class="el-upload__text">Agregar archivo .csv
+						  </el-button>
 						</el-upload>
 					</template>
-				  	<el-table-column
-				  	  type="index">
-				  	</el-table-column>
-					</el-table-column>
-					<el-table-column
-						header-row-class-name="headerPrueba"
-						align     = "center"
-						prop      = "cantidad"
-						label     = "Cantidad"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "unidad"
-						label     = "Unidad"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "nro_parte"
-						label     = "Nro de parte"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "descripcion"
-						label     = "Descripcion"
-						min-width = "15">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "cod_material"
-						label     = "Cod. del material"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "cl_costo"
-						label     = "Clase de costo"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column
-						align     = "center"
-						prop      = "apu"
-						label     = "APU"
-						min-width = "10">
-					</el-table-column>
-					<el-table-column 
-						align     = "center"
-						label="Condicion del material/equipo">
+					<template v-if="headers.index">
+					  	<el-table-column
+					  	  type="index">
+					  	</el-table-column>
+					</template>
+					<template v-if="headers.cantidad">
 						<el-table-column
-							min-width = "10"
+							header-row-class-name="headerPrueba"
 							align     = "center"
-							prop      = "activo"
-							label     = "Activo">
-							<template slot-scope="scope">
-								<el-button 
-									size="mini"
-									v-if="scope.row.activo"
-									type="success" 
-									icon="el-icon-check" 
-									circle>
-								</el-button>
-								<el-button 
-									size="mini"
-									v-else
-									icon="el-icon-close" 
-									circle>
-								</el-button>
+							prop      = "cantidad"
+							label     = "Cantidad"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.unidad">
+						<el-table-column
+							:show-overflow-tooltip="true"
+							:filters="filtros.unidadMedidad"
+							:filter-method="filterUnidad"
+							filter-placement="bottom-end"
+							:resizable="true"
+							sortable
+							align     = "center"
+							prop      = "unidad"
+							label     = "Unidad"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.nro_parte">
+						<el-table-column
+							align     = "center"
+							prop      = "nro_parte"
+							label     = "Nro de parte"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.descripcion">
+						<el-table-column
+							align     = "center"
+							prop      = "descripcion"
+							label     = "Descripcion"
+							min-width = "15">
+						</el-table-column>
+					</template>
+					<template v-if="headers.cod_material">
+						<el-table-column
+							align     = "center"
+							prop      = "cod_material"
+							label     = "Cod. del material"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.cl_costo">
+						<el-table-column
+							align     = "center"
+							prop      = "cl_costo"
+							label     = "Clase de costo"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.apu">
+						<el-table-column
+							align     = "center"
+							prop      = "apu"
+							label     = "APU"
+							min-width = "10">
+						</el-table-column>
+					</template>
+					<template v-if="headers.cond_material">
+						<el-table-column 
+							align     = "center"
+							label="Condicion del material/equipo">
+							<el-table-column
+								min-width = "10"
+								align     = "center"
+								prop      = "activo"
+								label     = "Activo">
+								<template slot-scope="scope">
+									<el-button 
+										size="mini"
+										v-if="scope.row.activo"
+										type="success" 
+										icon="el-icon-check" 
+										circle>
+									</el-button>
+									<el-button 
+										size="mini"
+										v-else
+										icon="el-icon-close" 
+										circle>
+									</el-button>
 
-							</template>
+								</template>
+							</el-table-column>
+							<el-table-column
+								min-width = "10"
+								align     = "center"
+								prop      = "consumible"
+								label     = "Consumible">
+								<template slot-scope="scope">
+									<el-button 
+										size="mini"
+										v-if="scope.row.consumible"
+										type="success" 
+										icon="el-icon-check" 
+										circle>
+									</el-button>
+									<el-button 
+										size="mini"
+										v-else
+										icon="el-icon-close" 
+										circle>
+									</el-button>
+								</template>
+							</el-table-column>
+							<el-table-column
+								min-width = "10"
+								align     = "center"
+								prop      = "stock"
+								label     = "Stock en almacen">
+								<template slot-scope="scope">
+									<el-button 
+										size="mini"
+										v-if="scope.row.stock"
+										type="success" 
+										icon="el-icon-check" 
+										circle>
+									</el-button>
+									<el-button 
+										size="mini"
+										v-else
+										icon="el-icon-close" 
+										circle>
+									</el-button>
+								</template>
+							</el-table-column>
 						</el-table-column>
+					</template>
+					<template v-if="headers.observaciones">
 						<el-table-column
-							min-width = "10"
-							align     = "center"
-							prop      = "consumible"
-							label     = "Consumible">
-							<template slot-scope="scope">
-								<el-button 
-									size="mini"
-									v-if="scope.row.consumible"
-									type="success" 
-									icon="el-icon-check" 
-									circle>
-								</el-button>
-								<el-button 
-									size="mini"
-									v-else
-									icon="el-icon-close" 
-									circle>
-								</el-button>
-							</template>
+							align     = "left"
+							prop      = "observaciones"
+							label     = "Observaciones"
+							min-width = "15">
 						</el-table-column>
-						<el-table-column
-							min-width = "10"
-							align     = "center"
-							prop      = "stock"
-							label     = "Stock en almacen">
-							<template slot-scope="scope">
-								<el-button 
-									size="mini"
-									v-if="scope.row.stock"
-									type="success" 
-									icon="el-icon-check" 
-									circle>
-								</el-button>
-								<el-button 
-									size="mini"
-									v-else
-									icon="el-icon-close" 
-									circle>
-								</el-button>
-							</template>
-						</el-table-column>
-					</el-table-column>
+					</template>
 					<el-table-column
-						align     = "left"
-						prop      = "observaciones"
-						label     = "Observaciones"
-						min-width = "15">
+						min-width = "80"
+					  	align="right">
+					  <template 
+					  	slot="header" 
+					  	slot-scope="scope">
+					  	<div style="display: flex;">
+							<el-input 
+								size="mini"
+								clearable 
+								placeholder="Buscar" 
+								v-model="searchBox" 
+								class="input-with-select">
+								<el-dropdown
+									:hide-on-click="false"
+									slot="prepend">
+									<span class="el-dropdown-link">
+										Visibles<i class="el-icon-arrow-down el-icon--right"></i>
+									</span>
+									<el-dropdown-menu slot="dropdown">
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.index">Indice
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.unidad">Unidad
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.cantidad">Cantidad
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.nro_parte">Nro de parte
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.descripcion">Descripcion
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.cod_material">Codigo de material
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.cl_costo">Clase de costo
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.apu">APU
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.cond_material">Condicion de material
+											</el-checkbox>
+										</el-dropdown-item>
+										<el-dropdown-item>
+											<el-checkbox 
+												v-model="headers.observaciones">Observaciones
+											</el-checkbox>
+										</el-dropdown-item>
+									</el-dropdown-menu>
+								</el-dropdown>
+								<el-button 
+									slot="append" 
+									icon="el-icon-search">
+								</el-button>
+							</el-input>
+					  	</div>
+					  </template>
+					  <template slot-scope="scope">
+					    <el-button
+					      size="mini"
+					      @click="">Edit</el-button>
+					    <el-button
+					      size="mini"
+					      type="danger"
+					      @click="">Delete</el-button>
+					  </template>
 					</el-table-column>
 			</el-table>
 			<el-form 
@@ -746,4 +897,29 @@ const labelsItems = formularioItemsRequisicion.es
 
 		.el-slider
 			margin: 0 10px
+		.input-with-select
+			display: flex
+			width: 100%
+			.el-input-group__prepend
+				width: 30%
+				height: 28px
+				line-height: 28px
+				padding: 0 0 !important
+				.el-input__inner
+					padding: 5px 5px
+				.el-input--suffix
+					height: 28px
+					line-height: 28px
+					padding: 0 5px
+				.el-dropdown
+					height: 28px
+					line-height: 28px
+				.el-input__suffix
+					display: flex !important
+					justify-content: center
+					flex-direction: column
+			.el-input-group__append
+				width: 10%
+				height: 28px
+				line-height: 28px
 </style>

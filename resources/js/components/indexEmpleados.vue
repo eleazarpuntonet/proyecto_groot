@@ -130,6 +130,7 @@ export default {
             :show-overflow-tooltip="true"
             :filters="filters.cargo"
             :filter-method="filterCargo"
+            :filter-multiple="true"
             filter-placement="bottom-end"
             sortable
             label="Cargo"
