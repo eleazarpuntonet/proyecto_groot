@@ -9,9 +9,9 @@ window.axios.defaults.headers.common = {
                     .getAttribute('content'),
 }
 
-import 'core-js/es6/promise'
-import 'core-js/es6/string'
-import 'core-js/es7/array'
+// import 'core-js/es6/promise'
+// import 'core-js/es6/string'
+// import 'core-js/es7/array'
 import {
   getPermisosRutasRoles,
   getAccesos

@@ -76,6 +76,7 @@ import proProveedores from '../../../components/procuraProveedores'
 import proClientes from '../../../components/procuraClientes'
 import proProyectos from '../../../components/procuraProyectos'
 import proRequisicion from '../../../components/formularioRequisicion'
+import landProcura from '../../../components/landingProcura'
 
 
 Vue.use(Router)
@@ -305,6 +306,14 @@ var procRequisicion = new Route_item({
   })  
 procRequisicion.changeAuth(true,rolescargaDatos)
 
+var landingProcura = new Route_item({
+  router_id : 'procura007i',
+  path:'landing',
+  name:'Landing Procura',
+  comp: landProcura,
+  })  
+landingProcura.changeAuth(true,rolescargaDatos)
+
 var procura = new Route_item({
     router_id : 'procura001m',
     path:'procura',
@@ -315,7 +324,8 @@ var procura = new Route_item({
      procProveedores,
      procClientes,
      procProyectos,
-     procRequisicion
+     procRequisicion,
+     landingProcura
     ])
 
 export default new Router({

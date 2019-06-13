@@ -3,12 +3,12 @@ var formularioRequisicion = {
 		fecha_emision : {
 			label: 'Fecha de emision',
 			placeholder: 'Fecha de emision',
-			description: 'Este campo contiene la fecha en la cual se hizo la requisicion en cuestion, el campo es completado por el sistema automaticamente',
+			description: 'Coloque el día, mes y año en que se llena la requisición de material y/o equipo',
 		},
 		nro_solicitud : {
 			label: 'Numero de solicitud',
 			placeholder: 'Numero de solicitud',
-			description: 'Se refiere a la nomenclatura con la cual sera identificada esta requisicion en especifico, este campo es asignado por el sistema automaticamente',
+			description: 'Coloque el número correlativo que mantiene usted como unidad solicitante',
 		},
 		proyecto : {
 			label: 'Proyecto',
@@ -229,6 +229,104 @@ var formularioItemsRequisicion = {
        	       	},           	       	       		       	     	
 	},
 }
+
+var tablaProcesosProcura = {
+	es: {
+		pr : {
+			label: 'PR',
+			description: 'Identificador unico del proceso',
+		},		
+		descripcion : {
+			label: 'Descripcion',
+			description: 'Detalle de proceso',
+		},
+		proyecto : {
+			label: 'Proyecto',
+			description: 'Proyecto de proceso',
+		},
+		region : {
+			label: 'Region',
+			description: 'Region de ejecucion de proyecto',
+		},
+		date_rec_org_cli : {
+			label: 'F. recibido original cliente',
+			description: '?',
+		},
+		date_apr_solic_ger : {
+			label: 'F. aprobada solicitud gerente',
+			description: '?',
+		},
+		date_asig : {
+			label: 'Fecha de asignacion',
+			description: '?',
+		},
+		date_org_entrega : {
+			label: 'Fecha original de entrega',
+			description: '?',
+		},
+		date_ext : {
+			label: 'Fecha extendida',
+			description: '?',
+		},
+		date_fin_entrega : {
+			label: 'Fecha final de entrega',
+			description: '?',
+		},
+		date_env_tdc : {
+			label: 'Fecha enviada tdc',
+			description: '?',
+		},
+		total : {
+			label: 'Total',
+			description: '?',
+		},
+		cotizados : {
+			label: 'Cotizados',
+			description: '?',
+		},
+		porcentaje : {
+			label: '%',
+			description: '?',
+		},
+		rfi : {
+			label: 'RFI',
+			description: '?',
+		},
+		por_cotizar : {
+			label: 'Por cotizar',
+			description: '?',
+		},
+		tot_cotizacion : {
+			label: 'Total cotizacion',
+			description: '?',
+		},
+		compra : {
+			label: 'Compra',
+			description: '?',
+		},
+		pagado : {
+			label: 'Pagado',
+			description: '?',
+		},
+		entregado : {
+			label: 'Entregado',
+			description: '?',
+		},
+		comentarios : {
+			label: 'Comentarios',
+			description: '?',
+		},
+		lid_operacion : {
+			label: 'Lider operacional',
+			description: '?',
+		},
+		solicitante : {
+			label: 'Solicitante',
+			description: '?',
+		},
+	},
+}
 export { 
 	formularioRequisicion,
-	formularioItemsRequisicion};
+	formularioItemsRequisicion,
+	tablaProcesosProcura};

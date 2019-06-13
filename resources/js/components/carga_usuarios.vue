@@ -15,6 +15,14 @@
 	  */
 	  data () {
 	  	return {
+	  		bannflag: {
+	  			nombre      : false,
+	  			cargo     : false,
+	  			tlf       : false,
+	  			skype     : false,
+	  			mail      : false,
+	  			ubicacion : false
+	  		},
 	  		permisos: this.$store.getters.getUserPermisos,
 			dominio_temp    : null,
 			editable        : true,
@@ -36,6 +44,7 @@
 				sede            : null,
 				ci_usuario      : null,
 				status          : "activo",
+				banner          : {},
   			},
 			rules_          : {
 				name            : [
@@ -100,13 +109,15 @@
 	  	printFirma(user){
 			let obj   = {}
 			let s_name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
-			// obj.name  = s_name
-			obj.name  = this.user_form.display_name!=null? this.user_form.display_name : s_name
-			obj.cargo = this.user_form.display_cargo!=null? this.user_form.display_cargo : this.user_form.cargo
+			obj.name  = this.user_form.banner.name!=null && this.bannflag.nombre? this.user_form.banner.name : s_name
+			obj.cargo = this.user_form.banner.cargo!=null && this.bannflag.cargo? this.user_form.banner.cargo : this.user_form.cargo
 			obj.id    = this.user_form.id
+			this.user_form.banner.tlf!= null && this.bannflag.tlf ? obj.tlf=this.user_form.banner.tlf : null
+			this.user_form.banner.skype!= null && this.bannflag.skype ? obj.skype=this.user_form.banner.skype : null
+			this.user_form.banner.mail!= null && this.bannflag.mail ? obj.mail=this.user_form.banner.mail : null
+			this.user_form.banner.ubicacion!= null && this.bannflag.ubicacion ? obj.ubicacion=this.user_form.banner.ubicacion : null
 			let val   = this.user_form.email
 			obj.email = val
-			console.log(obj)
 			obj.name  = obj.name.toUpperCase()
 			firmaSPS(obj)
 			.then(response => {
@@ -116,7 +127,6 @@
 				const link = document.createElement('a');
 				link.href = url;
 				link.setAttribute('download', nameFile); //or any other extension
-				// link.setAttribute('download', 'file.png'); //or any other extension
 				document.body.appendChild(link);
 				link.click();
 			  })
@@ -149,14 +159,17 @@
 	  		    })
 	  	},
 	  	row_click(row,event,column){
-	  		console.log(row)
 			this.user_form               = row
 			this.user_form.departamento  = row.departamento.id
+			this.user_form.banner = {}
 			this.temp_roles              = []
 			this.disabled_flag           = true
 	  		row.roles.forEach((x,y)=>{
 	        	this.temp_roles.push(x.id)
 	  		})
+	  		for (var prop in this.bannflag) {
+	  			this.bannflag[prop] = false
+	  		}
 	  	},
 	  	text_length(text){
 	  		return text.substr(0, 10)+"..."
@@ -412,7 +425,100 @@
 							<el-input v-model="user_form.tlf" class="input-with-select" size="mini" placeholder="Telefono" :disabled="!editable">
 							</el-input>
 						</el-form-item>						
-				</div>
+					</div>
+
+					<div class="el_label">Agregar detalles a firma</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.name" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Nombre" 
+								:disabled="!bannflag.nombre">
+							</el-input>
+						</el-form-item>	
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.nombre">Nombre personalizado</el-checkbox>
+						</el-form-item>						
+					</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.cargo" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Cargo" 
+								:disabled="!bannflag.cargo">
+							</el-input>
+						</el-form-item>		
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.cargo">Cargo personalizado</el-checkbox>
+						</el-form-item>					
+					</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.tlf" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Telefono" 
+								:disabled="!bannflag.tlf">
+							</el-input>
+						</el-form-item>		
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.tlf">Telefono</el-checkbox>
+						</el-form-item>		
+					</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.skype" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Skype" 
+								:disabled="!bannflag.skype">
+							</el-input>
+						</el-form-item>	
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.skype">Skype</el-checkbox>
+						</el-form-item>		
+					</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.mail" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Correo" 
+								:disabled="!bannflag.mail">
+							</el-input>
+						</el-form-item>	
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.mail">Correo</el-checkbox>
+						</el-form-item>						
+					</div>
+					<div class="form_line">
+						<el-form-item prop="tlf" style="width:80%;">
+							<el-input 
+								v-model="user_form.banner.ubicacion" 
+								class="input-with-select" 
+								size="mini" 
+								placeholder="Ubicacion" 
+								:disabled="!bannflag.ubicacion">
+							</el-input>
+						</el-form-item>
+						<el-form-item 
+							style="width:20%;">
+							<el-checkbox v-model="bannflag.ubicacion">Ubicacion</el-checkbox>
+						</el-form-item>							
+					</div>
+
 
 					<div class="form_line">
 						<el-form-item>
@@ -425,7 +531,6 @@
 							</el-transfer>
 						</el-form-item>
 					</div>
-
 					<el-form-item>
 						<el-button 
 							v-if="checkPermisos('dataload003i3','escribe')"

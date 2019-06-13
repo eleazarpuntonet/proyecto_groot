@@ -119,7 +119,7 @@ var items_Reservas = new menuItem({
       id_path: 'reserv001m',
       name: 'Reservas',
       url: '/reservas',
-      icon: 'icon-pencil',
+      icon: 'icon-control-play',
       class: 'nav-item',
       authRol: []
     },[
@@ -143,7 +143,7 @@ var gestionUsuario = new menuItem({
       id_path:'rrhh001m',
       name: 'Talento Humano',
       url: '/usuarios',
-      icon: 'icon-pencil',
+      icon: 'icon-control-play',
       class: 'nav-item',
       authRol: []
     },[
@@ -203,7 +203,7 @@ var cargaDatos = new menuItem({
       id_path: 'dataload001m',
       name: 'Carga de Datos',
       url: '/c_datos',
-      icon: 'icon-pencil',
+      icon: 'icon-control-play',
       class: 'nav-item',
       authRol: []
     },[
@@ -254,19 +254,28 @@ var proRequisicion = new menuItem({
       class: 'nav-item',
       authRol: ['superadmin','public'],
     })
+var landingProcura = new menuItem({
+      id_path: 'procura007i',
+      name: 'Procesos de procura',
+      url: '/procura/landing',
+      icon: 'icon-pencil',
+      class: 'nav-item',
+      authRol: ['superadmin','public'],
+    })
 var procura = new menuItem({
       id_path: 'procura001m',
       name: 'Procura',
       url: '/procura',
-      icon: 'icon-pencil',
+      icon: 'icon-control-play',
       class: 'nav-item',
       authRol: []
     },[
+        proProyectos,
+        proRequisicion,
         rfq,
         proProveedores,
         proClientes,
-        proProyectos,
-        proRequisicion
+        landingProcura,
       ])
 export default {
   items: [
