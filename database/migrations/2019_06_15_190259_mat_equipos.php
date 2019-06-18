@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Uploadfiles extends Migration
+class MatEquipos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class Uploadfiles extends Migration
      */
     public function up()
     {
-        Schema::create('files_base', function (Blueprint $table) {
+        Schema::create('mat_equipos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_name');
-            $table->string('ext')->nullable();
-            $table->string('nombre')->nullable();
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
+            $table->string('unidad');
+            $table->string('tipo');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class Uploadfiles extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files_base');
+        Schema::dropIfExists('mat_equipos');
     }
 }

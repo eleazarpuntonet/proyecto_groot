@@ -326,7 +326,165 @@ var tablaProcesosProcura = {
 		},
 	},
 }
+
+var formulariodeProyectos = {
+	es: {
+		n_proyecto : {
+			label: 'Nombre del proyecto',
+			placeholder: 'Nombre del proyecto',
+			description: 'Es el nombre que identificara al proyecto en cuestión',
+		},	
+		status : {
+			label: 'Status',
+			placeholder: 'Status',
+			description: 'Status actual del proyecto',
+		},	
+		participantes : {
+			label: 'Participantes',
+			placeholder: 'Participantes',
+			description: 'Ingresa las personas involucradas en el desarrollo de este proyecto',
+		},	
+		responsable : {
+			label: 'Responsable',
+			placeholder: 'Responsable',
+			description: 'Persona responsable o lider del proyecto',
+		},
+		presupuesto_absf : {
+			label: 'Presupuesto',
+			placeholder: 'Presupuesto',
+			description: 'Presupuesto del proyecto en bolivares',
+		},
+		contacto : {
+			label: 'Contacto',
+			placeholder: 'Contacto',
+			description: 'Contactos del proyecto',
+		},
+		presupuesto_busd : {
+			label: 'Presupuesto',
+			placeholder: 'Presupuesto',
+			description: 'Presupuesto del proyecto en dolares',
+		},
+		empresa : {
+			label: 'Empresa',
+			placeholder: 'Empresa',
+			description: 'Empresa involucrada en el proyecto',
+		},
+		precio_venta : {
+			label: 'Precio de venta',
+			placeholder: 'Precio de venta',
+			description: 'Precio de venta del proyecto en bolivares',
+		},
+		zona : {
+			label: 'Zona',
+			placeholder: 'Zona',
+			description: 'Zonas de desarrollo del proyecto',
+		},
+		precio_ventaUSD : {
+			label: 'Precio de venta',
+			placeholder: 'Precio de venta',
+			description: 'Precio de venta del proyecto en dolares',
+		},
+		factibilidad : {
+			label: 'Factibilidad',
+			placeholder: 'Factibilidad',
+			description: 'Factibilidad',
+		},
+		accion : {
+			label: 'Accion',
+			placeholder: 'Accion',
+			description: 'Acciones por tomar con respecto al proyecto',
+		},
+		fecha_accion : {
+			label: 'Fecha de accion',
+			placeholder: 'Fecha de accion',
+			description: 'Fecha de ejecucion de acciones pendientes del proyecto',
+		},
+		descripcion : {
+			label: 'Descripcion',
+			placeholder: 'Descripcion',
+			description: 'Descripcion detallada del proyecto en cuestion',
+		},
+	},
+	rules : {
+		n_proyecto: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},	
+		status: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},	
+		empresa: { 
+		 	required: true,
+		 	message: 'El campo no puede quedar vacio, por favor complete el campo',
+		 	trigger: 'change' 
+		},
+		precio_venta: { 
+		 	required: true,
+		 	message: 'El campo no puede quedar vacio, por favor complete el campo',
+		 	trigger: 'change' 
+		},
+		precio_ventaUSD: { 
+		 	required: true,
+		 	message: 'El campo no puede quedar vacio, por favor complete el campo',
+		 	trigger: 'change' 
+		},
+		zona: { 
+		 	required: true,
+		 	message: 'El campo no puede quedar vacio, por favor complete el campo',
+		 	trigger: 'change' 
+		},
+		participantes: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+		responsable: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+		presupuesto_absf: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+		contacto: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+       	presupuesto_busd: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+       	factibilidad: { 
+         	required: true,
+         	message: 'El campo no puede quedar vacio, por favor complete el campo',
+         	trigger: 'change' 
+       	},
+   		accion: { 
+	   	  	required: true,
+	   	  	message: 'El campo no puede quedar vacio, por favor complete el campo',
+	   	  	trigger: 'change' 
+   		},
+   		fecha_accion: { 
+	   	  	required: true,
+	   	  	message: 'El campo no puede quedar vacio, por favor complete el campo',
+	   	  	trigger: 'change' 
+   		},
+   		descripcion: { 
+	   	  	required: true,
+	   	  	message: 'El campo no puede quedar vacio, por favor complete el campo',
+	   	  	trigger: 'change' 
+   		},
+	},
+}
 export { 
 	formularioRequisicion,
 	formularioItemsRequisicion,
+	formulariodeProyectos,
 	tablaProcesosProcura};

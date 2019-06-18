@@ -1,3 +1,42 @@
+<script>
+import {mLogin} from '../../../../auth.js'
+import iconmail from "vue-material-design-icons/at.vue"
+import iconsend from "vue-material-design-icons/send.vue"
+import iconlock from "vue-material-design-icons/lock.vue"
+
+export default {
+  name: 'Login',
+  data(){
+    return {
+      form : {
+        email : null,
+        password: null
+      },
+      error : null
+    };
+  },
+  components: {
+    iconmail,
+    iconlock,
+    iconsend
+  },
+  methods:{
+    authenticate(){
+      // this.$store.dispatch('login')
+
+      mLogin(this.form)
+      .then(res=>{
+        this.$store.commit('isAuthenticated',res)
+        // this.$store.dispatch('login',res)
+        this.$router.push({path:'/'})
+      })
+      .catch(error=>{
+        this.$store.commit('loginFailed', {error})
+      })
+    }
+  }
+}
+</script>
 <template>
   <div class="app mainApp">
     <div class="loginBox boxshadow">
@@ -51,46 +90,6 @@
     </div>
   </div>
 </template>
-
-<script>
-import {mLogin} from '../../../../auth.js'
-import iconmail from "vue-material-design-icons/at.vue"
-import iconsend from "vue-material-design-icons/send.vue"
-import iconlock from "vue-material-design-icons/lock.vue"
-
-export default {
-  name: 'Login',
-  data(){
-    return {
-      form : {
-        email : null,
-        password: null
-      },
-      error : null
-    };
-  },
-  components: {
-    iconmail,
-    iconlock,
-    iconsend
-  },
-  methods:{
-    authenticate(){
-      // this.$store.dispatch('login')
-
-      mLogin(this.form)
-      .then(res=>{
-        this.$store.commit('isAuthenticated',res)
-        // this.$store.dispatch('login',res)
-        this.$router.push({path:'/'})
-      })
-      .catch(error=>{
-        this.$store.commit('loginFailed', {error})
-      })
-    }
-  }
-}
-</script>
 <style lang="scss">
 .mainApp{
   display: flex !important;

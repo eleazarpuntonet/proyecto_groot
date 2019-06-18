@@ -251,3 +251,34 @@ export function fileUpload(file){
         })
   })
 }
+
+export function proyectoStore(proyecto){
+  let x = {}
+  x.proyecto = JSON.stringify(proyecto);
+  return new Promise((res,rej)=>{
+    axios.post(route('proyectos.store',x)) 
+        .then(response => {
+          console.log(response)
+          res(response)
+          })
+        .catch(error => {
+          rej(error)
+        })
+  })
+}
+
+export function queryUsers(query){
+  return new Promise((res,rej)=>{
+    axios.get(route('usuarios.search',query)) 
+    .then(response => {
+      res(response)
+    })
+    .catch(error => {
+    // this.$notify.error({
+    //   title: 'Error '+error.response.status,
+    //   message: error.response.data.message
+    // });
+    })
+
+  })
+}

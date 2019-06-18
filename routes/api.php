@@ -78,6 +78,7 @@ Route::resource('roles', 'RolesController');
 Route::resource('gerencias', 'GerenciasController');
 
 Route::resource('proveedores', 'ProveedoresController');
+Route::resource('proyectos', 'ProyectosController');
 
 Route::get('textonimage/{user}', 'ImageController@textOnImage')->name('textOnImage');
 
