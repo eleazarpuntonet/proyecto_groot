@@ -15,6 +15,7 @@
 	  */
 	  data () {
 	  	return {
+	  		temp : {},
 	  		bannflag: {
 	  			nombre      : false,
 	  			cargo     : false,
@@ -109,13 +110,13 @@
 	  	printFirma(user){
 			let obj   = {}
 			let s_name = this.short_name(this.user_form.name)+' '+this.short_lastname(this.user_form.last_name)
-			obj.name  = this.user_form.banner.name!=null && this.bannflag.nombre? this.user_form.banner.name : s_name
-			obj.cargo = this.user_form.banner.cargo!=null && this.bannflag.cargo? this.user_form.banner.cargo : this.user_form.cargo
+			obj.name  = this.temp.name!=null && this.bannflag.nombre? this.temp.name : s_name
+			obj.cargo = this.temp.cargo!=null && this.bannflag.cargo? this.temp.cargo : this.user_form.cargo
 			obj.id    = this.user_form.id
-			this.user_form.banner.tlf!= null && this.bannflag.tlf ? obj.tlf=this.user_form.banner.tlf : null
-			this.user_form.banner.skype!= null && this.bannflag.skype ? obj.skype=this.user_form.banner.skype : null
-			this.user_form.banner.mail!= null && this.bannflag.mail ? obj.mail=this.user_form.banner.mail : null
-			this.user_form.banner.ubicacion!= null && this.bannflag.ubicacion ? obj.ubicacion=this.user_form.banner.ubicacion : null
+			this.temp.tlf!= null && this.bannflag.tlf ? obj.tlf=this.temp.tlf : null
+			this.temp.skype!= null && this.bannflag.skype ? obj.skype=this.temp.skype : null
+			this.temp.mail!= null && this.bannflag.mail ? obj.mail=this.temp.mail : null
+			this.temp.ubicacion!= null && this.bannflag.ubicacion ? obj.ubicacion=this.temp.ubicacion : null
 			let val   = this.user_form.email
 			obj.email = val
 			obj.name  = obj.name.toUpperCase()
@@ -142,6 +143,7 @@
 			}
 	  	},
 	  	callImage(){
+	  		this.user_form.banner = this.temp
 	  		axios.post(route('textOnImage',this.user_form)) 
 	  		    .then(response => {
 	  		    	console.log(response)
@@ -159,9 +161,9 @@
 	  		    })
 	  	},
 	  	row_click(row,event,column){
+	  		this.temp = {}
 			this.user_form               = row
 			this.user_form.departamento  = row.departamento.id
-			this.user_form.banner = {}
 			this.temp_roles              = []
 			this.disabled_flag           = true
 	  		row.roles.forEach((x,y)=>{
@@ -431,7 +433,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.name" 
+								v-model="temp.name" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Nombre" 
@@ -446,7 +448,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.cargo" 
+								v-model="temp.cargo" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Cargo" 
@@ -461,7 +463,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.tlf" 
+								v-model="temp.tlf" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Telefono" 
@@ -476,7 +478,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.skype" 
+								v-model="temp.skype" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Skype" 
@@ -491,7 +493,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.mail" 
+								v-model="temp.mail" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Correo" 
@@ -506,7 +508,7 @@
 					<div class="form_line">
 						<el-form-item prop="tlf" style="width:80%;">
 							<el-input 
-								v-model="user_form.banner.ubicacion" 
+								v-model="temp.ubicacion" 
 								class="input-with-select" 
 								size="mini" 
 								placeholder="Ubicacion" 

@@ -91,7 +91,7 @@ class ImageController extends Controller
           case 'skype':
             $img->insert($skypeicon, 'top-left',$vertical-5, $horizontal+4);
             $horizontal+=20;
-            $img->text($objeto->$key, $vertical+20, $horizontal+4, function($font) {  
+            $img->text($objeto->$key, $vertical+20, $horizontal, function($font) {  
               $font->file('fonts/OpenSans-Regular.ttf'); 
               $font->size(14);  
               $font->color('#6D6E70');  

@@ -1,4 +1,12 @@
 <script>
+  import iconaccount from "vue-material-design-icons/account.vue"
+  import iconmail from "vue-material-design-icons/at.vue"
+  import skype from 'vue-material-design-icons/SkypeBusiness.vue'
+  import Whatsapp from 'vue-material-design-icons/Whatsapp.vue'
+  import phone from "vue-material-design-icons/phone.vue"
+  import email from "vue-material-design-icons/EmailCheckOutline.vue"
+  import cellphone from "vue-material-design-icons/cellphone.vue"
+  import ext from "vue-material-design-icons/PhoneClassic.vue"
   import {
     proyectoStore,
     queryUsers
@@ -22,11 +30,16 @@ export default {
   */
   data () {
     return {
+      temporalContactForm : {},
+      dialogContacto : false,
       loading: {
         participantes : false,
+        responsables : false,
       },
       proyecto: {
         participantes: [],
+        responsables: [],
+        contactoTerceros: [],
       },
       usersQuery: [],
       repForm: {},
@@ -42,26 +55,90 @@ export default {
     }
   },
   components :{
-    VueContentLoading,
-    VclTable
+    iconmail,
+    skype,
+    Whatsapp,
+    phone,
+    email,
+    cellphone,
+    ext,
+    iconaccount
   },
   computed: {
+
   },
   watch: {
   },
   methods: {
-    deleteParticipante(id){
-      let valores = this.proyecto.participantes
-      this.proyecto.participantes = valores.filter((item)=>{
-        return item.id != id
-      })
+    addContactTercer(){
+      this.proyecto.contactoTerceros.push(this.temporalContactForm)
+      this.dialogContacto = false
+      this.temporalContactForm= {}
+    },
+    addContItem(canal,item){
+      item.flag = true
+      item.temp.type = canal
+    },
+    displayCargo(depto){
+      let ddepto = this.text_length(depto.departamento.disp_name)
+      return ddepto
+    },
+    text_length(text){
+      if (text.length>30) {
+        return text.substr(0, 30)+"..."
+      } else {
+        return text
+      }
+    },
+    short_name(name){
+      var str = name.split(" ")
+        return str[0]
+    },
+    short_lastname(name){
+      var str = name.split(" ")
+      if (str.length == 1) {
+        return str[0]
+      } else if (str.length == 2) {
+        return str[0]+" "+str[1][0]+"."
+      } else if (str.length == 3) {
+        return str[0]+" "+str[1][0]+"."
+      }
+    },
+    displayName(user){
+      let dname = this.short_name(user.name)
+      let dlastname = this.short_lastname(user.last_name)
+      return dname+' '+dlastname
+    },
+    deleteParticipante(id,arr){
+      if (arr == 'responsables') {
+        let valores = this.proyecto.responsables
+        this.proyecto.responsables = valores.filter((item)=>{
+          return item.id != id
+        })
+      } 
+      else if(arr == 'participantes') {
+        let valores = this.proyecto.participantes
+        this.proyecto.participantes = valores.filter((item)=>{
+          return item.id != id
+        })
+      } else {
+        console.log('Ejecuto delete'+id)
+        this.proyecto.contactoTerceros.splice(id,1)
+      }
     },
     changeSelectPart(){
-      // this.proyecto_Temp.participante = null
       let userSelected = this.usersQuery.find((item)=>{
         return item.id == this.proyecto_Temp.participante
       })
       this.proyecto.participantes.push(userSelected)
+      this.proyecto_Temp.participante = null
+    },
+    changeSelectPartII(){
+      let userSelected = this.usersQuery.find((item)=>{
+        return item.id == this.proyecto_Temp.responsable
+      })
+      this.proyecto.responsables.push(userSelected)
+      this.proyecto_Temp.responsable = null
     },
     remoteUser(query) {
         this.loading.participantes = true;
@@ -298,9 +375,8 @@ export default {
                 </div>
 
                 <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="participantes" style="width:33%;">
+                  <el-form-item prop="participantes" style="width:40%;">
                     <div class="el_label">{{formItemsProyectos.labels.participantes.label}}</div>
-
                     <el-select
                       @change="changeSelectPart"
                       style="width: 100%;"
@@ -320,19 +396,23 @@ export default {
                         :key="item.id"
                         :label="(item.name+ item.last_name)"
                         :value="item.id">
-                        <span style="float: left; font-size: 1.2vw;">{{item.last_name}}, {{item.name}}</span>
-                        <span v-if="item.departamento" style="float: right; color: #8492a6; font-size: 1vw">{{item.departamento.disp_name}}</span>
+                        <span style="float: left; font-size: 0.8vw;">{{item.last_name}}, {{item.name}}</span>
+                        <span v-if="item.departamento" style="float: right; color: #8492a6; font-size: 0.7vw">{{item.departamento.disp_name}}</span>
                       </el-option>
                     </el-select>
-                    
-                    <div class="usersBox">
+                    <div class="usersBox" v-if="proyecto.participantes.length>0">
                       <div class="userinBox" v-for="item in proyecto.participantes">
-                        <div class="name">
-                          {{item.name}}
+                        <div class="itemData">
+                          <div class="name">
+                            {{displayName(item)}}
+                          </div>
+                          <div class="depto">
+                            {{displayCargo(item)}}
+                          </div>
                         </div>
                         <div class="buttonBOX">
                           <el-button 
-                            @click="deleteParticipante(item.id)"
+                            @click="deleteParticipante(item.id,'participantes')"
                             icon="el-icon-delete" 
                             circle>
                           </el-button>
@@ -341,36 +421,80 @@ export default {
                     </div>
                   </el-form-item>
 
-                  <el-form-item prop="responsable" style="width:33%;">
+                  <el-form-item prop="participantes" style="width:40%;">
                     <div class="el_label">{{formItemsProyectos.labels.responsable.label}}</div>
-                    <el-select 
-                      style="width:100%"
+                    <el-select
+                      @change="changeSelectPartII"
+                      style="width: 100%;"
+                      v-model="proyecto_Temp.responsable"
+                      filterable
+                      remote
+                      reserve-keyword
+                      placeholder="Responsables"
+                      :remote-method="remoteUser"
+                      loading-text="Cargando"
+                      no-match-text="No se encontraron resultados"
+                      no-data-text="No se encontraron resultados"
                       size="small"
-                      v-model="proyecto.responsable" 
-                      clearable 
-                      :placeholder="formItemsProyectos.labels.responsable.placeholder">
+                      :loading="loading.responsables">
                       <el-option
-                        key="status"
-                        label="status"
-                        value="status">
+                        v-for="item in usersQuery"
+                        :key="item.id"
+                        :label="(item.name+ item.last_name)"
+                        :value="item.id">
+                        <span style="float: left; font-size: 0.8vw;">{{item.last_name}}, {{item.name}}</span>
+                        <span v-if="item.departamento" style="float: right; color: #8492a6; font-size: 0.7vw">{{item.departamento.disp_name}}</span>
                       </el-option>
                     </el-select>
+                    <div class="usersBox" v-if="proyecto.responsables.length>0">
+                      <div class="userinBox" v-for="item in proyecto.responsables">
+                        <div class="itemData">
+                          <div class="name">
+                            {{displayName(item)}}
+                          </div>
+                          <div class="depto">
+                            {{displayCargo(item)}}
+                          </div>
+                        </div>
+                        <div class="buttonBOX">
+                          <el-button 
+                            @click="deleteParticipante(item.id,'responsables')"
+                            icon="el-icon-delete" 
+                            circle>
+                          </el-button>
+                        </div>
+                      </div>
+                    </div>
                   </el-form-item>
 
-                  <el-form-item prop="contacto" style="width:33%;">
-                    <div class="el_label">{{formItemsProyectos.labels.contacto.label}}</div>
-                    <el-select 
-                      style="width:100%"
-                      size="small"
-                      v-model="proyecto.contacto" 
-                      clearable 
-                      :placeholder="formItemsProyectos.labels.contacto.placeholder">
-                      <el-option
-                        key="status"
-                        label="status"
-                        value="status">
-                      </el-option>
-                    </el-select>
+                  <el-form-item prop="contacto" style="width:20%;">
+                    <div class="el_label">Contacto</div>
+                    <el-button size="mini" @click="dialogContacto = true">Agregar contacto de terceros</el-button>
+
+                    <div class="usersBox usersTercerContact" v-if="proyecto.contactoTerceros.length>0">
+                      <el-collapse accordion>
+                        <template v-for="(item,index) in proyecto.contactoTerceros">
+                          <el-collapse-item :name="index" >
+                            <template slot="title">
+                              <div class="header">
+                                <div class="text">
+                                  {{item.nombre}}
+                                </div>
+                                <div class="buttonBOX">
+                                  <el-button
+                                    size="mini" 
+                                    @click="deleteParticipante(index,'contactos')"
+                                    icon="el-icon-delete" 
+                                    circle>
+                                  </el-button>
+                                </div>
+                              </div>
+                            </template>
+                              {{item}}
+                          </el-collapse-item>
+                        </template>
+                      </el-collapse>
+                    </div>
                   </el-form-item>
                 </div>
 
@@ -408,6 +532,91 @@ export default {
         <el-tab-pane label="RFQ">RFQ</el-tab-pane>
         <el-tab-pane label="Adjuntos">Adjuntos</el-tab-pane>
       </el-tabs>
+
+      <el-dialog 
+        class="eleDialog"
+        width="35%"
+        title="Agregar contacto de terceros" 
+        :visible.sync="dialogContacto">
+        <el-form :model="temporalContactForm">
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Nombre</div>
+              <el-input 
+                size="small"
+                placeholder="Nombre"
+                v-model="temporalContactForm.nombre">
+                <template slot="prepend"><iconaccount class="iconnButton"/></template>
+                 </el-input>
+              </el-input>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Cargo</div>
+              <el-input 
+                size="small"
+                placeholder="Cargo"
+                v-model="temporalContactForm.cargo">
+              </el-input>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Correo</div>
+              <el-input 
+                size="small"
+                placeholder="Correo"
+                v-model="temporalContactForm.mail">
+                <template slot="prepend"><iconmail class="iconnButton"/></template>
+              </el-input>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Telefono</div>
+              <el-input 
+                size="small"
+                placeholder="Telefono"
+                v-model="temporalContactForm.tlf">
+                <template slot="prepend"><phone class="iconnButton"/></template>
+              </el-input>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Skype</div>
+              <el-input 
+                size="small"
+                placeholder="Skype"
+                v-model="temporalContactForm.skype">
+                <template slot="prepend"><skype class="iconnButton"/></template>
+              </el-input>
+            </el-form-item>
+          </div>
+          <div class="form_line">
+            <el-form-item  style="width:100%; margin-left:5px;">
+              <div class="el_label">Extension</div>
+              <el-input 
+                size="small"
+                placeholder="Ext"
+                v-model="temporalContactForm.ext">
+                <template slot="prepend"><cellphone class="iconnButton"/></template>
+              </el-input>
+            </el-form-item>
+          </div>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button
+            size="mini" 
+            @click="dialogContacto = false">Cancelar
+          </el-button>
+          <el-button
+            size="mini" 
+            type="primary" @click="addContactTercer">Agregar
+          </el-button>
+        </span>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -417,6 +626,17 @@ export default {
     width: 100%
   .el-slider
     margin: 0px 15px
+  .eleDialog
+    .el_label
+      padding-top: (0px !important)
+  .usersTercerContact
+    .el-collapse-item__header
+      height: 30px
+    .header
+      width: 100%
+      display: flex
+      flex-direction: row
+      justify-content: space-between
   .usersBox
     padding: 0 3px
     color: #606266
@@ -424,18 +644,38 @@ export default {
     background-color: #fff
     border: 1px solid #DCDFE6
     .userinBox
-      font-size: 0.9rem
       border-radius: 15px
       display: flex
       flex-direction: row
       justify-content: space-between
-      height: 32px
+      align-items: flex-start
+      height: 28px
       line-height: 23px
-      padding: 3px 6px
+      padding: 1px 3px
       background-color: rgba(0, 124, 194, 0.8)
       margin: 3px
-      .name
-        color: #fff
+      .itemData
+        flex-shrink: 1
+        height: 100%
+        width: 100%
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .name
+          font-size: 0.8rem
+          color: #fff
+          margin: 0 3px
+          flex-shrink: 1
+        .depto
+          flex-shrink: 1
+          font-family: 'HelveticaNeue LTS Lt'
+          font-size: 0.8rem
+          margin: 0 3px
+          color: #fff
+          display: flex
+          flex-direction: column
+          justify-content: center
+          padding-top: 4px
       .buttonBOX
         .el-button.is-circle
           border-radius: (50% !important)
