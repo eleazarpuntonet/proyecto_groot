@@ -13,7 +13,7 @@ class Empresas extends Migration
      */
     public function up()
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('terceros', function (Blueprint $table) {
                     $table->increments('id');
                     $table->string('razon_social');
                     $table->string('nombre');
@@ -21,6 +21,16 @@ class Empresas extends Migration
                     $table->string('ciudad');
                     $table->string('pais');
                     $table->timestamps();
+                });
+        Schema::create('terceros_tipo', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->string('nombre');
+                    $table->string('descripcion');
+                    $table->timestamps();
+                });
+        Schema::create('terc_tipopivot', function (Blueprint $table) {
+                    $table->integer('id_terceros');
+                    $table->integer('id_terceros_tipo');
                 });
     }
 
@@ -31,6 +41,8 @@ class Empresas extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('terceros');
+        Schema::dropIfExists('terceros_tipo');
+        Schema::dropIfExists('terc_tipopivot');
     }
 }

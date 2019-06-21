@@ -247,7 +247,7 @@ export default {
                 </div>
 
                 <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="presupuesto_absf" style="width:50%;">
+                  <el-form-item prop="presupuesto_absf" style="width:33.33%;">
                     <div class="el_label">{{formItemsProyectos.labels.presupuesto_absf.label}}</div>
                     <el-input
                       size="small"
@@ -257,7 +257,7 @@ export default {
                     </el-input>
                   </el-form-item>
 
-                  <el-form-item prop="presupuesto_busd" style="width:50%;">
+                  <el-form-item prop="presupuesto_busd" style="width:33.33%;">
                     <div class="el_label">{{formItemsProyectos.labels.presupuesto_busd.label}}</div>
                     <el-input
                       size="small"
@@ -266,31 +266,8 @@ export default {
                       <template slot="append">USD</template>
                     </el-input>
                   </el-form-item>
-                </div>
 
-                <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="empresa" style="width:50%;">
-                    <div class="el_label">{{formItemsProyectos.labels.empresa.label}}</div>
-                    <el-select 
-                      style="width:100%"
-                      size="small"
-                      v-model="proyecto.empresa" 
-                      clearable 
-                      :placeholder="formItemsProyectos.labels.empresa.placeholder">
-                      <el-option
-                        key="En proceso"
-                        label="En proceso"
-                        value="En proceso">
-                      </el-option>
-                      <el-option
-                        key="Activo"
-                        label="Activo"
-                        value="Activo">
-                      </el-option>
-                    </el-select>
-                  </el-form-item>
-
-                  <el-form-item prop="precio_venta" style="width:50%;">
+                  <el-form-item prop="precio_venta" style="width:33.33%;">
                     <div class="el_label">{{formItemsProyectos.labels.precio_venta.label}}</div>
                     <el-input
                       size="small"
@@ -302,22 +279,6 @@ export default {
                 </div>
 
                 <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="zona" style="width:50%;">
-                    <div class="el_label">{{formItemsProyectos.labels.zona.label}}</div>
-                    <el-select 
-                      style="width:100%"
-                      size="small"
-                      v-model="proyecto.zona" 
-                      clearable 
-                      :placeholder="formItemsProyectos.labels.zona.placeholder">
-                      <el-option
-                        key="status"
-                        label="status"
-                        value="status">
-                      </el-option>
-                    </el-select>
-                  </el-form-item>
-
                   <el-form-item prop="precio_ventaUSD" style="width:50%;">
                     <div class="el_label">{{formItemsProyectos.labels.precio_ventaUSD.label}}</div>
                     <el-input
@@ -327,10 +288,8 @@ export default {
                       <template slot="append">USD</template>
                     </el-input>
                   </el-form-item>
-                </div>
 
-                <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="factibilidad" style="width:100%;">
+                  <el-form-item prop="factibilidad" style="width:50%;">
                     <div class="el_label">{{formItemsProyectos.labels.factibilidad.label}}</div>
                     <el-slider 
                       v-model="proyecto.factibilidad" 
@@ -375,7 +334,7 @@ export default {
                 </div>
 
                 <div class="form_line" style="justify-content:space-between !important;">
-                  <el-form-item prop="participantes" style="width:40%;">
+                  <el-form-item prop="participantes" style="width:33.33%;">
                     <div class="el_label">{{formItemsProyectos.labels.participantes.label}}</div>
                     <el-select
                       @change="changeSelectPart"
@@ -421,7 +380,7 @@ export default {
                     </div>
                   </el-form-item>
 
-                  <el-form-item prop="participantes" style="width:40%;">
+                  <el-form-item prop="participantes" style="width:33.33%;">
                     <div class="el_label">{{formItemsProyectos.labels.responsable.label}}</div>
                     <el-select
                       @change="changeSelectPartII"
@@ -467,34 +426,25 @@ export default {
                     </div>
                   </el-form-item>
 
-                  <el-form-item prop="contacto" style="width:20%;">
-                    <div class="el_label">Contacto</div>
-                    <el-button size="mini" @click="dialogContacto = true">Agregar contacto de terceros</el-button>
-
-                    <div class="usersBox usersTercerContact" v-if="proyecto.contactoTerceros.length>0">
-                      <el-collapse accordion>
-                        <template v-for="(item,index) in proyecto.contactoTerceros">
-                          <el-collapse-item :name="index" >
-                            <template slot="title">
-                              <div class="header">
-                                <div class="text">
-                                  {{item.nombre}}
-                                </div>
-                                <div class="buttonBOX">
-                                  <el-button
-                                    size="mini" 
-                                    @click="deleteParticipante(index,'contactos')"
-                                    icon="el-icon-delete" 
-                                    circle>
-                                  </el-button>
-                                </div>
-                              </div>
-                            </template>
-                              {{item}}
-                          </el-collapse-item>
-                        </template>
-                      </el-collapse>
-                    </div>
+                  <el-form-item prop="empresa" style="width:33.33%;">
+                    <div class="el_label">{{formItemsProyectos.labels.empresa.label}}</div>
+                    <el-select 
+                      style="width:100%"
+                      size="small"
+                      v-model="proyecto.empresa" 
+                      clearable 
+                      :placeholder="formItemsProyectos.labels.empresa.placeholder">
+                      <el-option
+                        key="En proceso"
+                        label="En proceso"
+                        value="En proceso">
+                      </el-option>
+                      <el-option
+                        key="Activo"
+                        label="Activo"
+                        value="Activo">
+                      </el-option>
+                    </el-select>
                   </el-form-item>
                 </div>
 
@@ -579,7 +529,7 @@ export default {
                 size="small"
                 placeholder="Telefono"
                 v-model="temporalContactForm.tlf">
-                <template slot="prepend"><phone class="iconnButton"/></template>
+                <template slot="prepend"><cellphone class="iconnButton"/></template>
               </el-input>
             </el-form-item>
           </div>
@@ -601,7 +551,7 @@ export default {
                 size="small"
                 placeholder="Ext"
                 v-model="temporalContactForm.ext">
-                <template slot="prepend"><cellphone class="iconnButton"/></template>
+                <template slot="prepend"><phone class="iconnButton"/></template>
               </el-input>
             </el-form-item>
           </div>
