@@ -31,7 +31,7 @@
         "font-awesome-scss": "^1.0.0",
         "fs": "0.0.1-security",
         "jquery": "^3.4.1",
-        "jspdf": "^1.5.3",
+        "jspdf": "^2.3.1",
         "laravel-echo": "^1.5.3",
         "laravel-echo-server": "^1.5.5",
         "laravel-mix": "^4.0.16",
